@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
 :root {
+    --font_family: 'Comfortaa', sans-serif;
     --color-bg: white;
+    --font-color: rgb(168,168,168);
 }

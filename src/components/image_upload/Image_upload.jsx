@@ -3,8 +3,9 @@ import './image_upload.css'
 
 const Image_upload = () => {
   return (
-    <div>
-      Image_upload
+    <div className='image_upload'>
+      <div className='circlier_number'>2</div>
+      <button>Upload Image/s</button>
     </div>
   )
 }

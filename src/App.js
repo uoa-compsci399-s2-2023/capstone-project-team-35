@@ -10,10 +10,8 @@ const App = () => {
       <div className='title'>
         <Title />
       </div>
-      <div className='control_frame'>
+      <div>
         <Control_frame />
-        <Image_upload />
-        <Insect_type />
       </div>
     </div>
   )
