@@ -25,4 +25,33 @@
     padding-right: 7vw;
     position: absolute;
     top: 35%;
+
+    display: grid; 
+
+    grid-template-rows: auto auto;
+    grid-template-columns: auto;
+    
+
+    margin: auto;
+    
+}
+
+.option1 {
+    grid-row-start: 1;
+    grid-column-start: 1;
+ 
+    grid-row-end: 2;
+    grid-column-end: 2;
+
+    margin: auto;
+}
+
+.option2 {
+    grid-row-start: 2;
+    grid-column-start: 1;
+
+    grid-row-end: 3;
+    grid-column-end: 2;
+
+    margin: auto;
 }

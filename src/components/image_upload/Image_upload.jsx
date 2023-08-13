@@ -1,83 +1,87 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
 import './image_upload.css'
 
 const Image_upload = () => {
   
   // flask intergration starts
-  const [profileData, setProfileData] = React.useState(null)
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [uploadedImages, setUploadedImages] = useState([]);
+  const [uploadStatus, setUploadStatus] = useState('');
+  const [message, setMessage] = useState('');
+  const input_form = useRef();
 
-  function getData() {
-    axios({
-      method: "GET",
-      url:"/profile",
-    })
-    .then((response) => {
-      const res =response.data
-      setProfileData(({
-        test_data: res.test}))
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response)
-        console.log(error.response.status)
-        console.log(error.response.headers)
+  const handleImageChange = (event) => {
+    setSelectedImage(event.target.files[0]);
+    //input_form.current.submit();
+  };
+
+  const handleFormSubmit = async (event) => {
+    clearImages();
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append('image', selectedImage);
+
+    try {
+      await axios.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
         }
-    })}
-
-    function InsertImage(body){
-        return fetch(`http://localhost:5000/image`,{
-            'method':'POST',
-            headers : {
-            'Content-Type':'application/json'
-      },
-      body:JSON.stringify(body)
-    })
-    .then(response => response.json())
-    .catch(error => console.log(error))
+      });
+      setUploadStatus('Image uploaded successfully!');
+      setSelectedImage(null);
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      setUploadStatus('Error uploading image: ' + error.message);
     }
+  };
 
-    const [image, setImage] = React.useState(null)
+  const fetchImages = async () => {
+    try {
+      const response = await axios.get('/get_images');
+      setUploadedImages(response.data);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
 
-    const sendData = () => {
-      InsertImage({image})
-      .then((response) => {
-        sendData(response)
-      }).catch((error) => {
-        if (error.response) {
-          console.log(error.response)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-          }
-      })}
+  useEffect(() => {
+    fetchImages();
+  }, []);
 
-      const handleSubmit=(event)=>{ 
-        event.preventDefault()
-        sendData()
-        setImage('')
-      }
-    // flask intergration ends
+  const clearImages = async () => {
+    try {
+      const response = await axios.post('/clear_images');
+      setMessage(response.data);
+    } catch (error) {
+      console.error('Error clearing images:', error);
+    }
+  };  
+  // flask intergration ends
 
   return (
     <div className='image_upload'>
-      <div className='circlier_number'>2</div>
-      
-      <form onSubmit = {handleSubmit}>
-      <input 
-          type="text"
-          className="form-control" 
-          placeholder ="Enter title"
-          value={image}
-          onChange={(e)=>setImage(e.target.value)}
-          required
-          />
-      </form>
+      <div class="image_upload_grid">
+        <div id="image_upload_circle">
+          <div className='circlier_number'>2</div>
+        </div>
+        <div id="image_upload_input">
+          <form onSubmit={handleFormSubmit} ref={input_form}>
+            <input type="file" onChange={handleImageChange} name='image_input'/>
+            <button type="submit">Upload Image</button>
+        </form>
+        </div>
+      </div>
 
+      {uploadStatus && <p>{uploadStatus}</p>}
 
-      <button onClick={getData}>See info</button>
-        {profileData && <div>
-              <p>Test info: {profileData.test_data}</p>
-            </div>
-        }
+      <h2>Uploaded Images:</h2>
+      <ul>
+        {uploadedImages.map((imagePath, index) => (
+          <li key={index}><img src={imagePath} alt={`Image ${index}`} /></li>
+        ))}
+      </ul>
     </div>
   )
 }

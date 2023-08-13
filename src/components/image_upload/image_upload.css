@@ -11,11 +11,6 @@
     color: white;
 }
 
-.image_upload .circlier_number {
-    position: relative;
-    left: -7.5%;
-}
-
 .image_upload {
     text-align: center;
     padding-top: 50px;
@@ -27,3 +22,39 @@
     font-size: 15px;
     padding: 13px 0;
 } */
+
+.image_upload_grid {
+    display: grid; 
+
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 0px;
+    height: 100%;
+
+    margin: auto;
+
+    position: relative;
+    bottom: 51px;
+
+}
+
+#image_upload_circle {
+
+    grid-row-start: 1;
+    grid-column-start: 1;
+
+    grid-row-end: 2;
+    grid-column-end: 2;
+
+
+}
+#image_upload_input {
+
+    grid-row-start: 1;
+    grid-column-start: 2;
+
+    grid-row-end: 2;
+    grid-column-end: 3;
+
+} 

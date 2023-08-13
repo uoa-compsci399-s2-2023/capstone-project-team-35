@@ -7,10 +7,10 @@ const Control_frame = () => {
     <div className='frame'>
       <h1>Pest Identification in 2 easy steps</h1>
       <div className='options'>
-        <div>
+        <div className='option1'>
           <Insect_type />
         </div>
-        <div>
+        <div className='option2'>
           <Image_upload />
         </div>
       </div>
