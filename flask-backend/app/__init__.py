@@ -15,7 +15,7 @@ def create_app(test_config=None):
     # Build the application - these steps require an application context
     with app.app_context():
         # Register blueprints
-        from .home import home
-        app.register_blueprint(home.home_blueprint)
+        from .upload import upload
+        app.register_blueprint(upload.upload_blueprint)
         
     return app
