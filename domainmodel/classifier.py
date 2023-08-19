@@ -4,15 +4,14 @@ class Classifier:
             raise ValueError("Classifier ID should be a non negative integer")
         self.__classifier_id = classifier_id
         
+        self.__classifier_name = None
+        self.__insect_type = None
+
         if type(classifier_name) is str and classifier_name.strip() != "":
-            self.__classifier_name = classifier_name #Name of the classifier
-        else:
-            self.__classifier_name = None
+            self.__classifier_name = classifier_name                        #Name of the classifier
 
         if type(insect_type) is str and insect_type.strip() != "":
-            self.__insect_type = insect_type #Name to display frontend
-        else:
-            self.__insect_type = None
+            self.__insect_type = insect_type                                #Name to display frontend
     
     @property
     def classifier_id(self):
