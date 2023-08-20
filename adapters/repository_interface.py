@@ -22,16 +22,11 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
     
     @abc.abstractmethod
-    def add_dataset(self):
-        # add a dataset to repository
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_datasets(self) -> list:
-        # returns a list of all datasets
+    def add_image(self):
+        # add an image to repo
         raise NotImplementedError
     
     @abc.abstractmethod
-    def get_dataset_by_id(self):
-        # returns dataset specified by id
+    def get_images(self):
+        # get all images 
         raise NotImplementedError
