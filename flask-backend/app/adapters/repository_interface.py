@@ -8,7 +8,7 @@ class RepositoryException(Exception):
 class AbstractRepository(abc.ABC):
     
     @abc.abstractmethod
-    def add_image(self):
+    def add_image(self, image: Image):
         # add an image to repo
         raise NotImplementedError
     
@@ -18,6 +18,6 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
     
     @abc.abstractmethod
-    def get_image_by_name(self) -> Image:
+    def get_image_by_name(self, image_name: str) -> Image:
         # get image by name
         raise NotImplementedError
