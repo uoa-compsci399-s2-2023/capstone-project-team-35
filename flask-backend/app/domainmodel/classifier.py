@@ -1,5 +1,5 @@
 class Classifier:
-    def __init__(self, classifier_id, classifier_name, insect_type):
+    def __init__(self, classifier_id: int, classifier_name: str, insect_type: str):
         if type(classifier_id) is not int or classifier_id < 0:
             raise ValueError("Classifier ID should be a non negative integer")
         self.__classifier_id = classifier_id
@@ -14,32 +14,32 @@ class Classifier:
             self.__insect_type = insect_type                                #Name to display frontend
     
     @property
-    def classifier_id(self):
+    def classifier_id(self) -> int:
         return self.__classifier_id
     
     @classifier_id.setter
-    def classifier_id(self, new_classifier_id):
+    def classifier_id(self, new_classifier_id: int):
         if type(new_classifier_id) is not int or new_classifier_id < 0:
             raise ValueError("Classifier ID should be a non negative integer")
         self.__classifier_id = new_classifier_id
 
     @property
-    def classifier_name(self):
+    def classifier_name(self) -> str:
         return self.__classifier_name
     
     @classifier_name.setter
-    def classifier_name(self, new_classifier_name):
+    def classifier_name(self, new_classifier_name: str):
         self.__classifier_name = None
 
         if type(new_classifier_name) is str and new_classifier_name.strip() != "":
             self.__classifier_name = new_classifier_name
 
     @property
-    def insect_type(self):
+    def insect_type(self) -> str:
         return self.__insect_type
 
     @insect_type.setter
-    def insect_type(self, new_insect_type):
+    def insect_type(self, new_insect_type: str):
         self.insect_type = None
         if type(new_insect_type) is str and new_insect_type.strip() != "":
             self.__insect_type = new_insect_type

@@ -9,13 +9,13 @@ UPLOAD_IMAGES_DIRECTORY = get_project_root() / "app" / "upload" / "uploads"
 MODEL_DIR = get_project_root() / "models"
 
 class LocalRepository(AbstractRepository):
-    def add_image(self, image):
+    def add_image(self, image: Image):
         if not os.path.exists(UPLOAD_IMAGES_DIRECTORY):
             os.makedirs(UPLOAD_IMAGES_DIRECTORY)
         image_filename = Path(UPLOAD_IMAGES_DIRECTORY) / image.filename
         image.save(image_filename)
 
-    def get_images(self):
+    def get_images(self) -> list:
         images = []
         for image in os.listdir(UPLOAD_IMAGES_DIRECTORY):
             try:
@@ -25,7 +25,7 @@ class LocalRepository(AbstractRepository):
                 pass
         return images
     
-    def get_image_by_name(self, path):
+    def get_image_by_name(self, path: str) -> Image:
         try:
             with Image.open(UPLOAD_IMAGES_DIRECTORY / path) as img:
                 return img

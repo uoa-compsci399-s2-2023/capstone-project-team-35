@@ -1,4 +1,5 @@
 import abc
+from PIL import Image
 
 class RepositoryException(Exception):
     def __init__(self, message = None):
@@ -12,11 +13,11 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
     
     @abc.abstractmethod
-    def get_images(self):
+    def get_images(self) -> list:
         # get all images 
         raise NotImplementedError
     
     @abc.abstractmethod
-    def get_image_by_name(self):
+    def get_image_by_name(self) -> Image:
         # get image by name
         raise NotImplementedError
