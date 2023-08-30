@@ -17,7 +17,8 @@ out_path is the path to the folder where we want to store the standardised image
 
 class interface_model(AbstractInterface):
     def __init__(self, classifier_model: Classifier) -> None:
-        self.__classifier_model = classifier_model
+        self.__model_name = classifier_model.classifier_name()
+        self.__model_file = classifier_model.classifier_file()
     
     def get_results(self, model_file, labels_path, images_dir, model_name) -> list:
         _, results = ft.test_model(model_file, labels_path, images_dir, model_name)

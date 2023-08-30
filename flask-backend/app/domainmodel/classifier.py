@@ -1,11 +1,15 @@
 class Classifier:
-    def __init__(self, classifier_id: int, classifier_name: str, insect_type: str):
+    def __init__(self, classifier_id: int, classifier_file: str, classifier_name: str, insect_type: str):
         if type(classifier_id) is not int or classifier_id < 0:
             raise ValueError("Classifier ID should be a non negative integer")
         self.__classifier_id = classifier_id
-        
+        self.__classifier_file = None
         self.__classifier_name = None
         self.__insect_type = None
+        
+        
+        if type(classifier_file) is str and classifier_file.strip() != "":
+            self.__classifier_file = classifier_file
 
         if type(classifier_name) is str and classifier_name.strip() != "":
             self.__classifier_name = classifier_name                        #Name of the classifier
@@ -22,6 +26,15 @@ class Classifier:
         if type(new_classifier_id) is not int or new_classifier_id < 0:
             raise ValueError("Classifier ID should be a non negative integer")
         self.__classifier_id = new_classifier_id
+    
+    @property
+    def classifier_file(self) -> str:
+        return self.__classifier_file
+        
+    @classifier_file.setter
+    def classifier_file(self, new_classifier_file: str):
+        if type(new_classifier_file) is str and new_classifier_file.strip() != "":
+            self.__classifier_file = new_classifier_file
 
     @property
     def classifier_name(self) -> str:
