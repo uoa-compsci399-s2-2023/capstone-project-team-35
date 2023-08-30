@@ -9,7 +9,7 @@ class Classifier:
         
         
         if type(classifier_file) is str and classifier_file.strip() != "":
-            self.__classifier_file = classifier_file
+            self.__classifier_file = classifier_file                        #Name of the classifier file(.h5)
 
         if type(classifier_name) is str and classifier_name.strip() != "":
             self.__classifier_name = classifier_name                        #Name of the classifier

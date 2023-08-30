@@ -20,8 +20,9 @@ class interface_model(AbstractInterface):
         self.__model_name = classifier_model.classifier_name()
         self.__model_file = classifier_model.classifier_file()
     
-    def get_results(self, model_file, labels_path, images_dir, model_name) -> list:
-        _, results = ft.test_model(model_file, labels_path, images_dir, model_name)
+    def get_results(self, labels_path, images_dir) -> list:
+        _, results = ft.test_model(self.__model_file, labels_path, 
+                                   images_dir, self.__model_name)
         return results
     
     def std_image(self, image_dir, out_path):
