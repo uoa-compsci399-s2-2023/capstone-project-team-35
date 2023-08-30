@@ -3,6 +3,18 @@ from app.domainmodel.classifier import Classifier
 import app.adapters.train_test_functions as ft
 import app.adapters.standardise_images as si
 
+'''
+model_file is the .h5 file we get given
+labels_path is the path to the label file we want to use. 
+images_dir direct path to the specific image we want to predict
+model_name is the name of the model we're predicting
+
+in_path is the path for the folder of the images we want to standardise
+    don't get this confused with image_dir.
+out_path is the path to the folder where we want to store the standardised images
+
+'''
+
 class interface_model(AbstractInterface):
     def __init__(self, classifier_model: Classifier) -> None:
         self.__classifier_model = classifier_model
