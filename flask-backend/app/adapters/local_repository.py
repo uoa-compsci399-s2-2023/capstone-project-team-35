@@ -3,10 +3,10 @@ import os
 from PIL import Image
 from pathlib import Path
 from utils import get_project_root
-from adapters.repository_interface import AbstractRepository
+from app.adapters.repository import AbstractRepository
 
-UPLOAD_IMAGES_DIRECTORY = get_project_root() / "app" / "upload" / "uploads"
-MODEL_DIR = get_project_root() / "models"
+UPLOAD_IMAGES_DIRECTORY = get_project_root() / "app" / "upload" / "uploads"                         # Move to a global config file
+MODEL_DIR = get_project_root() / "models"                                                           # Move to a global config file
 
 class LocalRepository(AbstractRepository):
     def add_image(self, image: Image):

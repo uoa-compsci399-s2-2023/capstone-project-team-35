@@ -30,7 +30,7 @@ const Image_upload = () => {
 
     try {
       // Send a POST request to the '/upload' endpoint in the backend to upload the image
-      await axios.post('/upload', formData, {
+      await axios.post('/classify', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
