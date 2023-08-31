@@ -1,17 +1,21 @@
 class Classifier:
-    def __init__(self, classifier_id: int, classifier_name: str, insect_type: str):
+    def __init__(self, classifier_id: int, classifier_file: str, classifier_name: str, insect_type: str):
         if type(classifier_id) is not int or classifier_id < 0:
             raise ValueError("Classifier ID should be a non negative integer")
         self.__classifier_id = classifier_id
-        
+        self.__classifier_file = None
         self.__classifier_name = None
         self.__insect_type = None
+        
+        
+        if type(classifier_file) is str and classifier_file.strip() != "":
+            self.__classifier_file = classifier_file.strip()                        #Name of the classifier file(.h5)
 
         if type(classifier_name) is str and classifier_name.strip() != "":
-            self.__classifier_name = classifier_name                        #Name of the classifier
+            self.__classifier_name = classifier_name.strip()                        #Name of the classifier
 
         if type(insect_type) is str and insect_type.strip() != "":
-            self.__insect_type = insect_type                                #Name to display frontend
+            self.__insect_type = insect_type.strip()                                #Name to display frontend
     
     @property
     def classifier_id(self) -> int:
@@ -24,6 +28,16 @@ class Classifier:
         self.__classifier_id = new_classifier_id
 
     @property
+    def classifier_file(self) -> str:
+        return self.__classifier_file
+        
+    @classifier_file.setter
+    def classifier_file(self, new_classifier_file: str):
+        self.__classifier_file = None
+        if type(new_classifier_file) is str and new_classifier_file.strip() != "":
+            self.__classifier_file = new_classifier_file.strip()
+
+    @property
     def classifier_name(self) -> str:
         return self.__classifier_name
     
@@ -32,7 +46,7 @@ class Classifier:
         self.__classifier_name = None
 
         if type(new_classifier_name) is str and new_classifier_name.strip() != "":
-            self.__classifier_name = new_classifier_name
+            self.__classifier_name = new_classifier_name.strip()
 
     @property
     def insect_type(self) -> str:
@@ -40,12 +54,12 @@ class Classifier:
 
     @insect_type.setter
     def insect_type(self, new_insect_type: str):
-        self.insect_type = None
+        self.__insect_type = None
         if type(new_insect_type) is str and new_insect_type.strip() != "":
-            self.__insect_type = new_insect_type
+            self.__insect_type = new_insect_type.strip()
     
     def __repr__(self):
-        return f'<Classifier {self.__classifier_name}, Insect {self.__insect_type}, ID {self.__classifier_id}>'
+        return f'<Classifier {self.__classifier_name}, Insect: {self.__insect_type}, Filename: {self.__classifier_file}, ID: {self.__classifier_id}>'
     
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
@@ -55,7 +69,7 @@ class Classifier:
     def __lt__(self, other):
         if not isinstance(other, self.__class__):
             return True
-        return self.classifier_id == other.classifier_id
+        return self.classifier_id < other.classifier_id
     
     def __hash__(self):
         return hash(self.__classifier_id)
