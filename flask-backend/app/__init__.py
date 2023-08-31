@@ -21,7 +21,7 @@ def create_app(test_config=None):
         from .upload_and_get_predictions import upload_and_get_predictions
         app.register_blueprint(upload_and_get_predictions.upload_blueprint)
     
-        if app.config['REPOSITORY'] == 'memory':
+        if app.config['REPOSITORY'] == 'local':
             # Create the LocalRepository impmentation for a local repository
             repo.repo_instance = local_repository.LocalRepository()
         

@@ -5,8 +5,8 @@ from pathlib import Path
 from utils import get_project_root
 from app.adapters.repository import AbstractRepository
 
-UPLOAD_IMAGES_DIRECTORY = get_project_root() / "app" / "upload" / "uploads"                         # Move to a global config file
-MODEL_DIR = get_project_root() / "models"                                                           # Move to a global config file
+UPLOAD_IMAGES_DIRECTORY = get_project_root() / "app" / "upload_and_get_predictions" / "uploaded_images"                         
+MODEL_DIR = get_project_root() / "models"                                                           
 
 class LocalRepository(AbstractRepository):
     def add_image(self, image: Image):
