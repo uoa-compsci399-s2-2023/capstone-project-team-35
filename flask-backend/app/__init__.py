@@ -18,11 +18,11 @@ def create_app(test_config=None):
     # Build the application - these steps require an application context
     with app.app_context():
         # Register blueprints
-        from .upload import upload
-        app.register_blueprint(upload.upload_blueprint)
+        from .upload_and_get_predictions import upload_and_get_predictions
+        app.register_blueprint(upload_and_get_predictions.upload_blueprint)
     
         if app.config['REPOSITORY'] == 'memory':
-            # Create the MemoryRepository impmentation for a memory-based repository
+            # Create the LocalRepository impmentation for a local repository
             repo.repo_instance = local_repository.LocalRepository()
         
     return app
