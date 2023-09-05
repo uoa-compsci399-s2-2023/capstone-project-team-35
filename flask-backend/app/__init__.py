@@ -3,6 +3,9 @@
 from flask import Flask
 from pathlib import Path
 
+import app.storage.abstractrepository as repo
+from app.storage.local import local_repository
+
 def create_app(test_config=None):
     """Construct the core application."""
     
@@ -15,7 +18,11 @@ def create_app(test_config=None):
     # Build the application - these steps require an application context
     with app.app_context():
         # Register blueprints
-        from .upload import upload
-        app.register_blueprint(upload.upload_blueprint)
+        from .endpoints.upload_and_get_predictions import upload_and_get_predictions
+        app.register_blueprint(upload_and_get_predictions.upload_blueprint)
+    
+        if app.config['REPOSITORY'] == 'local':
+            # Create the LocalRepository impmentation for a local repository
+            repo.repo_instance = local_repository.LocalRepository()
         
     return app

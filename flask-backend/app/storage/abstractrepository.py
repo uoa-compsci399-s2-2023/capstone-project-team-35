@@ -1,5 +1,8 @@
 import abc
 from PIL import Image
+from pathlib import Path
+
+repo_instance = None
 
 class RepositoryException(Exception):
     def __init__(self, message = None):
@@ -9,15 +12,16 @@ class AbstractRepository(abc.ABC):
     
     @abc.abstractmethod
     def add_image(self, image: Image):
-        # add an image to repo
         raise NotImplementedError
     
     @abc.abstractmethod
-    def get_images(self) -> list:
-        # get all images 
+    def get_all_images(self) -> list:
         raise NotImplementedError
     
     @abc.abstractmethod
     def get_image_by_name(self, image_name: str) -> Image:
-        # get image by name
+        raise NotImplementedError
+    
+    @abc.abstractclassmethod
+    def clear_directory(self, directory_path: Path):
         raise NotImplementedError
