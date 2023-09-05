@@ -1,74 +1,62 @@
-class Classifier:
-    def __init__(self, classifier_id: int, classifier_file: str, classifier_name: str, insect_type: str):
-        if type(classifier_id) is not int or classifier_id < 0:
-            raise ValueError("Classifier ID should be a non negative integer")
-        self.__classifier_id = classifier_id
-        self.__classifier_file = None
+from app.ml.abstractmodel import AbstractModel
+import app.ml.utilities.train_test_functions as ft
+from werkzeug.datastructures import FileStorage
+from pathlib import Path
+
+class Classifier(AbstractModel):
+    def __init__(self, classifier_path: str, classifier_name: str, labels_path: str):
+        self.__classifier_path = None
+        self.__labels_path = None
         self.__classifier_name = None
-        self.__insect_type = None
         
+        if classifier_path is not None:
+            self.__classifier_path = classifier_path
         
-        if type(classifier_file) is str and classifier_file.strip() != "":
-            self.__classifier_file = classifier_file                        #Name of the classifier file(.h5)
-
-        if type(classifier_name) is str and classifier_name.strip() != "":
-            self.__classifier_name = classifier_name                        #Name of the classifier
-
-        if type(insect_type) is str and insect_type.strip() != "":
-            self.__insect_type = insect_type                                #Name to display frontend
-    
-    @property
-    def classifier_id(self) -> int:
-        return self.__classifier_id
-    
-    @classifier_id.setter
-    def classifier_id(self, new_classifier_id: int):
-        if type(new_classifier_id) is not int or new_classifier_id < 0:
-            raise ValueError("Classifier ID should be a non negative integer")
-        self.__classifier_id = new_classifier_id
-    
-    @property
-    def classifier_file(self) -> str:
-        return self.__classifier_file
+        if classifier_name is not None and classifier_name != "":
+            self.__classifier_name = classifier_name 
         
-    @classifier_file.setter
-    def classifier_file(self, new_classifier_file: str):
-        if type(new_classifier_file) is str and new_classifier_file.strip() != "":
-            self.__classifier_file = new_classifier_file
-
-    @property
-    def classifier_name(self) -> str:
-        return self.__classifier_name
+        if labels_path is not None:
+            self.__labels_path = labels_path
     
-    @classifier_name.setter
-    def classifier_name(self, new_classifier_name: str):
-        self.__classifier_name = None
+    def predict(self, images_path) -> list:
+        labels, predictions, image_files, model = ft.run_model(self.__classifier_path, self.__labels_path, images_path, self.__classifier_name)
 
-        if type(new_classifier_name) is str and new_classifier_name.strip() != "":
-            self.__classifier_name = new_classifier_name
+        return labels, predictions, image_files, model
 
     @property
-    def insect_type(self) -> str:
-        return self.__insect_type
+    def classifier_path(self) -> str:
+        return self.__classifier_path
+    
+    @classifier_path.setter
+    def classifier_path(self, new_classifier_path: Path):
+        self.__classifier_path = None
 
-    @insect_type.setter
-    def insect_type(self, new_insect_type: str):
-        self.insect_type = None
-        if type(new_insect_type) is str and new_insect_type.strip() != "":
-            self.__insect_type = new_insect_type
+        if type(new_classifier_path) is Path and new_classifier_path.strip() != "":
+            self.__classifier_path = new_classifier_path
+
+    @property
+    def labels_path(self) -> str:
+        return self.__labels_path
+    
+    @labels_path.setter
+    def labels_path(self, new_labels_path: Path):
+        self.__labels_path = None
+
+        if type(new_labels_path) is Path and new_labels_path.strip() != "":
+            self.__classifier_name = new_labels_path
     
     def __repr__(self):
-        return f'<Classifier {self.__classifier_name}, Insect {self.__insect_type}, ID {self.__classifier_id}>'
+        return f'<Classifier {self.__classifier_name}, Name {self.__classifier_name}, File path {self.__classifier_path}, Labels path {self.__labels_path}>'
     
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        return self.classifier_id == other.classifier_id
+        return self.classifier_name == other.__classifier_name
     
     def __lt__(self, other):
         if not isinstance(other, self.__class__):
             return True
-        return self.classifier_id == other.classifier_id
+        return self.__classifier_name == other.__classifier_name
     
     def __hash__(self):
-        return hash(self.__classifier_id)
+        return hash(self.classifier_name)
