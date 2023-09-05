@@ -19,7 +19,7 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
     uploaded_images_directory_path = globals.USER_UPLOADED_IMAGES_DIRECTORY
     standardized_images_directory_path = globals.STANDARDIZED_IMAGES_DIRECTORY
     
-    si.standardise_images(uploaded_images_directory_path, standardized_images_directory_path / "Images")
+    si.standardise_images(uploaded_images_directory_path, standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
     model = Classifier(model_path, model_type, labels_path)
     labels, predictions, image_files, model = model.predict(standardized_images_directory_path)
     
