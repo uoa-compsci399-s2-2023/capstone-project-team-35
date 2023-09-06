@@ -11,7 +11,7 @@ def store_user_uploaded_images(images: list[FileStorage], repo: AbstractReposito
         repo.add_image(image)
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
-    #store_user_uploaded_images(images, repo)
+    store_user_uploaded_images(images, repo) # TODO: need to check if image is already present, or is it already done? 
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
 

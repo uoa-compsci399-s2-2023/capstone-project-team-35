@@ -14,10 +14,6 @@ def upload_and_get_classifications():
         target_image = request.files['image']
         target_image_list = [target_image]
         results = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)   #TODO: enable upload of multiple images
-        
-        for prediction in results:
-            print(prediction.label_probability_dict)
-            print(prediction.input_image_path)
             
         # Initialize a list to store prediction data
         aggregated_predictions = []
