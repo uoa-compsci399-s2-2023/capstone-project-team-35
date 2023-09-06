@@ -5,3 +5,4 @@ USER_UPLOADED_IMAGES_DIRECTORY = get_project_root() / "app" / "endpoints" / "upl
 STANDARDIZED_IMAGES_DIRECTORY = get_project_root() / "app" / "endpoints" / "upload_and_get_predictions" / "tmp" / "standardized_images"                                   
 ML_MODELS_DIRECTORY = get_project_root() / "app" / "ml" / "models"
 DEFAULT_MODEL_TYPE = "InceptionV3"
+TOP_PREDICTIONS_COUNT = 3

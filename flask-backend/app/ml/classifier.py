@@ -20,7 +20,6 @@ class Classifier(AbstractModel):
     
     def predict(self, images_path) -> list:
         labels, predictions, image_files, model = ft.run_model(self.__classifier_path, self.__labels_path, images_path, self.__classifier_name)
-
         return labels, predictions, image_files, model
 
     @property

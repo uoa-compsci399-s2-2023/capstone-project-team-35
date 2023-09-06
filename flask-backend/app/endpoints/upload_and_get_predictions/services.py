@@ -1,6 +1,7 @@
 import app.globals as globals
 from app.storage.abstractrepository import AbstractRepository
 from app.ml.classifier import Classifier
+from app.ml.prediction import Prediction
 import app.ml.utilities.standardise_images as si
 from werkzeug.datastructures import FileStorage
 from typing import Dict
@@ -10,7 +11,7 @@ def store_user_uploaded_images(images: list[FileStorage], repo: AbstractReposito
         repo.add_image(image)
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
-    store_user_uploaded_images(images, repo)
+    store_user_uploaded_images(images, repo) # TODO: need to check if image is already present, or is it already done? 
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
 
@@ -23,19 +24,24 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
     model = Classifier(model_path, model_type, labels_path)
     labels, predictions, image_files, model = model.predict(standardized_images_directory_path)
     
-    label_prediction_dict = {}
+    results = []
 
     # Iterate through labels and predictions and create the dictionary
-    for label, prediction in zip(labels, predictions[0]):
-        label_prediction_dict[label] = prediction
-            
-    # Sort the dictionary items based on their values in descending order
-    sorted_prediction_values = sorted(label_prediction_dict.items(), key=lambda item: item[1], reverse=True)
-
-    # Convert the sorted items back into a dictionary
-    sorted_predictions_dict = dict(sorted_prediction_values)
+    for index in range(0, len(predictions)):
+        label_probability_dict = {}
+        for label, probability in zip(labels, predictions[index]):
+            label_probability_dict[label] = round(probability, 3)
+        
+        # Sort the dictionary items based on their values in descending order
+        sorted_prediction_values = sorted(label_probability_dict.items(), key=lambda item: item[1], reverse=True)
+        
+        # Convert the sorted items back into a dictionary and extract top predictions
+        top_predictions_dict = dict(sorted_prediction_values[:globals.TOP_PREDICTIONS_COUNT])
+                
+        new_prediction = Prediction(top_predictions_dict, image_files[index])
+        results.append(new_prediction)            
     
-    repo.clear_directory(uploaded_images_directory_path)
+    #repo.clear_directory(uploaded_images_directory_path)
     repo.clear_directory(standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
     
-    return sorted_predictions_dict
+    return results
