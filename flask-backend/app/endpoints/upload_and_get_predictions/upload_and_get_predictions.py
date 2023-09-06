@@ -13,9 +13,24 @@ def upload_and_get_classifications():
     if 'image' in request.files:
         target_image = request.files['image']
         target_image_list = [target_image]
-        species_probability_dict = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)   #TODO: enable upload of multiple images
-        json_serializable_return_dict = {key: str(value) for key, value in species_probability_dict.items()}
-        json_output = json.dumps(json_serializable_return_dict)
-        return json_output, 200
+        results = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)   #TODO: enable upload of multiple images
+        
+        for prediction in results:
+            print(prediction.label_probability_dict)
+            print(prediction.input_image_path)
+            
+        # Initialize a list to store prediction data
+        aggregated_predictions = []
+
+        # Loop through the results and store prediction data
+        for prediction in results:
+            json_serializable_label_probability_dict = {key: str(value) for key, value in prediction.label_probability_dict.items()}
+            prediction_data = {
+                'labels': json_serializable_label_probability_dict,
+                'input_image_path': prediction.input_image_path
+            }
+            aggregated_predictions.append(prediction_data)
+
+        return aggregated_predictions, 200
     else:
         return 'No image provided', 400
