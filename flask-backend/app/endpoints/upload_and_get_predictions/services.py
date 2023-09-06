@@ -34,8 +34,9 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
 
     # Convert the sorted items back into a dictionary
     sorted_predictions_dict = dict(sorted_prediction_values)
+    top_predictions_dict = dict(sorted_predictions_dict[:globals.TOP_PREDICTIONS_COUNT])
     
     repo.clear_directory(uploaded_images_directory_path)
     repo.clear_directory(standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
     
-    return sorted_predictions_dict
+    return top_predictions_dict
