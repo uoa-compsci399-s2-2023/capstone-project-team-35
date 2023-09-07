@@ -1,8 +1,22 @@
 import './data_inputs.css'
 import React, { useState, useEffect, useRef } from 'react';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import axios from "axios";
 
 const Data_inputs = () => {
+  // Page navigation
+  const navigate = useNavigate();
+
+  const navigateToResults = () => {
+    // 👇️ navigate to /contacts
+    navigate('/results');
+  };
+
+  const navigateHome = () => {
+    // 👇️ navigate to /
+    navigate('/');
+  };
+
   // Flask intergration starts here:
   
   // Declare variables to manage the POST and GET request between the front-end and back-end
