@@ -81,24 +81,51 @@ const Data_inputs = () => {
     } catch (error) {
       console.error('Error clearing images:', error);
     }
-  }; 
+  };
 
   // Flask intergration ends here
+  
+  // Placeholder list of insect types
+  let options = [
+    {label: "Fruit Fly", value: "fruit_fly"},
+    {label: "Beetle", value: "beetle"},
+    {label: "Moth", value: "moth"}
+  ]
+
+  // Currently select insect type
+  const [selectedValue, setSelectedValue] = useState("")
+  const [selectedCircleClass, setSelectedCircleClass] = useState("")
+  const [selectedCircleText, setSelectedCircTextleText] = useState("1")
+  const [selectedUploadClass, setSelectedUploadClass] = useState("off")
+
+  // Dropdown onChange handler
+  const handleSelectChange = (e) => {
+    setSelectedValue(e.target.value)
+    setSelectedCircleClass("selected")
+    setSelectedUploadClass("selected_upload")
+    setSelectedCircTextleText("E")
+  }
 
   return (
     <div className='Inputs'>
 
         {/* Square 1 */}
         <div className='grid_circle_1'>
-          <div className='circlier_number circle'>1</div> 
+          <div className={`circlier_number circle ${selectedCircleClass}`}><p className={selectedCircleClass}>{selectedCircleText}</p></div> 
         </div>
 
         {/* Square 2 */}
         <div className='grid_selection1'>
-          <button className='button'>Select Insect <i class="arrow"></i></button>
-        </div>
 
-        {/* Square 3 */}
+          {/* Insect type dropdown selection */}
+          <select className={`button ${selectedCircleClass}`} onChange={handleSelectChange}>
+            <option selected disabled className='off'>Select Insect <i class="arrow"></i></option>
+            {options.map((option) => <option value={option.value}>{option.label}</option>)}
+          </select>
+
+        </div>
+        
+        {/* Square 3 */}   
         <div className='grid_connector'>
           <div className='connector'></div>
         </div>
@@ -111,17 +138,16 @@ const Data_inputs = () => {
         {/* Square 5 */}
         <div className="grid_selection2">
             <p className='upload'>Upload Images</p>
-
-            {/* Form where the images are uploaded */}
-            <form onSubmit={handleFormSubmit} ref={input_form} className='off'>
-              <input type="file" onChange={handleImageChange} name='image_input' className=''/>
-              <button type="submit">Upload Image</button> {/* Currently there is a submit button but will try make the form automatically submit in the future */}
-          </form>
         </div>
+
+        {/* Form where the images are uploaded */}
+        <form onSubmit={handleFormSubmit} ref={input_form} className={selectedUploadClass}>
+            <input type="file" onChange={handleImageChange} name='image_input' className={selectedUploadClass}/>
+            <button type="submit">Upload Image</button> {/* Currently there is a submit button but will try make the form automatically submit in the future */}
+        </form>
 
     {/* Ends Input */}
     </div> 
-    
   )
 }
 

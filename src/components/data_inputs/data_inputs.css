@@ -59,6 +59,8 @@
 }
 
 .button {
+    /* appearance: none;
+    -webkit-appearance: none; */
     background-color: white;
     border: none;
     font-size: 22px;
@@ -67,8 +69,15 @@
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     border-radius: 30px;
     font-family: var(--font_family);
-    color: #707070;;
+    color: #707070;
+    overflow: hidden;
 }
+
+.button option {
+    font-size: 18px;
+}
+
+.button:focus{ outline: none; }
 
 .arrow {
     border: solid #707070;
@@ -81,16 +90,44 @@
     /* Rotate Arrow */  
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
-  }
+}
 
-  .off {
+.off {
     display: none;
-  }
+}
 
-  .upload {
+.upload {
     font-size: 22px;
     padding: 15px;
     min-width: 18vw;
     font-family: var(--font_family);
     color: #707070;
-  }
+}
+
+div.selected {
+    height: 50px;
+    width: 50px;
+    font-size: 15px;
+    position: relative;
+    left: 9px;
+    top: 10px;
+}
+
+p.selected {
+    position: relative;
+    bottom: 7px;
+}
+
+select.selected {
+    position: relative;
+    top: 15px;
+}
+
+form.selected_upload {
+    position: relative;
+    top: 200%;
+}
+
+input.selected_upload {
+    
+}
