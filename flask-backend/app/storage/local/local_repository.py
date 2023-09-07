@@ -1,6 +1,6 @@
 import os
 from PIL import Image
-from pathlib import Path
+from pathlib import PurePath
 from app.storage.abstractrepository import AbstractRepository
 import app.globals as globals
 
@@ -10,7 +10,7 @@ class LocalRepository(AbstractRepository):
     def add_image(self, image: Image):
         if not os.path.exists(USER_UPLOADED_IMAGES_DIRECTORY):
             os.makedirs(USER_UPLOADED_IMAGES_DIRECTORY)
-        image_filename = Path(USER_UPLOADED_IMAGES_DIRECTORY) / image.filename
+        image_filename = USER_UPLOADED_IMAGES_DIRECTORY / PurePath(image.filename).name
         image.save(image_filename)
 
     def get_all_images(self) -> list:

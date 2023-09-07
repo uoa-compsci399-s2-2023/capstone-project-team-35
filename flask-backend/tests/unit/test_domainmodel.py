@@ -1,6 +1,4 @@
-import pytest
-import os
-from pathlib import Path, PurePath
+from pathlib import Path
 from app.ml.classifier import Classifier
 
 class TestClassifier:

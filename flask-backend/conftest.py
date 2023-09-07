@@ -1,6 +1,12 @@
 import pytest
 
 from app import create_app
+from app.storage.local.local_repository import LocalRepository
+
+@pytest.fixture
+def local_repo():
+    repo = LocalRepository()
+    return repo
 
 @pytest.fixture
 def client():
