@@ -1,4 +1,5 @@
 import csv
+from app.domainmodel.insect_info import insect_info
 
 def get_probable_prediction(label_probability_dict):
     temp_list = []
@@ -14,14 +15,5 @@ def read_csv(filename, label_probability_dict):
         reader = csv.DictReader(label_csv)
         for row in reader:
             if row['label'] == most_probable:
-                print("found")
-            
-
-
-a_dict = {
-      "austrotephritis": "0.0",
-      "bactrocera": "0.0",
-      "urophora": "1.0"
-    }
-read_csv("fruitfly", a_dict)
-# get_probable_prediction(a_dict)
+                insect = insect_info(row["label"], row["country"], row["genus"], row["species"], row["file"])
+                return insect

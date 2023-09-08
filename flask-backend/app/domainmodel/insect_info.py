@@ -1,4 +1,4 @@
-class insect:
+class insect_info:
     def __init__(self, label, country, genus, species, image_file) -> None:
         self.__label = label
         self.__country = country
@@ -27,7 +27,7 @@ class insect:
         return self.__image_file
     
     def __repr__(self) -> str:
-        return f"<Insect {self.label}, species = {self.species}>"
+        return f"<Insect {self.label}, country = {self.country}>"
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, self.__class__):
