@@ -25,10 +25,13 @@ const Data_inputs = () => {
   const [uploadStatus, setUploadStatus] = useState(''); // Displays the status of the image upload
   const [message, setMessage] = useState(''); // Holds general messages related to the backend - doesn't do much but is used for the clearImages fucntion 
   const input_form = useRef(); // References the React form where the images will be uploaded from
+  const [isImageSelected, setIsImageSelected] = useState(false);
+
 
   // Function to handle image selection
   const handleImageChange = (event) => {
     setSelectedImage(event.target.files[0]);
+    setIsImageSelected(true);
     //input_form.current.submit(); // This line would submit the form automatically when the image is selected (not working beacuse it isn't calling the handleFormSubmit after submittion)
   }
 
@@ -106,7 +109,26 @@ const Data_inputs = () => {
     setSelectedCircTextleText("E")
   }
 
+  // Handles file being dragged into input
+  const [isImageDragging, setIsImageDragging] = useState(false);
+
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    setIsImageDragging(true);
+  };
+
+  const handleDragLeave = () => {
+    setIsImageDragging(false);
+  };
+
+  const uploadClass = isImageDragging
+    ? 'image-dragging'
+    : isImageSelected
+    ? 'image-selected'
+    : '';
+
   return (
+    <div>
     <div className='Inputs'>
 
         {/* Square 1 */}
@@ -140,14 +162,26 @@ const Data_inputs = () => {
             <p className='upload'>Upload Images</p>
         </div>
 
-        {/* Form where the images are uploaded */}
-        <form onSubmit={handleFormSubmit} ref={input_form} className={selectedUploadClass}>
-            <input type="file" onChange={handleImageChange} name='image_input' className={selectedUploadClass}/>
-            <button type="submit">Upload Image</button> {/* Currently there is a submit button but will try make the form automatically submit in the future */}
-        </form>
+        {/* Square 6 */}
+        <div className="grid_upload">
+          <form onSubmit={handleFormSubmit} ref={input_form} className={selectedUploadClass}>
+            <div className={`${selectedUploadClass} ${uploadClass}`} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave}>
+              <input type="file" className={selectedUploadClass} onChange={handleImageChange} name='image_input'/>
+            </div>
+            
+            {/* Square 7 */}
+            <div className='grid_submit'>
+              <button className={selectedUploadClass} type="submit">Identify</button> 
+            </div>
+          </form>
+        </div>
 
     {/* Ends Input */}
     </div> 
+
+    {/* Form where the images are uploaded */}
+    
+  </div>
   )
 }
 
