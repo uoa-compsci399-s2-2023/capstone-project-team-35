@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 import app.endpoints.upload_and_get_predictions.services as services
 import app.storage.abstractrepository as repo
+import app.ml.utilities.retrieve_probable_prediction as retrieve
 import json
 
 upload_blueprint = Blueprint('upload_and_get_classifications_bp', __name__)
@@ -21,9 +22,17 @@ def upload_and_get_classifications():
         # Loop through the results and store prediction data
         for prediction in results:
             json_serializable_label_probability_dict = {key: str(value) for key, value in prediction.label_probability_dict.items()}
+            most_probable_prediction = retrieve.read_csv("fruitfly", json_serializable_label_probability_dict)
             prediction_data = {
                 'labels': json_serializable_label_probability_dict,
-                'input_image_path': prediction.input_image_path
+                'input_image_path': prediction.input_image_path,
+                'probable_prediction': {
+                    'label': most_probable_prediction.label,
+                    'country': most_probable_prediction.country,
+                    'genus': most_probable_prediction.genus,
+                    'species': most_probable_prediction.species,
+                    'image_file': most_probable_prediction.image_file
+                }
             }
             aggregated_predictions.append(prediction_data)
 
