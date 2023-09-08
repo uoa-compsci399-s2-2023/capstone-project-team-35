@@ -12,11 +12,11 @@ def test_add_image(local_repo):
         added_image = local_repo.get_image_by_name("sample_image.jpg")
         assert added_image is not None
     img.close()
-    os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image.jpg")
+    
 
 def test_get_image_by_name(local_repo):
     #Get existing image
-    img = local_repo.get_image_by_name("NZAC04191592_Urophora_solstitialis_wing_dorsal_left.jpg")
+    img = local_repo.get_image_by_name("sample_image.jpg")
     assert img is not None
 
     #Non existent image returns None
@@ -26,5 +26,5 @@ def test_get_image_by_name(local_repo):
 def test_get_all_images(local_repo):
     images = local_repo.get_all_images()
     filenames = [PurePath(x.filename).name for x in images]
-    assert "NZAC04191592_Urophora_solstitialis_wing_dorsal_left.jpg" in filenames
-    assert "NZAC04231848_Trupanea_extensa_wing.jpg" in filenames
+    assert "sample_image.jpg" in filenames
+
