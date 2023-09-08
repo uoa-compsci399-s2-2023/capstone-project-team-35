@@ -4,18 +4,18 @@ from werkzeug.datastructures import FileStorage
 from pathlib import Path
 
 class Classifier(AbstractModel):
-    def __init__(self, classifier_path: str, classifier_name: str, labels_path: str):
+    def __init__(self, classifier_path: Path, classifier_name: str, labels_path: Path):
         self.__classifier_path = None
         self.__labels_path = None
         self.__classifier_name = None
         
-        if classifier_path is not None:
+        if isinstance(classifier_path, Path):
             self.__classifier_path = classifier_path
         
-        if classifier_name is not None and classifier_name != "":
-            self.__classifier_name = classifier_name 
+        if type(classifier_name) is str and classifier_name.strip() != "":
+            self.__classifier_name = classifier_name.strip()
         
-        if labels_path is not None:
+        if isinstance(labels_path, Path):
             self.__labels_path = labels_path
     
     def predict(self, images_path) -> list:
@@ -23,26 +23,30 @@ class Classifier(AbstractModel):
         return labels, predictions, image_files, model
 
     @property
-    def classifier_path(self) -> str:
+    def classifier_path(self) -> Path:
         return self.__classifier_path
     
     @classifier_path.setter
     def classifier_path(self, new_classifier_path: Path):
         self.__classifier_path = None
 
-        if type(new_classifier_path) is Path and new_classifier_path.strip() != "":
+        if isinstance(new_classifier_path, Path) and new_classifier_path != "":
             self.__classifier_path = new_classifier_path
 
     @property
-    def labels_path(self) -> str:
+    def classifier_name(self) -> str:
+        return self.__classifier_name
+    
+    @property
+    def labels_path(self) -> Path:
         return self.__labels_path
     
     @labels_path.setter
     def labels_path(self, new_labels_path: Path):
         self.__labels_path = None
 
-        if type(new_labels_path) is Path and new_labels_path.strip() != "":
-            self.__classifier_name = new_labels_path
+        if isinstance(new_labels_path, Path) and new_labels_path != "":
+            self.__labels_path = new_labels_path
     
     def __repr__(self):
         return f'<Classifier {self.__classifier_name}, Name {self.__classifier_name}, File path {self.__classifier_path}, Labels path {self.__labels_path}>'
@@ -55,7 +59,7 @@ class Classifier(AbstractModel):
     def __lt__(self, other):
         if not isinstance(other, self.__class__):
             return True
-        return self.__classifier_name == other.__classifier_name
+        return self.__classifier_name < other.__classifier_name
     
     def __hash__(self):
         return hash(self.classifier_name)
