@@ -1,7 +1,8 @@
 from flask import Blueprint, request
 import app.endpoints.upload_and_get_predictions.services as services
 import app.storage.abstractrepository as repo
-import app.ml.utilities.retrieve_probable_prediction as retrieve
+from app.ml.utilities import model_output_processors as utils
+import app.globals as globals
 import json
 
 upload_blueprint = Blueprint('upload_and_get_classifications_bp', __name__)
@@ -20,21 +21,24 @@ def upload_and_get_classifications():
         aggregated_predictions = []
 
         # Loop through the results and store prediction data
-        for prediction in results:
-            json_serializable_label_probability_dict = {key: str(value) for key, value in prediction.label_probability_dict.items()}
-            most_probable_prediction = retrieve.read_csv("fruitfly", json_serializable_label_probability_dict)
-            prediction_data = {
-                'labels': json_serializable_label_probability_dict,
-                'input_image_path': prediction.input_image_path,
-                'probable_prediction': {
-                    'label': most_probable_prediction.label,
-                    'country': most_probable_prediction.country,
-                    'genus': most_probable_prediction.genus,
-                    'species': most_probable_prediction.species,
-                    'image_file': most_probable_prediction.image_file
+        for result in results:
+            prediction = {}
+            prediction["input_image_path"] = result.input_image_path
+            prediction["predictions"] = {}
+            label_probability_dict = result.label_probability_dict
+            count = 0
+            for label in label_probability_dict:
+                insect = utils.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
+                prediction["predictions"][count] = {
+                    "label": insect.label,
+                    "probability": str(round(label_probability_dict[label], 3)),
+                    "genus": insect.genus,
+                    "species": insect.species,
+                    "country": insect.country,
+                    "image_file_path": str(insect.image_file_path), #TODO: return actual image instead of file? 
                 }
-            }
-            aggregated_predictions.append(prediction_data)
+                count = count + 1
+            aggregated_predictions.append(prediction)
 
         return aggregated_predictions, 200
     else:

@@ -1,10 +1,12 @@
-class insect_info:
-    def __init__(self, label, country, genus, species, image_file) -> None:
+from pathlib import Path
+
+class Insect:
+    def __init__(self, label, country, genus, species, image_file_path) -> None:
         self.__label = label
         self.__country = country
         self.__genus = genus
         self.__species = species
-        self.__image_file = image_file
+        self.__image_file_path = image_file_path
     
     @property
     def label(self) -> str:
@@ -23,11 +25,11 @@ class insect_info:
         return self.__species
     
     @property
-    def image_file(self) -> str:
-        return self.__image_file
+    def image_file_path(self) -> Path:
+        return self.__image_file_path
     
     def __repr__(self) -> str:
-        return f"<Insect {self.label}, country = {self.country}>"
+        return f"<Insect {self.label}, country = {self.country}, genus  = {self.genus}>, species = {self.species}, image file path = {self.__image_file_path}"
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, self.__class__):

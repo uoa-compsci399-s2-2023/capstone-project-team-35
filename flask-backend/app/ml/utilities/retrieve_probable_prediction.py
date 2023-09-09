@@ -1,5 +1,5 @@
 import csv
-from app.domainmodel.insect_info import insect_info
+from app.domainmodel.insect import insect
 
 def get_probable_prediction(label_probability_dict):
     temp_list = []
