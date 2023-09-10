@@ -11,6 +11,10 @@ class RepositoryException(Exception):
 class AbstractRepository(abc.ABC):
     
     @abc.abstractmethod
+    def add_results_csv(self):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def add_image(self, image: Image):
         raise NotImplementedError
     

@@ -1,12 +1,26 @@
 import os
 from PIL import Image
+import csv
 from pathlib import Path
 from app.storage.abstractrepository import AbstractRepository
 import app.globals as globals
 
-USER_UPLOADED_IMAGES_DIRECTORY =  globals.USER_UPLOADED_IMAGES_DIRECTORY                 
+USER_UPLOADED_IMAGES_DIRECTORY  = globals.USER_UPLOADED_IMAGES_DIRECTORY
+RESULTS_FILE_DIRECTORY          = globals.RESULTS_FILE_DIRECTORY                 
 
 class LocalRepository(AbstractRepository):
+    
+    def add_results_csv(self, complete_predictions_list, input_image_path):
+        field_names= ['label', 'probability', 'genus', 'species', 'country']
+        if not os.path.exists(RESULTS_FILE_DIRECTORY):
+            os.makedirs(RESULTS_FILE_DIRECTORY)
+        file_name = os.path.basename(input_image_path) + "_predictions.csv"
+        file_path = os.path.join(RESULTS_FILE_DIRECTORY, file_name)
+        with open(file_path, 'w') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=field_names)
+            writer.writeheader()
+            writer.writerows(complete_predictions_list)
+
     def add_image(self, image: Image):
         if not os.path.exists(USER_UPLOADED_IMAGES_DIRECTORY):
             os.makedirs(USER_UPLOADED_IMAGES_DIRECTORY)
