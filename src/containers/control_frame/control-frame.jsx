@@ -1,8 +1,6 @@
 import React from "react";
 import "./control-frame.css";
-import ImageUpload from "../../components/image_upload";
-import InsectType from "../../components/insect_type";
-import DataInputs from "../../components/data_inputs/data-inputs";
+import { DataInputs, ImageUpload, InsectType } from "../../components";
 
 const ControlFrame = () => {
   return (

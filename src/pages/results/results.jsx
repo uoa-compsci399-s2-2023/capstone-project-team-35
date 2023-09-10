@@ -1,6 +1,5 @@
-import SpeciesCard from "../../components/species_card";
 import RootContext from "../../providers/root";
-import FileButton from "../../components/file_button";
+import { SpeciesCard, FileButton } from "../../components";
 
 import { useContext, useState } from "react";
 

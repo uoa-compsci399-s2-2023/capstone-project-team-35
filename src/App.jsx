@@ -1,7 +1,7 @@
 import React from "react";
 
 import "./App.css";
-import { ControlFrame, Title } from "./containers/index";
+import { ControlFrame, Title } from "./containers";
 import Results from "./pages/results";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
