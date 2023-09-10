@@ -1,7 +1,9 @@
 import RootContext from "../../providers/root";
 import { SpeciesCard, FileButton } from "../../components";
-
 import { useContext, useState } from "react";
+import main_logo from "../../assets/branding/main_logo.svg";
+import home_icon from "../../assets/ui-elements/orange_home.svg";
+import "./results.css";
 
 const ResultsPage = () => {
   const { data, setCurrentPage } = useContext(RootContext);
@@ -13,16 +15,21 @@ const ResultsPage = () => {
     // Main Parent
     <main className="flex min-h-screen px-8 pt-8 gap-11">
       {/* File Navigation Section */}
-      <div className="flex flex-col w-1/3 shadow-2xl bg-slate-100 rounded-t-3xl">
+      <div className="flex flex-col w-1/3 shadow-3xl panel rounded-t-3xl">
         {/* Navigation Header */}
-        <div className="flex items-center justify-center relative  h-[calc(100%-850px)]">
+        <div className="flex items-center justify-center relative h-[calc(100%-850px)]">
           {/* Ocell.ai Logo */}
-          <div className="justify-center text-6xl text-status-orange">
-            Ocell.ai
+          <div
+            className="flex justify-center mt-9"
+            style={{ height: 100, width: 300 }}
+          >
+            <img src={main_logo} className="w-full h-full"></img>
           </div>
 
           {/* Home Button */}
-          <div className="absolute top-0 w-8 m-4 bg-white border border-black rounded cursor-pointer left-1 aspect-square"></div>
+          <div className="absolute top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square">
+            <img src={home_icon} className="items-center w-full h-full"></img>
+          </div>
         </div>
 
         {/* Navigation Body */}

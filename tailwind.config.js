@@ -15,34 +15,37 @@ module.exports = {
         "background-light": "#FFFFFF",
         "background-dark": "#F8F8F8",
       },
+
+      boxShadow: {
+        "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
+      },
     },
   },
   daisyui: {
     themes: [
       {
         mytheme: {
-        
-        "primary": "#FC7F40",
-                
-        "secondary": "#FBC229",
-                
-        "accent": "#FBC229",
-                
-        "neutral": "#18182f",
-                
-        "base-100": "#ffffff",
-                
-        "info": "#3abff8",
-                
-        "success": "#36d399",
-                
-        "warning": "#fbbd23",
-                
-        "error": "#f87272",
+          primary: "#FC7F40",
+
+          secondary: "#FBC229",
+
+          accent: "#FBC229",
+
+          neutral: "#18182f",
+
+          "base-100": "#ffffff",
+
+          info: "#3abff8",
+
+          success: "#36d399",
+
+          warning: "#fbbd23",
+
+          error: "#f87272",
         },
       },
     ],
   },
   // eslint-disable-next-line no-undef
   plugins: [require("daisyui")],
-}
+};
