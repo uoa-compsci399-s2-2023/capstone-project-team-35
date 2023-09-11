@@ -185,3 +185,11 @@ input[type='file'] {
     /* Styles when an image is selected */
     /* background-image: url('new-image.png'); /* Change the background image */
 } 
+
+.disabled {
+    background-color: green;
+}
+
+.enabled {
+    background-color: blue;
+}

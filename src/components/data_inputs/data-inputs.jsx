@@ -3,19 +3,20 @@ import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import RootContext from "../../providers/root";
+import { useContext } from "react";
+
 const DataInputs = () => {
-  // Page navigation
-  const navigate = useNavigate();
+  const { setCurrentPage } = useContext(RootContext);
 
-  const navigateToResults = () => {
-    // 👇️ navigate to /contacts
-    navigate("/results");
-  };
-
-  const navigateHome = () => {
-    // 👇️ navigate to /
-    navigate("/");
-  };
+  // Previous Routing Code
+    // const navigate = useNavigate();
+    // const navigateToLoading = () => {
+    //   navigate("/loading");
+    // };
+    // const navigateHome = () => {
+    //   navigate("/");
+    // };
 
   // Flask intergration starts here:
 
@@ -27,9 +28,19 @@ const DataInputs = () => {
   const input_form = useRef(); // References the React form where the images will be uploaded from
   const [isImageSelected, setIsImageSelected] = useState(false);
 
+  // Currently select insect type
+  const [selectedValue, setSelectedValue] = useState("");
+
+  // Set classes for certain components
+  const [selectedCircleClass, setSelectedCircleClass] = useState("");
+  const [selectedCircleText, setSelectedCircTextleText] = useState("1");
+  const [selectedUploadClass, setSelectedUploadClass] = useState("off");
+  const [submitButtonClass, setSubmitButtonClass] = useState("disabled");
+
   // Function to handle image selection
   const handleImageChange = (event) => {
-    setSelectedImage(event.target.files[0]);
+    const selectedImage = event.target.files[0];
+    setSelectedImage(selectedImage);
     setIsImageSelected(true);
     //input_form.current.submit(); // This line would submit the form automatically when the image is selected (not working beacuse it isn't calling the handleFormSubmit after submittion)
   };
@@ -52,6 +63,7 @@ const DataInputs = () => {
       });
       setUploadStatus("Image uploaded successfully!");
       setSelectedImage(null); // Clear the selected image after successful upload
+      setCurrentPage("loading") // After image is uploaded, navigate to the loading page
     } catch (error) {
       console.error("Error uploading image:", error);
       setUploadStatus("Error uploading image: " + error.message);
@@ -93,12 +105,6 @@ const DataInputs = () => {
     { label: "Beetle", value: "beetle" },
     { label: "Moth", value: "moth" },
   ];
-
-  // Currently select insect type
-  const [selectedValue, setSelectedValue] = useState("");
-  const [selectedCircleClass, setSelectedCircleClass] = useState("");
-  const [selectedCircleText, setSelectedCircTextleText] = useState("1");
-  const [selectedUploadClass, setSelectedUploadClass] = useState("off");
 
   // Dropdown onChange handler
   const handleSelectChange = (e) => {
@@ -185,11 +191,12 @@ const DataInputs = () => {
                 onChange={handleImageChange}
                 name="image_input"
               />
+              <p>{uploadStatus}</p>
             </div>
 
             {/* Square 7 */}
             <div className="grid_submit">
-              <button className={selectedUploadClass} type="submit">
+              <button disabled={!isImageSelected} className={`${selectedUploadClass} ${submitButtonClass}`} type="submit">
                 Identify
               </button>
             </div>

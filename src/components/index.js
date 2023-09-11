@@ -1,4 +1,3 @@
-//TODO :
 export { default as DataInputs } from "./data_inputs/data-inputs";
 export { default as FileButton } from "./file_button/file-button";
 export { default as ImageUpload } from "./image_upload/image-upload";

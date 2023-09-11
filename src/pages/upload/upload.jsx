@@ -1,4 +1,4 @@
-import RootContext from "@/providers/root";
+import RootContext from "../../providers/root";
 import { useContext } from "react";
 
 const UploadPage = () => {

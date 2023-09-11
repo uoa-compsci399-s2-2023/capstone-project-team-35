@@ -1,8 +1,11 @@
-import RootContext from "@/providers/root";
+import RootContext from "../../providers/root";
 import { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./loading.css";
 
 const LoadingPage = () => {
   const { setData, setCurrentPage } = useContext(RootContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -14,13 +17,17 @@ const LoadingPage = () => {
         })
         .catch(() => {
           if (window.confirm("Error loading data. Proceed to previous page?")) {
-            setCurrentPage("upload");
+            navigate("/");
           }
         });
     }, 1000);
   }, []);
 
-  return <div>Loading...</div>;
+  return (
+    <div>
+      <div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>      
+    </div>
+  )
 };
 
 export default LoadingPage;

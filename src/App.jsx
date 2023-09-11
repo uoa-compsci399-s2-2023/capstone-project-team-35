@@ -1,30 +1,45 @@
 import React from "react";
-
+import { useState } from "react";
+import RootContext from "./providers/root";
+import { ResultsPage, LoadingPage, HomePage } from "./pages";
 import "./App.css";
-import { ControlFrame, Title } from "./containers";
-import Results from "./pages/results";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
-const Home = () => {
-  return (
-    <div className="App">
-      <div className="title">
-        <Title />
-      </div>
-      <div>
-        <ControlFrame />
-      </div>
-    </div>
-  );
-};
+// Previous Routing Import
+// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
+export const PageName = "results" | "loading";
 
 const App = () => {
+  const [currentPage, setCurrentPage] = useState(PageName);
+  const [data, setData] = useState([]);
+
+  const renderPage = () => {
+    switch (currentPage) {
+      case "results":
+        return <ResultsPage />;
+      case "loading":
+        return <LoadingPage />;
+      default:
+        return <HomePage />;
+    }
+  };
   return (
     <div>
-      <Routes>
+      {/* Previous Routing System */}
+      {/* <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/results" exact element={<Results />} />
-      </Routes>
+        <Route path="/loading" exact element={<Loading />} />
+      </Routes> */}
+
+      <RootContext.Provider
+        value={{
+          data,
+          setData,
+          setCurrentPage,
+        }}
+      >
+        {renderPage()}
+      </RootContext.Provider>
     </div>
   );
 };
