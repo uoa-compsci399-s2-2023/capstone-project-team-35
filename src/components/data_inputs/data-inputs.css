@@ -155,20 +155,19 @@ button.selected_upload {
     text-align: center;
     font-size: 18px;
     font-family: var(--font_family);
-    background: rgb(251,194,41);
-    background: linear-gradient(90deg, rgba(251,194,41,1) 0%, rgba(253,131,62,1) 100%);
+    background-color: #C4C4C4;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    color: white;
+    color: black;
     font-weight: bold;
 }
 
-button.selected_upload:hover {
+button.enabled:hover {
     color: #F5EDE5;
     border: none;
 }
 
-button.selected_upload:active {
+button.enabled:active {
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
@@ -176,20 +175,18 @@ input[type='file'] {
   opacity: 0  
 }
 
-.image-dragging {
-    /* Styles when an image is being dragged */
-    background-color: green;
-}
-  
-.image-selected {
-    /* Styles when an image is selected */
-    /* background-image: url('new-image.png'); /* Change the background image */
-} 
-
-.disabled {
-    background-color: green;
+button.enabled {
+    color: white;
+    background: rgb(251,194,41);
+    background: linear-gradient(90deg, rgba(251,194,41,1) 0%, rgba(253,131,62,1) 100%);
 }
 
-.enabled {
-    background-color: blue;
+div.hasImage {
+    border: dashed 3px rgba(251,194,41,1);
+
+    background-image: url('input2.png');
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+    background-color: white;
 }

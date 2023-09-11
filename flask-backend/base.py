@@ -25,14 +25,18 @@ if not os.path.exists(images_directory):
 # Endpoint to handle image upload - bacth image upload doesn't work atm but I think it's due to an issue on the front-end
 @api.route('/upload', methods=['POST'])
 def upload_image():
-    if 'image' in request.files:
-        image = request.files['image']  # Get the uploaded image from the front-end form
-        image_filename = os.path.join(images_directory, image.filename)  # Creates the path the image will be saved to
-        image.save(image_filename)  # Save the uploaded image to the specified path
-        uploaded_images.append(image_filename)  
-        return 'Image uploaded successfully!', 200
+    uploaded_images = []
+    for img in request.files:
+        image = request.files[img]
+        if image.filename != '':
+            image_filename = os.path.join(images_directory, image.filename)
+            image.save(image_filename)
+            uploaded_images.append(image_filename)
+            
+    if uploaded_images:
+        return 'Images uploaded successfully!', 200
     else:
-        return 'No image provided', 400
+        return 'No images provided', 400
 
 # Endpoint to get a list of uploaded images for the front-end
 @api.route('/get_images', methods=['GET'])

@@ -21,12 +21,14 @@ const DataInputs = () => {
   // Flask intergration starts here:
 
   // Declare variables to manage the POST and GET request between the front-end and back-end
-  const [selectedImage, setSelectedImage] = useState(null); // Holds the selected image file
+  const [selectedImages, setSelectedImages] = useState([]); // Holds the selected image file
   const [uploadedImages, setUploadedImages] = useState([]); // Holds the list of uploaded image filenames
   const [uploadStatus, setUploadStatus] = useState(""); // Displays the status of the image upload
-  const [message, setMessage] = useState(""); // Holds general messages related to the backend - doesn't do much but is used for the clearImages fucntion
   const input_form = useRef(); // References the React form where the images will be uploaded from
   const [isImageSelected, setIsImageSelected] = useState(false);
+
+  // Handles file being dragged into input
+  const [isImageDragging, setIsImageDragging] = useState(false);
 
   // Currently select insect type
   const [selectedValue, setSelectedValue] = useState("");
@@ -39,10 +41,9 @@ const DataInputs = () => {
 
   // Function to handle image selection
   const handleImageChange = (event) => {
-    const selectedImage = event.target.files[0];
-    setSelectedImage(selectedImage);
+    const selectedImage = Array.from(event.target.files);
+    setSelectedImages(selectedImage);
     setIsImageSelected(true);
-    //input_form.current.submit(); // This line would submit the form automatically when the image is selected (not working beacuse it isn't calling the handleFormSubmit after submittion)
   };
 
   // Function to handle form submission
@@ -52,7 +53,9 @@ const DataInputs = () => {
 
     // Create a FormData object to send the selected image
     const formData = new FormData();
-    formData.append("image", selectedImage);
+    selectedImages.forEach((image, index) => {
+      formData.append(`image${index}`, image);
+    });
 
     try {
       // Send a POST request to the '/upload' endpoint in the backend to upload the image
@@ -62,7 +65,7 @@ const DataInputs = () => {
         },
       });
       setUploadStatus("Image uploaded successfully!");
-      setSelectedImage(null); // Clear the selected image after successful upload
+      setSelectedImages([]); // Clear the selected image after successful upload
       setCurrentPage("loading") // After image is uploaded, navigate to the loading page
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -91,7 +94,6 @@ const DataInputs = () => {
     try {
       // Send a POST request to the '/clear_images' endpoint to clear uploaded images
       const response = await axios.post("/clear_images");
-      setMessage(response.data); // Update the state with the response message
     } catch (error) {
       console.error("Error clearing images:", error);
     }
@@ -114,16 +116,15 @@ const DataInputs = () => {
     setSelectedCircTextleText("E");
   };
 
-  // Handles file being dragged into input
-  const [isImageDragging, setIsImageDragging] = useState(false);
-
   const handleDragEnter = (e) => {
     e.preventDefault();
     setIsImageDragging(true);
+    setIsImageSelected(true)
   };
-
+  
   const handleDragLeave = () => {
     setIsImageDragging(false);
+    setIsImageSelected(false)
   };
 
   const uploadClass = isImageDragging
@@ -181,7 +182,7 @@ const DataInputs = () => {
             className={selectedUploadClass}
           >
             <div
-              className={`${selectedUploadClass} ${uploadClass}`}
+              className={`${selectedUploadClass} ${uploadClass} ${isImageSelected ? "hasImage" : ""}`}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
             >
@@ -189,6 +190,7 @@ const DataInputs = () => {
                 type="file"
                 className={selectedUploadClass}
                 onChange={handleImageChange}
+                multiple
                 name="image_input"
               />
               <p>{uploadStatus}</p>
@@ -196,7 +198,7 @@ const DataInputs = () => {
 
             {/* Square 7 */}
             <div className="grid_submit">
-              <button disabled={!isImageSelected} className={`${selectedUploadClass} ${submitButtonClass}`} type="submit">
+              <button disabled={!isImageSelected} className={`${selectedUploadClass} ${isImageSelected ? "enabled" : ""}`} type="submit">
                 Identify
               </button>
             </div>
