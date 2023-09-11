@@ -3,7 +3,7 @@ import { SpeciesCard, FileButton } from "../../components";
 import { useContext, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
-import 'tailwindcss/tailwind.css';
+import "tailwindcss/tailwind.css";
 import "./results.css";
 
 const ResultsPage = () => {
@@ -19,6 +19,16 @@ const ResultsPage = () => {
       <div className="flex flex-col w-1/3 shadow-3xl panel rounded-t-3xl">
         {/* Navigation Header */}
         <div className="flex items-center justify-center relative h-[calc(100%-850px)]">
+          {/* Home Button */}
+          <div className="absolute top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square">
+            {/* Moved return to home button to below because it wasn't accessable here (can be changed back later on) */}
+            <button type="button" onClick={() => setCurrentPage("")}>
+              <img
+                src={home_icon}
+                className="items-center w-full h-full return-button"
+              ></img>
+            </button>
+          </div>
           {/* Ocell.ai Logo */}
           <div
             className="flex justify-center mt-9"
@@ -26,19 +36,13 @@ const ResultsPage = () => {
           >
             <img src={main_logo} className="w-full h-full"></img>
           </div>
-
-          {/* Home Button */}
-          <div className="absolute top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square">
-            {/* Moved return to home button to below because it wasn't accessable here (can be changed back later on) */}
-            {/* <button type="button" onClick={() => setCurrentPage("")}><img src={home_icon} className="items-center w-full h-full return-button"></img></button> */}
-          </div>
         </div>
 
         {/* Navigation Body */}
         <div className="relative items-center justify-center h-[calc(100%)]">
           {/* Return to home button */}
-          <button type="button" onClick={() => setCurrentPage("")}><img src={home_icon} className="items-center w-full h-full return-button"></img></button>
-          
+          {/* <button type="button" onClick={() => setCurrentPage("")}><img src={home_icon} className="items-center w-full h-full return-button"></img></button> */}
+
           <div className="flex flex-col items-center w-full h-full gap-4 p-5">
             {data.map((image) => (
               <FileButton
