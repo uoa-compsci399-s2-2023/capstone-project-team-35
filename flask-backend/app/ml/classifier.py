@@ -9,13 +9,13 @@ class Classifier(AbstractModel):
         self.__labels_path = None
         self.__classifier_name = None
         
-        if isinstance(classifier_path, Path):
+        if isinstance(classifier_path, Path) and classifier_path != Path('.'):
             self.__classifier_path = classifier_path
         
         if type(classifier_name) is str and classifier_name.strip() != "":
             self.__classifier_name = classifier_name.strip()
         
-        if isinstance(labels_path, Path):
+        if isinstance(labels_path, Path) and labels_path != Path('.'):
             self.__labels_path = labels_path
     
     def predict(self, images_path) -> list:
@@ -30,7 +30,7 @@ class Classifier(AbstractModel):
     def classifier_path(self, new_classifier_path: Path):
         self.__classifier_path = None
 
-        if isinstance(new_classifier_path, Path) and new_classifier_path != "":
+        if isinstance(new_classifier_path, Path) and new_classifier_path != Path('.'):
             self.__classifier_path = new_classifier_path
 
     @property
@@ -45,7 +45,7 @@ class Classifier(AbstractModel):
     def labels_path(self, new_labels_path: Path):
         self.__labels_path = None
 
-        if isinstance(new_labels_path, Path) and new_labels_path != "":
+        if isinstance(new_labels_path, Path) and new_labels_path != Path('.'):
             self.__labels_path = new_labels_path
     
     def __repr__(self):

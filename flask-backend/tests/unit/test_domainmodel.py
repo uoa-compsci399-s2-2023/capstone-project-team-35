@@ -9,13 +9,13 @@ class TestClassifier:
         classifier1 = Classifier(Path('file'), 'classifier1', Path('file'))
         assert str(classifier1) == "<Classifier classifier1, Name classifier1, File path file, Labels path file>"
 
-        #Test strings with trailing spaces
-        classifier2 = Classifier(Path('file'), '   classifier2   ', Path('file'))
-        assert classifier2.classifier_path == Path('file')
+        #Test strings with trailing spaces and empty paths
+        classifier2 = Classifier(Path(''), '   classifier2   ', Path(''))
+        assert classifier2.classifier_path is None
         assert classifier2.classifier_name == 'classifier2'
-        assert classifier2.labels_path == Path('file')
+        assert classifier2.labels_path is None
 
-        #Test invalid strings
+        #Test invalid types
         classifier3 = Classifier(10, 20, 1029)
         assert classifier3.classifier_path is None
         assert classifier3.classifier_name is None
