@@ -9,36 +9,21 @@ import { useContext } from "react";
 const DataInputs = () => {
   const { selectedValue, setSelectedValue, setCurrentPage, setData } = useContext(RootContext);
 
-  // Previous Routing Code
-    // const navigate = useNavigate();
-    // const navigateToLoading = () => {
-    //   navigate("/loading");
-    // };
-    // const navigateHome = () => {
-    //   navigate("/");
-    // };
-
-  // Flask intergration starts here:
-
   // Declare variables to manage the POST and GET request between the front-end and back-end
   const [selectedImages, setSelectedImages] = useState([]); // Holds the selected image file
-  // const [uploadedImages, setUploadedImages] = useState([]); // Holds the list of uploaded image filenames
   const [uploadStatus, setUploadStatus] = useState(""); // Displays the status of the image upload
   const input_form = useRef(); // References the React form where the images will be uploaded from
-  const [isImageSelected, setIsImageSelected] = useState(false);
+  const [isImageSelected, setIsImageSelected] = useState(false); // Boolean which determines if the input contains images
 
   // Handles file being dragged into input
   const [isImageDragging, setIsImageDragging] = useState(false);
-
-  // Currently select insect type
-  // const [selectedValue, setSelectedValue] = useState("");
 
   // Set classes for certain components
   const [selectedCircleClass, setSelectedCircleClass] = useState("");
   const [selectedCircleText, setSelectedCircTextleText] = useState("1");
   const [selectedUploadClass, setSelectedUploadClass] = useState("off");
-  // const [submitButtonClass, setSubmitButtonClass] = useState("disabled");
 
+  // A list of all the different insect types
   const [getOptions, setOptions] = useState([]);
 
   // Function to handle image selection
@@ -66,23 +51,28 @@ const DataInputs = () => {
         },
       });
       
-      const predictions = response.data;
+      // Stores the return prediction value of the endpoints and stores it in a global variable
+      const predictions = response.data; 
       setData({ predictions });
-      setUploadStatus("Image uploaded successfully!");
+      
+      setUploadStatus("Image uploaded successfully!"); // Set image upload status
       setSelectedImages([]); // Clear the selected image after successful upload
       setCurrentPage("loading") // After image is uploaded, navigate to the loading page
     } catch (error) {
+
+      // Display errors/status if there is an error
       console.error("Error uploading image:", error);
       setUploadStatus("Error uploading image: " + error.message);
     }
   };
 
-  // Run the 'fetchImages' function after the component is initially rendered.
+  // Run the 'fetchInsectTypes' function after the component is initially rendered.
   useEffect(() => {
+    // This function accesses the /get_insect_types endpoint
     const fetchInsectTypes = async () => {
       try {
+        // Stores the returned array of insect types
         const response = await axios.get("/get_insect_types");
-        // Assuming the response data is an array of objects with "label" and "value" properties
         setOptions(response.data);
       } catch (error) {
         console.error("Error fetching insect types:", error);
@@ -93,8 +83,6 @@ const DataInputs = () => {
   }, []);
   
 
-  // Flask intergration ends here
-
   // Dropdown onChange handler
   const handleSelectChange = (e) => {
     setSelectedValue(e.target.value);
@@ -103,17 +91,20 @@ const DataInputs = () => {
     setSelectedCircTextleText("E");
   };
 
+  // Dragging image into file input handler
   const handleDragEnter = (e) => {
     e.preventDefault();
     setIsImageDragging(true);
     setIsImageSelected(true)
   };
   
+  // Dragging image out of file input handler
   const handleDragLeave = () => {
     setIsImageDragging(false);
     setIsImageSelected(false)
   };
 
+  // Variable whichs help component change classes which image is dragged over input
   const uploadClass = isImageDragging
     ? "image-dragging"
     : isImageSelected
@@ -125,13 +116,14 @@ const DataInputs = () => {
       <div className="Inputs">
         {/* Square 1 */}
         <div className="grid_circle_1">
-          <div className={`circlier_number circle ${selectedCircleClass}`}>
+          <div className={`circlier_number circle ${selectedCircleClass}`}> {/* Orange number circle */}
             <p className={selectedCircleClass}>{selectedCircleText}</p>
           </div>
         </div>
 
         {/* Square 2 */}
         <div className="grid_selection1">
+
           {/* Insect type dropdown selection */}
           <select
             className={`button ${selectedCircleClass}`}
@@ -148,6 +140,7 @@ const DataInputs = () => {
 
         {/* Square 3 */}
         <div className="grid_connector">
+          {/* Orange line between the circles */}
           <div className="connector"></div>
         </div>
 
@@ -163,16 +156,19 @@ const DataInputs = () => {
 
         {/* Square 6 */}
         <div className="grid_upload">
+          {/* Image upload form */}
           <form
             onSubmit={handleFormSubmit}
             ref={input_form}
             className={selectedUploadClass}
           >
+            {/* Div which controls the styling of the input as the actual input is invisible */}
             <div
               className={`${selectedUploadClass} ${uploadClass} ${isImageSelected ? "hasImage" : ""}`}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
             >
+              {/* The actual file input */}
               <input
                 type="file"
                 className={selectedUploadClass}
@@ -180,11 +176,13 @@ const DataInputs = () => {
                 multiple
                 name="image_input"
               />
+              {/* Status message if there is an error */}
               <p>{uploadStatus}</p>
             </div>
 
             {/* Square 7 */}
             <div className="grid_submit">
+              {/* Submit button */}
               <button disabled={!isImageSelected} className={`${selectedUploadClass} ${isImageSelected ? "enabled" : ""}`} type="submit">
                 Identify
               </button>
@@ -194,8 +192,6 @@ const DataInputs = () => {
 
         {/* Ends Input */}
       </div>
-
-      {/* Form where the images are uploaded */}
     </div>
   );
 };

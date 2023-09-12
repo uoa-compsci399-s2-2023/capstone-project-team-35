@@ -20,20 +20,18 @@ const ResultsPage = () => {
         {/* Navigation Header */}
         <div className="flex items-center justify-center relative h-[calc(100%-850px)]">
           {/* Home Button */}
-          <div className="absolute top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square">
-            {/* Moved return to home button to below because it wasn't accessable here (can be changed back later on) */}
-            
+          <div className="absolute top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square back">
+            {/* Return to home button */}
+            <button type="button" onClick={() => setCurrentPage("")}>
+              <img
+                src={home_icon}
+                className="items-center w-full h-full return-button style_home"
+              ></img>
+            </button>
           </div>
-          {/* Return to home button */}
-          <button type="button" onClick={() => setCurrentPage("")}>
-            <img
-              src={home_icon}
-              className="items-center w-full h-full return-button"
-            ></img>
-          </button>
           {/* Ocell.ai Logo */}
           <div
-            className="flex justify-center mt-9"
+            className="flex justify-center mt-9 style_margin"
             style={{ height: 100, width: 300 }}
           >
             <img src={main_logo} className="w-full h-full"></img>
@@ -42,11 +40,8 @@ const ResultsPage = () => {
 
       
         {/* Navigation Body */}
-        <div className="relative items-center justify-center h-[calc(100%)]">
-          {/* Return to home button */}
-          {/* <button type="button" onClick={() => setCurrentPage("")}><img src={home_icon} className="items-center w-full h-full return-button"></img></button> */}
-
-          <div className="flex flex-col items-center w-full h-full gap-4 p-5">
+        <div className="relative items-center justify-center ">
+          <div className="flex flex-col items-center w-full h-full gap-4 p-5 style_margin">
             {data.predictions.map((image) => (
               <FileButton
                 image={image}
