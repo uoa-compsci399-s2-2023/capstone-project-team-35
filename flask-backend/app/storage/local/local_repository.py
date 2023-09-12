@@ -2,7 +2,6 @@ import os
 from PIL import Image
 from pathlib import PurePath
 from app.storage.abstractrepository import AbstractRepository
-import time
 import app.globals as globals
 
 USER_UPLOADED_IMAGES_DIRECTORY =  globals.USER_UPLOADED_IMAGES_DIRECTORY                 
