@@ -48,7 +48,6 @@ const DataInputs = () => {
 
   // Function to handle form submission
   const handleFormSubmit = async (event) => {
-    clearImages(); // Clear uploaded images before submitting a new one
     event.preventDefault();
 
     // Create a FormData object to send the selected image
@@ -59,7 +58,7 @@ const DataInputs = () => {
 
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
-      await axios.post("/classify", formData, {
+      await axios.post(`/classify/${selectedValue}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -88,22 +87,13 @@ const DataInputs = () => {
   useEffect(() => {
     fetchImages();
   }, []);
-
-  // Function to clear uploaded images
-  const clearImages = async () => {
-    try {
-      // Send a POST request to the '/clear_images' endpoint to clear uploaded images
-      const response = await axios.post("/clear_images");
-    } catch (error) {
-      console.error("Error clearing images:", error);
-    }
-  };
+  
 
   // Flask intergration ends here
 
   // Placeholder list of insect types
   let options = [
-    { label: "Fruit Fly", value: "fruit_fly" },
+    { label: "Fruit Fly", value: "trupanea" },
     { label: "Beetle", value: "beetle" },
     { label: "Moth", value: "moth" },
   ];

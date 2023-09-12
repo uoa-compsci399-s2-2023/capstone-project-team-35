@@ -3,7 +3,7 @@ import "./title.css";
 // import logo from "./logo.png";
 import main_logo from "../../assets/branding/main_logo.svg";
 
-const title = () => {
+const Title = () => {
   return (
     <div>
       <img src={main_logo} />
@@ -12,4 +12,4 @@ const title = () => {
   );
 };
 
-export default title;
+export default Title;
