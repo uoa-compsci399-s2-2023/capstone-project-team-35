@@ -11,6 +11,9 @@ This starts the backend server of the app
 Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 You will have to refresh the connection in order to see changes.
 
+### `./flask-backend/flask/Scripts/activate`
+This activates a virtual flask enviorment
+
 ### `npm test`
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
