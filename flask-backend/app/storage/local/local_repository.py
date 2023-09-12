@@ -2,6 +2,7 @@ import os
 from PIL import Image
 from pathlib import PurePath
 from app.storage.abstractrepository import AbstractRepository
+import time
 import app.globals as globals
 
 USER_UPLOADED_IMAGES_DIRECTORY =  globals.USER_UPLOADED_IMAGES_DIRECTORY                 
@@ -35,5 +36,9 @@ class LocalRepository(AbstractRepository):
         directory_contents = os.listdir(dir_path)
         for file in directory_contents:
             file_path = os.path.join(dir_path, file)
-        if os.path.isfile(file_path):
-            os.remove(file_path)
+            if os.path.isfile(file_path):
+                try:
+                    print(file_path)
+                    os.remove(file_path)
+                except OSError as e: 
+                    print("Failed to clear directory; file path: {0}; error: {1}; error code: {2}", file_path, e.strerror, e.code) 

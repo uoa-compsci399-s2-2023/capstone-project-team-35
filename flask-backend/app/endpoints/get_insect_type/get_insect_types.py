@@ -9,16 +9,15 @@ upload_blueprint = Blueprint('get_insect_types_bp', __name__)
 
 @upload_blueprint.route('/get_insect_types', methods=['GET'])
 def get_insect_types():
-    path = os.getcwd() + "\\app" + "\ml" + "\models"
-    dir_list = os.listdir(path)
-    
+    ml_models_dir_list = os.listdir(globals.ML_MODELS_DIRECTORY)
     dictonary_list = []
-    if len(dir_list) > 0:
-        for folder in dir_list:
-            label = folder[0].upper() + folder[1:]
+    
+    if len(ml_models_dir_list) > 0:
+        for model_directory in ml_models_dir_list:
+            target_insect_type = model_directory.capitalize()
             label_dictionary = {
-                "label": label,
-                "value": folder
+                "label": target_insect_type,
+                "value": model_directory
                 }
         
         dictonary_list.append(label_dictionary)
