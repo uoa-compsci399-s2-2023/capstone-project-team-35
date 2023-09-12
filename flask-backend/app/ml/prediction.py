@@ -3,14 +3,14 @@ from pathlib import Path
 from typing import Dict
 
 class Prediction:
-    def __init__(self, label_probability_dict, input_image_path):
+    def __init__(self, label_probability_dict: Dict[str, float], input_image_path: Path):
         self.__label_probability_dict = None
-        self.__test_image_path = None
+        self.__input_image_path = None
         
-        if label_probability_dict is not None and len(label_probability_dict) > 0:
+        if isinstance(label_probability_dict, dict) and len(label_probability_dict) > 0:
             self.__label_probability_dict = label_probability_dict
         
-        if input_image_path is not None:
+        if isinstance(input_image_path, Path) and input_image_path != Path('.'):
             self.__input_image_path = input_image_path
 
     @property
@@ -19,9 +19,9 @@ class Prediction:
     
     @label_probability_dict.setter
     def label_probability_dict(self, new_label_probability_dict: Dict[str, float]):
-        self.__label_probability_dict = new_label_probability_dict
+        self.__label_probability_dict = None
 
-        if new_label_probability_dict is not None and len(new_label_probability_dict) > 0:
+        if isinstance(new_label_probability_dict, dict) and len(new_label_probability_dict) > 0:
             self.__label_probability_dict = new_label_probability_dict
 
     @property
@@ -30,7 +30,9 @@ class Prediction:
     
     @input_image_path.setter
     def input_image_path(self, new_input_image_path: Path):
-        if new_input_image_path is not None:
+        self.__input_image_path = None
+
+        if isinstance(new_input_image_path, Path) and new_input_image_path != Path('.'):
             self.__input_image_path = new_input_image_path
     
     def __repr__(self):
