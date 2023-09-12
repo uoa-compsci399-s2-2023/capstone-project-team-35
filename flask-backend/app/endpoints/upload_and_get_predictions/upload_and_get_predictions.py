@@ -15,10 +15,9 @@ def upload_and_get_classifications(insect_type=None):
     
     target_image_list = []
     if len(request.files) > 0:
-        print("hey", len(request.files))
         for img in request.files:
             target_image_list.append(request.files[img])
-        
+                
         results = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)   #TODO: enable upload of multiple images
             
         # Initialize a list to store prediction data
