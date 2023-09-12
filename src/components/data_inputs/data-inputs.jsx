@@ -93,7 +93,7 @@ const DataInputs = () => {
 
   // Placeholder list of insect types
   let options = [
-    { label: "Fruit Fly", value: "trupanea" },
+    { label: "Trupanea", value: "trupanea" },
     { label: "Beetle", value: "beetle" },
     { label: "Moth", value: "moth" },
   ];
