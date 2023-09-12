@@ -1,13 +1,13 @@
 import "./data-inputs.css";
 import React, { useState, useEffect, useRef } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+// import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import RootContext from "../../providers/root";
 import { useContext } from "react";
 
 const DataInputs = () => {
-  const { setCurrentPage } = useContext(RootContext);
+  const { selectedValue, setSelectedValue, setCurrentPage, setData } = useContext(RootContext);
 
   // Previous Routing Code
     // const navigate = useNavigate();
@@ -22,7 +22,7 @@ const DataInputs = () => {
 
   // Declare variables to manage the POST and GET request between the front-end and back-end
   const [selectedImages, setSelectedImages] = useState([]); // Holds the selected image file
-  const [uploadedImages, setUploadedImages] = useState([]); // Holds the list of uploaded image filenames
+  // const [uploadedImages, setUploadedImages] = useState([]); // Holds the list of uploaded image filenames
   const [uploadStatus, setUploadStatus] = useState(""); // Displays the status of the image upload
   const input_form = useRef(); // References the React form where the images will be uploaded from
   const [isImageSelected, setIsImageSelected] = useState(false);
@@ -31,13 +31,15 @@ const DataInputs = () => {
   const [isImageDragging, setIsImageDragging] = useState(false);
 
   // Currently select insect type
-  const [selectedValue, setSelectedValue] = useState("");
+  // const [selectedValue, setSelectedValue] = useState("");
 
   // Set classes for certain components
   const [selectedCircleClass, setSelectedCircleClass] = useState("");
   const [selectedCircleText, setSelectedCircTextleText] = useState("1");
   const [selectedUploadClass, setSelectedUploadClass] = useState("off");
-  const [submitButtonClass, setSubmitButtonClass] = useState("disabled");
+  // const [submitButtonClass, setSubmitButtonClass] = useState("disabled");
+
+  const [getOptions, setOptions] = useState([]);
 
   // Function to handle image selection
   const handleImageChange = (event) => {
@@ -58,11 +60,14 @@ const DataInputs = () => {
 
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
-      await axios.post(`/classify/${selectedValue}`, formData, {
+      const response = await axios.post(`/classify/${selectedValue}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
+      
+      const predictions = response.data;
+      setData({ predictions });
       setUploadStatus("Image uploaded successfully!");
       setSelectedImages([]); // Clear the selected image after successful upload
       setCurrentPage("loading") // After image is uploaded, navigate to the loading page
@@ -72,31 +77,23 @@ const DataInputs = () => {
     }
   };
 
-  // Function to fetch the list of uploaded images from the backend - the is just to test if it was working, will be relocated to to results page.
-  const fetchImages = async () => {
-    try {
-      // Send a GET request to the '/get_images' endpoint in the backend to fetch uploaded images
-      const response = await axios.get("/get_images");
-      setUploadedImages(response.data); // Update the state with fetched image filenames
-    } catch (error) {
-      console.error("Error fetching images:", error);
-    }
-  };
-
   // Run the 'fetchImages' function after the component is initially rendered.
   useEffect(() => {
-    fetchImages();
+    const fetchInsectTypes = async () => {
+      try {
+        const response = await axios.get("/get_insect_types");
+        // Assuming the response data is an array of objects with "label" and "value" properties
+        setOptions(response.data);
+      } catch (error) {
+        console.error("Error fetching insect types:", error);
+      }
+    };
+
+    fetchInsectTypes();
   }, []);
   
 
   // Flask intergration ends here
-
-  // Placeholder list of insect types
-  let options = [
-    { label: "Trupanea", value: "trupanea" },
-    { label: "Beetle", value: "beetle" },
-    { label: "Moth", value: "moth" },
-  ];
 
   // Dropdown onChange handler
   const handleSelectChange = (e) => {
@@ -141,9 +138,9 @@ const DataInputs = () => {
             onChange={handleSelectChange}
           >
             <option selected disabled className="off">
-              Select Insect <i class="arrow"></i>
+              Select Insect <i className="arrow"></i>
             </option>
-            {options.map((option) => (
+            {getOptions.map((option) => (
               <option value={option.value}>{option.label}</option>
             ))}
           </select>

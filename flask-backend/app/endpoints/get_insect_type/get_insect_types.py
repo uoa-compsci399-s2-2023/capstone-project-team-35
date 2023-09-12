@@ -7,7 +7,7 @@ import os
 
 upload_blueprint = Blueprint('get_insect_types_bp', __name__)
 
-@upload_blueprint.route('/get_insect_types', methods=['POST'])
+@upload_blueprint.route('/get_insect_types', methods=['GET'])
 def get_insect_types():
     path = os.getcwd() + "\\app" + "\ml" + "\models"
     dir_list = os.listdir(path)

@@ -47,7 +47,7 @@ const ResultsPage = () => {
           {/* <button type="button" onClick={() => setCurrentPage("")}><img src={home_icon} className="items-center w-full h-full return-button"></img></button> */}
 
           <div className="flex flex-col items-center w-full h-full gap-4 p-5">
-            {data.map((image) => (
+            {data.predictions.map((image) => (
               <FileButton
                 image={image}
                 selected={

@@ -12,6 +12,7 @@ export const PageName = "results" | "loading";
 const App = () => {
   const [currentPage, setCurrentPage] = useState(PageName);
   const [data, setData] = useState([]);
+  const [selectedValue, setSelectedValue] = useState("");
 
   const renderPage = () => {
     switch (currentPage) {
@@ -36,6 +37,8 @@ const App = () => {
           data,
           setData,
           setCurrentPage,
+          selectedValue,
+          setSelectedValue
         }}
       >
         {renderPage()}
