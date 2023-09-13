@@ -2,6 +2,7 @@ import "./data-inputs.css";
 import React, { useState, useEffect, useRef } from "react";
 // import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { ImageSection } from "../../components";
 
 import RootContext from "../../providers/root";
 import { useContext } from "react";
@@ -28,8 +29,20 @@ const DataInputs = () => {
 
   // Function to handle image selection
   const handleImageChange = (event) => {
-    const selectedImage = Array.from(event.target.files);
-    setSelectedImages(selectedImage);
+    const savedImages = Array.from(event.target.files);
+
+    if (selectedImages.length > 0) {
+
+      if (selectedImages.includes(savedImages)) {
+        console.log("Yes");
+      }
+
+      const updatedImages = selectedImages.concat(savedImages);
+      setSelectedImages(updatedImages);
+    } else {
+      setSelectedImages(savedImages);
+    }
+  
     setIsImageSelected(true);
   };
 
@@ -104,6 +117,16 @@ const DataInputs = () => {
     setIsImageSelected(false)
   };
 
+  const handleRemoveImage = (index) => {
+    const updatedSelectedImages = [...selectedImages];
+    updatedSelectedImages.splice(index, 1);
+    setSelectedImages(updatedSelectedImages);
+    console.log(selectedImages.length)
+    if (selectedImages.length == 1) {
+      setIsImageSelected(false)
+    }
+  }
+
   // Variable whichs help component change classes which image is dragged over input
   const uploadClass = isImageDragging
     ? "image-dragging"
@@ -168,6 +191,13 @@ const DataInputs = () => {
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
             >
+              
+              <div className={`individ_images ${isImageSelected ? "enabled" : "off"}`}>
+                  {selectedImages.map((image, index) => (
+                    <div className="image_section" key={index}>{image.name} <button onClick={() => handleRemoveImage(index)}>X</button></div>
+                  ))}
+              </div>
+
               {/* The actual file input */}
               <input
                 type="file"
@@ -176,6 +206,7 @@ const DataInputs = () => {
                 multiple
                 name="image_input"
               />
+              
               {/* Status message if there is an error */}
               <p>{uploadStatus}</p>
             </div>
