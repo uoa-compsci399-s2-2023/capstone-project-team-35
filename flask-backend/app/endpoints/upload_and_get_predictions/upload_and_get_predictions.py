@@ -7,14 +7,17 @@ import json
 
 upload_blueprint = Blueprint('upload_and_get_classifications_bp', __name__)
 
-@upload_blueprint.route('/classify', methods=['POST'])
-def upload_and_get_classifications():
-    insect_type = "trupanea" #TODO: get this from frontend
+@upload_blueprint.route('/classify/<insect_type>', methods=['POST'])
+def upload_and_get_classifications(insect_type=None):
+    if insect_type is None:
+        insect_type = "trupanea" #TODO: de-hardcode
     model_type = None        #TODO: could also add model selection to frontend
     
-    if 'image' in request.files:
-        target_image = request.files['image']
-        target_image_list = [target_image]
+    target_image_list = []
+    if len(request.files) > 0:
+        for img in request.files:
+            target_image_list.append(request.files[img])
+                
         results = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)   #TODO: enable upload of multiple images
             
         # Initialize a list to store prediction data
