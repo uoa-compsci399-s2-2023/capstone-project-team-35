@@ -1,0 +1,60 @@
+[
+  {
+    "input_image_path": "<my local path>/capstone-project-team-35/flask-backend/app/endpoints/upload_and_get_predictions/tmp/standardized_images/Images/NZAC04191592_Urophora_solstitialis_wing_dorsal_left.png",
+    "predictions": {
+      "0": {
+        "country": "Overseas",
+        "genus": "Urophora",
+        "image_file_path": "<my local path>/capstone-project-team-35/flask-backend/app/species_info/Images/sample_image.jpg",
+        "label": "urophora",
+        "probability": "1.0",
+        "species": ""
+      },
+      "1": {
+        "country": "New Zealand",
+        "genus": "Austrotephritis",
+        "image_file_path": "<my local path>/capstone-project-team-35/flask-backend/app/species_info/Images/sample_image.jpg",
+        "label": "austrotephritis",
+        "probability": "0.0",
+        "species": ""
+      },
+      "2": {
+        "country": "Overseas",
+        "genus": "Bactrocera",
+        "image_file_path": "<my local path>/capstone-project-team-35/flask-backend/app/species_info/Images/sample_image.jpg",
+        "label": "bactrocera",
+        "probability": "0.0",
+        "species": ""
+      }
+    }
+  },
+  {
+    "input_image_path": "<my local path>/capstone-project-team-35/flask-backend/app/endpoints/upload_and_get_predictions/tmp/standardized_images/Images/NZAC04231848_Trupanea_extensa_wing.png",
+    "predictions": {
+      "0": {
+        "country": "New Zealand",
+        "genus": "Trupanea",
+        "image_file_path": "<my local path>/capstone-project-team-35/flask-backend/app/species_info/Images/sample_image.jpg",
+        "label": "trupanea_extensa",
+        "probability": "0.993",
+        "species": "extensa"
+      },
+      "1": {
+        "country": "New Zealand",
+        "genus": "Trupanea",
+        "image_file_path": "<my local path>/capstone-project-team-35/flask-backend/app/species_info/Images/sample_image.jpg",
+        "label": "trupanea_longipennis",
+        "probability": "0.004",
+        "species": "longipennis"
+      },
+      "2": {
+        "country": "New Zealand",
+        "genus": "Trupanea",
+        "image_file_path": "<my local path>/capstone-project-team-35/flask-backend/app/species_info/Images/sample_image.jpg",
+        "label": "trupanea_completa",
+        "probability": "0.002",
+        "species": "completa"
+      }
+    }
+  }
+]
