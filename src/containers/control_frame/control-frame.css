@@ -15,12 +15,12 @@
     text-align: left;
     position: relative;
     top: 10%;
-    font-size: 2.5vw;
+    font-size: calc(21px + 1.6vw);
     width: 43vw;
     padding-left: 8vw;
 }
 
-.options {
+/* .options {
     padding-left: 7vw;
     padding-right: 7vw;
     position: absolute;
@@ -54,4 +54,32 @@
     grid-column-end: 2;
 
     margin: auto;
+} */
+
+@media only screen and (max-width: 970px) {
+    .frame {
+        background-color: #F8F8F8;
+        width: 100%;
+        position: relative;
+        left: 0%;
+        bottom: 0%;
+        border-top-left-radius: 0%;
+        border-top-right-radius: 0%;
+    }
+
+    .frame h1 {
+        color: #FBA035;
+        font-family: var(--font_family);
+        position: relative;
+        top: 5%;
+        font-size: calc(15px + 2vw);
+        width: 100%;
+        padding-left: 0px;
+        text-align: center;
+    }
+
+    .data_inputs {
+        position: relative;
+        left: calc(10% + 15vw);
+    }
 }

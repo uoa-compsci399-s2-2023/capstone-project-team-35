@@ -5,10 +5,10 @@ import { ControlFrame, Title } from "../../containers";
 const Home = () => {
     return (
       <div className="App">
-        <div className="title">
+        <div className="title_container">
           <Title />
         </div>
-        <div>
+        <div className="control_frame_container">
           <ControlFrame />
         </div>
       </div>
