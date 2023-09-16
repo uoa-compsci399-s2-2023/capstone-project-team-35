@@ -18,4 +18,7 @@ def client():
 @pytest.fixture(scope='session', autouse=True)
 def end_of_tests():
     yield
-    os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image.jpg")
+    if os.path.isfile(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image.jpg"):
+        os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image.jpg")
+    if os.path.isfile(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image.jpg"):
+        os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image.jpg")
