@@ -91,11 +91,11 @@ class TestClassifier:
 class TestPrediction:
     def test_construction(self):
         #<Prediction: Label-probability {self.label_probability_dict}, Input Image path {self.input_image_path}>
-        prediction1 = Prediction({'dict': 0}, Path('file'))
+        prediction1 = Prediction({'dict': 0}, 'file ')
         assert str(prediction1) == f"<Prediction: Label-probability {prediction1.label_probability_dict}, Input Image path file>"
 
         #Test empty dict returns None
-        prediction2 = Prediction(dict(), Path('file'))
+        prediction2 = Prediction(dict(), 'file')
         assert prediction2.label_probability_dict is None
 
         #Test invalid types
@@ -103,20 +103,20 @@ class TestPrediction:
         assert prediction3.label_probability_dict is None
         assert prediction3.input_image_path is None
 
-        prediction4 = Prediction({'dict': 0}, Path(''))
+        prediction4 = Prediction({'dict': 0}, ' ')
         assert prediction4.input_image_path is None
     
     def test_setters(self):
         prediction1 = Prediction({'dict': 0}, Path('file'))
         
         #Test path setter
-        prediction1.input_image_path = Path('file2')
-        assert prediction1.input_image_path == Path('file2')
+        prediction1.input_image_path = 'file2'
+        assert prediction1.input_image_path == 'file2'
 
         prediction1.input_image_path = 123
         assert prediction1.input_image_path is None
 
-        prediction1.input_image_path = Path('')
+        prediction1.input_image_path = ' '
         assert prediction1.input_image_path is None
 
         #Test label dict setter

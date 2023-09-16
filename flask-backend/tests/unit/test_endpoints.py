@@ -9,6 +9,8 @@ def test_upload_and_get_predictions(client, local_repo):
     test_img_path = TEST_IMAGES_DIRECTORY / "sample_image.jpg"
     response = client.post('/classify/trupanea', data={'image': (open(test_img_path, 'rb'), test_img_path)})
     assert response.status_code == 200
+    assert len(response.data) > 0
+    print("Hello",response.data)
 
 
 
