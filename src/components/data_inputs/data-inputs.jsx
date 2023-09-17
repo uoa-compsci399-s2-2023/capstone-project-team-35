@@ -8,7 +8,8 @@ import RootContext from "../../providers/root";
 import { useContext } from "react";
 
 const DataInputs = () => {
-  const { selectedValue, setSelectedValue, setCurrentPage, setData } = useContext(RootContext);
+  const { selectedValue, setSelectedValue, setCurrentPage, setData } =
+    useContext(RootContext);
 
   // Declare variables to manage the POST and GET request between the front-end and back-end
   const [selectedImages, setSelectedImages] = useState([]); // Holds the selected image file
@@ -32,7 +33,6 @@ const DataInputs = () => {
     const savedImages = Array.from(event.target.files);
 
     if (selectedImages.length > 0) {
-
       if (selectedImages.includes(savedImages)) {
         console.log("Yes");
       }
@@ -42,7 +42,7 @@ const DataInputs = () => {
     } else {
       setSelectedImages(savedImages);
     }
-  
+
     setIsImageSelected(true);
   };
 
@@ -58,21 +58,24 @@ const DataInputs = () => {
 
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
-      const response = await axios.post(`/classify/${selectedValue}`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-      
+      const response = await axios.post(
+        `/classify/${selectedValue}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
       // Stores the return prediction value of the endpoints and stores it in a global variable
-      const predictions = response.data; 
+      const predictions = response.data;
       setData({ predictions });
-      
+
       setUploadStatus("Image uploaded successfully!"); // Set image upload status
       setSelectedImages([]); // Clear the selected image after successful upload
-      setCurrentPage("loading") // After image is uploaded, navigate to the loading page
+      setCurrentPage("loading"); // After image is uploaded, navigate to the loading page
     } catch (error) {
-
       // Display errors/status if there is an error
       console.error("Error uploading image:", error);
       setUploadStatus("Error uploading image: " + error.message);
@@ -94,7 +97,6 @@ const DataInputs = () => {
 
     fetchInsectTypes();
   }, []);
-  
 
   // Dropdown onChange handler
   const handleSelectChange = (e) => {
@@ -108,24 +110,24 @@ const DataInputs = () => {
   const handleDragEnter = (e) => {
     e.preventDefault();
     setIsImageDragging(true);
-    setIsImageSelected(true)
+    setIsImageSelected(true);
   };
-  
+
   // Dragging image out of file input handler
   const handleDragLeave = () => {
     setIsImageDragging(false);
-    setIsImageSelected(false)
+    setIsImageSelected(false);
   };
 
   const handleRemoveImage = (index) => {
     const updatedSelectedImages = [...selectedImages];
     updatedSelectedImages.splice(index, 1);
     setSelectedImages(updatedSelectedImages);
-    console.log(selectedImages.length)
+    console.log(selectedImages.length);
     if (selectedImages.length == 1) {
-      setIsImageSelected(false)
+      setIsImageSelected(false);
     }
-  }
+  };
 
   // Variable whichs help component change classes which image is dragged over input
   const uploadClass = isImageDragging
@@ -139,14 +141,15 @@ const DataInputs = () => {
       <div className="Inputs">
         {/* Square 1 */}
         <div className="grid_circle_1">
-          <div className={`circlier_number circle ${selectedCircleClass}`}> {/* Orange number circle */}
+          <div className={`circlier_number circle ${selectedCircleClass}`}>
+            {" "}
+            {/* Orange number circle */}
             <p className={selectedCircleClass}>{selectedCircleText}</p>
           </div>
         </div>
 
         {/* Square 2 */}
         <div className="grid_selection1">
-
           {/* Insect type dropdown selection */}
           <select
             className={`button ${selectedCircleClass}`}
@@ -187,15 +190,23 @@ const DataInputs = () => {
           >
             {/* Div which controls the styling of the input as the actual input is invisible */}
             <div
-              className={`${selectedUploadClass} ${uploadClass} ${isImageSelected ? "hasImage" : ""}`}
+              className={`${selectedUploadClass} ${uploadClass} ${
+                isImageSelected ? "hasImage" : ""
+              } overflow-y-auto`}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
             >
-              
-              <div className={`individ_images ${isImageSelected ? "enabled" : "off"}`}>
-                  {selectedImages.map((image, index) => (
-                    <div className="image_section" key={index}>{image.name} <button onClick={() => handleRemoveImage(index)}>X</button></div>
-                  ))}
+              <div
+                className={`individ_images ${
+                  isImageSelected ? "enabled" : "off"
+                }`}
+              >
+                {selectedImages.map((image, index) => (
+                  <div className="image_section" key={index}>
+                    {image.name}{" "}
+                    <button onClick={() => handleRemoveImage(index)}>X</button>
+                  </div>
+                ))}
               </div>
 
               {/* The actual file input */}
@@ -206,7 +217,7 @@ const DataInputs = () => {
                 multiple
                 name="image_input"
               />
-              
+
               {/* Status message if there is an error */}
               <p>{uploadStatus}</p>
             </div>
@@ -214,7 +225,13 @@ const DataInputs = () => {
             {/* Square 7 */}
             <div className="grid_submit">
               {/* Submit button */}
-              <button disabled={!isImageSelected} className={`${selectedUploadClass} ${isImageSelected ? "enabled" : ""}`} type="submit">
+              <button
+                disabled={!isImageSelected}
+                className={`${selectedUploadClass} ${
+                  isImageSelected ? "enabled" : ""
+                }`}
+                type="submit"
+              >
                 Identify
               </button>
             </div>

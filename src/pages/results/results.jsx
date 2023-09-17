@@ -18,30 +18,33 @@ const ResultsPage = () => {
       {/* File Navigation Section */}
       <div className="flex flex-col w-1/3 shadow-3xl panel rounded-t-3xl">
         {/* Navigation Header */}
-        <div className="flex items-center justify-center relative h-[calc(100%-850px)]">
-          {/* Home Button */}
-          <div className="absolute top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square back">
-            {/* Return to home button */}
-            <button type="button" onClick={() => setCurrentPage("")}>
-              <img
-                src={home_icon}
-                className="items-center w-full h-full return-button style_home"
-              ></img>
-            </button>
+        <div className="flex flex-col relative h-[calc(100%-1100px)]">
+          {/* row for the home button so that it doesn't overlap with the logo */}
+          <div className="w-full h-16">
+            {/* Home Button */}
+            <div className="top-0 flex items-center justify-center w-8 m-4 cursor-pointer align-items left-1 aspect-square back">
+              {/* Return to home button */}
+              <button type="button" onClick={() => setCurrentPage("")}>
+                <img
+                  src={home_icon}
+                  className="items-center w-full h-full return-button style_home"
+                ></img>
+              </button>
+            </div>
           </div>
-          {/* Ocell.ai Logo */}
-          <div
-            className="flex justify-center mt-9 style_margin"
-            style={{ height: 100, width: 300 }}
-          >
-            <img src={main_logo} className="w-full h-full"></img>
+
+          {/* row for the logo */}
+          <div className="flex items-center justify-center w-full h-full ">
+            {/* Ocell.ai Logo */}
+            <div className="flex mt-6 mb-4" style={{ height: 100, width: 300 }}>
+              <img src={main_logo} className="top-0 w-full h-full"></img>
+            </div>
           </div>
         </div>
 
-      
         {/* Navigation Body */}
-        <div className="relative items-center justify-center ">
-          <div className="flex flex-col items-center w-full h-full gap-4 p-5 style_margin">
+        <div className="relative justify-center h-full overflow-y-auto">
+          <div className="flex flex-col items-center w-full h-full gap-4 p-5 mt-4 mb-4 overflow-y-auto">
             {data.predictions.map((image) => (
               <FileButton
                 image={image}
@@ -55,6 +58,9 @@ const ResultsPage = () => {
             ))}
           </div>
         </div>
+
+        {/* Navigation Footer */}
+        <div className="h-20 border border-black"></div>
       </div>
 
       {/* Results Section */}
