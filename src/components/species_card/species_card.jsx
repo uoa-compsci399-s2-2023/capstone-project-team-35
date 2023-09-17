@@ -17,6 +17,7 @@
 
 import { useState } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
+import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 
 const rankedClasses = [
   { marginTop: "mt-4", color: "bg-status-yellow" },
@@ -55,15 +56,61 @@ function SpeciesCardExpanded({
       <div className="w-full"></div>
       {/* Main Expanded Container */}
       <div
-        className={`absolute overlay z-50 p-1 w-full h-[calc(100%-24px)] flex items-center justify-center ${color} border border-black rounded-2xl`}
+        className={`absolute overlay z-50 p-2 w-full h-[calc(100%-24px)] flex items-center justify-center ${color} rounded-3xl`}
       >
         {/* Items Container */}
-        <div className="relative w-full h-full border border-black bg-slate-50 rounded-2xl">
-          {/* Collapse Button */}
-          <div
-            onClick={handleCollapse}
-            className="absolute w-8 bg-white border border-black rounded cursor-pointer aspect-square right-1 top-1"
-          ></div>
+        <div className="relative flex flex-row w-full h-full bg-background-light rounded-2xl">
+          {/* LEFT INFO-BOX */}
+          <div className="flex flex-col w-2/5 h-full rounded-2xl">
+            {/* Left Header */}
+            <div className="flex flex-row h-64 rounded-2xl">
+              {/* small radial graph */}
+              <div className="flex items-center justify-center w-80">
+                <div
+                  className={`${color} w-36 aspect-square rounded-full flex items-center justify-center `}
+                >
+                  <div className="flex items-center justify-center bg-white rounded-full w-28 aspect-square">
+                    <span className="text-2xl font-semibold text-foreground-dark">
+                      {(Number(probability) * 100).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Genus and Species Name */}
+              <div className="w-full p-4 mt-8 mb-8 ">
+                <div className="text-3xl text-left overflow-ellipsis">
+                  {genus} {species}
+                </div>
+              </div>
+            </div>
+
+            {/* Left Body */}
+            <div className="flex items-center justify-center h-full rounded-2xl bg-slate-100">
+              {/* Reference Image */}
+              <div className="flex rounded-2xl w-96 h-96 aspect-square bg-slate-500"></div>
+
+              {/* Tags Here */}
+            </div>
+          </div>
+
+          {/* RIGHT INFO-BOX */}
+          <div className="flex flex-col w-3/5 h-full rounded-2xl">
+            {/* Collapse Button */}
+            <div className="h-20 border border-black"></div>
+            <div
+              onClick={handleCollapse}
+              className="absolute w-8 m-4 bg-white rounded cursor-pointer aspect-square right-1 top-1"
+            >
+              <img
+                src={shrink_icon}
+                className="items-center w-full h-full"
+              ></img>
+            </div>
+
+            {/* Distribution panel body */}
+            <div className="h-full border border-black"></div>
+          </div>
         </div>
       </div>
     </>
@@ -86,24 +133,17 @@ function SpeciesCardCollapsed({
     // BG card container and height reference
     <div className={`w-full ${marginTop}`}>
       {/* Card background */}
-      <div className={`w-full h-full rounded-2xl p-1 ${color}`}>
+      <div className={`w-full h-full rounded-3xl p-2 ${color}`}>
         {/* Items container */}
         <div className="flex flex-col items-center justify-center gap-4 px-16 py-4 bg-white rounded-2xl ">
           {/* Confidence Circle */}
 
-          {/* <div
-            className={`overlay items-center justify-center radial-progress border-6 border-yellow`}
-            style={{ "--value": "70", "--size": "8rem", "--thickness": "12px" }}
-          >
-            {Number(probability).toFixed(2)}%
-          </div> */}
           <div
             className={`${color} w-44 aspect-square rounded-full flex items-center justify-center `}
           >
-            {/* flex items-center justify-center to center an element */}
             <div className="flex items-center justify-center w-32 bg-white rounded-full aspect-square">
               <span className="text-3xl font-semibold text-foreground-dark">
-                {Number(probability).toFixed(2)}
+                {(Number(probability) * 100).toFixed(2)}
               </span>
             </div>
           </div>
