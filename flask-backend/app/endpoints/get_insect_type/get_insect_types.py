@@ -20,7 +20,7 @@ def get_insect_types():
                 "value": model_directory
                 }
         
-        dictonary_list.append(label_dictionary)
+            dictonary_list.append(label_dictionary)
         return dictonary_list, 200
     else:
         return 'No labels found', 400
