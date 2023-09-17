@@ -3,6 +3,8 @@ import { SpeciesCard, FileButton } from "../../components";
 import { useContext, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
+import orange_download_icon from "../../assets/ui-elements/orange_download-icon.svg";
+import gray_download_icon from "../../assets/ui-elements/gray_download-icon.svg";
 import "tailwindcss/tailwind.css";
 import "./results.css";
 
@@ -60,10 +62,25 @@ const ResultsPage = () => {
         </div>
 
         {/* Navigation Footer */}
-        <div className="h-20 border border-black"></div>
+        <div className="h-20 border border-black">
+          <div className="flex items-center justify-center mt-4">
+            <a
+              className="flex items-center gap-2 cursor-pointer"
+              // onClick={handleExpand}
+            >
+              <div className="w-8 rounded aspect-square">
+                <img
+                  src={orange_download_icon}
+                  className="items-center w-full h-full return-button style_home"
+                ></img>
+              </div>
+              <span className="text-xl">DOWNLOAD BATCH RESULT</span>
+            </a>
+          </div>
+        </div>
       </div>
 
-      {/* Results Section */}
+      {/* ============== Results Section ================== */}
       <div className="flex flex-col w-2/3 pb-8">
         {/* Species Card Section */}
         <div className="relative flex pb-6 border-b border-black h-3/5 gap-9">
@@ -73,10 +90,38 @@ const ResultsPage = () => {
         {/* Auxiliary Info Section */}
         <div className="flex h-2/5">
           {/* Reference Image Section */}
-          <div className="w-5/12 border-r border-black"></div>
+          <div className="flex flex-col justify-center w-4/12 border-r border-black">
+            {/* HEADER */}
+            <div className="flex items-center justify-center h-16 border border-black ">
+              <span className="text-2xl">INPUT IMAGE</span>
+            </div>
+
+            {/* IMAGE FILE */}
+            <div className="flex items-center justify-center h-full border border-black">
+              <div className="flex rounded-2xl w-96 h-96 aspect-square bg-slate-500"></div>
+            </div>
+
+            {/* INDIVIDUAL DOWNLOAD */}
+            <div className="h-16 border border-black">
+              <div className="flex items-center justify-center">
+                <a
+                  className="flex items-center gap-2 mt-2 cursor-pointer"
+                  // onClick={handleExpand}
+                >
+                  <div className="w-8 rounded aspect-square">
+                    <img
+                      src={gray_download_icon}
+                      className="items-center w-full h-full return-button style_home"
+                    ></img>
+                  </div>
+                  <span className="text-xl">DOWNLOAD BATCH RESULT</span>
+                </a>
+              </div>
+            </div>
+          </div>
 
           {/* Data Table Section */}
-          <div className="w-7/12"></div>
+          <div className="w-8/12"></div>
         </div>
       </div>
     </main>
