@@ -1,0 +1,15 @@
+.panel {
+  background-color: #f8f8f8;
+}
+
+.style_margin {
+  margin-top: 180px;
+}
+
+.style_home {
+  z-index: 999;
+}
+
+.back {
+  z-index: 1;
+}
