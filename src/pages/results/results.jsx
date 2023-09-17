@@ -1,5 +1,5 @@
 import RootContext from "../../providers/root";
-import { SpeciesCard, FileButton } from "../../components";
+import { SpeciesCard, FileButton, ResultsTable } from "../../components";
 import { useContext, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
@@ -121,7 +121,18 @@ const ResultsPage = () => {
           </div>
 
           {/* Data Table Section */}
-          <div className="w-8/12"></div>
+          <div className="w-8/12">
+            <div className="flex flex-col justify-center border border-black">
+              {/* HEADER */}
+              <div className="flex items-center h-16 ml-4 border border-black justify-left">
+                <span className="text-xl">FULL PREDICTION SET PREVIEW</span>
+              </div>
+              {/* TABLE */}
+              <div className="flex items-center justify-center w-full h-full p-6 border border-black">
+                <ResultsTable />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </main>

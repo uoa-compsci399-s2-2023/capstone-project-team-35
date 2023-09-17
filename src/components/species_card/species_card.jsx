@@ -16,6 +16,7 @@
 // };
 
 import { useState } from "react";
+import view_icon from "../../assets/ui-elements/view_icon.svg";
 
 const rankedClasses = [
   { marginTop: "mt-4", color: "bg-status-yellow" },
@@ -54,7 +55,7 @@ function SpeciesCardExpanded({
       <div className="w-full"></div>
       {/* Main Expanded Container */}
       <div
-        className={`absolute overlay p-1 w-full h-[calc(100%-24px)] flex items-center justify-center ${color} border border-black rounded-2xl`}
+        className={`absolute overlay z-50 p-1 w-full h-[calc(100%-24px)] flex items-center justify-center ${color} border border-black rounded-2xl`}
       >
         {/* Items Container */}
         <div className="relative w-full h-full border border-black bg-slate-50 rounded-2xl">
@@ -139,7 +140,12 @@ function SpeciesCardCollapsed({
               className="flex items-center gap-2 cursor-pointer"
               onClick={handleExpand}
             >
-              <div className="w-8 border border-black rounded aspect-square"></div>
+              <div className="w-8 rounded aspect-square">
+                <img
+                  src={view_icon}
+                  className="z-0 items-center w-full h-full scale-125"
+                ></img>
+              </div>
               <span className="text-xl">tap to view info</span>
             </a>
           </div>
