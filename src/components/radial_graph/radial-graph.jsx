@@ -16,8 +16,7 @@ class RadialGraph extends Component {
 
   render() {
     const { setStrokeLength } = this.state;
-    const { radius, progress, strokeWidth, dimension, color, probability } =
-      this.props;
+    const { radius, progress, strokeWidth, dimension, color } = this.props;
     const circleRadius = Math.min(radius, 85);
     const circumference = 2 * 3.14 * circleRadius;
     const strokeLength = setStrokeLength ? (circumference / 100) * progress : 0;
@@ -68,7 +67,6 @@ RadialGraph.defaultProps = {
   strokeWidth: 20,
   dimension: 180,
   color: DEFAULT_COLOR,
-  probability: 80,
 };
 
 RadialGraph.propTypes = {
@@ -78,7 +76,6 @@ RadialGraph.propTypes = {
   color: PropTypes.string,
   progress: PropTypes.number,
   dimension: PropTypes.number,
-  probability: PropTypes.number,
 };
 
 export default RadialGraph;

@@ -54,7 +54,7 @@ function SpeciesCardExpanded({
   rank,
   handleCollapse,
 }) {
-  const { rank_color } = rankedClasses[rank];
+  const { rank_color, theme } = rankedClasses[rank];
   return (
     <>
       {/* Maximum Height of the parent panel for reference */}
@@ -70,16 +70,16 @@ function SpeciesCardExpanded({
             {/* Left Header */}
             <div className="flex flex-row h-64 rounded-2xl">
               {/* small radial graph */}
-              <div className="flex items-center justify-center w-80">
-                <div
-                  className={`${rank_color} w-36 aspect-square rounded-full flex items-center justify-center `}
-                >
-                  <div className="flex items-center justify-center bg-white rounded-full w-28 aspect-square">
-                    <span className="text-2xl font-semibold text-foreground-dark">
-                      {(Number(probability) * 100).toFixed(2)}
-                    </span>
-                  </div>
-                </div>
+              <div className="flex items-center justify-center rounded-full w-44 aspect-square">
+                <RadialGraph
+                  className="flex"
+                  progress={(Number(probability) * 100).toFixed(2)}
+                  color={theme}
+                  dimension={130}
+                />
+                <span className="absolute z-10 flex text-3xl font-semibold text-foreground-dark">
+                  {(Number(probability) * 100).toFixed(2)}
+                </span>
               </div>
 
               {/* Genus and Species Name */}
@@ -91,18 +91,35 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Left Body */}
-            <div className="flex items-center justify-center h-full rounded-2xl bg-slate-100">
+            <div className="flex flex-col items-center justify-center h-full gap-4 rounded-2xl">
               {/* Reference Image */}
               <div className="flex rounded-2xl w-96 h-96 aspect-square bg-slate-500"></div>
 
-              {/* Tags Here */}
+              {/* Tags */}
+              <div className="flex flex-wrap items-center justify-center">
+                {/* Object.keys returns an array of keys */}
+                {/* Loop through array */}
+                {Object.keys(tags || {}).map((tag) => {
+                  // If tag is false, return null
+                  if (!tags[tag]) return null;
+
+                  return (
+                    <div
+                      key={tag}
+                      className="inline-block px-2 py-1 m-1 text-sm font-semibold border border-black"
+                    >
+                      {tag}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
           {/* RIGHT INFO-BOX */}
           <div className="flex flex-col w-3/5 h-full rounded-2xl">
             {/* Collapse Button */}
-            <div className="h-20 border border-black"></div>
+            <div className="h-20"></div>
             <div
               onClick={handleCollapse}
               className="absolute w-8 m-4 bg-white rounded cursor-pointer aspect-square right-1 top-1"
@@ -114,7 +131,7 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Distribution panel body */}
-            <div className="h-full border border-black"></div>
+            <div className="h-full"></div>
           </div>
         </div>
       </div>
@@ -187,7 +204,7 @@ function SpeciesCardCollapsed({
             })}
           </div>
 
-          <div className="w-full h-[1px] bg-black" />
+          <div className="w-full h-[1px] bg-foreground-light" />
 
           {/* Tap to view info */}
           <div className="flex">

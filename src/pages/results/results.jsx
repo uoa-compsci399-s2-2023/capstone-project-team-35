@@ -153,7 +153,17 @@ function SpeciesCardGroup({ image }) {
   return (
     <>
       {Object.entries(predictions).map(([rank, prediction]) => (
-        <SpeciesCard key={rank} rank={rank} {...prediction} />
+        <SpeciesCard
+          key={rank}
+          rank={rank}
+          tags={{
+            endemic: false,
+            invasive: true,
+            "non-native": true,
+            "non-invasive": false,
+          }}
+          {...prediction}
+        />
       ))}
 
       {/* <SpeciesCard
