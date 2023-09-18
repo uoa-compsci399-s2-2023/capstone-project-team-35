@@ -18,11 +18,16 @@
 import { useState } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
+import RadialGraph from "../radial_graph/radial-graph";
 
 const rankedClasses = [
-  { marginTop: "mt-4", color: "bg-status-yellow" },
-  { marginTop: "mt-12", color: "bg-status-orange" },
-  { marginTop: "mt-16", color: "bg-status-red" },
+  { marginTop: "mt-4", rank_color: "bg-status-yellow", theme: "#FBC229" },
+  {
+    marginTop: "mt-12",
+    rank_color: "bg-status-orange",
+    theme: "#FC7F40",
+  },
+  { marginTop: "mt-16", rank_color: "bg-status-red", theme: "#FF5E49" },
 ];
 
 const SpeciesCard = (props) => {
@@ -49,14 +54,14 @@ function SpeciesCardExpanded({
   rank,
   handleCollapse,
 }) {
-  const { color } = rankedClasses[rank];
+  const { rank_color } = rankedClasses[rank];
   return (
     <>
       {/* Maximum Height of the parent panel for reference */}
       <div className="w-full"></div>
       {/* Main Expanded Container */}
       <div
-        className={`absolute overlay z-50 p-2 w-full h-[calc(100%-24px)] flex items-center justify-center ${color} rounded-3xl`}
+        className={`absolute overlay z-50 p-2 w-full h-[calc(100%-24px)] flex items-center justify-center ${rank_color} rounded-3xl`}
       >
         {/* Items Container */}
         <div className="relative flex flex-row w-full h-full bg-background-light rounded-2xl">
@@ -67,7 +72,7 @@ function SpeciesCardExpanded({
               {/* small radial graph */}
               <div className="flex items-center justify-center w-80">
                 <div
-                  className={`${color} w-36 aspect-square rounded-full flex items-center justify-center `}
+                  className={`${rank_color} w-36 aspect-square rounded-full flex items-center justify-center `}
                 >
                   <div className="flex items-center justify-center bg-white rounded-full w-28 aspect-square">
                     <span className="text-2xl font-semibold text-foreground-dark">
@@ -128,17 +133,27 @@ function SpeciesCardCollapsed({
   handleExpand,
 }) {
   // Props come from the results passed onto the instances in the components in the results page
-  const { marginTop, color } = rankedClasses[rank];
+  const { marginTop, rank_color, theme } = rankedClasses[rank];
   return (
     // BG card container and height reference
     <div className={`w-full ${marginTop}`}>
       {/* Card background */}
-      <div className={`w-full h-full rounded-3xl p-2 ${color}`}>
+      <div className={`w-full h-full rounded-3xl p-2 ${rank_color}`}>
         {/* Items container */}
         <div className="flex flex-col items-center justify-center gap-4 px-16 py-4 bg-white rounded-2xl ">
           {/* Confidence Circle */}
+          <div className="flex items-center justify-center rounded-full w-44 aspect-square">
+            <RadialGraph
+              className="flex"
+              progress={(Number(probability) * 100).toFixed(2)}
+              color={theme}
+            />
+            <span className="absolute z-10 flex text-3xl font-semibold text-foreground-dark">
+              {(Number(probability) * 100).toFixed(2)}
+            </span>
+          </div>
 
-          <div
+          {/* <div
             className={`${color} w-44 aspect-square rounded-full flex items-center justify-center `}
           >
             <div className="flex items-center justify-center w-32 bg-white rounded-full aspect-square">
@@ -146,7 +161,7 @@ function SpeciesCardCollapsed({
                 {(Number(probability) * 100).toFixed(2)}
               </span>
             </div>
-          </div>
+          </div> */}
 
           {/* Species Name */}
           <div className="text-3xl text-center">
