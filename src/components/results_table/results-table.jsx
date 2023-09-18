@@ -2,7 +2,7 @@ import React from "react";
 
 const ResultsTable = (props) => {
   return (
-    <div className="w-full h-full overflow-x-auto">
+    <div className="flex w-full h-full max-h-full">
       <table className="table">
         {/* head */}
         <thead className="text-xl">
@@ -28,6 +28,31 @@ const ResultsTable = (props) => {
           {/* row 3 */}
           <tr className="text-lg hover">
             <th>3</th>
+            <td>species C</td>
+            <td>54%</td>
+          </tr>
+          <tr className="text-lg hover">
+            <th>4</th>
+            <td>species C</td>
+            <td>54%</td>
+          </tr>
+          <tr className="text-lg hover">
+            <th>5</th>
+            <td>species C</td>
+            <td>54%</td>
+          </tr>
+          <tr className="text-lg hover">
+            <th>6</th>
+            <td>species C</td>
+            <td>54%</td>
+          </tr>
+          <tr className="text-lg hover">
+            <th>7</th>
+            <td>species C</td>
+            <td>54%</td>
+          </tr>
+          <tr className="text-lg hover">
+            <th>8</th>
             <td>species C</td>
             <td>54%</td>
           </tr>

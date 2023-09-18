@@ -126,16 +126,14 @@ const ResultsPage = () => {
           </div>
 
           {/* Data Table Section */}
-          <div className="w-8/12">
-            <div className="flex flex-col justify-center ">
-              {/* HEADER */}
-              <div className="flex items-center h-16 ml-4 justify-left">
-                <span className="text-xl">FULL PREDICTION SET PREVIEW</span>
-              </div>
-              {/* TABLE */}
-              <div className="flex items-center justify-center w-full h-full p-6 ">
-                <ResultsTable />
-              </div>
+          <div className="flex flex-col justify-center w-8/12 pt-4">
+            {/* HEADER */}
+            <div className="relative flex items-center h-16 ml-4 justify-left">
+              <span className="text-xl">FULL PREDICTION SET PREVIEW</span>
+            </div>
+            {/* TABLE */}
+            <div className="relative flex items-center justify-center p-6 overflow-auto">
+              <ResultsTable />
             </div>
           </div>
         </div>
