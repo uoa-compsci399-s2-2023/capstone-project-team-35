@@ -128,7 +128,7 @@ const ResultsPage = () => {
           {/* Data Table Section */}
           <div className="flex flex-col justify-center w-8/12 pt-4">
             {/* HEADER */}
-            <div className="relative flex items-center h-16 ml-4 justify-left">
+            <div className="relative flex items-center h-16 ml-10 justify-left">
               <span className="text-xl">FULL PREDICTION SET PREVIEW</span>
             </div>
             {/* TABLE */}

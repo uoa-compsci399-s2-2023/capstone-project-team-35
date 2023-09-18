@@ -2,7 +2,7 @@ import React from "react";
 
 const ResultsTable = (props) => {
   return (
-    <div className="flex w-full h-full max-h-full">
+    <div className="flex w-full h-full max-h-full overflow-auto">
       <table className="table">
         {/* head */}
         <thead className="text-xl">
