@@ -12,7 +12,7 @@ def get_insect_types():
     # makes a new variable to store every label folder in ml/models
     ml_models_dir_list = os.listdir(globals.ML_MODELS_DIRECTORY)
     dictonary_list = []
-    
+
     # checks to see if there exists any file to loop through.
     if len(ml_models_dir_list) > 0:
         for model_directory in ml_models_dir_list:
