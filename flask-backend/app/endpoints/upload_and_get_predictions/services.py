@@ -40,8 +40,9 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
     
     si.standardise_images(uploaded_images_directory_path, standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
     model = Classifier(model_path, model_type, labels_path)
-    labels, predictions, image_files, model = model.predict(standardized_images_directory_path)
 
+    labels, predictions, image_files, model = model.predict(standardized_images_directory_path) #TODO: Return uploaded images instead of standardized images
+    
     results = []
 
     # Iterate through labels and predictions and create the dictionary
@@ -60,7 +61,7 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
         new_prediction = Prediction(top_predictions_dict, image_files[index])
         results.append(new_prediction)            
     
-    #repo.clear_directory(uploaded_images_directory_path)
+    repo.clear_directory(uploaded_images_directory_path)
     repo.clear_directory(standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
     
     return results
