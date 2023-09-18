@@ -3,6 +3,8 @@ from PIL import Image
 from pathlib import PurePath
 from app.storage.abstractrepository import AbstractRepository
 import app.globals as globals
+from pathlib import Path
+import base64
 
 USER_UPLOADED_IMAGES_DIRECTORY =  globals.USER_UPLOADED_IMAGES_DIRECTORY                 
 
@@ -12,6 +14,19 @@ class LocalRepository(AbstractRepository):
             os.makedirs(USER_UPLOADED_IMAGES_DIRECTORY)
         image_filename = USER_UPLOADED_IMAGES_DIRECTORY / PurePath(image.filename).name
         image.save(image_filename)
+        
+    def get_base64_image(self, img_path: Path):
+        image_base64 = None
+        if os.path.exists(img_path):
+            try:
+                with open(str(img_path), "rb") as img_file:
+                    # Read the image data as bytes
+                    image_data = img_file.read()
+                    # Encode the image data as base64
+                    image_base64 = base64.b64encode(image_data).decode('utf-8')
+            except Exception as e:
+                print(f"An exception occurred: {str(e)}")
+        return image_base64
 
     def get_all_images(self) -> list:
         images = []
@@ -40,4 +55,4 @@ class LocalRepository(AbstractRepository):
                     print(file_path)
                     os.remove(file_path)
                 except OSError as e: 
-                    print("Failed to clear directory; file path: {0}; error: {1}; error code: {2}", file_path, e.strerror, e.code) 
+                    print("Failed to clear directory; file path: {0}; error: {1}", file_path, e.strerror) 

@@ -26,19 +26,23 @@ def upload_and_get_classifications(insect_type=None):
         # Loop through the results and store prediction data
         for result in results:
             prediction = {}
-            prediction["input_image_path"] = result.input_image_path
+            img = services.get_base64_image(result.input_image_path, repo.repo_instance)
+            prediction["input_image"] = services.get_base64_image(result.input_image_path, repo.repo_instance)
+            prediction["input_image_filename"] = result.input_image_path.parts[-1]
             prediction["predictions"] = {}
             label_probability_dict = result.label_probability_dict
             count = 0
             for label in label_probability_dict:
                 insect = utils.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
+                print(insect.image_file_path)
                 prediction["predictions"][count] = {
                     "label": insect.label,
                     "probability": str(round(label_probability_dict[label], 3)),
                     "genus": insect.genus,
                     "species": insect.species,
                     "country": insect.country,
-                    "image_file_path": str(insect.image_file_path), #TODO: return actual image instead of file? 
+                    "image": services.get_base64_image(insect.image_file_path, repo.repo_instance),
+                    "image_filename": insect.image_file_path.parts[-1]
                 }
                 count = count + 1
             aggregated_predictions.append(prediction)

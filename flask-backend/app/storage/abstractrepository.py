@@ -15,6 +15,10 @@ class AbstractRepository(abc.ABC):
         raise NotImplementedError
     
     @abc.abstractmethod
+    def get_base64_image(self, path: Path):
+        raise NotImplementedError
+    
+    @abc.abstractmethod
     def get_all_images(self) -> list:
         raise NotImplementedError
     
