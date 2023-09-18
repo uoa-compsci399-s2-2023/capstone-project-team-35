@@ -5,9 +5,9 @@ from io import BytesIO
 from zipfile import ZipFile
 from glob import glob
 
-download_blueprint = Blueprint('download_results_bp', __name__)
+upload_blueprint = Blueprint('download_results_bp', __name__)
 
-@download_blueprint.route('/download', methods=['GET'])
+@upload_blueprint.route('/download', methods=['GET'])
 def download_csv_results():
     target = globals.RESULTS_FILE_DIRECTORY
     stream = BytesIO()
