@@ -14,7 +14,7 @@
     grid-area: 1 / 2 / 2 / 3;
 }
 
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 990px) {
     .App {
         display: grid;
         grid-template-columns: 1fr;

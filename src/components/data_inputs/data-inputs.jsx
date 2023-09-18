@@ -2,18 +2,16 @@ import "./data-inputs.css";
 import React, { useState, useEffect, useRef } from "react";
 // import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { ImageSection } from "../../components";
-
+import image_icon from "../../assets/ui-elements/orange_download-icon.svg";
 import RootContext from "../../providers/root";
 import { useContext } from "react";
 
 const DataInputs = () => {
-  const { selectedValue, setSelectedValue, setCurrentPage, setData } =
+  const { selectedImages, setSelectedImages, setSelectedValue, setCurrentPage, setData } =
     useContext(RootContext);
 
   // Declare variables to manage the POST and GET request between the front-end and back-end
-  const [selectedImages, setSelectedImages] = useState([]); // Holds the selected image file
-  const [uploadStatus, setUploadStatus] = useState(""); // Displays the status of the image upload
+  // const [selectedImages, setSelectedImages] = useState([]); 
   const input_form = useRef(); // References the React form where the images will be uploaded from
   const [isImageSelected, setIsImageSelected] = useState(false); // Boolean which determines if the input contains images
 
@@ -48,38 +46,7 @@ const DataInputs = () => {
 
   // Function to handle form submission
   const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    // Create a FormData object to send the selected image
-    const formData = new FormData();
-    selectedImages.forEach((image, index) => {
-      formData.append(`image${index}`, image);
-    });
-
-    try {
-      // Send a POST request to the '/classify' endpoint in the backend to upload the image
-      const response = await axios.post(
-        `/classify/${selectedValue}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-
-      // Stores the return prediction value of the endpoints and stores it in a global variable
-      const predictions = response.data;
-      setData({ predictions });
-
-      setUploadStatus("Image uploaded successfully!"); // Set image upload status
-      setSelectedImages([]); // Clear the selected image after successful upload
-      setCurrentPage("loading"); // After image is uploaded, navigate to the loading page
-    } catch (error) {
-      // Display errors/status if there is an error
-      console.error("Error uploading image:", error);
-      setUploadStatus("Error uploading image: " + error.message);
-    }
+    setCurrentPage("loading")
   };
 
   // Run the 'fetchInsectTypes' function after the component is initially rendered.
@@ -192,10 +159,12 @@ const DataInputs = () => {
             <div
               className={`${selectedUploadClass} ${uploadClass} ${
                 isImageSelected ? "hasImage" : ""
-              } overflow-y-auto`}
+              }`}
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
             >
+              
+
               <div
                 className={`individ_images ${
                   isImageSelected ? "enabled" : "off"
@@ -212,14 +181,11 @@ const DataInputs = () => {
               {/* The actual file input */}
               <input
                 type="file"
-                className={selectedUploadClass}
+                className={`${selectedUploadClass} hello`}
                 onChange={handleImageChange}
                 multiple
                 name="image_input"
               />
-
-              {/* Status message if there is an error */}
-              <p>{uploadStatus}</p>
             </div>
 
             {/* Square 7 */}
@@ -234,6 +200,22 @@ const DataInputs = () => {
               >
                 Identify
               </button>
+
+              <span className={isImageSelected ? "enabled" : "off"}>
+                <input
+                  type="file"
+                  onChange={handleImageChange}
+                  multiple
+                  name="image_input"
+                  id="file-input"
+                  className="off"
+                />
+                <label for="file-input">
+                  <img src={image_icon}></img> 
+                  <p>Add Images</p>
+                </label>
+              </span>
+
             </div>
           </form>
         </div>

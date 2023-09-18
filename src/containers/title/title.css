@@ -27,7 +27,7 @@
   font-family: var(--font_family);
   }
 
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 990px) {
     .title img {
       position: relative;
       margin: auto;
