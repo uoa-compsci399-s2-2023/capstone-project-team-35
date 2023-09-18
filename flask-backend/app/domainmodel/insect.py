@@ -7,6 +7,7 @@ class Insect:
         self.__genus = genus
         self.__species = species
         self.__image_file_path = image_file_path
+        self.__tags = {}
     
     @property
     def label(self) -> str:
@@ -27,6 +28,15 @@ class Insect:
     @property
     def image_file_path(self) -> Path:
         return self.__image_file_path
+    
+    @property
+    def tags(self) -> Path:
+        return self.__tags
+    
+    @tags.setter
+    def tags(self, tags) -> dict:
+        if type(tags) is dict:
+            self.__tags = tags
     
     def __repr__(self) -> str:
         return f"<Insect {self.label}, country = {self.country}, genus  = {self.genus}>, species = {self.species}, image file path = {self.__image_file_path}"
