@@ -16,4 +16,11 @@ def get_insect_by_label(global_species, label) -> Insect:
         for row in reader:
             if row['label'] == label:
                 insect = Insect(row["label"], row["country"], row["genus"], row["species"], globals.SPECIES_SAMPLE_IMAGES_DIRECTORY / row["file"])
+                insect.tags = {
+                        "in_NZ": True,
+                        "endemic": True,
+                        "unwanted pest": True,
+                        "Native": True,
+                        "Introduced_biocontrol": True
+                    }
                 return insect
