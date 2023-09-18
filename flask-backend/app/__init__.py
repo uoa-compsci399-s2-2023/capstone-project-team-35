@@ -20,11 +20,11 @@ def create_app(test_config=None):
         # Register blueprints
         from .endpoints.upload_and_get_predictions import upload_and_get_predictions
         from .endpoints.get_insect_type import get_insect_types 
-        from .endpoints.upload_and_get_predictions import download_results
+        from .endpoints.download_predictions import download_results
         
         app.register_blueprint(upload_and_get_predictions.upload_blueprint)
         app.register_blueprint(get_insect_types.upload_blueprint)
-        app.register_blueprint(download_results.download_blueprint)
+        app.register_blueprint(download_results.upload_blueprint)
     
         if app.config['REPOSITORY'] == 'local':
             # Create the LocalRepository impmentation for a local repository
