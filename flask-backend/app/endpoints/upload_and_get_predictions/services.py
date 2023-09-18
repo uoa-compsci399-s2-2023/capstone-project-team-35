@@ -15,7 +15,6 @@ def store_user_uploaded_images(images: list[FileStorage], repo: AbstractReposito
 
 def get_base64_image(path: Path, repo: AbstractRepository) -> str:
     image = repo.get_base64_image(path)
-    print("here", path)
     return image
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
