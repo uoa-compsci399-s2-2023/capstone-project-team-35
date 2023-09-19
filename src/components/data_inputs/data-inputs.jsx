@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 // import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import image_icon from "../../assets/ui-elements/orange_download-icon.svg";
+import checkbox_icon from '../../assets/ui-elements/tick_icon.png'
 import RootContext from "../../providers/root";
 import { useContext } from "react";
 
@@ -70,7 +71,7 @@ const DataInputs = () => {
     setSelectedValue(e.target.value);
     setSelectedCircleClass("selected");
     setSelectedUploadClass("selected_upload");
-    setSelectedCircTextleText("E");
+    setSelectedCircTextleText(<img src={checkbox_icon}></img> );
   };
 
   // Dragging image into file input handler
@@ -105,7 +106,7 @@ const DataInputs = () => {
 
   return (
     <div>
-      <div className="Inputs">
+      <div className={`Inputs ${selectedCircleClass}`}>
         {/* Square 1 */}
         <div className="grid_circle_1">
           <div className={`circlier_number circle ${selectedCircleClass}`}>
@@ -139,7 +140,7 @@ const DataInputs = () => {
 
         {/* Square 4 */}
         <div className="grid_circle_2">
-          <div className="circlier_number">2</div> {/* Orange number circle */}
+          <div className="circlier_number"><p>2</p></div> {/* Orange number circle */}
         </div>
 
         {/* Square 5 */}

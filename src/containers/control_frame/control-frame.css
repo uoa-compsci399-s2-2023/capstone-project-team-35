@@ -18,11 +18,7 @@
     font-size: calc(21px + 1.2vw);
     width: 43vw;
     padding-left: 8vw;
-}
-
-.data_inputs {
-    position: relative;
-    bottom: 10px;
+    margin-bottom: max(80px, 12%)
 }
 
 @media only screen and (max-width: 990px) {
@@ -45,10 +41,11 @@
         width: 100%;
         padding-left: 0px;
         text-align: center;
+        margin-bottom: 50px;
     }
 
     .data_inputs {
         position: relative;
-        left: calc(10% + 15vw);
+        left: calc(8% + 15vw);
     }
 }

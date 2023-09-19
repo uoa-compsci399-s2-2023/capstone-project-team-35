@@ -11,13 +11,25 @@
     color: white;
 }
 
+.circlier_number p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circlier_number img {
+    width: 100%;
+    height: 100%;
+}
+
 .Inputs {
     display: grid;
     grid-template-columns: 1fr 10fr;
-    grid-template-rows: 1fr 0.5fr 1fr 2fr 2fr;
+    grid-template-rows: 70px 10% 70px 2fr 2fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    margin-top: 100px;
     margin-left: 6.8vw;
     max-width: 65%;
     height: 25vw;
@@ -76,6 +88,7 @@
     font-size: 20px;
     padding: 15px;
     min-width: 18vw;
+    max-width: 10%;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     border-radius: 30px;
     font-family: var(--font_family);
@@ -115,7 +128,7 @@
     margin-top: 10px;
 }
 
-div.selected {
+.circlier_number.selected {
     height: 50px;
     width: 50px;
     font-size: 15px;
@@ -125,7 +138,6 @@ div.selected {
 }
 
 p.selected {
-    position: relative;
     bottom: 7px;
 }
 
@@ -134,14 +146,19 @@ select.selected {
     top: 10px; */
 }
 
+.Inputs.selected {
+    grid-template-rows: 50px 0.5fr 70px 2fr 2fr;
+}
+
 div.selected_upload, input.selected_upload {
     background-image: url('input.png');
     background-repeat: no-repeat;
-    background-size: 60%;
+    background-size: max(250px, 18vw);
     background-position: center;
     background-color: white;
 
     width: 30vw;
+    min-width: 270px;
     height: 270px;
     border-radius: 25px;
     border: dashed 3px #D0D0D0;
@@ -200,7 +217,7 @@ div.hasImage {
     border-radius: 25px;
     padding: 2px;
     padding-left: 10px;
-    font-size: 0.8vw;
+    font-size: min(max(0.8vw, 9px), 15px);
 }
 
 .image_section button {
@@ -257,4 +274,22 @@ div.hasImage {
     position: relative;
     top: 4px;
     width: 15%;
+}
+
+@media only screen and (max-width: 990px) {
+    .image_section {
+        font-size: max(0.9vw, 8px);
+    }
+
+    .grid_submit label {
+        float: left;
+    }
+
+    .grid_submit button {
+        float: left;
+    }
+
+    .button {
+        min-width: max(30vw, 180px);
+    }
 }
