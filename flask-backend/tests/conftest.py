@@ -21,7 +21,23 @@ def client():
 @pytest.fixture(scope='session', autouse=True)
 def end_of_tests():
     yield
-    if os.path.isfile(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image.jpg"):
+    
+    uploaded_images = os.listdir(globals.USER_UPLOADED_IMAGES_DIRECTORY)
+    standardized_images = os.listdir(globals.STANDARDIZED_IMAGES_DIRECTORY)
+    results = os.listdir(globals.RESULTS_FILE_DIRECTORY)
+
+    
+    if "sample_image.jpg" in uploaded_images:
         os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image.jpg")
-    if os.path.isfile(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image.jpg"):
+    if "sample_image2.jpg" in uploaded_images:
+        os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image2.jpg")
+    
+    if "sample_image.jpg" in standardized_images:
         os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image.jpg")
+    if "sample_image2.jpg" in standardized_images:
+        os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image2.jpg")
+
+    if "sample_image.jpg_predictions.csv" in results:
+        os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image.jpg_predictions.csv")
+    if "sample_image2.jpg_predictions.csv" in results:
+        os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image2.jpg_predictions.csv")
