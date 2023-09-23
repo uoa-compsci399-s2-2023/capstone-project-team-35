@@ -2,6 +2,7 @@ from app.ml.abstractmodel import AbstractModel
 import app.ml.utilities.train_test_functions as ft
 from werkzeug.datastructures import FileStorage
 from pathlib import Path
+import os
 
 class Classifier(AbstractModel):
     def __init__(self, classifier_path: Path, classifier_name: str, labels_path: Path):
@@ -18,9 +19,10 @@ class Classifier(AbstractModel):
         if isinstance(labels_path, Path) and labels_path != Path('.'):
             self.__labels_path = labels_path
     
-    def predict(self, images_path) -> list:
-        labels, predictions, image_files, model = ft.run_model(self.__classifier_path, self.__labels_path, images_path, self.__classifier_name)
-        return labels, predictions, image_files, model
+    def predict(self, standardized_images_path, user_uploaded_images_path) -> list:
+        labels, predictions, image_files, model = ft.run_model(self.__classifier_path, self.__labels_path, standardized_images_path, self.__classifier_name)
+        user_uploaded_images_paths = os.listdir(user_uploaded_images_path)
+        return labels, predictions, user_uploaded_images_paths, model
 
     @property
     def classifier_path(self) -> Path:

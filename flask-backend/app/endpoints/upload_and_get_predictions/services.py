@@ -41,7 +41,7 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
     si.standardise_images(uploaded_images_directory_path, standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
     model = Classifier(model_path, model_type, labels_path)
 
-    labels, predictions, image_files, model = model.predict(standardized_images_directory_path) #TODO: Return uploaded images instead of standardized images
+    labels, predictions, image_files, model = model.predict(standardized_images_directory_path, uploaded_images_directory_path)
     
     results = []
 
