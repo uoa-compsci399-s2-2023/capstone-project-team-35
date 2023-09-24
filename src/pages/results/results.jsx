@@ -176,10 +176,11 @@ function SpeciesCardGroup({ image }) {
           key={rank}
           rank={rank}
           tags={{
-            endemic: false,
-            invasive: true,
-            "non-native": true,
-            "non-invasive": false,
+            endemic: true,
+            native: true,
+            introduced_biocontrol: true,
+            unwanted_pest: true,
+            in_NZ: true,
           }}
           {...prediction}
         />
