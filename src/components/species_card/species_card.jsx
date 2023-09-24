@@ -176,7 +176,7 @@ function SpeciesCardCollapsed({
       {/* Card background */}
       <div className={`w-full h-full rounded-3xl p-2 ${rank_color}`}>
         {/* Items container */}
-        <div className="flex flex-col items-center justify-center max-h-full gap-4 px-16 py-4 bg-white overflow-clip rounded-2xl">
+        <div className="flex flex-col items-center justify-center max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl">
           {/* Confidence Circle */}
           <div className="flex items-center justify-center rounded-full w-44 aspect-square">
             <RadialGraph

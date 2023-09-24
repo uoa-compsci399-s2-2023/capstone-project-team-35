@@ -1,7 +1,7 @@
 import RootContext from "../../providers/root";
 import ReactDOM from "react-dom";
 import { SpeciesCard, FileButton, ResultsTable } from "../../components";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
 import orange_download_icon from "../../assets/ui-elements/orange_download-icon.svg";
@@ -14,7 +14,13 @@ const ResultsPage = () => {
 
   const [currentSelectedImage, setCurrentSelectedImage] = useState(null);
 
-  console.log(data);
+  useEffect(() => {
+    if (data?.predictions && data.predictions.length) {
+      setCurrentSelectedImage(data.predictions[0]);
+    }
+  }, [data]);
+
+  console.log(data[0]);
   return (
     // Main Parent
     <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11">
@@ -31,6 +37,7 @@ const ResultsPage = () => {
                 <img
                   src={home_icon}
                   className="items-center w-full h-full return-button style_home"
+                  alt="home icon"
                 ></img>
               </button>
             </div>
@@ -43,6 +50,7 @@ const ResultsPage = () => {
               <img
                 src={main_logo}
                 className="top-0 w-full h-full max-h-fit"
+                alt="Ocell.ai Logo"
               ></img>
             </div>
           </div>
@@ -70,7 +78,7 @@ const ResultsPage = () => {
           {/* Batch Download Button */}
           <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
             <div className="flex items-center justify-center">
-              <a
+              <div
                 className="flex items-center gap-2 cursor-pointer"
                 // onClick={handleExpand}
               >
@@ -78,10 +86,11 @@ const ResultsPage = () => {
                   <img
                     src={orange_download_icon}
                     className="items-center w-full h-full return-button style_home"
+                    alt="Orange download icon"
                   ></img>
                 </div>
                 <span className="text-xl">DOWNLOAD BATCH RESULT</span>
-              </a>
+              </div>
             </div>
           </div>
         </div>
