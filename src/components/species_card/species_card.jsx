@@ -19,6 +19,7 @@ import { useState } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 import RadialGraph from "../radial_graph/radial-graph";
+import SpeciesTag from "../tags/tags";
 
 const rankedClasses = [
   { marginTop: "mt-4", rank_color: "bg-status-yellow", theme: "#FBC229" },
@@ -102,7 +103,7 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Left Body */}
-            <div className="flex flex-col items-center justify-center h-full gap-4 overflow-hidden rounded-2xl">
+            <div className="flex flex-col items-center justify-start h-full gap-4 p-4 overflow-hidden rounded-2xl">
               {/* Reference Image */}
               <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500"></div>
 
@@ -115,12 +116,17 @@ function SpeciesCardExpanded({
                   if (!tags[tag]) return null;
 
                   return (
-                    <div
-                      key={tag}
-                      className="inline-block px-2 py-1 m-1 text-sm font-semibold border border-black rounded"
-                    >
-                      {tag}
-                    </div>
+                    // <div className="inline-block px-2 py-1 m-1 bg-status-blue">
+                    //   {tag}
+                    // </div>
+                    <SpeciesTag tag={tag} />
+                    // <div
+                    //   key={tag}
+                    //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border border-black rounded"
+                    // >
+                    //   {/* {tag} */}
+                    //   <SpeciesTag {...tag} />
+                    // </div>
                   );
                 })}
               </div>
@@ -205,12 +211,13 @@ function SpeciesCardCollapsed({
               if (!tags[tag]) return null;
 
               return (
-                <div
-                  key={tag}
-                  className="inline-block px-2 py-1 m-1 text-sm font-semibold border border-black rounded"
-                >
-                  {tag}
-                </div>
+                <SpeciesTag tag={tag} />
+                // <div
+                //   key={tag}
+                //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border-4 border-black rounded-md border-opacity-5"
+                // >
+                //   {tag}
+                // </div>
               );
             })}
           </div>
