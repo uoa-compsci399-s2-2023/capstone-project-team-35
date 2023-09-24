@@ -13,6 +13,7 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState(PageName);
   const [data, setData] = useState([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [selectedImages, setSelectedImages] = useState([]);
 
   const renderPage = () => {
     switch (currentPage) {
@@ -38,7 +39,9 @@ const App = () => {
           setData,
           setCurrentPage,
           selectedValue,
-          setSelectedValue
+          setSelectedValue,
+          selectedImages,
+          setSelectedImages
         }}
       >
         {renderPage()}

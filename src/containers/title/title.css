@@ -16,7 +16,7 @@
 
 .title h3 {
   position: absolute;
-  top: 57%;
+  top: 55%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   left: 20%;
@@ -27,7 +27,7 @@
   font-family: var(--font_family);
   }
 
-@media screen and (max-width: 970px) {
+@media screen and (max-width: 990px) {
     .title img {
       position: relative;
       margin: auto;
@@ -39,9 +39,10 @@
     }
 
     .title h3 {
-      position: relative;
-      top: 6%;
-      left: 35%;
-      font-size: calc(15px + 1vw);
+      margin: 0;
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 }
