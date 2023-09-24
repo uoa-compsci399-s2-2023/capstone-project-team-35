@@ -37,7 +37,7 @@ class RadialGraph extends Component {
         <svg viewBox="0 0 180 180" width={dimension} height={dimension}>
           <circle
             className="flex radial-chart-total"
-            stroke={color}
+            stroke="#D1D1D1"
             strokeWidth={strokeWidth}
             fill="none"
             cx="90"

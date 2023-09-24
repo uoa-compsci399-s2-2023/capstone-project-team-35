@@ -18,13 +18,13 @@ const ResultsPage = () => {
     // Main Parent
     <main className="flex max-h-screen min-h-screen px-8 pt-8 gap-11">
       {/* File Navigation Section */}
-      <div className="flex flex-col w-1/3 gap-2 shadow-3xl panel rounded-t-3xl max-h-fit">
+      <div className="flex flex-col w-1/3 shadow-3xl panel rounded-t-3xl max-h-fit">
         {/* Navigation Header */}
-        <div className="flex flex-col relative h-[calc(100%-1100px)]">
+        <div className="relative flex flex-col h-1/6">
           {/* row for the home button so that it doesn't overlap with the logo */}
-          <div className="w-full h-16">
+          <div className="flex w-full h-16">
             {/* Home Button */}
-            <div className="top-0 flex items-center justify-center w-8 m-4 cursor-pointer align-items left-1 aspect-square back">
+            <div className="top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square back">
               {/* Return to home button */}
               <button type="button" onClick={() => setCurrentPage("")}>
                 <img
@@ -36,9 +36,9 @@ const ResultsPage = () => {
           </div>
 
           {/* row for the logo */}
-          <div className="flex items-center justify-center w-full h-full p-6">
+          <div className="flex items-center justify-center w-full h-2/3">
             {/* Ocell.ai Logo */}
-            <div className="flex mt-6 mb-4 h-36 w-80">
+            <div className="flex w-1/2 mt-6 mb-6 h-2/3">
               <img
                 src={main_logo}
                 className="top-0 w-full h-full max-h-fit"
@@ -48,8 +48,9 @@ const ResultsPage = () => {
         </div>
 
         {/* Navigation Body */}
-        <div className="flex justify-center h-[calc(100%-250px)] max-h-[calc(100%-250px)] p-10 overflow-clip">
-          <div className="flex flex-col items-center w-full h-[calc(100%-24px)] gap-4 mt-8 mb-8 overflow-y-auto">
+        {/* <div className="flex justify-center h-[calc(100%-250px)] max-h-[calc(100%-250px)] p-10 overflow-clip"> */}
+        <div className="flex flex-col justify-center gap-8 p-8 h-5/6 max-h-fit overflow-clip">
+          <div className="flex flex-col items-center w-full gap-4 overflow-y-auto h-90%">
             {data.predictions.map((image) => (
               <FileButton
                 image={image}
@@ -62,10 +63,28 @@ const ResultsPage = () => {
               />
             ))}
           </div>
+
+          {/* Batch Download Button */}
+          <div className="flex items-center justify-center h-10%">
+            <div className="flex items-center justify-center">
+              <a
+                className="flex items-center gap-2 cursor-pointer"
+                // onClick={handleExpand}
+              >
+                <div className="w-8 rounded aspect-square">
+                  <img
+                    src={orange_download_icon}
+                    className="items-center w-full h-full return-button style_home"
+                  ></img>
+                </div>
+                <span className="text-xl">DOWNLOAD BATCH RESULT</span>
+              </a>
+            </div>
+          </div>
         </div>
 
         {/* Navigation Footer */}
-        <div className="flex items-center justify-center h-24">
+        {/* <div className="flex items-center justify-center h-24">
           <div className="flex items-center justify-center">
             <a
               className="flex items-center gap-2 cursor-pointer"
@@ -80,7 +99,7 @@ const ResultsPage = () => {
               <span className="text-xl">DOWNLOAD BATCH RESULT</span>
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
 
       {/* ============== Results Section ================== */}
@@ -100,12 +119,12 @@ const ResultsPage = () => {
             </div>
 
             {/* IMAGE FILE */}
-            <div className="flex items-center justify-center h-full ">
+            {/* <div className="flex items-center justify-center h-full ">
               <div className="flex rounded-2xl w-96 h-96 aspect-square bg-slate-500"></div>
-            </div>
+            </div> */}
 
             {/* INDIVIDUAL DOWNLOAD */}
-            <div className="h-16">
+            {/* <div className="h-16">
               <div className="flex items-center justify-center">
                 <a
                   className="flex items-center gap-2 mt-2 cursor-pointer"
@@ -122,7 +141,7 @@ const ResultsPage = () => {
                   </span>
                 </a>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Data Table Section */}
