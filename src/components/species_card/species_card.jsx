@@ -48,7 +48,7 @@ const SpeciesCard = (props) => {
 function SpeciesCardExpanded({
   country,
   genus,
-  image_file_path,
+  image,
   probability,
   species,
   tags,
@@ -105,7 +105,9 @@ function SpeciesCardExpanded({
             {/* Left Body */}
             <div className="flex flex-col items-center justify-start h-full gap-4 p-4 overflow-hidden rounded-2xl">
               {/* Reference Image */}
-              <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500"></div>
+              <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500">
+                <DislplayRefImage ref_data={image} />
+              </div>
 
               {/* Tags */}
               <div className="flex flex-wrap items-center justify-center">
@@ -159,7 +161,7 @@ function SpeciesCardExpanded({
 function SpeciesCardCollapsed({
   country,
   genus,
-  image_file_path,
+  image_data,
   probability,
   species,
   tags,
@@ -241,6 +243,21 @@ function SpeciesCardCollapsed({
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function DislplayRefImage({ ref_data }) {
+  if (!ref_data) return null;
+  return (
+    <div
+      id="input_img_container"
+      className="flex w-full rounded-2xl aspect-square bg-slate-500"
+    >
+      <img
+        src={`data:image/jpeg;base64,${ref_data}`}
+        className="object-cover w-full rounded-2xl"
+      />
     </div>
   );
 }
