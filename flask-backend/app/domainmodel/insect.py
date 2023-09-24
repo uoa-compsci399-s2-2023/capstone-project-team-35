@@ -30,11 +30,11 @@ class Insect:
         return self.__image_file_path
     
     @property
-    def tags(self) -> Path:
+    def tags(self) -> dict:
         return self.__tags
     
     @tags.setter
-    def tags(self, tags) -> dict:
+    def tags(self, tags):
         if type(tags) is dict:
             self.__tags = tags
     
