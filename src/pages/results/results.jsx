@@ -67,7 +67,7 @@ const ResultsPage = () => {
           </div>
 
           {/* Batch Download Button */}
-          <div className="flex items-center justify-center w-full h-20% absolute bottom-6">
+          <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
             <div className="flex items-center justify-center">
               <a
                 className="flex items-center gap-2 cursor-pointer"
@@ -114,7 +114,7 @@ const ResultsPage = () => {
         {/* Auxiliary Info Section */}
         <div className="flex h-2/5">
           {/* Reference Image Section */}
-          <div className="flex flex-col justify-center w-4/12 gap-2 pt-2 border-r-2 border-black border-opacity-10">
+          <div className="flex flex-col justify-center w-4/12 gap-2 pt-4 border-r-2 border-black border-opacity-10">
             {/* HEADER */}
             <div className="flex items-center justify-center h-16 ">
               <span className="text-2xl">INPUT IMAGE</span>
@@ -122,7 +122,7 @@ const ResultsPage = () => {
 
             {/* IMAGE FILE */}
             <div className="flex items-center justify-center h-full ">
-              <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500"></div>
+              <div className="flex w-8/12 rounded-2xl aspect-square bg-slate-500"></div>
             </div>
 
             {/* INDIVIDUAL DOWNLOAD */}
