@@ -55,6 +55,7 @@ function SpeciesCardExpanded({
   handleCollapse,
 }) {
   const { rank_color, theme } = rankedClasses[rank];
+  // const graph_dim = document.getElementById("graph_container-A").clientWidth;
   return (
     <>
       {/* Maximum Height of the parent panel for reference */}
@@ -66,34 +67,44 @@ function SpeciesCardExpanded({
         {/* Items Container */}
         <div className="relative flex flex-row w-full h-full bg-background-light rounded-2xl">
           {/* LEFT INFO-BOX */}
-          <div className="flex flex-col w-2/5 h-full rounded-2xl">
+          <div className="flex flex-col w-5/12 h-full rounded-2xl">
             {/* Left Header */}
-            <div className="flex flex-row h-64 rounded-2xl">
-              {/* small radial graph */}
-              <div className="flex items-center justify-center rounded-full w-44 aspect-square">
-                <RadialGraph
-                  className="flex"
-                  progress={(Number(probability) * 100).toFixed(2)}
-                  color={theme}
-                  dimension={130}
-                />
-                <span className="absolute z-10 flex text-3xl font-semibold text-foreground-dark">
-                  {(Number(probability) * 100).toFixed(2)}
-                </span>
+            <div className="flex flex-row h-2/5 rounded-2xl">
+              {/* Radial Graph Container */}
+              <div id="graph_container-A" className="flex w-1/3">
+                {/* small radial graph */}
+                <div
+                  id="graph_container-B"
+                  className="flex items-center justify-center w-full max-w-full p-5 rounded-full aspect-square"
+                >
+                  <RadialGraph
+                    id="radial_graph"
+                    className="relative"
+                    progress={(Number(probability) * 100).toFixed(2)}
+                    color={theme}
+                    // dimension={115}
+                  />
+                  <span className="absolute z-10 flex text-xl font-semibold text-foreground-dark">
+                    {(Number(probability) * 100).toFixed(2)}
+                  </span>
+                </div>
               </div>
 
-              {/* Genus and Species Name */}
-              <div className="w-full p-4 mt-8 mb-8 ">
-                <div className="text-3xl text-left overflow-ellipsis">
-                  {genus} {species}
+              {/* Species Name Container */}
+              <div className="flex w-2/3">
+                {/* Genus and Species Name */}
+                <div className="w-full p-4 mt-8 mb-8 ">
+                  <div className="text-3xl text-left overflow-ellipsis">
+                    {genus} {species}
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Left Body */}
-            <div className="flex flex-col items-center justify-center h-full gap-4 rounded-2xl">
+            <div className="flex flex-col items-center justify-center h-full gap-4 overflow-hidden rounded-2xl">
               {/* Reference Image */}
-              <div className="flex rounded-2xl w-96 h-96 aspect-square bg-slate-500"></div>
+              <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500"></div>
 
               {/* Tags */}
               <div className="flex flex-wrap items-center justify-center">
@@ -106,7 +117,7 @@ function SpeciesCardExpanded({
                   return (
                     <div
                       key={tag}
-                      className="inline-block px-2 py-1 m-1 text-sm font-semibold border border-black"
+                      className="inline-block px-2 py-1 m-1 text-sm font-semibold border border-black rounded"
                     >
                       {tag}
                     </div>
@@ -117,7 +128,7 @@ function SpeciesCardExpanded({
           </div>
 
           {/* RIGHT INFO-BOX */}
-          <div className="flex flex-col w-3/5 h-full rounded-2xl">
+          <div className="flex flex-col w-7/12 h-full rounded-2xl">
             {/* Collapse Button */}
             <div className="h-20"></div>
             <div
@@ -157,7 +168,7 @@ function SpeciesCardCollapsed({
       {/* Card background */}
       <div className={`w-full h-full rounded-3xl p-2 ${rank_color}`}>
         {/* Items container */}
-        <div className="flex flex-col items-center justify-center gap-4 px-16 py-4 bg-white rounded-2xl ">
+        <div className="flex flex-col items-center justify-center max-h-full gap-4 px-16 py-4 bg-white overflow-clip rounded-2xl">
           {/* Confidence Circle */}
           <div className="flex items-center justify-center rounded-full w-44 aspect-square">
             <RadialGraph
@@ -204,7 +215,7 @@ function SpeciesCardCollapsed({
             })}
           </div>
 
-          <div className="w-full h-[1px] bg-foreground-light" />
+          <div className="w-full h-[2px] opacity-20 bg-foreground-light" />
 
           {/* Tap to view info */}
           <div className="flex">

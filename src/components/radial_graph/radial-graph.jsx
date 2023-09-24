@@ -34,7 +34,8 @@ class RadialGraph extends Component {
           "justify-center"
         )}
       >
-        <svg viewBox="0 0 180 180" width={dimension} height={dimension}>
+        {/* <svg viewBox="0 0 180 180" width={dimension} height={dimension}> */}
+        <svg viewBox="0 0 180 180" className="w-full h-full">
           <circle
             className="flex radial-chart-total"
             stroke="#D1D1D1"
@@ -65,7 +66,7 @@ RadialGraph.defaultProps = {
   radius: 80,
   progress: 100,
   strokeWidth: 20,
-  dimension: 180,
+  // dimension: 180,
   color: DEFAULT_COLOR,
 };
 
@@ -75,7 +76,7 @@ RadialGraph.propTypes = {
   strokeWidth: PropTypes.number,
   color: PropTypes.string,
   progress: PropTypes.number,
-  dimension: PropTypes.number,
+  // dimension: PropTypes.number,
 };
 
 export default RadialGraph;

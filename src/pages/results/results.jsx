@@ -16,7 +16,7 @@ const ResultsPage = () => {
   console.log(data);
   return (
     // Main Parent
-    <main className="flex max-h-screen min-h-screen px-8 pt-8 gap-11">
+    <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11">
       {/* File Navigation Section */}
       <div className="flex flex-col w-1/3 shadow-3xl panel rounded-t-3xl max-h-fit">
         {/* Navigation Header */}
@@ -49,23 +49,25 @@ const ResultsPage = () => {
 
         {/* Navigation Body */}
         {/* <div className="flex justify-center h-[calc(100%-250px)] max-h-[calc(100%-250px)] p-10 overflow-clip"> */}
-        <div className="flex flex-col justify-center gap-8 p-8 h-5/6 max-h-fit overflow-clip">
-          <div className="flex flex-col items-center w-full gap-4 overflow-y-auto h-90%">
-            {data.predictions.map((image) => (
-              <FileButton
-                image={image}
-                selected={
-                  currentSelectedImage?.input_image_path ==
-                  image.input_image_path
-                }
-                key={image.input_image_path}
-                onClick={() => setCurrentSelectedImage(image)}
-              />
-            ))}
+        <div className="relative flex flex-col items-start gap-4 pt-4 h-5/6 max-h-fit overflow-clip">
+          <div className="items-start w-full p-8 overflow-y-auto h-[calc(100%-80px)]">
+            <div className="flex flex-col w-full h-full gap-4">
+              {data.predictions.map((image) => (
+                <FileButton
+                  image={image}
+                  selected={
+                    currentSelectedImage?.input_image_path ==
+                    image.input_image_path
+                  }
+                  key={image.input_image_path}
+                  onClick={() => setCurrentSelectedImage(image)}
+                />
+              ))}
+            </div>
           </div>
 
           {/* Batch Download Button */}
-          <div className="flex items-center justify-center h-10%">
+          <div className="flex items-center justify-center w-full h-20% absolute bottom-6">
             <div className="flex items-center justify-center">
               <a
                 className="flex items-center gap-2 cursor-pointer"
@@ -105,26 +107,26 @@ const ResultsPage = () => {
       {/* ============== Results Section ================== */}
       <div className="flex flex-col w-2/3 pb-8">
         {/* Species Card Section */}
-        <div className="relative flex pb-6 border-b border-black h-3/5 gap-9">
+        <div className="relative flex pb-6 border-b-2 border-black border-opacity-10 h-3/5 gap-9">
           <SpeciesCardGroup image={currentSelectedImage} />
         </div>
 
         {/* Auxiliary Info Section */}
         <div className="flex h-2/5">
           {/* Reference Image Section */}
-          <div className="flex flex-col justify-center w-4/12 gap-2 pt-2 border-r border-black">
+          <div className="flex flex-col justify-center w-4/12 gap-2 pt-2 border-r-2 border-black border-opacity-10">
             {/* HEADER */}
             <div className="flex items-center justify-center h-16 ">
               <span className="text-2xl">INPUT IMAGE</span>
             </div>
 
             {/* IMAGE FILE */}
-            {/* <div className="flex items-center justify-center h-full ">
-              <div className="flex rounded-2xl w-96 h-96 aspect-square bg-slate-500"></div>
-            </div> */}
+            <div className="flex items-center justify-center h-full ">
+              <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500"></div>
+            </div>
 
             {/* INDIVIDUAL DOWNLOAD */}
-            {/* <div className="h-16">
+            <div className="h-1/12">
               <div className="flex items-center justify-center">
                 <a
                   className="flex items-center gap-2 mt-2 cursor-pointer"
@@ -141,7 +143,7 @@ const ResultsPage = () => {
                   </span>
                 </a>
               </div>
-            </div> */}
+            </div>
           </div>
 
           {/* Data Table Section */}
