@@ -91,7 +91,6 @@ const DataInputs = () => {
     const updatedSelectedImages = [...selectedImages];
     updatedSelectedImages.splice(index, 1);
     setSelectedImages(updatedSelectedImages);
-    console.log(selectedImages.length);
     if (selectedImages.length == 1) {
       setIsImageSelected(false);
     }
@@ -174,7 +173,7 @@ const DataInputs = () => {
                 {selectedImages.map((image, index) => (
                   <div className="image_section" key={index}>
                     {image.name}{" "}
-                    <button onClick={() => handleRemoveImage(index)}>X</button>
+                    <button onClick={() => handleRemoveImage(index)} type="button">X</button>
                   </div>
                 ))}
               </div>
