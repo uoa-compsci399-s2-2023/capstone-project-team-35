@@ -1,4 +1,5 @@
 import RootContext from "../../providers/root";
+import ReactDOM from "react-dom";
 import { SpeciesCard, FileButton, ResultsTable } from "../../components";
 import { useContext, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
@@ -56,10 +57,10 @@ const ResultsPage = () => {
                 <FileButton
                   image={image}
                   selected={
-                    currentSelectedImage?.input_image_path ==
-                    image.input_image_path
+                    currentSelectedImage?.input_image_filename ==
+                    image.input_image_filename
                   }
-                  key={image.input_image_path}
+                  key={image.input_image_filename}
                   onClick={() => setCurrentSelectedImage(image)}
                 />
               ))}
@@ -122,7 +123,7 @@ const ResultsPage = () => {
 
             {/* IMAGE FILE */}
             <div className="flex items-center justify-center h-full ">
-              <div className="flex w-8/12 rounded-2xl aspect-square bg-slate-500"></div>
+              <DislplayInputImage image={currentSelectedImage} />
             </div>
 
             {/* INDIVIDUAL DOWNLOAD */}
@@ -162,6 +163,21 @@ const ResultsPage = () => {
     </main>
   );
 };
+
+function DislplayInputImage({ image }) {
+  if (!image) return null;
+  return (
+    <div
+      id="input_img_container"
+      className="flex w-8/12 rounded-2xl aspect-square bg-slate-500"
+    >
+      <img
+        src={`data:image/jpeg;base64,${image.input_image}`}
+        className="rounded-2xl"
+      />
+    </div>
+  );
+}
 
 function SpeciesCardGroup({ image }) {
   if (!image) return null;
