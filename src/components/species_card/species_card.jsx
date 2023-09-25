@@ -18,6 +18,8 @@
 import { useState, useEffect } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
+import globe_icon from "../../assets/ui-elements/globe.svg";
+import link_icon from "../../assets/ui-elements/link_logo.svg";
 import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
 // import { motion } from "framer-motion";
@@ -143,23 +145,57 @@ function SpeciesCardExpanded({
             </div>
           </div>
 
+          {/* separator */}
+          <div className="w-[2px] h-5/12 mt-[70px] mb-8 opacity-20 bg-foreground-light" />
+
           {/* RIGHT INFO-BOX */}
-          <div className="flex flex-col w-7/12 h-full rounded-2xl">
+          <div className="flex flex-col w-7/12 h-full gap-1 rounded-2xl">
             {/* Collapse Button */}
-            <div className="h-20"></div>
-            <div
-              onClick={handleCollapse}
-              className="absolute w-8 m-4 bg-white rounded cursor-pointer aspect-square right-1 top-1"
-            >
-              <img
-                src={shrink_icon}
-                className="items-center w-full h-full"
-                alt="shrink icon"
-              ></img>
+            <div className="flex h-20">
+              <div
+                onClick={handleCollapse}
+                className="absolute w-8 m-4 bg-white rounded cursor-pointer aspect-square right-1 top-1"
+              >
+                <img
+                  src={shrink_icon}
+                  className="items-center w-full h-full"
+                  alt="shrink icon"
+                ></img>
+              </div>
             </div>
 
             {/* Distribution panel body */}
-            <div className="h-full"></div>
+            <div className="flex flex-col h-full pl-4">
+              {/* Country Label */}
+              <div className="flex flex-row w-full h-1/5">
+                <div className="relative flex items-start justify-end w-1/12 h-full p-2 mt-2">
+                  <div className="flex w-full right-1 aspect-square">
+                    <img src={globe_icon} alt="globe icon" />
+                  </div>
+                </div>
+                <div className="flex flex-col items-start justify-start w-full p-2 text-3xl">
+                  Country
+                  <span className="text-2xl text-slate-900">{country}</span>
+                </div>
+              </div>
+
+              {/* Distribution Link */}
+              <div className="flex h-4/5">
+                <div className="flex flex-row w-full h-2/6">
+                  <div className="relative flex items-start justify-end w-1/12 h-full p-2 mt-2">
+                    <div className="flex w-full right-1 aspect-square">
+                      <img src={link_icon} alt="link icon" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-start justify-start w-full p-2">
+                    <span className="text-3xl">Distribution</span>
+                    <span className="text-slate-900 text-md">
+                      {"https://www.gbif.org/species/5087454"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -168,9 +204,7 @@ function SpeciesCardExpanded({
 }
 
 function SpeciesCardCollapsed({
-  country,
   genus,
-  image_data,
   probability,
   species,
   tags,
@@ -198,16 +232,6 @@ function SpeciesCardCollapsed({
               {`${probPercentage}%`}
             </span>
           </div>
-
-          {/* <div
-            className={`${color} w-44 aspect-square rounded-full flex items-center justify-center `}
-          >
-            <div className="flex items-center justify-center w-32 bg-white rounded-full aspect-square">
-              <span className="text-3xl font-semibold text-foreground-dark">
-                {(Number(probability) * 100).toFixed(2)}
-              </span>
-            </div>
-          </div> */}
 
           {/* Species Name */}
           <div className="w-full text-2xl text-center truncate max-w-fit text-ellipsis">
@@ -241,7 +265,7 @@ function SpeciesCardCollapsed({
             <a
               className="flex items-center gap-2 cursor-pointer"
               onClick={handleExpand}
-              href=""
+              // href=""
             >
               <div className="w-8 rounded aspect-square">
                 <img

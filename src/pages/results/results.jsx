@@ -121,7 +121,7 @@ const ResultsPage = () => {
               <div className="flex items-center justify-center">
                 <a
                   className="flex items-center gap-2 mt-2 cursor-pointer"
-                  href=""
+                  // href=""
                   // onClick={handleExpand}
                 >
                   <div className="w-8 rounded aspect-square">
