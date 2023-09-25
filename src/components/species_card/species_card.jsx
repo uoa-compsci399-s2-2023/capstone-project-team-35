@@ -154,6 +154,7 @@ function SpeciesCardExpanded({
               <img
                 src={shrink_icon}
                 className="items-center w-full h-full"
+                alt="shrink icon"
               ></img>
             </div>
 
@@ -240,6 +241,7 @@ function SpeciesCardCollapsed({
             <a
               className="flex items-center gap-2 cursor-pointer"
               onClick={handleExpand}
+              href=""
             >
               <div className="w-8 rounded aspect-square">
                 <img

@@ -64,7 +64,7 @@ const ResultsPage = () => {
                 <FileButton
                   image={image}
                   selected={
-                    currentSelectedImage?.input_image_filename ==
+                    currentSelectedImage?.input_image_filename ===
                     image.input_image_filename
                   }
                   key={image.input_image_filename}
@@ -121,6 +121,7 @@ const ResultsPage = () => {
               <div className="flex items-center justify-center">
                 <a
                   className="flex items-center gap-2 mt-2 cursor-pointer"
+                  href=""
                   // onClick={handleExpand}
                 >
                   <div className="w-8 rounded aspect-square">
