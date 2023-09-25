@@ -15,7 +15,7 @@
 //   "non-invasive": true,
 // };
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 import RadialGraph from "../radial_graph/radial-graph";
@@ -34,6 +34,12 @@ const rankedClasses = [
 const SpeciesCard = (props) => {
   const { expanded } = props;
   const [isExpanded, setIsExpanded] = useState(expanded);
+
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [props]);
+
+  console.log(props);
 
   return isExpanded ? (
     <SpeciesCardExpanded
@@ -170,22 +176,23 @@ function SpeciesCardCollapsed({
 }) {
   // Props come from the results passed onto the instances in the components in the results page
   const { marginTop, rank_color, theme } = rankedClasses[rank];
+  const probPercentage = (Number(probability) * 100).toFixed(2);
   return (
     // BG card container and height reference
-    <div className={`w-full ${marginTop}`}>
+    <div className={`w-full max-w-full ${marginTop}`}>
       {/* Card background */}
-      <div className={`w-full h-full rounded-3xl p-2 ${rank_color}`}>
+      <div className={`w-full h-full max-w-full rounded-3xl p-2 ${rank_color}`}>
         {/* Items container */}
         <div className="flex flex-col items-center justify-center max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl">
           {/* Confidence Circle */}
-          <div className="flex items-center justify-center rounded-full w-44 aspect-square">
+          <div className="flex items-center justify-center w-3/5 rounded-full aspect-square">
             <RadialGraph
               className="flex"
-              progress={(Number(probability) * 100).toFixed(2)}
+              progress={probPercentage}
               color={theme}
             />
-            <span className="absolute z-10 flex text-3xl font-semibold text-foreground-dark">
-              {(Number(probability) * 100).toFixed(2)}
+            <span className="absolute z-10 flex text-2xl font-semibold text-foreground-dark">
+              {`${probPercentage}%`}
             </span>
           </div>
 
@@ -200,7 +207,7 @@ function SpeciesCardCollapsed({
           </div> */}
 
           {/* Species Name */}
-          <div className="text-3xl text-center">
+          <div className="w-full text-2xl text-center truncate max-w-fit text-ellipsis bg-slate-200">
             {genus} {species}
           </div>
 
