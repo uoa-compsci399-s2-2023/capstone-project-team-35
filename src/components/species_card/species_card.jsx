@@ -20,6 +20,7 @@ import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
+import { motion } from "framer-motion";
 
 const rankedClasses = [
   { marginTop: "mt-4", rank_color: "bg-status-yellow", theme: "#FBC229" },
@@ -242,6 +243,7 @@ function SpeciesCardCollapsed({
               <div className="w-8 rounded aspect-square">
                 <img
                   src={view_icon}
+                  alt="view icon"
                   className="z-0 items-center w-full h-full scale-125"
                 ></img>
               </div>
@@ -263,6 +265,7 @@ function DislplayRefImage({ ref_data }) {
     >
       <img
         src={`data:image/jpeg;base64,${ref_data}`}
+        alt="reference"
         className="object-cover w-full rounded-2xl"
       />
     </div>
