@@ -6,20 +6,24 @@ import app.ml.utilities.standardise_images as si
 import app.ml.utilities.model_output_processors as mop
 from werkzeug.datastructures import FileStorage
 from typing import Dict
+import os
 
 def save_predictions(sorted_prediction_dict, image_file_index, repo: AbstractRepository):
     result = Prediction(sorted_prediction_dict, image_file_index)
     predictions = []
     label_probability_dict = result.label_probability_dict
     input_image_path = result.input_image_path
+    image_name = os.path.basename(input_image_path)
     for label in label_probability_dict:
         insect = mop.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
-        prediction = {}
-        prediction["label"] = insect.label
-        prediction["probability"] = str(round(label_probability_dict[label], 3))
-        prediction["genus"] = insect.genus
-        prediction["species"] = insect.species
-        prediction["country"] = insect.country
+        prediction = {
+            "image_name": image_name,
+            "label": insect.label,
+            "probability": str(round(label_probability_dict[label], 3)),
+            "genus": insect.genus,
+            "species": insect.species,
+            "country": insect.country,
+        }
         predictions.append(prediction)
     repo.add_results_csv(predictions, input_image_path)
 
@@ -28,7 +32,7 @@ def store_user_uploaded_images(images: list[FileStorage], repo: AbstractReposito
         repo.add_image(image)
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
-    #repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
+    repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
     store_user_uploaded_images(images, repo) # TODO: need to check if image is already present, or is it already done? 
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
