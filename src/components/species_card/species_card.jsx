@@ -20,7 +20,7 @@ import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 const rankedClasses = [
   { marginTop: "mt-4", rank_color: "bg-status-yellow", theme: "#FBC229" },
