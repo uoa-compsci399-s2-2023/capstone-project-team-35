@@ -189,6 +189,7 @@ function SpeciesCardGroup({ image }) {
             introduced_biocontrol: true,
             unwanted_pest: true,
             in_NZ: true,
+            custom: true,
           }}
           {...prediction}
         />

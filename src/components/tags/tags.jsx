@@ -9,41 +9,51 @@ const SpeciesTag = ({ tag }) => {
   switch (tag) {
     case "in_NZ":
       return (
-        <div className="inline-block px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-blue">
+        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-blue">
+          <div className="h-3 rounded-full aspect-square bg-status-blue" />
           <span>in NZ</span>
         </div>
       );
 
     case "endemic":
       return (
-        <div className="inline-block px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-light-green">
+        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-light-green">
+          <div className="h-3 rounded-full aspect-square bg-status-light-green" />
           <span>Endemic</span>
         </div>
       );
 
     case "unwanted_pest":
       return (
-        <div className="inline-block px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-red">
+        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-red">
+          <div className="h-3 rounded-full aspect-square bg-status-red" />
           <span>Unwanted Pest</span>
         </div>
       );
 
     case "native":
       return (
-        <div className="inline-block px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-yellow">
+        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-yellow">
+          <div className="h-3 rounded-full aspect-square bg-status-yellow" />
           <span>Native</span>
         </div>
       );
 
     case "introduced_biocontrol":
       return (
-        <div className="inline-block px-2 py-1 m-1 text-xs font-semibold border-4 border-purple-700 rounded-md border-opacity-20">
+        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 border-purple-400 rounded-md border-opacity-20">
+          <div className="h-3 bg-purple-400 rounded-full aspect-square" />
           <span>Introduced Biocontrol</span>
         </div>
       );
 
     default:
-      return null;
+      return (
+        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-slate-500 border-opacity-20">
+          <div className="h-3 rounded-full aspect-square bg-slate-500" />
+          <div>{`${tag}`}</div>
+        </div>
+      );
   }
 };
 

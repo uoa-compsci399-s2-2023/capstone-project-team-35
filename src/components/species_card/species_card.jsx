@@ -63,6 +63,7 @@ function SpeciesCardExpanded({
   handleCollapse,
 }) {
   const { rank_color, theme } = rankedClasses[rank];
+  const probPercentage = (Number(probability) * 100).toFixed(2);
   // const graph_dim = document.getElementById("graph_container-A").clientWidth;
   return (
     <>
@@ -88,12 +89,12 @@ function SpeciesCardExpanded({
                   <RadialGraph
                     id="radial_graph"
                     className="relative"
-                    progress={(Number(probability) * 100).toFixed(2)}
+                    progress={probPercentage}
                     color={theme}
                     // dimension={115}
                   />
-                  <span className="absolute z-10 flex text-xl font-semibold text-foreground-dark">
-                    {(Number(probability) * 100).toFixed(2)}
+                  <span className="absolute z-10 flex font-semibold text-md text-foreground-dark">
+                    {`${probPercentage}%`}
                   </span>
                 </div>
               </div>
@@ -208,7 +209,7 @@ function SpeciesCardCollapsed({
           </div> */}
 
           {/* Species Name */}
-          <div className="w-full text-2xl text-center truncate max-w-fit text-ellipsis bg-slate-200">
+          <div className="w-full text-2xl text-center truncate max-w-fit text-ellipsis">
             {genus} {species}
           </div>
 
