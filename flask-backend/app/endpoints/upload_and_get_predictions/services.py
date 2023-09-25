@@ -25,7 +25,15 @@ def save_predictions(sorted_prediction_dict, image_file_index, repo: AbstractRep
             "country": insect.country,
         }
         predictions.append(prediction)
-    repo.add_results_csv(predictions, input_image_path)
+
+     # Sort predictions by probability in descending order
+    predictions.sort(key=lambda x: float(x["probability"]), reverse=True)
+
+    # Assign rank to each prediction
+    for index, prediction in enumerate(predictions, start=1):
+        prediction["rank"] = index
+
+    repo.add_results_csv(predictions)
 
 def store_user_uploaded_images(images: list[FileStorage], repo: AbstractRepository):
     for image in images:
