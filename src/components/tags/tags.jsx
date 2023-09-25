@@ -1,59 +1,50 @@
-import { useState } from "react";
+const TagThemes = {
+  in_NZ: {
+    text: "in_NZ",
+    border_color: "border-status-blue",
+    bg_color: "bg-status-blue",
+  },
+
+  endemic: {
+    text: "Endemic",
+    border_color: "border-status-light-green",
+    bg_color: "bg-status-light-green",
+  },
+  unwanted_pest: {
+    text: "Unwanted Pest",
+    border_color: "border-status-red",
+    bg_color: "bg-status-red",
+  },
+  native: {
+    text: "native",
+    border_color: "border-status-yellow",
+    bg_color: "bg-status-yellow",
+  },
+  introduced_biocontrol: {
+    text: "Introduced Biocontrol",
+    border_color: "border-purple-500",
+    bg_color: "bg-purple-500",
+  },
+};
 
 const SpeciesTag = ({ tag }) => {
-  // eslint-disable-next-line default-case
-  // const [isTagged, setTagged] = useState(tag);
-
-  // eslint-disable-next-line default-case
-
-  switch (tag) {
-    case "in_NZ":
-      return (
-        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-blue">
-          <div className="h-3 rounded-full aspect-square bg-status-blue" />
-          <span>in NZ</span>
-        </div>
-      );
-
-    case "endemic":
-      return (
-        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-light-green">
-          <div className="h-3 rounded-full aspect-square bg-status-light-green" />
-          <span>Endemic</span>
-        </div>
-      );
-
-    case "unwanted_pest":
-      return (
-        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-red">
-          <div className="h-3 rounded-full aspect-square bg-status-red" />
-          <span>Unwanted Pest</span>
-        </div>
-      );
-
-    case "native":
-      return (
-        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 border-status-yellow">
-          <div className="h-3 rounded-full aspect-square bg-status-yellow" />
-          <span>Native</span>
-        </div>
-      );
-
-    case "introduced_biocontrol":
-      return (
-        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 border-purple-400 rounded-md border-opacity-20">
-          <div className="h-3 bg-purple-400 rounded-full aspect-square" />
-          <span>Introduced Biocontrol</span>
-        </div>
-      );
-
-    default:
-      return (
-        <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-slate-500 border-opacity-20">
-          <div className="h-3 rounded-full aspect-square bg-slate-500" />
-          <div>{`${tag}`}</div>
-        </div>
-      );
+  if (tag in TagThemes) {
+    const { text, border_color, bg_color } = TagThemes[tag];
+    return (
+      <div
+        className={`flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 ${border_color}`}
+      >
+        <div className={`h-3 rounded-full aspect-square ${bg_color}`} />
+        <span>{text}</span>
+      </div>
+    );
+  } else {
+    return (
+      <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-slate-500 border-opacity-20">
+        <div className="h-3 rounded-full aspect-square bg-slate-500" />
+        <div>{`${tag}`}</div>
+      </div>
+    );
   }
 };
 
