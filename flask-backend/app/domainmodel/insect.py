@@ -39,7 +39,7 @@ class Insect:
             self.__tags = tags
     
     def __repr__(self) -> str:
-        return f"<Insect {self.label}, country = {self.country}, genus  = {self.genus}>, species = {self.species}, image file path = {self.__image_file_path}"
+        return f"<Insect {self.label}, country = {self.country}, genus  = {self.genus}>, species = {self.species}, image file path = {self.__image_file_path}, tags = {self.__tags}"
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, self.__class__):
