@@ -1,5 +1,4 @@
 import RootContext from "../../providers/root";
-import ReactDOM from "react-dom";
 import { SpeciesCard, FileButton, ResultsTable } from "../../components";
 import { useContext, useEffect, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
@@ -94,24 +93,6 @@ const ResultsPage = () => {
             </div>
           </div>
         </div>
-
-        {/* Navigation Footer */}
-        {/* <div className="flex items-center justify-center h-24">
-          <div className="flex items-center justify-center">
-            <a
-              className="flex items-center gap-2 cursor-pointer"
-              // onClick={handleExpand}
-            >
-              <div className="w-8 rounded aspect-square">
-                <img
-                  src={orange_download_icon}
-                  className="items-center w-full h-full return-button style_home"
-                ></img>
-              </div>
-              <span className="text-xl">DOWNLOAD BATCH RESULT</span>
-            </a>
-          </div>
-        </div> */}
       </div>
 
       {/* ============== Results Section ================== */}
@@ -145,6 +126,7 @@ const ResultsPage = () => {
                   <div className="w-8 rounded aspect-square">
                     <img
                       src={gray_download_icon}
+                      alt="gray download icon"
                       className="items-center w-full h-full return-button style_home"
                     ></img>
                   </div>
@@ -182,6 +164,7 @@ function DislplayInputImage({ image }) {
     >
       <img
         src={`data:image/jpeg;base64,${image.input_image}`}
+        alt="input file"
         className="rounded-2xl"
       />
     </div>
@@ -210,19 +193,6 @@ function SpeciesCardGroup({ image }) {
           {...prediction}
         />
       ))}
-
-      {/* <SpeciesCard
-        rank={0}
-        confidence={0.79}
-        species_name={"species A"}
-        tags={{
-          endemic: false,
-          invasive: true,
-          "non-native": true,
-          "non-invasive": false,
-        }}
-      />
-       */}
     </>
   );
 }
