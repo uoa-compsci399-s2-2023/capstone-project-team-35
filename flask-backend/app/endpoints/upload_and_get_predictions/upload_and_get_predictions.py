@@ -39,6 +39,7 @@ def upload_and_get_classifications(insect_type=None):
                     "species": insect.species,
                     "country": insect.country,
                     "image_file_path": str(insect.image_file_path), #TODO: return actual image instead of file? 
+                    "tags": insect.tags
                 }
                 count = count + 1
             aggregated_predictions.append(prediction)
