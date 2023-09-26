@@ -46,6 +46,17 @@ def test_upload_and_get_predictions(client):
     assert b"sample_image.jpg" in response.data
     assert not b"sample_image.png" in response.data
 
+    #Test prediction object contains uploaded image corresponding to standardized image
+    test_img_path = TEST_IMAGES_DIRECTORY
+    images = []
+    for image in os.listdir(test_img_path):
+        images.append((open(test_img_path / image, 'rb'), test_img_path / image))
+    data = {'image': images[0], 'image2': images[1], 'image3': images[2]}
+    response = client.post('/classify/trupanea', data=data)
+
+    assert response.status_code == 200
+    assert response.data.index(b"sample_image.jpg") < response.data.index(b"sample_image2.jpg") < response.data.index(b"sample_image3.jpg")
+
 def test_get_insect_types(client):
 
     #Test endpoint returns all insect types

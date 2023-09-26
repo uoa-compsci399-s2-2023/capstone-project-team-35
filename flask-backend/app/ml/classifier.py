@@ -19,10 +19,9 @@ class Classifier(AbstractModel):
         if isinstance(labels_path, Path) and labels_path != Path('.'):
             self.__labels_path = labels_path
     
-    def predict(self, standardized_images_path, user_uploaded_images_path) -> list:
+    def predict(self, standardized_images_path) -> list:
         labels, predictions, image_files, model = ft.run_model(self.__classifier_path, self.__labels_path, standardized_images_path, self.__classifier_name)
-        user_uploaded_images_paths = os.listdir(user_uploaded_images_path)
-        return labels, predictions, user_uploaded_images_paths, model
+        return labels, predictions, image_files, model
 
     @property
     def classifier_path(self) -> Path:
