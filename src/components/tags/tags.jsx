@@ -34,14 +34,14 @@ const SpeciesTag = ({ tag }) => {
       <div
         className={`flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 ${border_color}`}
       >
-        <div className={`h-3 rounded-full aspect-square ${bg_color}`} />
+        <div className={`h-2 rounded-full aspect-square ${bg_color}`} />
         <span>{text}</span>
       </div>
     );
   } else {
     return (
       <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-slate-500 border-opacity-20">
-        <div className="h-3 rounded-full aspect-square bg-slate-500" />
+        <div className="h-2 rounded-full aspect-square bg-slate-500" />
         <div>{`${tag}`}</div>
       </div>
     );

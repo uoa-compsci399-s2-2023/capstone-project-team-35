@@ -234,7 +234,7 @@ function SpeciesCardCollapsed({
           </div>
 
           {/* Species Name */}
-          <div className="w-full text-2xl text-center truncate max-w-fit text-ellipsis">
+          <div className="w-full text-xl text-center truncate max-w-fit text-ellipsis">
             {genus} {species}
           </div>
 
