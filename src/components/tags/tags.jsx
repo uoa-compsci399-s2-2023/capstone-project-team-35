@@ -16,7 +16,7 @@ const TagThemes = {
     bg_color: "bg-status-red",
   },
   native: {
-    text: "native",
+    text: "Native",
     border_color: "border-status-yellow",
     bg_color: "bg-status-yellow",
   },
