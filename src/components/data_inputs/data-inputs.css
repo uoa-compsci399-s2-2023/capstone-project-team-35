@@ -135,6 +135,20 @@
     position: relative;
     /* left: 9px;
     top: 10px; */
+
+    animation-name: example;
+    animation-duration: 1s;
+}
+
+@keyframes example {
+    from {
+        width: 70px;
+        height: 70px
+    }
+    to {
+        width: 50px;
+        height: 50px
+    }
 }
 
 p.selected {
@@ -147,7 +161,14 @@ select.selected {
 }
 
 .Inputs.selected {
-    grid-template-rows: 50px 0.5fr 70px 2fr 2fr;
+    grid-template-rows: 50px 5% 70px 2fr 2fr;
+    animation-name: connector;
+    animation-duration: 1s
+}
+
+@keyframes connector {
+    from {grid-template-rows: 70px 10% 70px 2fr 2fr;}
+    to {grid-template-rows: 50px 5% 70px 2fr 2fr;}
 }
 
 div.selected_upload, input.selected_upload {
@@ -162,6 +183,16 @@ div.selected_upload, input.selected_upload {
     height: 270px;
     border-radius: 25px;
     border: dashed 3px #D0D0D0;
+}
+
+div.selected_upload {
+    animation-name: input;
+    animation-duration: 1s
+}
+
+@keyframes input {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
 
 button.selected_upload {
