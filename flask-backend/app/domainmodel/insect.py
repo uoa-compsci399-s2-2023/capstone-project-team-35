@@ -1,13 +1,13 @@
 from pathlib import Path
 
 class Insect:
-    def __init__(self, label, country, genus, species, image_file_path) -> None:
+    def __init__(self, label, country, genus, species, image_file_path, tags) -> None:
         self.__label = label
         self.__country = country
         self.__genus = genus
         self.__species = species
         self.__image_file_path = image_file_path
-        self.__tags = {}
+        self.__tags = tags
     
     @property
     def label(self) -> str:
@@ -39,7 +39,7 @@ class Insect:
             self.__tags = tags
     
     def __repr__(self) -> str:
-        return f"<Insect {self.label}, country = {self.country}, genus  = {self.genus}>, species = {self.species}, image file path = {self.__image_file_path}, tags = {self.__tags}"
+        return f"<Insect {self.label}, country = {self.country}, genus  = {self.genus}>, species = {self.species}, image file path = {self.image_file_path}, tags = {self.tags}"
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, self.__class__):

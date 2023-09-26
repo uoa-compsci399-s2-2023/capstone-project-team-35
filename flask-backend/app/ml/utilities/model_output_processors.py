@@ -15,5 +15,13 @@ def get_insect_by_label(global_species, label) -> Insect:
         reader = csv.DictReader(annotations_csv)
         for row in reader:
             if row['label'] == label:
-                insect = Insect(row["label"], row["country"], row["genus"], row["species"], globals.SPECIES_SAMPLE_IMAGES_DIRECTORY / row["file"])
+                tags = {
+                    "in_NZ": row["in_NZ"],
+                    "endemic": row["endemic"],
+                    "unwanted_pest": row["unwanted_pest"],
+                    "native": row["native"],
+                    "introduced_biocotrol": row["introduced_biocotrol"]
+                }
+                
+                insect = Insect(row["label"], row["country"], row["genus"], row["species"], row["file"], tags)
                 return insect

@@ -32,6 +32,7 @@ def upload_and_get_classifications(insect_type=None):
             count = 0
             for label in label_probability_dict:
                 insect = utils.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
+
                 prediction["predictions"][count] = {
                     "label": insect.label,
                     "probability": str(round(label_probability_dict[label], 3)),
