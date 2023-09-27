@@ -1,14 +1,14 @@
-label,country,genus,species,file
-austrotephritis,New Zealand,Austrotephritis,,sample_image.jpg
-bactrocera,Overseas,Bactrocera,,sample_image.jpg
-ceratitis,Overseas,Ceratitis,,sample_image.jpg
-procecidochares,New Zealand,Procecidochares,,sample_image.jpg
-sphenella,New Zealand,Sphenella,,sample_image.jpg
-trupanea_centralis,New Zealand,Trupanea,entralis,sample_image.jpg
-trupanea_completa,New Zealand,Trupanea,completa,sample_image.jpg
-trupanea_extensa,New Zealand,Trupanea,extensa,sample_image.jpg
-trupanea_fenwicki,New Zealand,Trupanea,fenwicki,sample_image.jpg
-trupanea_longipennis,New Zealand,Trupanea,longipennis,sample_image.jpg
-trupanea_new_species,New Zealand,Trupanea,new species,sample_image.jpg
-trupanea_vittigera,New Zealand,Trupanea,vittigera,sample_image.jpg
-urophora,Overseas,Urophora,,sample_image.jpg
+label,country,genus,species,file,in_NZ,endemic,unwanted_pest,native,introduced_biocotrol
+austrotephritis,New Zealand,Austrotephritis,,sample_image.jpg,True,True,True,True,True
+bactrocera,Overseas,Bactrocera,,sample_image.jpg,True,True,True,True,True
+ceratitis,Overseas,Ceratitis,,sample_image.jpg,True,True,True,True,True
+procecidochares,New Zealand,Procecidochares,,sample_image.jpg,True,True,True,True,True
+sphenella,New Zealand,Sphenella,,sample_image.jpg,True,True,True,True,True
+trupanea_centralis,New Zealand,Trupanea,entralis,sample_image.jpg,True,True,True,True,True
+trupanea_completa,New Zealand,Trupanea,completa,sample_image.jpg,True,True,True,True,True
+trupanea_extensa,New Zealand,Trupanea,extensa,sample_image.jpg,True,True,True,True,True
+trupanea_fenwicki,New Zealand,Trupanea,fenwicki,sample_image.jpg,True,True,True,True,True
+trupanea_longipennis,New Zealand,Trupanea,longipennis,sample_image.jpg,True,True,True,True,True
+trupanea_new_species,New Zealand,Trupanea,new species,sample_image.jpg,True,True,True,True,True
+trupanea_vittigera,New Zealand,Trupanea,vittigera,sample_image.jpg,True,True,True,True,True
+urophora,Overseas,Urophora,,sample_image.jpg,True,True,True,True,True
