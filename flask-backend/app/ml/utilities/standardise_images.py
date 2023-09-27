@@ -75,7 +75,7 @@ def standardise_images(in_path, out_path, size=299):
     for i, filename in enumerate(os.listdir(in_path)):
         filename_raw, ext = os.path.splitext(filename)
         print("'{}'".format(ext))
-        if ext.lower() in ['.jpg', '.tif', '.png', '.bmp']:
+        if ext.lower() in ['.jpg', '.jpeg', '.tif', '.png', '.bmp']:
             in_file_path = os.path.join(in_path, filename)
             out_file_path = os.path.join(out_path, filename_raw + '.png')
             print("{}: converting {} => {}".format(i+1, in_file_path, out_file_path))
