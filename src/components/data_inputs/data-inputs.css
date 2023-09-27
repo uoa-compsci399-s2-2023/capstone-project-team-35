@@ -196,6 +196,10 @@ div.selected_upload {
 }
 
 button.selected_upload {
+    background: linear-gradient(to left, #C4C4C4 50%, rgba(251,194,41,1) 50%, rgba(253,131,62,1) 100%) right;
+    background-size: 200%;
+    transition: .5s ease-out;
+
     height: 40px;
     width: 150px;
     position: relative;
@@ -204,11 +208,11 @@ button.selected_upload {
     text-align: center;
     font-size: 18px;
     font-family: var(--font_family);
-    background-color: #C4C4C4;
     border: none;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     color: black;
     font-weight: bold;
+    
 }
 
 button.enabled:hover {
@@ -226,8 +230,12 @@ input[type = "file"]{
 
 button.enabled {
     color: white;
-    background: rgb(251,194,41);
-    background: linear-gradient(90deg, rgba(251,194,41,1) 0%, rgba(253,131,62,1) 100%);
+    background-position: left;    
+}
+
+@keyframes submit {
+    from {background-size: 0px, 100%;}
+    to {background-size: 100%, 100%;}
 }
 
 div.hasImage {
@@ -249,14 +257,32 @@ div.hasImage {
     padding: 2px;
     padding-left: 10px;
     font-size: min(max(0.8vw, 9px), 15px);
+    overflow: hidden;
+    
+    animation-name: image_section;
+    animation-duration: 0.5s
+}
+
+@keyframes image_section {
+    from {opacity: 0%; }
+    to {opacity: 100%;}
 }
 
 .image_section button {
+    position: relative;
     float: right;
     width: 5%;
     background-color: #FF5757;
     color: white;
     border-radius: 50%;
+
+    /* animation-name: section_btn;
+    animation-duration: 1s */
+}
+
+@keyframes section_btn {
+    from {opacity: 0; }
+    to {opacity: 1;}
 }
 
 .image_section button:hover {
