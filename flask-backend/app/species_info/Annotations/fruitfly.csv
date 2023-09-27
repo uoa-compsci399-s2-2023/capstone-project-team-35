@@ -1,4 +1,4 @@
-label,country,genus,species,file,in_NZ,endemic,unwanted_pest,native,introduced_biocotrol
+label,country,genus,species,file,in_NZ,endemic,unwanted_pest,native,introduced_biocontrol
 austrotephritis,New Zealand,Austrotephritis,,sample_image.jpg,True,True,True,True,True
 bactrocera,Overseas,Bactrocera,,sample_image.jpg,True,True,True,True,True
 ceratitis,Overseas,Ceratitis,,sample_image.jpg,True,True,True,True,True
