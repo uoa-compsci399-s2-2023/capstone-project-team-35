@@ -9,7 +9,6 @@ USER_UPLOADED_IMAGES_DIRECTORY  = globals.USER_UPLOADED_IMAGES_DIRECTORY
 RESULTS_FILE_DIRECTORY          = globals.RESULTS_FILE_DIRECTORY                 
 
 class LocalRepository(AbstractRepository):
-    
     def add_results_csv(self, complete_predictions_list, input_image_path):
         field_names= ['label', 'probability', 'genus', 'species', 'country']
         if not os.path.exists(RESULTS_FILE_DIRECTORY):
@@ -54,4 +53,4 @@ class LocalRepository(AbstractRepository):
                     print(file_path)
                     os.remove(file_path)
                 except OSError as e: 
-                    print("Failed to clear directory; file path: {0}; error: {1}; error code: {2}", file_path, e.strerror, e.code) 
+                    print("Failed to clear directory; file path: {0}; error: {1", file_path, e.strerror) 

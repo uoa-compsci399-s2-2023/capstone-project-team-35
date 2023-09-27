@@ -7,7 +7,7 @@ import app.ml.utilities.model_output_processors as mop
 from werkzeug.datastructures import FileStorage
 from typing import Dict
 
-def save_predictions(sorted_prediction_dict, image_file_index, repo: AbstractRepository):
+def save_predictions_as_csv(sorted_prediction_dict, image_file_index, repo: AbstractRepository):
     result = Prediction(sorted_prediction_dict, image_file_index)
     predictions = []
     label_probability_dict = result.label_probability_dict
@@ -28,7 +28,7 @@ def store_user_uploaded_images(images: list[FileStorage], repo: AbstractReposito
         repo.add_image(image)
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
-    #repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
+    repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
     store_user_uploaded_images(images, repo) # TODO: need to check if image is already present, or is it already done? 
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
@@ -53,7 +53,7 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
         
         # Sort the dictionary items based on their values in descending order
         sorted_prediction_values = sorted(label_probability_dict.items(), key=lambda item: item[1], reverse=True)
-        save_predictions(dict(sorted_prediction_values), image_files[index], repo)
+        save_predictions_as_csv(dict(sorted_prediction_values), image_files[index], repo)
         
         # Convert the sorted items back into a dictionary and extract top predictions
         top_predictions_dict = dict(sorted_prediction_values[:globals.TOP_PREDICTIONS_COUNT])

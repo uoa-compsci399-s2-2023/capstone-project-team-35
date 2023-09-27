@@ -5,7 +5,7 @@ from typing import Dict
 class Prediction:
     def __init__(self, label_probability_dict, input_image_path):
         self.__label_probability_dict = None
-        self.__test_image_path = None
+        self.__input_image_path = None
         
         if label_probability_dict is not None and len(label_probability_dict) > 0:
             self.__label_probability_dict = label_probability_dict

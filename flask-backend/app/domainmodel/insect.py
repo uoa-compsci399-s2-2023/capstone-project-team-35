@@ -33,11 +33,6 @@ class Insect:
     def tags(self) -> dict:
         return self.__tags
     
-    @tags.setter
-    def tags(self, tags):
-        if type(tags) is dict:
-            self.__tags = tags
-    
     def __repr__(self) -> str:
         return f"<Insect {self.label}, country = {self.country}, genus  = {self.genus}>, species = {self.species}, image file path = {self.image_file_path}, tags = {self.tags}"
 

@@ -26,6 +26,6 @@ class AbstractRepository(abc.ABC):
     def get_image_by_name(self, image_name: str) -> Image:
         raise NotImplementedError
     
-    @abc.abstractclassmethod
+    @abc.abstractmethod
     def clear_directory(self, directory_path: Path):
         raise NotImplementedError
