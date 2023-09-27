@@ -18,7 +18,7 @@ def upload_and_get_classifications(insect_type=None):
         for img in request.files:
             target_image_list.append(request.files[img])
                 
-        results = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)   #TODO: enable upload of multiple images
+        results = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)
             
         # Initialize a list to store prediction data
         aggregated_predictions = []
@@ -32,6 +32,7 @@ def upload_and_get_classifications(insect_type=None):
             count = 0
             for label in label_probability_dict:
                 insect = utils.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
+
                 prediction["predictions"][count] = {
                     "label": insect.label,
                     "probability": str(round(label_probability_dict[label], 3)),
@@ -39,6 +40,7 @@ def upload_and_get_classifications(insect_type=None):
                     "species": insect.species,
                     "country": insect.country,
                     "image_file_path": str(insect.image_file_path), #TODO: return actual image instead of file? 
+                    "tags": insect.tags
                 }
                 count = count + 1
             aggregated_predictions.append(prediction)

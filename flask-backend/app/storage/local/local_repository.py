@@ -31,7 +31,8 @@ class LocalRepository(AbstractRepository):
         if not os.path.exists(USER_UPLOADED_IMAGES_DIRECTORY):
             os.makedirs(USER_UPLOADED_IMAGES_DIRECTORY)
         image_filename = USER_UPLOADED_IMAGES_DIRECTORY / PurePath(image.filename).name
-        image.save(image_filename)
+        if not os.path.isfile(image_filename):
+            image.save(image_filename)
 
     def get_all_images(self) -> list:
         images = []
