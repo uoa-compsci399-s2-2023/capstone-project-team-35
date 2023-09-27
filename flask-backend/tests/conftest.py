@@ -31,13 +31,19 @@ def end_of_tests():
         os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image.jpg")
     if "sample_image2.jpg" in uploaded_images:
         os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image2.jpg")
+    if "sample_image3.jpg" in uploaded_images:
+        os.remove(globals.USER_UPLOADED_IMAGES_DIRECTORY / "sample_image3.jpg")
     
     if "sample_image.jpg" in standardized_images:
         os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image.jpg")
     if "sample_image2.jpg" in standardized_images:
         os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image2.jpg")
+    if "sample_image3.jpg" in standardized_images:
+        os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "sample_image3.jpg")
 
     if "sample_image.jpg_predictions.csv" in results:
         os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image.jpg_predictions.csv")
     if "sample_image2.jpg_predictions.csv" in results:
         os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image2.jpg_predictions.csv")
+    if "sample_image3.jpg_predictions.csv" in results:
+        os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image3.jpg_predictions.csv")
