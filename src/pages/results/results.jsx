@@ -184,14 +184,14 @@ function SpeciesCardGroup({ image }) {
         <SpeciesCard
           // key={rank}
           rank={rank}
-          tags={{
-            endemic: true,
-            native: true,
-            introduced_biocontrol: true,
-            unwanted_pest: true,
-            in_NZ: true,
-            custom: true,
-          }}
+          // tags={{
+          //   endemic: true,
+          //   native: true,
+          //   introduced_biocontrol: true,
+          //   unwanted_pest: true,
+          //   in_NZ: true,
+          //   custom: true,
+          // }}
           {...prediction}
         />
       ))}
