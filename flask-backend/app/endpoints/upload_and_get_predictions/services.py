@@ -7,12 +7,9 @@ import app.ml.utilities.standardise_images as si
 import app.ml.utilities.model_output_processors as mop
 from werkzeug.datastructures import FileStorage
 from typing import Dict
-<<<<<<< HEAD
 from pathlib import Path
-=======
-import os
 from pathlib import PurePath
->>>>>>> main
+import os
 
 def save_predictions(sorted_prediction_dict, image_file_index, repo: AbstractRepository):
     result = Prediction(sorted_prediction_dict, image_file_index)
