@@ -11,7 +11,10 @@ RESULTS_FILE_DIRECTORY          = globals.RESULTS_FILE_DIRECTORY
 class LocalRepository(AbstractRepository):
     
     def add_results_csv(self, complete_predictions_list):
-        field_names = ['image_name', 'label', 'probability', 'rank', 'genus', 'species', 'country']
+        field_names = [
+        'image_name', 'label', 'probability', 'rank', 'genus', 'species', 'country', 
+        'in_NZ', 'endemic', 'unwanted_pest', 'native', 'introduced_biocotrol'
+    ]
         RESULTS_FILE_PATH = os.path.join(RESULTS_FILE_DIRECTORY, "predictions.csv")  # Define the CSV file path
 
         if not os.path.exists(RESULTS_FILE_DIRECTORY):

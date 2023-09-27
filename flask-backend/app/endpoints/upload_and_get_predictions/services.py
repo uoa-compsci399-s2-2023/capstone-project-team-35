@@ -24,6 +24,12 @@ def save_predictions(sorted_prediction_dict, image_file_index, repo: AbstractRep
             "genus": insect.genus,
             "species": insect.species,
             "country": insect.country,
+            "rank": None,  # We will assign it after sorting
+            "in_NZ": insect.tags["in_NZ"],
+            "endemic": insect.tags["endemic"],
+            "unwanted_pest": insect.tags["unwanted_pest"],
+            "native": insect.tags["native"],
+            "introduced_biocotrol": insect.tags["introduced_biocotrol"]
         }
         predictions.append(prediction)
 
