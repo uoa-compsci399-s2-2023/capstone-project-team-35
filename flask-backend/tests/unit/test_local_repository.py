@@ -11,8 +11,16 @@ def test_add_image(local_repo):
         local_repo.add_image(img)
         added_image = local_repo.get_image_by_name("sample_image.jpg")
         assert added_image is not None
-    img.close()
-    
+        img.close()
+
+def test_adding_same_image_adds_it_once(local_repo):
+    with Image.open(TEST_IMAGE_DIR / "sample_image2.jpg") as img:
+        local_repo.add_image(img)
+        local_repo.add_image(img)
+        added_images = os.listdir(globals.USER_UPLOADED_IMAGES_DIRECTORY)
+        print(added_images)
+        assert added_images.count("sample_image2.jpg") == 1
+        img.close()
 
 def test_get_image_by_name(local_repo):
     #Get existing image

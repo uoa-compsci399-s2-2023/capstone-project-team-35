@@ -1,5 +1,7 @@
 from pathlib import Path
 from app.ml.classifier import Classifier
+from app.ml.prediction import Prediction
+from typing import Dict
 
 class TestClassifier:
     def test_construction(self):
@@ -7,13 +9,13 @@ class TestClassifier:
         classifier1 = Classifier(Path('file'), 'classifier1', Path('file'))
         assert str(classifier1) == "<Classifier classifier1, Name classifier1, File path file, Labels path file>"
 
-        #Test strings with trailing spaces
-        classifier2 = Classifier(Path('file'), '   classifier2   ', Path('file'))
-        assert classifier2.classifier_path == Path('file')
+        #Test strings with trailing spaces and empty paths
+        classifier2 = Classifier(Path(''), '   classifier2   ', Path(''))
+        assert classifier2.classifier_path is None
         assert classifier2.classifier_name == 'classifier2'
-        assert classifier2.labels_path == Path('file')
+        assert classifier2.labels_path is None
 
-        #Test invalid strings
+        #Test invalid types
         classifier3 = Classifier(10, 20, 1029)
         assert classifier3.classifier_path is None
         assert classifier3.classifier_name is None
@@ -23,8 +25,6 @@ class TestClassifier:
         classifier1 = Classifier(Path('file'), 'classifier1', Path('file'))
         
         #Test classifier path setter
-
-        assert isinstance(Path('file2'), Path)
         classifier1.classifier_path = Path('file2')
         assert classifier1.classifier_path == Path('file2')
 
@@ -87,4 +87,42 @@ class TestClassifier:
         #Test Removal
         classifiers.discard(classifier1)
         assert sorted(classifiers) == [classifier2, classifier3]
+
+class TestPrediction:
+    def test_construction(self):
+        #<Prediction: Label-probability {self.label_probability_dict}, Input Image path {self.input_image_path}>
+        prediction1 = Prediction({'dict': 0}, 'file ')
+        assert str(prediction1) == f"<Prediction: Label-probability {prediction1.label_probability_dict}, Input Image path file>"
+
+        #Test empty dict returns None
+        prediction2 = Prediction(dict(), 'file')
+        assert prediction2.label_probability_dict is None
+
+        #Test invalid types
+        prediction3 = Prediction(20, 1029)
+        assert prediction3.label_probability_dict is None
+        assert prediction3.input_image_path is None
+
+        prediction4 = Prediction({'dict': 0}, ' ')
+        assert prediction4.input_image_path is None
+    
+    def test_setters(self):
+        prediction1 = Prediction({'dict': 0}, Path('file'))
+        
+        #Test path setter
+        prediction1.input_image_path = 'file2'
+        assert prediction1.input_image_path == 'file2'
+
+        prediction1.input_image_path = 123
+        assert prediction1.input_image_path is None
+
+        prediction1.input_image_path = ' '
+        assert prediction1.input_image_path is None
+
+        #Test label dict setter
+        prediction1.label_probability_dict = {'dict2': 1}
+        assert prediction1.label_probability_dict == {'dict2': 1}
+
+        prediction1.label_probability_dict = 123
+        assert prediction1.label_probability_dict is None
         
