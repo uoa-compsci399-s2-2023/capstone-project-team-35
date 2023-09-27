@@ -73,11 +73,9 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
         # Sort the dictionary items based on their values in descending order
         sorted_prediction_values = sorted(label_probability_dict.items(), key=lambda item: item[1], reverse=True)
         save_predictions(dict(sorted_prediction_values), user_uploaded_image_files[index], repo)
-        
         # Convert the sorted items back into a dictionary and extract top predictions
         top_predictions_dict = dict(sorted_prediction_values[:globals.TOP_PREDICTIONS_COUNT])
-                
-        new_prediction = Prediction(top_predictions_dict, Path(image_files[index]))
+        new_prediction = Prediction(top_predictions_dict, str(globals.USER_UPLOADED_IMAGES_DIRECTORY / Path(user_uploaded_image_files[index])))
         results.append(new_prediction)            
-            
+
     return results

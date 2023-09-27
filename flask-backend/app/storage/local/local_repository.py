@@ -27,12 +27,12 @@ class LocalRepository(AbstractRepository):
         if not os.path.exists(USER_UPLOADED_IMAGES_DIRECTORY):
             os.makedirs(USER_UPLOADED_IMAGES_DIRECTORY)
         image_filename = USER_UPLOADED_IMAGES_DIRECTORY / PurePath(image.filename).name
-        if not os.path.isfile(image_filename):
+        if not os.path.isfile(str(image_filename)):
             image.save(image_filename)        
         
     def get_base64_image(self, img_path: Path):
         image_base64 = None
-        if os.path.exists(img_path):
+        if os.path.exists(str(img_path)):
             try:
                 with open(str(img_path), "rb") as img_file:
                     # Read the image data as bytes
@@ -67,7 +67,6 @@ class LocalRepository(AbstractRepository):
             file_path = os.path.join(dir_path, file)
             if os.path.isfile(file_path):
                 try:
-                    print(file_path)
                     os.remove(file_path)
                 except OSError as e: 
                     print("Failed to clear directory; file path: {0}; error: {1}", file_path, e.strerror) 

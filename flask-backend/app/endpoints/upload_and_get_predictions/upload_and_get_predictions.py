@@ -3,6 +3,7 @@ import app.endpoints.upload_and_get_predictions.services as services
 import app.storage.abstractrepository as repo
 from app.ml.utilities import model_output_processors as utils
 import app.globals as globals
+from pathlib import Path
 import json
 
 upload_blueprint = Blueprint('upload_and_get_classifications_bp', __name__)
@@ -19,16 +20,15 @@ def upload_and_get_classifications(insect_type=None):
             target_image_list.append(request.files[img])
                 
         results = services.get_predictions(target_image_list, insect_type, model_type, repo.repo_instance)
-            
+        
         # Initialize a list to store prediction data
         aggregated_predictions = []
-
         # Loop through the results and store prediction data
         for result in results:
             prediction = {}
             img = services.get_base64_image(result.input_image_path, repo.repo_instance)
             prediction["input_image"] = services.get_base64_image(result.input_image_path, repo.repo_instance)
-            prediction["input_image_filename"] = result.input_image_path.parts[-1]
+            prediction["input_image_filename"] = Path(result.input_image_path).parts[-1]
             prediction["predictions"] = {}
             label_probability_dict = result.label_probability_dict
             count = 0
