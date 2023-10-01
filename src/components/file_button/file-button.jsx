@@ -6,17 +6,17 @@ function FileButton(props) {
 
   return selected ? (
     <div
-      className="overflow-hidden shadow btn btn-block text-ellipsis whitespace-nowrap btn-secondary btn-black hover:shadow-m"
+      className="p-2 text-left shadow btn text-ellipsis btn-block whitespace-nowrap btn-secondary hover:shadow-m"
       onClick={onClick}
     >
-      {image.input_image_path.split("/").pop()}
+      <span className="w-full truncate">{image.input_image_filename}</span>
     </div>
   ) : (
     <div
-      className="overflow-hidden shadow btn btn-block text-ellipsis whitespace-nowrap btn-outline hover:shadow-m"
+      className="flex flex-row items-center justify-start p-2 text-left shadow btn btn-block whitespace-nowrap hover:shadow-m"
       onClick={onClick}
     >
-      {image.input_image_path.split("/").pop()}
+      <span className="w-full truncate">{image.input_image_filename}</span>
     </div>
   );
 }

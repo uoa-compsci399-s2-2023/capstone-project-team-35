@@ -1,11 +1,15 @@
 import app.globals as globals
 from app.storage.abstractrepository import AbstractRepository
+from PIL import Image
 from app.ml.classifier import Classifier
 from app.ml.prediction import Prediction
 import app.ml.utilities.standardise_images as si
 import app.ml.utilities.model_output_processors as mop
 from werkzeug.datastructures import FileStorage
 from typing import Dict
+from pathlib import Path
+from pathlib import PurePath
+import os
 
 def save_predictions_as_csv(sorted_prediction_dict, image_file_index, repo: AbstractRepository):
     result = Prediction(sorted_prediction_dict, image_file_index)
@@ -24,12 +28,17 @@ def save_predictions_as_csv(sorted_prediction_dict, image_file_index, repo: Abst
     repo.add_results_csv(predictions, input_image_path)
 
 def store_user_uploaded_images(images: list[FileStorage], repo: AbstractRepository):
+    repo.clear_directory(globals.USER_UPLOADED_IMAGES_DIRECTORY)
     for image in images:
         repo.add_image(image)
 
+def get_base64_image(path: Path, repo: AbstractRepository) -> str:
+    image = repo.get_base64_image(path)
+    return image
+
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
     repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
-    store_user_uploaded_images(images, repo) # TODO: need to check if image is already present, or is it already done? 
+    store_user_uploaded_images(images, repo) 
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
 
@@ -38,10 +47,20 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
     uploaded_images_directory_path = globals.USER_UPLOADED_IMAGES_DIRECTORY
     standardized_images_directory_path = globals.STANDARDIZED_IMAGES_DIRECTORY
     
+    repo.clear_directory(standardized_images_directory_path / "Images")
     si.standardise_images(uploaded_images_directory_path, standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
     model = Classifier(model_path, model_type, labels_path)
 
-    labels, predictions, image_files, model = model.predict(standardized_images_directory_path) #TODO: Return uploaded images instead of standardized images
+    labels, predictions, image_files, model = model.predict(standardized_images_directory_path)
+
+    user_uploaded_image_files = []
+    for image_path in image_files:
+        name, extension =  os.path.splitext(image_path)
+        for user_image_path in os.listdir(uploaded_images_directory_path):
+            uploaded_name, uploaded_extension = os.path.splitext(user_image_path)
+            if uploaded_name == PurePath(name).name:
+                user_uploaded_image_files.append(user_image_path)
+
     
     results = []
 
@@ -57,11 +76,7 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
         
         # Convert the sorted items back into a dictionary and extract top predictions
         top_predictions_dict = dict(sorted_prediction_values[:globals.TOP_PREDICTIONS_COUNT])
-                
-        new_prediction = Prediction(top_predictions_dict, image_files[index])
+        new_prediction = Prediction(top_predictions_dict, str(globals.USER_UPLOADED_IMAGES_DIRECTORY / Path(user_uploaded_image_files[index])))
         results.append(new_prediction)            
-    
-    repo.clear_directory(uploaded_images_directory_path)
-    repo.clear_directory(standardized_images_directory_path / "Images") #TODO: get rid of hardcoded "Images"
-    
+
     return results
