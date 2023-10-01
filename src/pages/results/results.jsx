@@ -1,6 +1,6 @@
 import RootContext from "../../providers/root";
 import { SpeciesCard, FileButton, ResultsTable } from "../../components";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
 import orange_download_icon from "../../assets/ui-elements/orange_download-icon.svg";
@@ -13,7 +13,13 @@ const ResultsPage = () => {
 
   const [currentSelectedImage, setCurrentSelectedImage] = useState(null);
 
-  console.log(data);
+  useEffect(() => {
+    if (data?.predictions && data.predictions.length) {
+      setCurrentSelectedImage(data.predictions[0]);
+    }
+  }, [data]);
+
+  // console.log(data[0]);
   return (
     // Main Parent
     <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11">
@@ -30,6 +36,7 @@ const ResultsPage = () => {
                 <img
                   src={home_icon}
                   className="items-center w-full h-full return-button style_home"
+                  alt="home icon"
                 ></img>
               </button>
             </div>
@@ -42,6 +49,7 @@ const ResultsPage = () => {
               <img
                 src={main_logo}
                 className="top-0 w-full h-full max-h-fit"
+                alt="Ocell.ai Logo"
               ></img>
             </div>
           </div>
@@ -56,10 +64,10 @@ const ResultsPage = () => {
                 <FileButton
                   image={image}
                   selected={
-                    currentSelectedImage?.input_image_path ==
-                    image.input_image_path
+                    currentSelectedImage?.input_image_filename ===
+                    image.input_image_filename
                   }
-                  key={image.input_image_path}
+                  key={image.input_image_filename}
                   onClick={() => setCurrentSelectedImage(image)}
                 />
               ))}
@@ -69,7 +77,7 @@ const ResultsPage = () => {
           {/* Batch Download Button */}
           <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
             <div className="flex items-center justify-center">
-              <a
+              <div
                 className="flex items-center gap-2 cursor-pointer"
                 // onClick={handleExpand}
               >
@@ -77,31 +85,16 @@ const ResultsPage = () => {
                   <img
                     src={orange_download_icon}
                     className="items-center w-full h-full return-button style_home"
+                    alt="Orange download icon"
                   ></img>
                 </div>
-                <span className="text-xl">DOWNLOAD BATCH RESULT</span>
-              </a>
+                <span className="text-xl text-status-orange">
+                  DOWNLOAD BATCH RESULT
+                </span>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Navigation Footer */}
-        {/* <div className="flex items-center justify-center h-24">
-          <div className="flex items-center justify-center">
-            <a
-              className="flex items-center gap-2 cursor-pointer"
-              // onClick={handleExpand}
-            >
-              <div className="w-8 rounded aspect-square">
-                <img
-                  src={orange_download_icon}
-                  className="items-center w-full h-full return-button style_home"
-                ></img>
-              </div>
-              <span className="text-xl">DOWNLOAD BATCH RESULT</span>
-            </a>
-          </div>
-        </div> */}
       </div>
 
       {/* ============== Results Section ================== */}
@@ -122,7 +115,7 @@ const ResultsPage = () => {
 
             {/* IMAGE FILE */}
             <div className="flex items-center justify-center h-full ">
-              <div className="flex w-8/12 rounded-2xl aspect-square bg-slate-500"></div>
+              <DislplayInputImage image={currentSelectedImage} />
             </div>
 
             {/* INDIVIDUAL DOWNLOAD */}
@@ -130,11 +123,13 @@ const ResultsPage = () => {
               <div className="flex items-center justify-center">
                 <a
                   className="flex items-center gap-2 mt-2 cursor-pointer"
+                  // href=""
                   // onClick={handleExpand}
                 >
                   <div className="w-8 rounded aspect-square">
                     <img
                       src={gray_download_icon}
+                      alt="gray download icon"
                       className="items-center w-full h-full return-button style_home"
                     ></img>
                   </div>
@@ -163,41 +158,41 @@ const ResultsPage = () => {
   );
 };
 
+function DislplayInputImage({ image }) {
+  if (!image) return null;
+  return (
+    <div
+      id="input_img_container"
+      className="flex w-8/12 rounded-2xl aspect-square bg-slate-500"
+    >
+      <img
+        src={`data:image/jpeg;base64,${image.input_image}`}
+        alt="input file"
+        className="object-cover rounded-2xl"
+      />
+    </div>
+  );
+}
+
 function SpeciesCardGroup({ image }) {
   if (!image) return null;
 
   const { predictions } = image;
+  console.log("Predictions:");
   console.log(predictions);
 
   return (
     <>
-      {Object.entries(predictions).map(([rank, prediction]) => (
-        <SpeciesCard
-          key={rank}
-          rank={rank}
-          tags={{
-            endemic: true,
-            native: true,
-            introduced_biocontrol: true,
-            unwanted_pest: true,
-            in_NZ: true,
-          }}
-          {...prediction}
-        />
-      ))}
-
-      {/* <SpeciesCard
-        rank={0}
-        confidence={0.79}
-        species_name={"species A"}
-        tags={{
-          endemic: false,
-          invasive: true,
-          "non-native": true,
-          "non-invasive": false,
-        }}
-      />
-       */}
+      {Object.entries(predictions).map(
+        ([rank, prediction]) =>
+          rank <= 2 && (
+            <SpeciesCard
+              // key={rank}
+              rank={rank}
+              {...prediction}
+            />
+          )
+      )}
     </>
   );
 }

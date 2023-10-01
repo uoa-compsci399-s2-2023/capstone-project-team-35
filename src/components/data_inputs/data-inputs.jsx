@@ -2,17 +2,22 @@ import "./data-inputs.css";
 import React, { useState, useEffect, useRef } from "react";
 // import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
-import image_icon from "../../assets/ui-elements/orange_download-icon.svg";
-import checkbox_icon from '../../assets/ui-elements/tick_icon.png'
+import upload_icon from "../../assets/ui-elements/file_upload.svg";
+import edit_icon from "../../assets/ui-elements/edit_icon.svg";
+import x_icon from "../../assets/ui-elements/cross-small.png";
 import RootContext from "../../providers/root";
 import { useContext } from "react";
 
 const DataInputs = () => {
-  const { selectedImages, setSelectedImages, setSelectedValue, setCurrentPage, setData } =
-    useContext(RootContext);
+  const {
+    selectedImages,
+    setSelectedImages,
+    setSelectedValue,
+    setCurrentPage,
+  } = useContext(RootContext);
 
   // Declare variables to manage the POST and GET request between the front-end and back-end
-  // const [selectedImages, setSelectedImages] = useState([]); 
+  // const [selectedImages, setSelectedImages] = useState([]);
   const input_form = useRef(); // References the React form where the images will be uploaded from
   const [isImageSelected, setIsImageSelected] = useState(false); // Boolean which determines if the input contains images
 
@@ -47,7 +52,7 @@ const DataInputs = () => {
 
   // Function to handle form submission
   const handleFormSubmit = async (event) => {
-    setCurrentPage("loading")
+    setCurrentPage("loading");
   };
 
   // Run the 'fetchInsectTypes' function after the component is initially rendered.
@@ -71,7 +76,7 @@ const DataInputs = () => {
     setSelectedValue(e.target.value);
     setSelectedCircleClass("selected");
     setSelectedUploadClass("selected_upload");
-    setSelectedCircTextleText(<img src={checkbox_icon}></img> );
+    setSelectedCircTextleText(<img src={edit_icon} alt="edit icon"></img>);
   };
 
   // Dragging image into file input handler
@@ -91,8 +96,7 @@ const DataInputs = () => {
     const updatedSelectedImages = [...selectedImages];
     updatedSelectedImages.splice(index, 1);
     setSelectedImages(updatedSelectedImages);
-    console.log(selectedImages.length);
-    if (selectedImages.length == 1) {
+    if (selectedImages.length === 1) {
       setIsImageSelected(false);
     }
   };
@@ -140,7 +144,10 @@ const DataInputs = () => {
 
         {/* Square 4 */}
         <div className="grid_circle_2">
-          <div className="circlier_number"><p>2</p></div> {/* Orange number circle */}
+          <div className="circlier_number">
+            <p>2</p>
+          </div>{" "}
+          {/* Orange number circle */}
         </div>
 
         {/* Square 5 */}
@@ -164,8 +171,6 @@ const DataInputs = () => {
               onDragEnter={handleDragEnter}
               onDragLeave={handleDragLeave}
             >
-              
-
               <div
                 className={`individ_images ${
                   isImageSelected ? "enabled" : "off"
@@ -174,7 +179,13 @@ const DataInputs = () => {
                 {selectedImages.map((image, index) => (
                   <div className="image_section" key={index}>
                     {image.name}{" "}
-                    <button onClick={() => handleRemoveImage(index)}>X</button>
+                    <button
+                      onClick={() => handleRemoveImage(index)}
+                      type="button"
+                      className="p-1"
+                    >
+                      <img src={x_icon} alt="small x" />
+                    </button>
                   </div>
                 ))}
               </div>
@@ -212,11 +223,10 @@ const DataInputs = () => {
                   className="off"
                 />
                 <label for="file-input">
-                  <img src={image_icon}></img> 
+                  <img src={upload_icon} alt="upload icon"></img>
                   <p>Add Images</p>
                 </label>
               </span>
-
             </div>
           </form>
         </div>

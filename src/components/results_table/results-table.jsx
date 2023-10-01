@@ -9,7 +9,7 @@ const ResultsTable = (props) => {
           <tr>
             <th></th>
             <th>Species Name</th>
-            <th>Confidence Score</th>
+            <th>Probability</th>
           </tr>
         </thead>
         <tbody>
