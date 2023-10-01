@@ -18,7 +18,6 @@ def test_adding_same_image_adds_it_once(local_repo):
         local_repo.add_image(img)
         local_repo.add_image(img)
         added_images = os.listdir(globals.USER_UPLOADED_IMAGES_DIRECTORY)
-        print(added_images)
         assert added_images.count("sample_image2.jpg") == 1
         img.close()
 
