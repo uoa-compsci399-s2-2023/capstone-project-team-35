@@ -12,15 +12,24 @@ RESULTS_FILE_DIRECTORY          = globals.RESULTS_FILE_DIRECTORY
 
 class LocalRepository(AbstractRepository):
     
-    def add_results_csv(self, complete_predictions_list, input_image_path):
-        field_names= ['label', 'probability', 'genus', 'species', 'country']
+    def add_results_csv(self, complete_predictions_list):
+        field_names = [
+        'image_name', 'label', 'probability', 'rank', 'genus', 'species', 'country', 
+        'in_NZ', 'endemic', 'unwanted_pest', 'native', 'introduced_biocotrol'
+    ]
+        RESULTS_FILE_PATH = os.path.join(RESULTS_FILE_DIRECTORY, "predictions.csv")  # Define the CSV file path
+
         if not os.path.exists(RESULTS_FILE_DIRECTORY):
             os.makedirs(RESULTS_FILE_DIRECTORY)
-        file_name = os.path.basename(input_image_path) + "_predictions.csv"
-        file_path = os.path.join(RESULTS_FILE_DIRECTORY, file_name)
-        with open(file_path, 'w') as csvfile:
+        
+        file_exists = os.path.isfile(RESULTS_FILE_PATH)
+        
+        with open(RESULTS_FILE_PATH, 'a', newline='') as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=field_names)
-            writer.writeheader()
+            
+            if not file_exists:
+                writer.writeheader()
+            
             writer.writerows(complete_predictions_list)
 
     def add_image(self, image: Image):

@@ -16,16 +16,33 @@ def save_predictions(sorted_prediction_dict, image_file_index, repo: AbstractRep
     predictions = []
     label_probability_dict = result.label_probability_dict
     input_image_path = result.input_image_path
+    image_name = os.path.basename(input_image_path)
     for label in label_probability_dict:
         insect = mop.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
-        prediction = {}
-        prediction["label"] = insect.label
-        prediction["probability"] = str(round(label_probability_dict[label], 3))
-        prediction["genus"] = insect.genus
-        prediction["species"] = insect.species
-        prediction["country"] = insect.country
+        prediction = {
+            "image_name": image_name,
+            "label": insect.label,
+            "probability": str(round(label_probability_dict[label], 3)),
+            "genus": insect.genus,
+            "species": insect.species,
+            "country": insect.country,
+            "rank": None,  # We will assign it after sorting
+            "in_NZ": insect.tags["in_NZ"],
+            "endemic": insect.tags["endemic"],
+            "unwanted_pest": insect.tags["unwanted_pest"],
+            "native": insect.tags["native"],
+            "introduced_biocotrol": insect.tags["introduced_biocotrol"]
+        }
         predictions.append(prediction)
-    repo.add_results_csv(predictions, input_image_path)
+
+     # Sort predictions by probability in descending order
+    predictions.sort(key=lambda x: float(x["probability"]), reverse=True)
+
+    # Assign rank to each prediction
+    for index, prediction in enumerate(predictions, start=1):
+        prediction["rank"] = index
+
+    repo.add_results_csv(predictions)
 
 def store_user_uploaded_images(images: list[FileStorage], repo: AbstractRepository):
     repo.clear_directory(globals.USER_UPLOADED_IMAGES_DIRECTORY)
@@ -37,8 +54,8 @@ def get_base64_image(path: Path, repo: AbstractRepository) -> str:
     return image
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
-    #repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
-    store_user_uploaded_images(images, repo) 
+    repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
+    store_user_uploaded_images(images, repo)
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
 
