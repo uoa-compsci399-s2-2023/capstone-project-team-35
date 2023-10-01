@@ -174,7 +174,7 @@ select.selected {
 div.selected_upload, input.selected_upload {
     background-image: url('input.png');
     background-repeat: no-repeat;
-    background-size: max(250px, 18vw);
+    background-size: max(250px, 16vw);
     background-position: center;
     background-color: white;
 
@@ -260,7 +260,7 @@ div.hasImage {
     overflow: hidden;
     
     animation-name: image_section;
-    animation-duration: 0.5s
+    animation-duration: 0.5npm s
 }
 
 @keyframes image_section {
