@@ -19,7 +19,7 @@ const ResultsPage = () => {
     }
   }, [data]);
 
-  console.log(data[0]);
+  // console.log(data[0]);
   return (
     // Main Parent
     <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11">
@@ -88,7 +88,9 @@ const ResultsPage = () => {
                     alt="Orange download icon"
                   ></img>
                 </div>
-                <span className="text-xl">DOWNLOAD BATCH RESULT</span>
+                <span className="text-xl text-status-orange">
+                  DOWNLOAD BATCH RESULT
+                </span>
               </div>
             </div>
           </div>
@@ -166,7 +168,7 @@ function DislplayInputImage({ image }) {
       <img
         src={`data:image/jpeg;base64,${image.input_image}`}
         alt="input file"
-        className="rounded-2xl"
+        className="object-cover rounded-2xl"
       />
     </div>
   );
@@ -176,25 +178,21 @@ function SpeciesCardGroup({ image }) {
   if (!image) return null;
 
   const { predictions } = image;
+  console.log("Predictions:");
   console.log(predictions);
 
   return (
     <>
-      {Object.entries(predictions).map(([rank, prediction]) => (
-        <SpeciesCard
-          // key={rank}
-          rank={rank}
-          // tags={{
-          //   endemic: true,
-          //   native: true,
-          //   introduced_biocontrol: true,
-          //   unwanted_pest: true,
-          //   in_NZ: true,
-          //   custom: true,
-          // }}
-          {...prediction}
-        />
-      ))}
+      {Object.entries(predictions).map(
+        ([rank, prediction]) =>
+          rank <= 2 && (
+            <SpeciesCard
+              // key={rank}
+              rank={rank}
+              {...prediction}
+            />
+          )
+      )}
     </>
   );
 }
