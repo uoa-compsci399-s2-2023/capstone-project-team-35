@@ -2,9 +2,9 @@ from flask import Blueprint, send_file
 import app.globals as globals
 import os
 
-upload_blueprint = Blueprint('download_results_bp', __name__)
+download_blueprint = Blueprint('download_results_bp', __name__)
 
-@upload_blueprint.route('/download', methods=['GET'])
+@download_blueprint.route('/download', methods=['GET'])
 def download_csv_results():
     target = globals.RESULTS_FILE_DIRECTORY
     prediction_file_path = os.path.join(target, 'predictions.csv')

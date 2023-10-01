@@ -24,7 +24,7 @@ def create_app(test_config=None):
         
         app.register_blueprint(upload_and_get_predictions.upload_blueprint)
         app.register_blueprint(get_insect_types.upload_blueprint)
-        app.register_blueprint(download_results.upload_blueprint)
+        app.register_blueprint(download_results.download_blueprint)
     
         if app.config['REPOSITORY'] == 'local':
             # Create the LocalRepository impmentation for a local repository
