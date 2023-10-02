@@ -18,11 +18,10 @@
 import { useState, useEffect } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
-import globe_icon from "../../assets/ui-elements/globe.svg";
-import link_icon from "../../assets/ui-elements/link_logo.svg";
+import info_icon from "../../assets/ui-elements/info_icon.svg";
 import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
-// import { motion } from "framer-motion";
+import DistributionMap from "../distribution_map/distribution-map";
 
 const rankedClasses = [
   { marginTop: "mt-4", rank_color: "bg-status-yellow", theme: "#FBC229" },
@@ -38,9 +37,9 @@ const SpeciesCard = (props) => {
   const { expanded } = props;
   const [isExpanded, setIsExpanded] = useState(expanded);
 
-  useEffect(() => {
-    setIsExpanded(false);
-  }, [props]);
+  // useEffect(() => {
+  //   setIsExpanded(false);
+  // }, [props]);
 
   console.log(props);
 
@@ -78,12 +77,49 @@ function SpeciesCardExpanded({
         {/* Items Container */}
         <div className="relative flex flex-row w-full h-full bg-background-light rounded-2xl">
           {/* LEFT INFO-BOX */}
-          <div className="flex flex-col w-5/12 h-full rounded-2xl">
+          <div className="flex flex-col items-center justify-center w-4/12 max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl">
+            {/* Confidence Circle */}
+            <div className="flex items-center justify-center w-3/5 rounded-full aspect-square">
+              <RadialGraph
+                className="flex"
+                progress={probPercentage}
+                color={theme}
+              />
+              <span className="absolute z-10 flex text-2xl font-semibold text-foreground-dark">
+                {`${probPercentage}%`}
+              </span>
+            </div>
+
+            {/* Species Name */}
+            <div className="w-full text-2xl text-center truncate max-w-fit text-ellipsis">
+              {genus} {species}
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap items-center justify-center">
+              {/* Object.keys returns an array of keys */}
+              {/* Loop through array */}
+              {Object.keys(tags || {}).map((tag) => {
+                // If tag is false, return null
+                if (!tags[tag]) return null;
+
+                return (
+                  <SpeciesTag tag={tag} />
+                  // <div
+                  //   key={tag}
+                  //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border-4 border-black rounded-md border-opacity-5"
+                  // >
+                  //   {tag}
+                  // </div>
+                );
+              })}
+            </div>
+
             {/* Left Header */}
-            <div className="flex flex-row h-2/5 rounded-2xl">
-              {/* Radial Graph Container */}
+            {/* <div className="flex flex-row h-2/5 rounded-2xl">
+              Radial Graph Container
               <div id="graph_container-A" className="flex w-1/3">
-                {/* small radial graph */}
+                small radial graph
                 <div
                   id="graph_container-B"
                   className="flex items-center justify-center w-full max-w-full p-5 rounded-full aspect-square"
@@ -101,55 +137,45 @@ function SpeciesCardExpanded({
                 </div>
               </div>
 
-              {/* Species Name Container */}
+              Species Name Container
               <div className="flex w-2/3">
-                {/* Genus and Species Name */}
+                Genus and Species Name
                 <div className="w-full p-4 mt-8 mb-8 ">
                   <div className="text-3xl text-left overflow-ellipsis">
                     {genus} {species}
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Left Body */}
-            <div className="flex flex-col items-center justify-start h-full gap-4 p-4 overflow-hidden rounded-2xl">
-              {/* Reference Image */}
+            {/* <div className="flex flex-col items-center justify-start h-full gap-4 p-4 overflow-hidden rounded-2xl">
+              Reference Image
               <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500">
                 <DislplayRefImage ref_data={image} />
               </div>
 
-              {/* Tags */}
+              Tags
               <div className="flex flex-wrap items-center justify-center">
-                {/* Object.keys returns an array of keys */}
-                {/* Loop through array */}
+                Object.keys returns an array of keys
+                Loop through array
                 {Object.keys(tags || {}).map((tag) => {
                   // If tag is false, return null
                   if (!tags[tag]) return null;
 
                   return (
-                    // <div className="inline-block px-2 py-1 m-1 bg-status-blue">
-                    //   {tag}
-                    // </div>
                     <SpeciesTag tag={tag} />
-                    // <div
-                    //   key={tag}
-                    //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border border-black rounded"
-                    // >
-                    //   {/* {tag} */}
-                    //   <SpeciesTag {...tag} />
-                    // </div>
                   );
                 })}
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* separator */}
           <div className="w-[2px] h-5/12 mt-[70px] mb-8 opacity-20 bg-foreground-light" />
 
           {/* RIGHT INFO-BOX */}
-          <div className="flex flex-col w-7/12 h-full gap-1 rounded-2xl">
+          <div className="flex flex-col w-8/12 h-full gap-1 rounded-2xl">
             {/* Collapse Button */}
             <div className="flex h-20">
               <div
@@ -165,9 +191,38 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Distribution panel body */}
-            <div className="flex flex-col h-full pl-4">
+            <div className="flex flex-col items-center h-full pb-6 pr-4">
+              {/* Distribution Map */}
+              <div
+                id="test-map"
+                className="flex items-center justify-center w-full h-11/12 overflow-clip"
+              >
+                <DistributionMap />
+              </div>
+
+              {/* Distribution Link */}
+              <div className="flex h-1/12">
+                <a
+                  className="flex items-center gap-2 cursor-pointer"
+                  href="https://www.gbif.org/species/7930834"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className="w-4 rounded aspect-square">
+                    <img
+                      src={info_icon}
+                      alt="info icon"
+                      className="z-0 items-center w-full h-full scale-125"
+                    ></img>
+                  </div>
+                  <span className="text-xl italic text-status-blue">
+                    more information
+                  </span>
+                </a>
+              </div>
+
               {/* Country Label */}
-              <div className="flex flex-row w-full h-1/5">
+              {/* <div className="flex flex-row w-full h-1/5">
                 <div className="relative flex items-start justify-end w-1/12 h-full p-2 mt-2">
                   <div className="flex w-full right-1 aspect-square">
                     <img src={globe_icon} alt="globe icon" />
@@ -177,10 +232,10 @@ function SpeciesCardExpanded({
                   Country
                   <span className="text-2xl text-slate-900">{country}</span>
                 </div>
-              </div>
+              </div> */}
 
               {/* Distribution Link */}
-              <div className="flex h-4/5">
+              {/* <div className="flex h-4/5">
                 <div className="flex flex-row w-full h-2/6">
                   <div className="relative flex items-start justify-end w-1/12 h-full p-2 mt-2">
                     <div className="flex w-full right-1 aspect-square">
@@ -194,7 +249,7 @@ function SpeciesCardExpanded({
                     </span>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -274,7 +329,7 @@ function SpeciesCardCollapsed({
                   className="z-0 items-center w-full h-full scale-125"
                 ></img>
               </div>
-              <span className="text-xl">tap to view info</span>
+              <span className="text-xl">view distribution</span>
             </a>
           </div>
         </div>
