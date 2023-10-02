@@ -1,12 +1,13 @@
 from pathlib import Path
 
 class Insect:
-    def __init__(self, label, country, genus, species, image_file_path, tags) -> None:
+    def __init__(self, label, country, genus, species, image_file_path, gbif, tags) -> None:
         self.__label = label
         self.__country = country
         self.__genus = genus
         self.__species = species
         self.__image_file_path = image_file_path
+        self.__gbif = gbif
         self.__tags = tags
     
     @property
@@ -32,6 +33,10 @@ class Insect:
     @property
     def tags(self) -> dict:
         return self.__tags
+    
+    @property
+    def gbif(self) -> str:
+        return self.__gbif
     
     @tags.setter
     def tags(self, tags):
