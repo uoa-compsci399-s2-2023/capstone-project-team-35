@@ -1,5 +1,6 @@
 import pytest
 import os
+import csv
 import app.globals as globals
 from app import create_app
 from app.storage.local.local_repository import LocalRepository
@@ -41,9 +42,5 @@ def end_of_tests():
     if "sample_image3.png" in standardized_images:
         os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "Images" / "sample_image3.png")
 
-    if "sample_image.png_predictions.csv" in results:
-        os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image.png_predictions.csv")
-    if "sample_image2.png_predictions.csv" in results:
-        os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image2.png_predictions.csv")
-    if "sample_image3.png_predictions.csv" in results:
-        os.remove(globals.RESULTS_FILE_DIRECTORY / "sample_image3.png_predictions.csv")
+    if "predictions.csv" in results:
+        os.remove(globals.RESULTS_FILE_DIRECTORY / "predictions.csv")
