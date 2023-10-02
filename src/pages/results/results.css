@@ -13,3 +13,8 @@
 .back {
   z-index: 1;
 }
+
+.button_text {
+  font: normal normal 300 18px/29px Mitr;
+  letter-spacing: 0.9px;
+}

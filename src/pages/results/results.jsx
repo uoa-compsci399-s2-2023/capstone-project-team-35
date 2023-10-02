@@ -57,7 +57,7 @@ const ResultsPage = () => {
 
         {/* Navigation Body */}
         {/* <div className="flex justify-center h-[calc(100%-250px)] max-h-[calc(100%-250px)] p-10 overflow-clip"> */}
-        <div className="relative flex flex-col items-start gap-4 pt-4 h-5/6 max-h-fit overflow-clip">
+        <div className="relative flex flex-col items-start gap-4 pt-4 h-5/6 max-h-fit overflow-clip panel">
           <div className="items-start w-full p-8 overflow-y-auto h-[calc(100%-80px)]">
             <div className="flex flex-col w-full h-full gap-4">
               {data.predictions.map((image) => (
@@ -76,23 +76,30 @@ const ResultsPage = () => {
 
           {/* Batch Download Button */}
           <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
-            <div className="flex items-center justify-center">
+            <button className="flex items-center justify-center p-1 rounded-lg hover:shadow-lg">
               <div
                 className="flex items-center gap-2 cursor-pointer"
                 // onClick={handleExpand}
               >
-                <div className="w-8 rounded aspect-square">
+                <div className="w-6 rounded aspect-square">
                   <img
                     src={orange_download_icon}
-                    className="items-center w-full h-full return-button style_home"
+                    className="items-center w-full h-full return-button style_home button_text"
                     alt="Orange download icon"
                   ></img>
                 </div>
-                <span className="text-xl text-status-orange">
+                <span
+                  className="text-xl text-status-orange"
+                  style={{
+                    fontFamily: "Mitr",
+                    fontWeight: 300,
+                    letterSpacing: 0,
+                  }}
+                >
                   DOWNLOAD BATCH RESULT
                 </span>
               </div>
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -110,7 +117,16 @@ const ResultsPage = () => {
           <div className="flex flex-col justify-center w-4/12 gap-2 pt-4 border-r-2 border-black border-opacity-10">
             {/* HEADER */}
             <div className="flex items-center justify-center h-16 ">
-              <span className="text-2xl">INPUT IMAGE</span>
+              <span
+                className="font-sans text-2xl text-foreground-dark"
+                style={{
+                  fontFamily: "Mitr",
+                  fontWeight: 300,
+                  letterSpacing: 0,
+                }}
+              >
+                INPUT IMAGE
+              </span>
             </div>
 
             {/* IMAGE FILE */}
@@ -121,22 +137,29 @@ const ResultsPage = () => {
             {/* INDIVIDUAL DOWNLOAD */}
             <div className="h-1/12">
               <div className="flex items-center justify-center">
-                <a
+                <button
                   className="flex items-center gap-2 mt-2 cursor-pointer"
                   // href=""
                   // onClick={handleExpand}
                 >
-                  <div className="w-8 rounded aspect-square">
+                  <div className="w-5 rounded aspect-square">
                     <img
                       src={gray_download_icon}
                       alt="gray download icon"
                       className="items-center w-full h-full return-button style_home"
                     ></img>
                   </div>
-                  <span className="text-xl">
+                  <span
+                    className="text-xl"
+                    style={{
+                      fontFamily: "Geologica",
+                      fontWeight: 100,
+                      letterSpacing: -0.8,
+                    }}
+                  >
                     save full results for this input
                   </span>
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -145,7 +168,16 @@ const ResultsPage = () => {
           <div className="flex flex-col justify-center w-8/12 pt-4">
             {/* HEADER */}
             <div className="relative flex items-center h-16 ml-10 justify-left">
-              <span className="text-xl">FULL PREDICTION SET PREVIEW</span>
+              <span
+                className="font-sans text-xl text-foreground-dark"
+                style={{
+                  fontFamily: "Mitr",
+                  fontWeight: 300,
+                  letterSpacing: 0,
+                }}
+              >
+                FULL PREDICTION SET PREVIEW
+              </span>
             </div>
             {/* TABLE */}
             <div className="relative flex items-center justify-center p-6 overflow-auto">

@@ -37,9 +37,9 @@ const SpeciesCard = (props) => {
   const { expanded } = props;
   const [isExpanded, setIsExpanded] = useState(expanded);
 
-  // useEffect(() => {
-  //   setIsExpanded(false);
-  // }, [props]);
+  useEffect(() => {
+    setIsExpanded(false);
+  }, [props]);
 
   console.log(props);
 
@@ -91,7 +91,14 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Species Name */}
-            <div className="w-full text-2xl text-center truncate max-w-fit text-ellipsis">
+            <div
+              className="w-full text-2xl text-center truncate max-w-fit text-ellipsis text-foreground-dark"
+              style={{
+                fontFamily: "Geologica",
+                fontWeight: 400,
+                letterSpacing: 0,
+              }}
+            >
               {genus} {species}
             </div>
 
@@ -215,7 +222,14 @@ function SpeciesCardExpanded({
                       className="z-0 items-center w-full h-full scale-125"
                     ></img>
                   </div>
-                  <span className="text-xl italic text-status-blue">
+                  <span
+                    className="text-xl italic text-status-blue"
+                    style={{
+                      fontFamily: "Geologica",
+                      fontWeight: 200,
+                      letterSpacing: 0,
+                    }}
+                  >
                     more information
                   </span>
                 </a>
@@ -289,7 +303,14 @@ function SpeciesCardCollapsed({
           </div>
 
           {/* Species Name */}
-          <div className="w-full text-xl text-center truncate max-w-fit text-ellipsis">
+          <div
+            className="w-full text-2xl text-center truncate max-w-fit text-ellipsis text-foreground-dark"
+            style={{
+              fontFamily: "Geologica",
+              fontWeight: 400,
+              letterSpacing: 0,
+            }}
+          >
             {genus} {species}
           </div>
 
@@ -317,10 +338,9 @@ function SpeciesCardCollapsed({
 
           {/* Tap to view info */}
           <div className="flex">
-            <a
+            <div
               className="flex items-center gap-2 cursor-pointer"
               onClick={handleExpand}
-              // href=""
             >
               <div className="w-8 rounded aspect-square">
                 <img
@@ -329,8 +349,17 @@ function SpeciesCardCollapsed({
                   className="z-0 items-center w-full h-full scale-125"
                 ></img>
               </div>
-              <span className="text-xl">view distribution</span>
-            </a>
+              <span
+                className="text-lg"
+                style={{
+                  fontFamily: "Geologica",
+                  fontWeight: 200,
+                  letterSpacing: 0,
+                }}
+              >
+                view distribution
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -338,20 +367,20 @@ function SpeciesCardCollapsed({
   );
 }
 
-function DislplayRefImage({ ref_data }) {
-  if (!ref_data) return null;
-  return (
-    <div
-      id="input_img_container"
-      className="flex w-full rounded-2xl aspect-square bg-slate-500"
-    >
-      <img
-        src={`data:image/jpeg;base64,${ref_data}`}
-        alt="reference"
-        className="object-cover w-full rounded-2xl"
-      />
-    </div>
-  );
-}
+// function DislplayRefImage({ ref_data }) {
+//   if (!ref_data) return null;
+//   return (
+//     <div
+//       id="input_img_container"
+//       className="flex w-full rounded-2xl aspect-square bg-slate-500"
+//     >
+//       <img
+//         src={`data:image/jpeg;base64,${ref_data}`}
+//         alt="reference"
+//         className="object-cover w-full rounded-2xl"
+//       />
+//     </div>
+//   );
+// }
 
 export default SpeciesCard;
