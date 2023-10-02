@@ -1,14 +1,14 @@
-label,country,genus,species,file,in_NZ,endemic,unwanted_pest,native,introduced_biocontrol
-austrotephritis,New Zealand,Austrotephritis,,sample_image.jpg,True,False,False,False,True
-bactrocera,Overseas,Bactrocera,,sample_image.jpg,True,False,False,False,True
-ceratitis,Overseas,Ceratitis,,sample_image.jpg,True,False,False,False,True
-procecidochares,New Zealand,Procecidochares,,sample_image.jpg,False,True,False,False,False
-sphenella,New Zealand,Sphenella,,sample_image.jpg,False,True,False,False,False
-trupanea_centralis,New Zealand,Trupanea,entralis,sample_image.jpg,False,True,False,False,False
-trupanea_completa,New Zealand,Trupanea,completa,sample_image.jpg,False,False,True,False,False
-trupanea_extensa,New Zealand,Trupanea,extensa,sample_image.jpg,False,False,True,False,False
-trupanea_fenwicki,New Zealand,Trupanea,fenwicki,sample_image.jpg,False,False,True,False,False
-trupanea_longipennis,New Zealand,Trupanea,longipennis,sample_image.jpg,False,False,False,True,False
-trupanea_new_species,New Zealand,Trupanea,new species,sample_image.jpg,False,False,False,True,False
-trupanea_vittigera,New Zealand,Trupanea,vittigera,sample_image.jpg,False,False,False,True,False
-urophora,Overseas,Urophora,,sample_image.jpg,True,True,False,True,True
+label,country,genus,species,file,in_NZ,endemic,unwanted_pest,native,introduced_biocontrol,distribution_url
+austrotephritis,New Zealand,Austrotephritis,None,sample_image.jpg,TRUE,FALSE,FALSE,FALSE,TRUE,None
+bactrocera,Overseas,Bactrocera,None,sample_image.jpg,TRUE,FALSE,FALSE,FALSE,TRUE,https://www.gbif.org/species/5886573
+ceratitis,Overseas,Ceratitis,None,sample_image.jpg,TRUE,FALSE,FALSE,FALSE,TRUE,https://www.gbif.org/species/1626096
+procecidochares,New Zealand,Procecidochares,None,sample_image.jpg,FALSE,TRUE,FALSE,FALSE,FALSE,https://www.gbif.org/species/1623661
+sphenella,New Zealand,Sphenella,None,sample_image.jpg,FALSE,TRUE,FALSE,FALSE,FALSE,None
+trupanea_centralis,New Zealand,Trupanea,entralis,sample_image.jpg,FALSE,TRUE,FALSE,FALSE,FALSE,https://www.gbif.org/species/5087786
+trupanea_completa,New Zealand,Trupanea,completa,sample_image.jpg,FALSE,FALSE,TRUE,FALSE,FALSE,https://www.gbif.org/species/5087891
+trupanea_extensa,New Zealand,Trupanea,extensa,sample_image.jpg,FALSE,FALSE,TRUE,FALSE,FALSE,https://www.gbif.org/species/5087861
+trupanea_fenwicki,New Zealand,Trupanea,fenwicki,sample_image.jpg,FALSE,FALSE,TRUE,FALSE,FALSE,https://www.gbif.org/species/5087819
+trupanea_longipennis,New Zealand,Trupanea,longipennis,sample_image.jpg,FALSE,FALSE,FALSE,TRUE,FALSE,https://www.gbif.org/species/5087910
+trupanea_new_species,New Zealand,Trupanea,new species,sample_image.jpg,FALSE,FALSE,FALSE,TRUE,FALSE,None
+trupanea_vittigera,New Zealand,Trupanea,vittigera,sample_image.jpg,FALSE,FALSE,FALSE,TRUE,FALSE,https://www.gbif.org/species/5087897
+urophora,Overseas,Urophora,None,sample_image.jpg,TRUE,TRUE,FALSE,TRUE,TRUE,https://www.gbif.org/species/5088031
