@@ -183,7 +183,7 @@ select.selected {
 
 div.selected_upload,
 input.selected_upload {
-  background-image: url("input.png");
+  background-image: url("input_backdrop.png");
   background-repeat: no-repeat;
   background-size: max(250px, 18vw);
   background-position: center;

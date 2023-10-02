@@ -24,7 +24,7 @@ const ResultsPage = () => {
     // Main Parent
     <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11">
       {/* File Navigation Section */}
-      <div className="flex flex-col w-1/3 shadow-3xl panel rounded-t-3xl max-h-fit">
+      <div className="flex flex-col w-1/3 shadow-3xl rounded-t-3xl max-h-fit panel">
         {/* Navigation Header */}
         <div className="relative flex flex-col h-1/6">
           {/* row for the home button so that it doesn't overlap with the logo */}
