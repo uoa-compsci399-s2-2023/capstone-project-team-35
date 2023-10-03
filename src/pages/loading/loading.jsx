@@ -2,6 +2,7 @@ import RootContext from "../../providers/root";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import logo from "../../assets/ui-elements/logo.png"
 import "./loading.css";
 
 const LoadingPage = () => {
@@ -57,9 +58,11 @@ const LoadingPage = () => {
     <div>
       {/* Status message if there is an error */}
       <p>{uploadStatus}</p>
+      <img className="logo" src={logo}></img>
       <div id="loading-bar-spinner" className="spinner">
         <div className="spinner-icon"></div>
       </div>
+      <p className="loading_text">We're working on it</p>
     </div>
   );
 };
