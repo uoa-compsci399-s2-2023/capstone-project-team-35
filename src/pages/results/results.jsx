@@ -71,7 +71,7 @@ const ResultsPage = () => {
           {/* row for the home button so that it doesn't overlap with the logo */}
           <div className="flex w-full h-16">
             {/* Home Button */}
-            <div className="top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square back">
+            <div className="top-0 left-0 flex items-center justify-center w-8 m-5 cursor-pointer align-items aspect-square back">
               {/* Return to home button */}
               <button type="button" onClick={handleClick}>
                 <img
@@ -195,6 +195,7 @@ const ResultsPage = () => {
                       fontFamily: "Geologica",
                       fontWeight: 100,
                       letterSpacing: -0.8,
+                      color: "#707070",
                     }}
                   >
                     save full results for this input
