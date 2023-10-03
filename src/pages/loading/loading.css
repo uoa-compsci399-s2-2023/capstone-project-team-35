@@ -9,15 +9,19 @@
 #loading-bar-spinner.spinner .spinner-icon {
   width: 16vw;
   height: 16vw;
-  border:  solid 1.2vw transparent;
-  border-top-color:  rgba(253,131,62,1) !important;
-  border-left-color: rgba(251,194,41,1) !important;
+  border: solid 1.2vw transparent;
+  border-top-color: rgba(253, 131, 62, 1) !important;
+  border-left-color: rgba(251, 194, 41, 1) !important;
   border-radius: 50%;
 }
 
 @keyframes loading-bar-spinner {
-  0%   { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
 
 .spinner_transition {
@@ -57,16 +61,18 @@
   }
   to {
     width: 0vw;
-    }
+  }
 }
 
 .loading_text {
   position: absolute;
   left: 0px;
-  color: #A8A8A8;
-  font-size: 2vw;
+  color: #a8a8a8;
+  font-size: 1.8vw;
+  font-family: "Mitr", sans-serif;
+  font-weight: 300;
   margin-top: 5vw;
-  left: 8%;
+  left: 10%;
 }
 
 .loading_container {
@@ -78,9 +84,9 @@
 }
 
 .loading_container_transition {
-  opacity: 0; 
+  opacity: 0;
   animation-name: container_transition;
-  animation-duration: 2s; 
+  animation-duration: 2s;
 }
 
 @keyframes container_transition {

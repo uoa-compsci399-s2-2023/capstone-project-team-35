@@ -2,7 +2,7 @@ import RootContext from "../../providers/root";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo from "../../assets/ui-elements/logo.png"
+import logo from "../../assets/ui-elements/logo.png";
 import "./loading.css";
 
 const LoadingPage = () => {
@@ -41,8 +41,8 @@ const LoadingPage = () => {
         const predictions = response.data;
         console.log(predictions);
         setData({ predictions });
-        
-        setTransition(true)
+
+        setTransition(true);
         setTimeout(() => {
           setUploadStatus("Image uploaded successfully!"); // Set image upload status
           setSelectedImages([]); // Clear the selected image after successful upload
@@ -62,12 +62,21 @@ const LoadingPage = () => {
     <div>
       {/* Status message if there is an error */}
       <p>{uploadStatus}</p>
-      <div className={`loading_container  ${transition ? "loading_container_transition" : ""}`}>
-        <img className={`logo ${transition ? "logo_transition" : ""}`} src={logo}></img>
+      <div
+        className={`loading_container  ${
+          transition ? "loading_container_transition" : ""
+        }`}
+      >
+        <img
+          className={`logo ${transition ? "logo_transition" : ""}`}
+          src={logo}
+        ></img>
         <div id="loading-bar-spinner" className="spinner">
-          <div className={`spinner-icon ${transition ? "spinner_transition" : ""}`}></div>
+          <div
+            className={`spinner-icon ${transition ? "spinner_transition" : ""}`}
+          ></div>
         </div>
-        <p className="loading_text">We're working on it</p>
+        <p className="loading_text">we're working on it!</p>
       </div>
     </div>
   );
