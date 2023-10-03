@@ -29,15 +29,35 @@ const DistributionMap = ({ species }) => {
         },
       ]}
       layout={{
+        autosize: false,
         width: 700,
-        height: 420,
-        title: `Distribution Map`,
+        height: 390,
+        margin: {
+          l: 50,
+          r: 50,
+          b: 50,
+          t: 50,
+          pad: 0,
+        },
+        title: {
+          text: "DISTRIBUTION MAP",
+
+          font: {
+            family: "Geologica",
+            size: 24,
+            color: "#909090",
+          },
+          yref: "paper",
+          y: 1.1,
+        },
         geo: {
           projection: {
             type: "robinson",
           },
         },
+        // paper_bgcolor: "#f5f5f5",
       }}
+      config={{ responsive: true }}
     />
   );
 };

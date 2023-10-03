@@ -19,6 +19,7 @@ import { useState, useEffect } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 import info_icon from "../../assets/ui-elements/info_icon.svg";
+import gallery_icon from "../../assets/ui-elements/gallery_icon.png";
 import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
 import DistributionMap from "../distribution_map/distribution-map";
@@ -198,17 +199,43 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Distribution panel body */}
-            <div className="flex flex-col items-center h-full pb-6 pr-4">
+            <div className="flex flex-col items-center h-full pr-4 overflow-auto">
               {/* Distribution Map */}
-              <div
+              {/* <div
                 id="test-map"
-                className="flex items-center justify-center w-full h-11/12 overflow-clip"
+                className="flex items-center justify-center w-full h-10/12 overflow-clip bg-slate-200"
               >
                 <DistributionMap />
-              </div>
+              </div> */}
+              <DistributionMap />
 
-              {/* Distribution Link */}
-              <div className="flex h-1/12">
+              {/* GBIF Links */}
+              <div className="flex flex-row items-start justify-center w-full gap-12 mb-6 h-1/12">
+                <a
+                  className="flex items-center gap-2 cursor-pointer"
+                  href="https://www.gbif.org/occurrence/gallery?taxon_key=7930834"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <div className="w-4 rounded aspect-square">
+                    <img
+                      src={gallery_icon}
+                      alt="gallery icon"
+                      className="z-0 items-center w-full h-full scale-125"
+                    ></img>
+                  </div>
+                  <span
+                    className="text-lg italic text-status-blue"
+                    style={{
+                      fontFamily: "Geologica",
+                      fontWeight: 200,
+                      letterSpacing: 0,
+                    }}
+                  >
+                    reference photos
+                  </span>
+                </a>
+
                 <a
                   className="flex items-center gap-2 cursor-pointer"
                   href="https://www.gbif.org/species/7930834"
@@ -223,7 +250,7 @@ function SpeciesCardExpanded({
                     ></img>
                   </div>
                   <span
-                    className="text-xl italic text-status-blue"
+                    className="text-lg italic text-status-blue"
                     style={{
                       fontFamily: "Geologica",
                       fontWeight: 200,
@@ -366,21 +393,5 @@ function SpeciesCardCollapsed({
     </div>
   );
 }
-
-// function DislplayRefImage({ ref_data }) {
-//   if (!ref_data) return null;
-//   return (
-//     <div
-//       id="input_img_container"
-//       className="flex w-full rounded-2xl aspect-square bg-slate-500"
-//     >
-//       <img
-//         src={`data:image/jpeg;base64,${ref_data}`}
-//         alt="reference"
-//         className="object-cover w-full rounded-2xl"
-//       />
-//     </div>
-//   );
-// }
 
 export default SpeciesCard;

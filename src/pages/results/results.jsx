@@ -23,12 +23,9 @@ const ResultsPage = () => {
   const downloadFile = async () => {
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
-      const response = await axios.get(
-        `/download`,
-        {
-          responseType: 'blob',
-        }
-      );
+      const response = await axios.get(`/download`, {
+        responseType: "blob",
+      });
 
       // Create a Blob object from the response data
       const fileBlob = new Blob([response.data]);
@@ -37,28 +34,27 @@ const ResultsPage = () => {
       const fileURL = window.URL.createObjectURL(fileBlob);
 
       // Create a temporary download link from fileURL
-      const downloadLink = document.createElement('a');
+      const downloadLink = document.createElement("a");
       downloadLink.href = fileURL;
-      downloadLink.download = 'predictions.csv'; 
+      downloadLink.download = "predictions.csv";
 
       // Activate the link to download the file.
       downloadLink.click();
 
       // Return the URL to the previous link/page.
       downloadLink.parentNode.removeChild(downloadLink);
-    
     } catch (error) {
-
       // Display errors/status if there is an error
       console.error("Error downloading file:", error);
     }
   };
-  
+
   const handleClick = () => {
-    const confirmMessage = 'If you continue, you may lose unsaved data. Are you sure?';
+    const confirmMessage =
+      "If you continue, you may lose unsaved data. Are you sure?";
     if (window.confirm(confirmMessage)) {
       // User clicked "OK," proceed with the action
-      setCurrentPage("")
+      setCurrentPage("");
     } else {
       // User clicked "Cancel," do nothing or handle it accordingly
     }
@@ -67,7 +63,7 @@ const ResultsPage = () => {
   // console.log(data[0]);
   return (
     // Main Parent
-    <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11 transition">
+    <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden transition max-w-screen gap-11">
       {/* File Navigation Section */}
       <div className="flex flex-col w-1/3 shadow-3xl rounded-t-3xl max-h-fit panel">
         {/* Navigation Header */}
@@ -101,7 +97,6 @@ const ResultsPage = () => {
         </div>
 
         {/* Navigation Body */}
-        {/* <div className="flex justify-center h-[calc(100%-250px)] max-h-[calc(100%-250px)] p-10 overflow-clip"> */}
         <div className="relative flex flex-col items-start gap-4 pt-4 h-5/6 max-h-fit overflow-clip panel">
           <div className="items-start w-full p-8 overflow-y-auto h-[calc(100%-80px)]">
             <div className="flex flex-col w-full h-full gap-4">
@@ -121,11 +116,11 @@ const ResultsPage = () => {
 
           {/* Batch Download Button */}
           <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
-            <button className="flex items-center justify-center p-1 rounded-lg hover:shadow-lg" onClick={() => downloadFile()}>
-              <div
-                className="flex items-center gap-2 cursor-pointer"
-                // onClick={handleExpand}
-              >
+            <button
+              className="flex items-center justify-center p-1 rounded-lg hover:shadow-lg"
+              onClick={() => downloadFile()}
+            >
+              <div className="flex items-center gap-2 cursor-pointer">
                 <div className="w-6 rounded aspect-square">
                   <img
                     src={orange_download_icon}
