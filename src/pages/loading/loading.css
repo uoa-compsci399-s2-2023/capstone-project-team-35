@@ -2,7 +2,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   z-index: 19;
   animation: loading-bar-spinner 800ms linear infinite;
 }
@@ -21,20 +20,74 @@
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+.spinner_transition {
+  width: 0vw;
+  height: 0vw;
+
+  animation-name: spinner_transition;
+  animation-duration: 2s;
+}
+
+@keyframes spinner_transition {
+  from {
+    width: 16vw;
+    height: 16vw;
+  }
+  to {
+    width: 0vw;
+    height: 0vw;
+  }
+}
+
 .logo {
   width: 8vw;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
+}
+
+.logo_transition {
+  width: 0vw;
+
+  animation-name: logo_transition;
+  animation-duration: 2s;
+}
+
+@keyframes logo_transition {
+  from {
+    width: 8vw;
+  }
+  to {
+    width: 0vw;
+    }
 }
 
 .loading_text {
   position: absolute;
-  top: min(85vw, 590px);
-  left: 50%;
-  transform: translate(-50%);
-  
+  left: 0px;
   color: #A8A8A8;
   font-size: 2vw;
+  margin-top: 5vw;
+  left: 8%;
+}
+
+.loading_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20%;
+  transform: translate(-50%, -50%);
+}
+
+.loading_container_transition {
+  opacity: 0; 
+  animation-name: container_transition;
+  animation-duration: 2s; 
+}
+
+@keyframes container_transition {
+  from {
+    opacity: 100%;
+  }
+  to {
+    opacity: 0%;
+  }
 }

@@ -18,3 +18,17 @@
   font: normal normal 300 18px/29px Mitr;
   letter-spacing: 0.9px;
 }
+
+.transition {
+  animation-name: results_transition;
+  animation-duration: 1s; 
+}
+
+@keyframes results_transition {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}

@@ -7,6 +7,7 @@ import orange_download_icon from "../../assets/ui-elements/orange_download-icon.
 import gray_download_icon from "../../assets/ui-elements/gray_download-icon.svg";
 import "tailwindcss/tailwind.css";
 import "./results.css";
+import axios from "axios";
 
 const ResultsPage = () => {
   const { data, setCurrentPage } = useContext(RootContext);
@@ -19,10 +20,54 @@ const ResultsPage = () => {
     }
   }, [data]);
 
+  const downloadFile = async () => {
+    try {
+      // Send a POST request to the '/classify' endpoint in the backend to upload the image
+      const response = await axios.get(
+        `/download`,
+        {
+          responseType: 'blob',
+        }
+      );
+
+      // Create a Blob object from the response data
+      const fileBlob = new Blob([response.data]);
+
+      // Create a URL for the Blob
+      const fileURL = window.URL.createObjectURL(fileBlob);
+
+      // Create a temporary download link from fileURL
+      const downloadLink = document.createElement('a');
+      downloadLink.href = fileURL;
+      downloadLink.download = 'predictions.csv'; 
+
+      // Activate the link to download the file.
+      downloadLink.click();
+
+      // Return the URL to the previous link/page.
+      downloadLink.parentNode.removeChild(downloadLink);
+    
+    } catch (error) {
+
+      // Display errors/status if there is an error
+      console.error("Error downloading file:", error);
+    }
+  };
+  
+  const handleClick = () => {
+    const confirmMessage = 'If you continue, you may lose unsaved data. Are you sure?';
+    if (window.confirm(confirmMessage)) {
+      // User clicked "OK," proceed with the action
+      setCurrentPage("")
+    } else {
+      // User clicked "Cancel," do nothing or handle it accordingly
+    }
+  };
+
   // console.log(data[0]);
   return (
     // Main Parent
-    <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11">
+    <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden max-w-screen gap-11 transition">
       {/* File Navigation Section */}
       <div className="flex flex-col w-1/3 shadow-3xl rounded-t-3xl max-h-fit panel">
         {/* Navigation Header */}
@@ -32,7 +77,7 @@ const ResultsPage = () => {
             {/* Home Button */}
             <div className="top-0 flex items-center justify-center w-8 m-6 cursor-pointer align-items left-1 aspect-square back">
               {/* Return to home button */}
-              <button type="button" onClick={() => setCurrentPage("")}>
+              <button type="button" onClick={handleClick}>
                 <img
                   src={home_icon}
                   className="items-center w-full h-full return-button style_home"
@@ -76,7 +121,7 @@ const ResultsPage = () => {
 
           {/* Batch Download Button */}
           <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
-            <button className="flex items-center justify-center p-1 rounded-lg hover:shadow-lg">
+            <button className="flex items-center justify-center p-1 rounded-lg hover:shadow-lg" onClick={() => downloadFile()}>
               <div
                 className="flex items-center gap-2 cursor-pointer"
                 // onClick={handleExpand}

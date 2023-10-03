@@ -7,6 +7,12 @@
   bottom: 0%;
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
+  overflow-y: auto;
+}
+
+.frame.scrollable  {
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 .frame h1 {
@@ -51,3 +57,18 @@
     left: calc(8% + 15vw);
   }
 }
+
+/* Custom scrollbar styles
+.frame::-webkit-scrollbar {
+  width: 0.6em;
+  background-color: transparent;
+}
+
+.frame::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+
+.frame::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+} */
