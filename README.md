@@ -1,4 +1,4 @@
-<img src="../capstone-project-team-35/src/assets/branding/swirls-bg_white-logo.png">
+<img src="swirls-bg_white-logo.png">
 
 Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tools and insights of AI crafted by multidisciplinary expert entomologists. It is designed to enhance workflow efficiency through its straightforward interface combined with relevant biosecurity information that promote the formation of actionable insights.
 
