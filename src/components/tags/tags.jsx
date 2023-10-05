@@ -1,6 +1,6 @@
 const TagThemes = {
   in_NZ: {
-    text: "in_NZ",
+    text: "in NZ",
     border_color: "border-status-blue",
     bg_color: "bg-status-blue",
   },
