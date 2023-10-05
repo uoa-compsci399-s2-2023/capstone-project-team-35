@@ -4,3 +4,4 @@ export { default as SpeciesCard } from "./species_card/species_card";
 export { default as ImageSection } from "./image_section/Image_section";
 export { default as Tags } from "./tags/tags";
 export { default as ResultsTable } from "./results_table/results-table";
+export { default as DistributionMap } from "./distribution_map/distribution-map";

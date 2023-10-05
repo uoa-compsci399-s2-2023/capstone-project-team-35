@@ -20,7 +20,7 @@ def get_insect_by_label(global_species, label) -> Insect:
                     "endemic": row["endemic"],
                     "unwanted_pest": row["unwanted_pest"],
                     "native": row["native"],
-                    "introduced_biocotrol": row["introduced_biocontrol"]
+                    "introduced_biocontrol": row["introduced_biocontrol"]
                 }
                 
                 insect = Insect(row["label"], row["country"], row["genus"], row["species"], row["file"], row["distribution_url"], tags)

@@ -15,7 +15,7 @@ class LocalRepository(AbstractRepository):
     def add_results_csv(self, complete_predictions_list):
         field_names = [
         'image_name', 'label', 'probability', 'rank', 'genus', 'species', 'country', 
-        'in_NZ', 'endemic', 'unwanted_pest', 'native', 'introduced_biocotrol'
+        'in_NZ', 'endemic', 'unwanted_pest', 'native', 'introduced_biocontrol'
     ]
         RESULTS_FILE_PATH = os.path.join(RESULTS_FILE_DIRECTORY, "predictions.csv")  # Define the CSV file path
 

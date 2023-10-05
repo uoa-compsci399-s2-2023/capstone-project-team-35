@@ -1,352 +1,385 @@
 .circlier_number {
-    background-color: #FC7F40;
-    height: 70px;
-    width: 70px;
-    border-radius: 50%;
-    display: inline-block;
-    text-align: center;
-    padding: 25px 0;
-    font-size: 22px;
-    font-family: var(--font_family);
-    color: white;
+  background-color: #fc7f40;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  padding: 24px;
+  font-size: 30px;
+  font-family: "Geologica", sans-serif;
+  font-weight: 100;
+  color: white;
 }
 
 .circlier_number p {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .circlier_number img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .Inputs {
-    display: grid;
-    grid-template-columns: 1fr 10fr;
-    grid-template-rows: 70px 10% 70px 2fr 2fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    margin-left: 6.8vw;
-    max-width: 65%;
-    height: 25vw;
-}
-    
-.Inputs .grid_circle_1 { 
-    grid-area: 1 / 1 / 2 / 2; 
-    margin: auto;
-    position: relative;
-    top: 3px;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  grid-template-rows: 70px 10% 70px 2fr 2fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-left: 6.8vw;
+  max-width: 65%;
+  height: 25vw;
 }
 
-.Inputs .grid_selection1 { 
-    grid-area: 1 / 2 / 2 / 3; 
-    margin-left: 20px;
+.Inputs .grid_circle_1 {
+  grid-area: 1 / 1 / 2 / 2;
+  margin: auto;
+  position: relative;
+  top: 3px;
 }
 
-.Inputs .grid_connector { 
-    grid-area: 2 / 1 / 3 / 2; 
-    min-height: 20px; 
+.Inputs .grid_selection1 {
+  grid-area: 1 / 2 / 2 / 3;
+  margin-left: 20px;
 }
 
-.Inputs .grid_circle_2{ 
-    grid-area: 3 / 1 / 4 / 2; 
-    margin: auto;
-    position: relative;
-    bottom: 1px;
+.Inputs .grid_connector {
+  grid-area: 2 / 1 / 3 / 2;
+  min-height: 20px;
 }
 
-.Inputs .grid_selection2 { 
-    grid-area: 3 / 2 / 4 / 3; 
-    margin-left: 20px;
+.Inputs .grid_circle_2 {
+  grid-area: 3 / 1 / 4 / 2;
+  margin: auto;
+  position: relative;
+  bottom: 1px;
+}
+
+.Inputs .grid_selection2 {
+  grid-area: 3 / 2 / 4 / 3;
+  margin-left: 20px;
 }
 
 .Inputs .grid_upload {
-    grid-area: 4 / 2 / 5 / 3; 
+  grid-area: 4 / 2 / 5 / 3;
 }
 
 .Inputs .grid_submit {
-    grid-area: 5 / 2 / 6 / 3;
+  grid-area: 5 / 2 / 6 / 3;
 }
 
 .connector {
-    position: relative;
-    width: 6px;
-    height: 100%;
-    background-color: #FC7F40;
-    margin: auto;
+  position: relative;
+  width: 6px;
+  height: 100%;
+  background-color: #fc7f40;
+  margin: auto;
 }
 
 .button {
-    /* appearance: none;
+  /* appearance: none;
     -webkit-appearance: none; */
-    background-color: white;
-    border: none;
-    font-size: 20px;
-    padding: 15px;
-    min-width: 18vw;
-    max-width: 10%;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    border-radius: 30px;
-    font-family: var(--font_family);
-    color: #707070;
-    overflow: hidden;
+  background-color: white;
+  border: none;
+  font-size: 20px;
+  padding: 15px;
+  min-width: 18vw;
+  max-width: 10%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  border-radius: 30px;
+  font-family: "Geologica", sans-serif;
+  font-weight: 200;
+  color: #707070;
+  overflow: hidden;
 }
 
 .button option {
-    font-size: 18px;
+  font-size: 18px;
 }
 
-.button:focus{ outline: none; }
+.button:focus {
+  outline: none;
+}
 
 .arrow {
-    border: solid #707070;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 6px;
-    margin-left: 2vw;
-    margin-bottom: 3px;
+  border: solid #707070;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 6px;
+  margin-left: 2vw;
+  margin-bottom: 3px;
 
-    /* Rotate Arrow */  
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
+  /* Rotate Arrow */
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
 }
 
 .off {
-    display: none;
+  display: none;
 }
 
 .upload {
-    font-size: 20px;
-    padding: 15px;
-    min-width: 18vw;
-    font-family: var(--font_family);
-    color: #707070;
-    margin-top: 10px;
+  font-size: 20px;
+  padding: 15px;
+  min-width: 18vw;
+  font-family: "Geologica", sans-serif;
+  font-weight: 200;
+  color: #707070;
+  margin-top: 10px;
 }
 
 .circlier_number.selected {
-    height: 50px;
-    width: 50px;
-    font-size: 15px;
-    position: relative;
-    /* left: 9px;
+  height: 50px;
+  width: 50px;
+  font-size: 15px;
+  position: relative;
+  /* left: 9px;
     top: 10px; */
 
-    animation-name: example;
-    animation-duration: 1s;
+  animation-name: example;
+  animation-duration: 1s;
 }
 
 @keyframes example {
-    from {
-        width: 70px;
-        height: 70px
-    }
-    to {
-        width: 50px;
-        height: 50px
-    }
+  from {
+    width: 70px;
+    height: 70px;
+  }
+  to {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 p.selected {
-    bottom: 7px;
+  bottom: 7px;
 }
 
 select.selected {
-    /* position: relative;
+  /* position: relative;
     top: 10px; */
 }
 
 .Inputs.selected {
-    grid-template-rows: 50px 5% 70px 2fr 2fr;
-    animation-name: connector;
-    animation-duration: 1s
+  grid-template-rows: 50px 5% 70px 2fr 2fr;
+  animation-name: connector;
+  animation-duration: 1s;
 }
 
 @keyframes connector {
-    from {grid-template-rows: 70px 10% 70px 2fr 2fr;}
-    to {grid-template-rows: 50px 5% 70px 2fr 2fr;}
+  from {
+    grid-template-rows: 70px 10% 70px 2fr 2fr;
+  }
+  to {
+    grid-template-rows: 50px 5% 70px 2fr 2fr;
+  }
 }
 
-div.selected_upload, input.selected_upload {
-    background-image: url('input.png');
-    background-repeat: no-repeat;
-    background-size: max(250px, 18vw);
-    background-position: center;
-    background-color: white;
+div.selected_upload,
+input.selected_upload {
+  background-image: url("input_backdrop.png");
+  background-repeat: no-repeat;
+  background-size: max(250px, 18vw);
+  background-position: center;
+  background-color: white;
 
-    width: 30vw;
-    min-width: 270px;
-    height: 270px;
-    border-radius: 25px;
-    border: dashed 3px #D0D0D0;
+  width: 30vw;
+  min-width: 270px;
+  height: 270px;
+  border-radius: 25px;
+  border: dashed 3px #d0d0d0;
 }
 
 div.selected_upload {
-    animation-name: input;
-    animation-duration: 1s
+  animation-name: input;
+  animation-duration: 1s;
 }
 
 @keyframes input {
-    from {opacity: 0;}
-    to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 button.selected_upload {
-    background: linear-gradient(to left, #C4C4C4 50%, rgba(251,194,41,1) 50%, rgba(253,131,62,1) 100%) right;
-    background-size: 200%;
-    transition: .5s ease-out;
+  background: linear-gradient(
+      to left,
+      #c4c4c4 50%,
+      rgba(251, 194, 41, 1) 50%,
+      rgba(253, 131, 62, 1) 100%
+    )
+    right;
+  background-size: 200%;
+  transition: 0.5s ease-out;
 
-    height: 40px;
-    width: 150px;
-    position: relative;
-    border-radius: 30px;
-    margin-top: 20px;
-    text-align: center;
-    font-size: 18px;
-    font-family: var(--font_family);
-    border: none;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-    color: black;
-    font-weight: bold;
-    
+  height: 40px;
+  width: 150px;
+  position: relative;
+  border-radius: 30px;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-family: "Geologica", sans-serif;
+  font-weight: 200;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  color: black;
 }
 
 button.enabled:hover {
-    color: #F5EDE5;
-    border: none;
+  color: #f5ede5;
+  border: none;
 }
 
 button.enabled:active {
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-input[type = "file"]{
+input[type="file"] {
   opacity: 0;
 }
 
 button.enabled {
-    color: white;
-    background-position: left;    
+  color: white;
+  background-position: left;
 }
 
 @keyframes submit {
-    from {background-size: 0px, 100%;}
-    to {background-size: 100%, 100%;}
+  from {
+    background-size: 0px, 100%;
+  }
+  to {
+    background-size: 100%, 100%;
+  }
 }
 
 div.hasImage {
-    border: dashed 3px rgba(251,194,41,1);
+  border: dashed 3px rgba(251, 194, 41, 1);
 
-    background-image: none;
-    background-color: white;
-    overflow-y: auto;
+  background-image: none;
+  background-color: white;
+  overflow-y: auto;
 }
 
 .hasImage input.hello {
-    display: none;
+  display: none;
 }
 
 .image_section {
-    margin-bottom: 3px;
-    background-color: #F8F8F8;
-    border-radius: 25px;
-    padding: 2px;
-    padding-left: 10px;
-    font-size: min(max(0.8vw, 9px), 15px);
-    overflow: hidden;
-    
-    animation-name: image_section;
-    animation-duration: 0.5s
+  margin-bottom: 3px;
+  background-color: #f8f8f8;
+  border-radius: 25px;
+  padding: 2px;
+  padding-left: 10px;
+  font-size: min(max(0.8vw, 9px), 15px);
+  overflow: hidden;
+
+  animation-name: image_section;
+  animation-duration: 0.5s;
 }
 
 @keyframes image_section {
-    from {opacity: 0%; }
-    to {opacity: 100%;}
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
 }
 
 .image_section button {
-    position: relative;
-    float: right;
-    width: 5%;
-    background-color: #FF5757;
-    color: white;
-    border-radius: 50%;
+  position: relative;
+  float: right;
+  width: 5%;
+  background-color: #ff5757;
+  color: white;
+  border-radius: 50%;
 
-    /* animation-name: section_btn;
+  /* animation-name: section_btn;
     animation-duration: 1s */
 }
 
 @keyframes section_btn {
-    from {opacity: 0; }
-    to {opacity: 1;}
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .image_section button:hover {
-    background-color: orange;
+  background-color: orange;
 }
 
 .individ_images {
-    padding: 10px;
+  padding: 10px;
 }
 
 .grid_submit label {
-    display: block;
-    margin-left: 15px;
-    width: calc(105px + 2.5vw);
-    height: 35px;
-    text-align: center;
-    border: solid 2px #FC7F40;
-    margin-top: 10px;
-    color: #FC7F40;
-    float: right;
-    position: relative;
-    border-radius: 25px;
-    top: 10px;
-    font-weight: bold;
+  display: block;
+  margin-left: 15px;
+  width: calc(105px + 2.5vw);
+  height: 35px;
+  text-align: center;
+  border: solid 2px #fc7f40;
+  margin-top: 10px;
+  color: #fc7f40;
+  float: right;
+  position: relative;
+  border-radius: 25px;
+  top: 10px;
+  font-weight: bold;
 
-    &:hover {
-        border-color: #FBB82D;
-        color: #FBB82D;
-    }
+  &:hover {
+    border-color: #fbb82d;
+    color: #fbb82d;
+  }
 }
 
 .grid_submit label p {
-    font-size: calc(13px + 0.1vw);
-    position: relative;
-    margin-right: 10px;
-    position: relative;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+  font-size: calc(13px + 0.1vw);
+  position: relative;
+  margin-right: 10px;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .grid_submit label img {
-    float: left;
-    width: 18%;
-    margin-left: 10px;
-    position: relative;
-    top: 4px;
-    width: 15%;
+  float: left;
+  width: 18%;
+  margin-left: 10px;
+  position: relative;
+  top: 4px;
+  width: 15%;
 }
 
 @media only screen and (max-width: 990px) {
-    .image_section {
-        font-size: max(0.9vw, 8px);
-    }
+  .image_section {
+    font-size: max(0.9vw, 8px);
+  }
 
-    .grid_submit label {
-        float: left;
-    }
+  .grid_submit label {
+    float: left;
+  }
 
-    .grid_submit button {
-        float: left;
-    }
+  .grid_submit button {
+    float: left;
+  }
 
-    .button {
-        min-width: max(30vw, 180px);
-    }
+  .button {
+    min-width: max(30vw, 180px);
+  }
 }
