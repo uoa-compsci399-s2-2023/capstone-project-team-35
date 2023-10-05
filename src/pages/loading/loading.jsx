@@ -1,6 +1,5 @@
 import RootContext from "../../providers/root";
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../../assets/ui-elements/logo.png";
 import "./loading.css";
@@ -70,6 +69,7 @@ const LoadingPage = () => {
         <img
           className={`logo ${transition ? "logo_transition" : ""}`}
           src={logo}
+          alt="insect logo"
         ></img>
         <div id="loading-bar-spinner" className="spinner">
           <div
