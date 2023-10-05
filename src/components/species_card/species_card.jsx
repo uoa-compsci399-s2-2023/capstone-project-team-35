@@ -86,21 +86,24 @@ function SpeciesCardExpanded({
                 progress={probPercentage}
                 color={theme}
               />
-              <span className="absolute z-10 flex text-2xl font-semibold text-foreground-dark">
+              <span className="absolute z-10 flex font-semibold lg:text-2xl md:text-xl text-foreground-dark">
                 {`${probPercentage}%`}
               </span>
             </div>
 
             {/* Species Name */}
             <div
-              className="w-full text-2xl text-center truncate max-w-fit text-ellipsis text-foreground-dark"
+              className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark"
               style={{
                 fontFamily: "Geologica",
                 fontWeight: 400,
                 letterSpacing: 0,
               }}
             >
-              {genus} {species}
+              <p>{genus}</p>{" "}
+              <p className="italic" style={{ fontWeight: 300 }}>
+                {species}
+              </p>
             </div>
 
             {/* Tags */}
@@ -331,14 +334,17 @@ function SpeciesCardCollapsed({
 
           {/* Species Name */}
           <div
-            className="w-full text-2xl text-center truncate max-w-fit text-ellipsis text-foreground-dark"
+            className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark"
             style={{
               fontFamily: "Geologica",
               fontWeight: 400,
               letterSpacing: 0,
             }}
           >
-            {genus} {species}
+            <p>{genus}</p>{" "}
+            <p className="italic" style={{ fontWeight: 300 }}>
+              {species}
+            </p>
           </div>
 
           {/* Tags */}
@@ -350,7 +356,7 @@ function SpeciesCardCollapsed({
               if (!tags[tag]) return null;
 
               return (
-                <SpeciesTag tag={tag} />
+                tags[tag] === "TRUE" && <SpeciesTag tag={tag} />
                 // <div
                 //   key={tag}
                 //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border-4 border-black rounded-md border-opacity-5"
