@@ -157,16 +157,16 @@ const ResultsPage = () => {
         {/* Auxiliary Info Section */}
         <div className="flex h-2/5">
           {/* Reference Image Section */}
-          <div className="flex flex-col justify-center w-4/12 gap-2 pt-4 border-r-2 border-black border-opacity-10">
+          <div className="flex flex-col justify-center w-4/12 gap-3 border-r-2 border-black border-opacity-10">
             {/* HEADER */}
             <div className="flex items-center justify-center h-16 ">
               <span
-                className="font-sans text-2xl text-foreground-dark"
+                className="font-sans md:text-xl lg:text-2xl text-foreground-dark"
                 style={{
                   fontFamily: "Mitr",
                   fontWeight: 300,
                   letterSpacing: 0,
-                  paddingTop: 15,
+                  paddingTop: 20,
                 }}
               >
                 INPUT IMAGE
@@ -181,11 +181,7 @@ const ResultsPage = () => {
             {/* INDIVIDUAL DOWNLOAD */}
             <div className="h-1/12">
               <div className="flex items-center justify-center">
-                <button
-                  className="flex items-center gap-2 mt-2 cursor-pointer"
-                  // href=""
-                  // onClick={handleExpand}
-                >
+                <button className="flex items-center gap-2 mt-2 cursor-pointer">
                   <div className="w-5 rounded aspect-square">
                     <img
                       src={gray_download_icon}
@@ -217,11 +213,13 @@ const ResultsPage = () => {
                 className="font-sans text-xl text-foreground-dark"
                 style={{
                   fontFamily: "Mitr",
-                  fontWeight: 300,
+                  fontWeight: 400,
                   letterSpacing: 0,
+                  paddingTop: 8,
+                  color: "#FF5E49",
                 }}
               >
-                FULL PREDICTION SET PREVIEW
+                TOP 10 PREDICTIONS
               </span>
             </div>
             {/* TABLE */}

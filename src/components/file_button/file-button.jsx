@@ -1,8 +1,5 @@
-// import { useState } from "react";
-
 function FileButton(props) {
   const { image, selected, onClick } = props;
-  //   const [isSelected, setIsSelected] = useState(selected);
 
   return selected ? (
     <div

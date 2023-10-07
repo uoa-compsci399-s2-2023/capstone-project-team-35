@@ -14,10 +14,13 @@ const ResultsTable = (props) => {
       <table className="table">
         {/* head */}
         <thead className="text-xl">
-          <tr>
+          <tr
+            className="sticky top-0 bg-white border-b-2 border-gray-200"
+            style={{ fontFamily: "Geologica", color: "#707070" }}
+          >
             <th></th>
-            <th>Species Name</th>
-            <th>Probability</th>
+            <th>genus-species</th>
+            <th>probability</th>
           </tr>
         </thead>
         <tbody>
