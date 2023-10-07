@@ -8,7 +8,6 @@ import gray_download_icon from "../../assets/ui-elements/gray_download-icon.svg"
 import "tailwindcss/tailwind.css";
 import "./results.css";
 import axios from "axios";
-import { image } from "d3";
 
 const ResultsPage = () => {
   const { data, setCurrentPage } = useContext(RootContext);
@@ -20,6 +19,9 @@ const ResultsPage = () => {
       setCurrentSelectedImage(data.predictions[0]);
     }
   }, [data]);
+
+  console.log("currentSelectedImage:");
+  console.log(currentSelectedImage);
 
   const downloadFile = async () => {
     try {
