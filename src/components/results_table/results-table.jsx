@@ -1,6 +1,14 @@
 import React from "react";
 
 const ResultsTable = (props) => {
+  const { image } = props;
+
+  console.log("ResultsTable image:");
+  console.log(image);
+
+  if (!image) return null;
+  const { predictions } = image;
+
   return (
     <div className="flex w-full h-full max-h-full overflow-auto">
       <table className="table">
@@ -13,49 +21,15 @@ const ResultsTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {/* row 1 */}
-          <tr className="text-lg hover">
-            <th>1</th>
-            <td>species A</td>
-            <td>78%</td>
-          </tr>
-          {/* row 2 */}
-          <tr className="text-lg hover">
-            <th>2</th>
-            <td>species B</td>
-            <td>67%</td>
-          </tr>
-          {/* row 3 */}
-          <tr className="text-lg hover">
-            <th>3</th>
-            <td>species C</td>
-            <td>54%</td>
-          </tr>
-          <tr className="text-lg hover">
-            <th>4</th>
-            <td>species C</td>
-            <td>54%</td>
-          </tr>
-          <tr className="text-lg hover">
-            <th>5</th>
-            <td>species C</td>
-            <td>54%</td>
-          </tr>
-          <tr className="text-lg hover">
-            <th>6</th>
-            <td>species C</td>
-            <td>54%</td>
-          </tr>
-          <tr className="text-lg hover">
-            <th>7</th>
-            <td>species C</td>
-            <td>54%</td>
-          </tr>
-          <tr className="text-lg hover">
-            <th>8</th>
-            <td>species C</td>
-            <td>54%</td>
-          </tr>
+          {Object.entries(predictions).map(([rank, prediction]) => (
+            <tr className="text-lg hover">
+              <th>{`${Number(rank) + 1}`}</th>
+              <td>
+                {prediction.genus} {prediction.species}
+              </td>
+              <td>{`${(Number(prediction.probability) * 100).toFixed(2)}%`}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

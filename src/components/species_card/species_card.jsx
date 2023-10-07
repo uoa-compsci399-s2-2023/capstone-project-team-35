@@ -115,7 +115,7 @@ function SpeciesCardExpanded({
                 if (!tags[tag]) return null;
 
                 return (
-                  <SpeciesTag tag={tag} />
+                  tags[tag] === "TRUE" && <SpeciesTag tag={tag} />
                   // <div
                   //   key={tag}
                   //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border-4 border-black rounded-md border-opacity-5"

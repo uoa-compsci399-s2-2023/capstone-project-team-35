@@ -8,6 +8,7 @@ import gray_download_icon from "../../assets/ui-elements/gray_download-icon.svg"
 import "tailwindcss/tailwind.css";
 import "./results.css";
 import axios from "axios";
+import { image } from "d3";
 
 const ResultsPage = () => {
   const { data, setCurrentPage } = useContext(RootContext);
@@ -223,7 +224,7 @@ const ResultsPage = () => {
             </div>
             {/* TABLE */}
             <div className="relative flex items-center justify-center p-6 overflow-auto">
-              <ResultsTable />
+              <ResultsTable image={currentSelectedImage} />
             </div>
           </div>
         </div>
