@@ -89,7 +89,7 @@ const ResultsPage = () => {
             <div className="flex w-1/2 mt-6 mb-6 h-2/3">
               <img
                 src={main_logo}
-                className="top-0 w-full h-full max-h-fit"
+                className="company_logo"
                 alt="Ocell.ai Logo"
               ></img>
             </div>
@@ -97,7 +97,7 @@ const ResultsPage = () => {
         </div>
 
         {/* Navigation Body */}
-        <div className="relative flex flex-col items-start gap-4 pt-4 h-5/6 max-h-fit overflow-clip panel">
+        <div className="relative flex flex-col items-start gap-4 pt-4 h-5/6 max-h-fit overflow-clip">
           <div className="items-start w-full p-8 overflow-y-auto h-[calc(100%-80px)]">
             <div className="flex flex-col w-full h-full gap-4">
               {data.predictions.map((image) => (
@@ -163,6 +163,7 @@ const ResultsPage = () => {
                   fontFamily: "Mitr",
                   fontWeight: 300,
                   letterSpacing: 0,
+                  paddingTop: 15,
                 }}
               >
                 INPUT IMAGE
