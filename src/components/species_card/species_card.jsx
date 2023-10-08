@@ -17,6 +17,8 @@
 
 import { useState, useEffect } from "react";
 import view_icon from "../../assets/ui-elements/view_icon.svg";
+import dist_ok_icon from "../../assets/ui-elements/dist-ok_icon.png";
+import dist_nan_icon from "../../assets/ui-elements/dist-nan_icon.png";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 import info_icon from "../../assets/ui-elements/info_icon.svg";
 import gallery_icon from "../../assets/ui-elements/gallery_icon.png";
@@ -144,54 +146,6 @@ function SpeciesCardExpanded({
               {/* GBIF Links */}
               <div className="flex flex-row items-start justify-center w-full gap-12 mb-6 h-1/12">
                 <DisplayExtLinks link={distribution_url} />
-                {/* <a
-                  className="flex items-center gap-2 cursor-pointer"
-                  href="https://www.gbif.org/occurrence/gallery?taxon_key=7930834"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="w-4 rounded aspect-square">
-                    <img
-                      src={gallery_icon}
-                      alt="gallery icon"
-                      className="z-0 items-center w-full h-full scale-125"
-                    ></img>
-                  </div>
-                  <span
-                    className="text-lg italic text-status-blue"
-                    style={{
-                      fontFamily: "Geologica",
-                      fontWeight: 200,
-                      letterSpacing: 0,
-                    }}
-                  >
-                    reference photos
-                  </span>
-                </a>
-                <a
-                  className="flex items-center gap-2 cursor-pointer"
-                  href="https://www.gbif.org/species/7930834"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="w-4 rounded aspect-square">
-                    <img
-                      src={info_icon}
-                      alt="info icon"
-                      className="z-0 items-center w-full h-full scale-125"
-                    ></img>
-                  </div>
-                  <span
-                    className="text-lg italic text-status-blue"
-                    style={{
-                      fontFamily: "Geologica",
-                      fontWeight: 200,
-                      letterSpacing: 0,
-                    }}
-                  >
-                    more information
-                  </span>
-                </a> */}
               </div>
             </div>
           </div>
@@ -205,6 +159,7 @@ function SpeciesCardCollapsed({
   genus,
   probability,
   species,
+  distribution_url,
   tags,
   rank,
   handleExpand,
@@ -262,7 +217,11 @@ function SpeciesCardCollapsed({
 
           {/* Tap to view info */}
           <div className="flex">
-            <div
+            <DisplayExpandButton
+              link={distribution_url}
+              handleExpand={handleExpand}
+            />
+            {/* <div
               className="flex items-center gap-2 cursor-pointer"
               onClick={handleExpand}
             >
@@ -283,10 +242,60 @@ function SpeciesCardCollapsed({
               >
                 view distribution
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
+    </div>
+  );
+}
+
+function DisplayExpandButton({ link, handleExpand }) {
+  if (!link)
+    return (
+      <div className="flex items-center gap-2">
+        <div className="w-6 rounded aspect-square">
+          <img
+            src={dist_nan_icon}
+            alt="no dist avail icon"
+            className="z-0 items-center object-contain w-full h-full scale-125"
+          ></img>
+        </div>
+        <span
+          className="text-lg"
+          style={{
+            fontFamily: "Geologica",
+            fontWeight: 200,
+            letterSpacing: 0,
+            color: "#707070",
+          }}
+        >
+          distribution not available
+        </span>
+      </div>
+    );
+  return (
+    <div
+      className="flex items-center gap-2 cursor-pointer"
+      onClick={handleExpand}
+    >
+      <div className="object-contain w-6 rounded aspect-square">
+        <img
+          src={dist_ok_icon}
+          alt="dist ok icon"
+          className="z-0 items-center object-contain w-full h-full scale-125"
+        ></img>
+      </div>
+      <span
+        className="text-lg"
+        style={{
+          fontFamily: "Geologica",
+          fontWeight: 200,
+          letterSpacing: 0,
+        }}
+      >
+        view distribution
+      </span>
     </div>
   );
 }

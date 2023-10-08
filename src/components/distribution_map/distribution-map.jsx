@@ -1,7 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
-const DistributionMap = ({ species }) => {
+const DistributionMap = ({ data }) => {
   return (
     <Plot
       data={[
