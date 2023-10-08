@@ -268,7 +268,7 @@ function SpeciesCardGroup({ image }) {
               // key={rank}
               rank={rank}
               {...prediction}
-              distribution_url="https://www.gbif.org/species/7930834"
+              // distribution_url="https://www.gbif.org/species/7930834"
             />
           )
       )}

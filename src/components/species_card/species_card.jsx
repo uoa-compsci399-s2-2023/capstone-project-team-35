@@ -326,7 +326,7 @@ function DisplayExtLinks({ link }) {
     <>
       <a
         className="flex items-center gap-2 cursor-pointer"
-        href={link}
+        href={`https://www.gbif.org/occurrence/gallery?taxon_key=${taxon_key}`}
         target="_blank"
         rel="noreferrer"
       >
@@ -352,7 +352,7 @@ function DisplayExtLinks({ link }) {
 
       <a
         className="flex items-center gap-2 cursor-pointer"
-        href={`https://www.gbif.org/species/${taxon_key}`}
+        href={`https://www.gbif.org/species/${taxon_key}/metrics`}
         target="_blank"
         rel="noreferrer"
       >
