@@ -1,7 +1,7 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
-const DistributionMap = ({ species }) => {
+const DistributionMap = ({ data }) => {
   return (
     <Plot
       data={[
@@ -44,7 +44,7 @@ const DistributionMap = ({ species }) => {
 
           font: {
             family: "Geologica",
-            size: 24,
+            size: 20,
             color: "#909090",
           },
           yref: "paper",

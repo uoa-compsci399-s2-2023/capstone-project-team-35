@@ -1,8 +1,5 @@
-// import { useState } from "react";
-
 function FileButton(props) {
   const { image, selected, onClick } = props;
-  //   const [isSelected, setIsSelected] = useState(selected);
 
   return selected ? (
     <div
@@ -12,6 +9,7 @@ function FileButton(props) {
       <span
         className="w-full truncate"
         style={{
+          fontSize: "0.8vw",
           fontFamily: "Geologica",
           fontWeight: 500,
           letterSpacing: 0,
@@ -28,6 +26,7 @@ function FileButton(props) {
       <span
         className="w-full truncate"
         style={{
+          fontSize: "0.8vw",
           fontFamily: "Geologica",
           fontWeight: 400,
           letterSpacing: 0,

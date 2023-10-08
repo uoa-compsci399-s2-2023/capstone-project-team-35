@@ -16,7 +16,8 @@
 // };
 
 import { useState, useEffect } from "react";
-import view_icon from "../../assets/ui-elements/view_icon.svg";
+import dist_ok_icon from "../../assets/ui-elements/dist-ok_icon.png";
+import dist_nan_icon from "../../assets/ui-elements/dist-nan_icon.png";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
 import info_icon from "../../assets/ui-elements/info_icon.svg";
 import gallery_icon from "../../assets/ui-elements/gallery_icon.png";
@@ -55,18 +56,16 @@ const SpeciesCard = (props) => {
 };
 
 function SpeciesCardExpanded({
-  country,
   genus,
-  image,
   probability,
   species,
+  distribution_url,
   tags,
   rank,
   handleCollapse,
 }) {
   const { rank_color, theme } = rankedClasses[rank];
   const probPercentage = (Number(probability) * 100).toFixed(2);
-  // const graph_dim = document.getElementById("graph_container-A").clientWidth;
   return (
     <>
       {/* Maximum Height of the parent panel for reference */}
@@ -86,7 +85,10 @@ function SpeciesCardExpanded({
                 progress={probPercentage}
                 color={theme}
               />
-              <span className="absolute z-10 flex font-semibold lg:text-2xl md:text-xl text-foreground-dark">
+              <span
+                style={{ fontSize: "1.3vw" }}
+                className="absolute z-10 flex font-semibold lg:text-2xl md:text-xl text-foreground-dark"
+              >
                 {`${probPercentage}%`}
               </span>
             </div>
@@ -95,6 +97,7 @@ function SpeciesCardExpanded({
             <div
               className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark"
               style={{
+                fontSize: "1.4vw",
                 fontFamily: "Geologica",
                 fontWeight: 400,
                 letterSpacing: 0,
@@ -114,72 +117,9 @@ function SpeciesCardExpanded({
                 // If tag is false, return null
                 if (!tags[tag]) return null;
 
-                return (
-                  <SpeciesTag tag={tag} />
-                  // <div
-                  //   key={tag}
-                  //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border-4 border-black rounded-md border-opacity-5"
-                  // >
-                  //   {tag}
-                  // </div>
-                );
+                return tags[tag] === "TRUE" && <SpeciesTag tag={tag} />;
               })}
             </div>
-
-            {/* Left Header */}
-            {/* <div className="flex flex-row h-2/5 rounded-2xl">
-              Radial Graph Container
-              <div id="graph_container-A" className="flex w-1/3">
-                small radial graph
-                <div
-                  id="graph_container-B"
-                  className="flex items-center justify-center w-full max-w-full p-5 rounded-full aspect-square"
-                >
-                  <RadialGraph
-                    id="radial_graph"
-                    className="relative"
-                    progress={probPercentage}
-                    color={theme}
-                    // dimension={115}
-                  />
-                  <span className="absolute z-10 flex font-semibold text-md text-foreground-dark">
-                    {`${probPercentage}%`}
-                  </span>
-                </div>
-              </div>
-
-              Species Name Container
-              <div className="flex w-2/3">
-                Genus and Species Name
-                <div className="w-full p-4 mt-8 mb-8 ">
-                  <div className="text-3xl text-left overflow-ellipsis">
-                    {genus} {species}
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
-            {/* Left Body */}
-            {/* <div className="flex flex-col items-center justify-start h-full gap-4 p-4 overflow-hidden rounded-2xl">
-              Reference Image
-              <div className="flex w-7/12 rounded-2xl aspect-square bg-slate-500">
-                <DislplayRefImage ref_data={image} />
-              </div>
-
-              Tags
-              <div className="flex flex-wrap items-center justify-center">
-                Object.keys returns an array of keys
-                Loop through array
-                {Object.keys(tags || {}).map((tag) => {
-                  // If tag is false, return null
-                  if (!tags[tag]) return null;
-
-                  return (
-                    <SpeciesTag tag={tag} />
-                  );
-                })}
-              </div>
-            </div> */}
           </div>
 
           {/* separator */}
@@ -204,96 +144,12 @@ function SpeciesCardExpanded({
             {/* Distribution panel body */}
             <div className="flex flex-col items-center h-full pr-4 overflow-auto">
               {/* Distribution Map */}
-              {/* <div
-                id="test-map"
-                className="flex items-center justify-center w-full h-10/12 overflow-clip bg-slate-200"
-              >
-                <DistributionMap />
-              </div> */}
               <DistributionMap />
 
               {/* GBIF Links */}
               <div className="flex flex-row items-start justify-center w-full gap-12 mb-6 h-1/12">
-                <a
-                  className="flex items-center gap-2 cursor-pointer"
-                  href="https://www.gbif.org/occurrence/gallery?taxon_key=7930834"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="w-4 rounded aspect-square">
-                    <img
-                      src={gallery_icon}
-                      alt="gallery icon"
-                      className="z-0 items-center w-full h-full scale-125"
-                    ></img>
-                  </div>
-                  <span
-                    className="text-lg italic text-status-blue"
-                    style={{
-                      fontFamily: "Geologica",
-                      fontWeight: 200,
-                      letterSpacing: 0,
-                    }}
-                  >
-                    reference photos
-                  </span>
-                </a>
-
-                <a
-                  className="flex items-center gap-2 cursor-pointer"
-                  href="https://www.gbif.org/species/7930834"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="w-4 rounded aspect-square">
-                    <img
-                      src={info_icon}
-                      alt="info icon"
-                      className="z-0 items-center w-full h-full scale-125"
-                    ></img>
-                  </div>
-                  <span
-                    className="text-lg italic text-status-blue"
-                    style={{
-                      fontFamily: "Geologica",
-                      fontWeight: 200,
-                      letterSpacing: 0,
-                    }}
-                  >
-                    more information
-                  </span>
-                </a>
+                <DisplayExtLinks link={distribution_url} />
               </div>
-
-              {/* Country Label */}
-              {/* <div className="flex flex-row w-full h-1/5">
-                <div className="relative flex items-start justify-end w-1/12 h-full p-2 mt-2">
-                  <div className="flex w-full right-1 aspect-square">
-                    <img src={globe_icon} alt="globe icon" />
-                  </div>
-                </div>
-                <div className="flex flex-col items-start justify-start w-full p-2 text-3xl">
-                  Country
-                  <span className="text-2xl text-slate-900">{country}</span>
-                </div>
-              </div> */}
-
-              {/* Distribution Link */}
-              {/* <div className="flex h-4/5">
-                <div className="flex flex-row w-full h-2/6">
-                  <div className="relative flex items-start justify-end w-1/12 h-full p-2 mt-2">
-                    <div className="flex w-full right-1 aspect-square">
-                      <img src={link_icon} alt="link icon" />
-                    </div>
-                  </div>
-                  <div className="flex flex-col items-start justify-start w-full p-2">
-                    <span className="text-3xl">Distribution</span>
-                    <span className="text-slate-900 text-md">
-                      {"https://www.gbif.org/species/5087454"}
-                    </span>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>
@@ -306,6 +162,7 @@ function SpeciesCardCollapsed({
   genus,
   probability,
   species,
+  distribution_url,
   tags,
   rank,
   handleExpand,
@@ -327,7 +184,10 @@ function SpeciesCardCollapsed({
               progress={probPercentage}
               color={theme}
             />
-            <span className="absolute z-10 flex text-2xl font-semibold text-foreground-dark">
+            <span
+              style={{ fontSize: "1.3vw" }}
+              className="absolute z-10 flex text-2xl font-semibold text-foreground-dark"
+            >
               {`${probPercentage}%`}
             </span>
           </div>
@@ -336,6 +196,7 @@ function SpeciesCardCollapsed({
           <div
             className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark"
             style={{
+              fontSize: "1.4vw",
               fontFamily: "Geologica",
               fontWeight: 400,
               letterSpacing: 0,
@@ -355,15 +216,7 @@ function SpeciesCardCollapsed({
               // If tag is false, return null
               if (!tags[tag]) return null;
 
-              return (
-                tags[tag] === "TRUE" && <SpeciesTag tag={tag} />
-                // <div
-                //   key={tag}
-                //   className="inline-block px-2 py-1 m-1 text-sm font-semibold border-4 border-black rounded-md border-opacity-5"
-                // >
-                //   {tag}
-                // </div>
-              );
+              return tags[tag] === "TRUE" && <SpeciesTag tag={tag} />;
             })}
           </div>
 
@@ -371,7 +224,11 @@ function SpeciesCardCollapsed({
 
           {/* Tap to view info */}
           <div className="flex">
-            <div
+            <DisplayExpandButton
+              link={distribution_url}
+              handleExpand={handleExpand}
+            />
+            {/* <div
               className="flex items-center gap-2 cursor-pointer"
               onClick={handleExpand}
             >
@@ -392,11 +249,133 @@ function SpeciesCardCollapsed({
               >
                 view distribution
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function DisplayExpandButton({ link, handleExpand }) {
+  if (!link)
+    return (
+      <div className="flex items-center gap-2">
+        <div className="w-4 rounded aspect-square">
+          <img
+            src={dist_nan_icon}
+            alt="no dist avail icon"
+            className="z-0 items-center object-contain w-full h-full scale-125"
+          ></img>
+        </div>
+        <span
+          className="text-lg"
+          style={{
+            fontSize: "1vw",
+            fontFamily: "Geologica",
+            fontWeight: 200,
+            letterSpacing: 0,
+            color: "#707070",
+          }}
+        >
+          no distribution info
+        </span>
+      </div>
+    );
+  return (
+    <div
+      className="flex items-center gap-2 cursor-pointer"
+      onClick={handleExpand}
+    >
+      <div className="object-contain w-4 rounded aspect-square">
+        <img
+          src={dist_ok_icon}
+          alt="dist ok icon"
+          className="z-0 items-center object-contain w-full h-full scale-125"
+        ></img>
+      </div>
+      <span
+        className="text-lg"
+        style={{
+          fontSize: "1vw",
+          fontFamily: "Geologica",
+          fontWeight: 200,
+          letterSpacing: 0,
+        }}
+      >
+        view distribution
+      </span>
+    </div>
+  );
+}
+
+function DisplayExtLinks({ link }) {
+  if (!link)
+    return (
+      <span
+        style={{
+          fontSize: "1vw",
+        }}
+        className="italic text-gray-500"
+      >
+        no external links available
+      </span>
+    );
+  const taxon_key = link.split("/").pop();
+  return (
+    <>
+      <a
+        className="flex items-center gap-2 cursor-pointer"
+        href={`https://www.gbif.org/occurrence/gallery?taxon_key=${taxon_key}`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div className="w-4 rounded aspect-square">
+          <img
+            src={gallery_icon}
+            alt="gallery icon"
+            className="z-0 items-center w-full h-full scale-125"
+          ></img>
+        </div>
+        <span
+          className="text-lg italic text-status-blue"
+          style={{
+            fontSize: "1vw",
+            fontFamily: "Geologica",
+            fontWeight: 200,
+            letterSpacing: 0,
+          }}
+        >
+          reference photos
+        </span>
+      </a>
+
+      <a
+        className="flex items-center gap-2 cursor-pointer"
+        href={`https://www.gbif.org/species/${taxon_key}/metrics`}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <div className="w-4 rounded aspect-square">
+          <img
+            src={info_icon}
+            alt="info icon"
+            className="z-0 items-center w-full h-full scale-125"
+          ></img>
+        </div>
+        <span
+          className="text-lg italic text-status-blue"
+          style={{
+            fontSize: "1vw",
+            fontFamily: "Geologica",
+            fontWeight: 200,
+            letterSpacing: 0,
+          }}
+        >
+          more information
+        </span>
+      </a>
+    </>
   );
 }
 

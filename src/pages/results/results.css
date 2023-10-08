@@ -32,3 +32,10 @@
     opacity: 100%;
   }
 }
+
+.company_logo {
+  margin: auto;
+  width:  min(200px, 12vw);
+  position: relative;
+  bottom: 10px;
+}
