@@ -26,7 +26,6 @@ def get_occurences_count_by_country(taxonId: int) -> dict:
             try:
                 results = record_future.result()
                 raw_results_list.extend(results)
-                print(len(raw_results_list))
             except Exception as e:
                 print(f"An error occurred while fetching species occurence data for offset {current_offset}: {str(e)}")
     
@@ -34,6 +33,8 @@ def get_occurences_count_by_country(taxonId: int) -> dict:
         country_occurrences = {}
         for record in raw_results_list:
             country_name = record.get('country')
+            if country_name is None:
+                continue
             if country_name not in country_occurrences:
                 country_occurrences[country_name] = 0
             country_occurrences[country_name] += 1
