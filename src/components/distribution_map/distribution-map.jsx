@@ -44,7 +44,7 @@ const DistributionMap = ({ data }) => {
 
           font: {
             family: "Geologica",
-            size: 24,
+            size: 20,
             color: "#909090",
           },
           yref: "paper",

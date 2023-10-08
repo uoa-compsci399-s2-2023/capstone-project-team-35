@@ -16,7 +16,6 @@
 // };
 
 import { useState, useEffect } from "react";
-import view_icon from "../../assets/ui-elements/view_icon.svg";
 import dist_ok_icon from "../../assets/ui-elements/dist-ok_icon.png";
 import dist_nan_icon from "../../assets/ui-elements/dist-nan_icon.png";
 import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
@@ -86,7 +85,10 @@ function SpeciesCardExpanded({
                 progress={probPercentage}
                 color={theme}
               />
-              <span className="absolute z-10 flex font-semibold lg:text-2xl md:text-xl text-foreground-dark">
+              <span
+                style={{ fontSize: "1.3vw" }}
+                className="absolute z-10 flex font-semibold lg:text-2xl md:text-xl text-foreground-dark"
+              >
                 {`${probPercentage}%`}
               </span>
             </div>
@@ -95,6 +97,7 @@ function SpeciesCardExpanded({
             <div
               className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark"
               style={{
+                fontSize: "1.4vw",
                 fontFamily: "Geologica",
                 fontWeight: 400,
                 letterSpacing: 0,
@@ -181,7 +184,10 @@ function SpeciesCardCollapsed({
               progress={probPercentage}
               color={theme}
             />
-            <span className="absolute z-10 flex text-2xl font-semibold text-foreground-dark">
+            <span
+              style={{ fontSize: "1.3vw" }}
+              className="absolute z-10 flex text-2xl font-semibold text-foreground-dark"
+            >
               {`${probPercentage}%`}
             </span>
           </div>
@@ -190,6 +196,7 @@ function SpeciesCardCollapsed({
           <div
             className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark"
             style={{
+              fontSize: "1.4vw",
               fontFamily: "Geologica",
               fontWeight: 400,
               letterSpacing: 0,
@@ -254,7 +261,7 @@ function DisplayExpandButton({ link, handleExpand }) {
   if (!link)
     return (
       <div className="flex items-center gap-2">
-        <div className="w-6 rounded aspect-square">
+        <div className="w-4 rounded aspect-square">
           <img
             src={dist_nan_icon}
             alt="no dist avail icon"
@@ -264,13 +271,14 @@ function DisplayExpandButton({ link, handleExpand }) {
         <span
           className="text-lg"
           style={{
+            fontSize: "1vw",
             fontFamily: "Geologica",
             fontWeight: 200,
             letterSpacing: 0,
             color: "#707070",
           }}
         >
-          distribution not available
+          no distribution info
         </span>
       </div>
     );
@@ -279,7 +287,7 @@ function DisplayExpandButton({ link, handleExpand }) {
       className="flex items-center gap-2 cursor-pointer"
       onClick={handleExpand}
     >
-      <div className="object-contain w-6 rounded aspect-square">
+      <div className="object-contain w-4 rounded aspect-square">
         <img
           src={dist_ok_icon}
           alt="dist ok icon"
@@ -289,6 +297,7 @@ function DisplayExpandButton({ link, handleExpand }) {
       <span
         className="text-lg"
         style={{
+          fontSize: "1vw",
           fontFamily: "Geologica",
           fontWeight: 200,
           letterSpacing: 0,
@@ -303,7 +312,14 @@ function DisplayExpandButton({ link, handleExpand }) {
 function DisplayExtLinks({ link }) {
   if (!link)
     return (
-      <span className="italic text-gray-500">no external links available</span>
+      <span
+        style={{
+          fontSize: "1vw",
+        }}
+        className="italic text-gray-500"
+      >
+        no external links available
+      </span>
     );
   const taxon_key = link.split("/").pop();
   return (
@@ -324,6 +340,7 @@ function DisplayExtLinks({ link }) {
         <span
           className="text-lg italic text-status-blue"
           style={{
+            fontSize: "1vw",
             fontFamily: "Geologica",
             fontWeight: 200,
             letterSpacing: 0,
@@ -349,6 +366,7 @@ function DisplayExtLinks({ link }) {
         <span
           className="text-lg italic text-status-blue"
           style={{
+            fontSize: "1vw",
             fontFamily: "Geologica",
             fontWeight: 200,
             letterSpacing: 0,

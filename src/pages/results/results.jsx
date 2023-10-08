@@ -100,7 +100,7 @@ const ResultsPage = () => {
         </div>
 
         {/* Navigation Body */}
-        <div className="relative flex flex-col items-start gap-4 pt-4 h-5/6 max-h-fit overflow-clip">
+        <div className="relative flex flex-col items-start gap-4 pt-4 pb-2 h-5/6 max-h-fit overflow-clip">
           <div className="items-start w-full p-8 overflow-y-auto h-[calc(100%-80px)]">
             <div className="flex flex-col w-full h-full gap-4">
               {data.predictions.map((image) => (
@@ -120,7 +120,7 @@ const ResultsPage = () => {
           {/* Batch Download Button */}
           <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
             <button
-              className="flex items-center justify-center p-1 rounded-lg hover:shadow-lg"
+              className="flex items-center justify-center p-3 rounded-lg hover:shadow-lg"
               onClick={() => downloadFile()}
             >
               <div className="flex items-center gap-2 cursor-pointer">
@@ -134,6 +134,7 @@ const ResultsPage = () => {
                 <span
                   className="text-xl text-status-orange"
                   style={{
+                    fontSize: "1.2vw",
                     fontFamily: "Mitr",
                     fontWeight: 300,
                     letterSpacing: 0,
@@ -163,9 +164,10 @@ const ResultsPage = () => {
               <span
                 className="font-sans md:text-xl lg:text-2xl text-foreground-dark"
                 style={{
+                  fontSize: "1.4vw",
                   fontFamily: "Mitr",
                   fontWeight: 300,
-                  letterSpacing: 0,
+                  letterSpacing: 1,
                   paddingTop: 20,
                 }}
               >
@@ -181,7 +183,7 @@ const ResultsPage = () => {
             {/* INDIVIDUAL DOWNLOAD */}
             <div className="h-1/12">
               <div className="flex items-center justify-center">
-                <button className="flex items-center gap-2 mt-2 cursor-pointer">
+                <button className="flex items-center w-8/12 gap-2 mt-2 cursor-pointer btn">
                   <div className="w-5 rounded aspect-square">
                     <img
                       src={gray_download_icon}
@@ -190,15 +192,15 @@ const ResultsPage = () => {
                     ></img>
                   </div>
                   <span
-                    className="text-xl"
                     style={{
+                      fontSize: "0.8vw",
                       fontFamily: "Geologica",
-                      fontWeight: 100,
+                      fontWeight: 300,
                       letterSpacing: -0.8,
                       color: "#707070",
                     }}
                   >
-                    save full results for this input
+                    save results for input
                   </span>
                 </button>
               </div>
@@ -210,8 +212,9 @@ const ResultsPage = () => {
             {/* HEADER */}
             <div className="relative flex items-center h-16 ml-10 justify-left">
               <span
-                className="font-sans text-xl text-foreground-dark"
+                className="font-sans text-foreground-dark"
                 style={{
+                  fontSize: "1.25vw",
                   fontFamily: "Mitr",
                   fontWeight: 400,
                   letterSpacing: 0,
