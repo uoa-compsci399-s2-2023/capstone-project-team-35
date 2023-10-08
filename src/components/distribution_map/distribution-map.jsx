@@ -1,6 +1,44 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
+const sample_loc = [
+  "Philippines",
+  "India",
+  "Bangladesh",
+  "United States of America",
+  "Singapore",
+  "Thailand",
+  "Hong Kong",
+  "China",
+  "Cameroon",
+  "South Africa",
+  "Chinese Taipei",
+  "Papua New Guinea",
+  "R\u00e9union",
+  "Macao",
+  "Cambodia",
+  "Sri Lanka",
+  null,
+  "Burundi",
+  "Kenya",
+  "Malawi",
+  "Malaysia",
+  "Canada",
+  "Comoros",
+  "Australia",
+  "Indonesia",
+  "Tanzania, United Republic of",
+  "Sudan",
+  "C\u00f4te d\u2019Ivoire",
+  "Madagascar",
+  "Mayotte",
+];
+
+const sample_tally = [
+  52, 44, 597, 74, 4, 20, 8, 79, 72, 4, 19, 18, 30, 2, 2, 15, 13, 10, 17, 10,
+  10, 1, 45, 1, 9, 6, 2, 1, 15, 20,
+];
+
 const DistributionMap = ({ data }) => {
   return (
     <Plot
@@ -8,8 +46,8 @@ const DistributionMap = ({ data }) => {
         {
           type: "choropleth",
           locationmode: "country names",
-          locations: ["United States", "Canada", "Mexico"],
-          z: [1, 2, 3],
+          locations: sample_loc,
+          z: sample_tally,
           text: [`United States`],
           colorscale: [
             [0, "#fff3d5"],
@@ -22,8 +60,8 @@ const DistributionMap = ({ data }) => {
           autocolorscale: false,
           marker: {
             line: {
-              color: "rgb(180,180,180)",
-              width: 0.5,
+              color: "#707070",
+              width: 0.25,
             },
           },
         },
@@ -48,12 +86,35 @@ const DistributionMap = ({ data }) => {
             color: "#909090",
           },
           yref: "paper",
-          y: 1.1,
+          y: 1.2,
+          xref: "paper",
+          x: 0.5,
         },
+        annotations: [
+          {
+            xref: "paper",
+            yref: "paper",
+            x: 0.5,
+            xanchor: "center",
+            y: 1,
+            yanchor: "bottom",
+            text: "Showing the first 3000 occurrences. More info at GBIF.org",
+            showarrow: false,
+            font: {
+              family: "Geologica",
+              size: 12,
+              color: "#909090",
+            },
+          },
+        ],
         geo: {
           projection: {
             type: "robinson",
           },
+          coastlinecolor: "#CCCCCC",
+          coastlinewidth: 1.5,
+          framecolor: "#CCCCCC",
+          framewidth: 2,
         },
         // paper_bgcolor: "#f5f5f5",
       }}
