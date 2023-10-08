@@ -3,6 +3,7 @@ from utils import get_project_root
 from pathlib import PurePath
 import app.globals as globals
 import os
+import base64
 
 TEST_IMAGE_DIR = get_project_root() / "tests" / "test_images"
 
@@ -35,3 +36,17 @@ def test_get_all_images(local_repo):
     filenames = [PurePath(x.filename).name for x in images]
     assert "sample_image.jpg" in filenames
 
+def test_get_base64_image(local_repo):
+    #Get existing image
+    img = local_repo.get_base64_image(TEST_IMAGE_DIR / "sample_image.jpg")
+    assert img is not None
+    
+    #Check image is encoded in base64
+    with open(str(TEST_IMAGE_DIR / "sample_image.jpg"), "rb") as test_img_file:
+        test_img_data = test_img_file.read()
+        test_img = base64.b64encode(test_img_data).decode('utf-8')
+        assert test_img == img
+
+    #Non existent image returns None
+    img = local_repo.get_base64_image("This_image_will_never_exist.jpg")
+    assert img is None
