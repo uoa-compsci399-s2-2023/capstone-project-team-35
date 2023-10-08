@@ -1,12 +1,11 @@
 
 import concurrent.futures
-import pygbif
 from pygbif import occurrences
 import app.globals as globals
 
-MAX_NUMBER_OF_THREADS = 500
+MAX_NUMBER_OF_THREADS = 10
 RECORD_RETRIEVAL_LIMIT = 300
-MAX_RECORDS_TO_RETRIEVE = 1000
+MAX_RECORDS_TO_RETRIEVE = 3000
 
 def get_occurences_count_by_country(taxonId: int) -> dict:
     total_num_of_available_records = occurrences.count(taxonKey=taxonId)
