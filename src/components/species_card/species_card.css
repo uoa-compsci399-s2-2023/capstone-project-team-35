@@ -65,7 +65,6 @@
     animation-name: expanded_species_card;
     animation-duration: 1s;
     width: 100%;
-    color: green;
 }
 
 @keyframes expanded_species_card {

@@ -14,6 +14,8 @@ const ResultsPage = () => {
 
   const [currentSelectedImage, setCurrentSelectedImage] = useState(null);
 
+  const [showPopup, setShowPopup] = useState(false);
+
   useEffect(() => {
     if (data?.predictions && data.predictions.length) {
       setCurrentSelectedImage(data.predictions[0]);
@@ -52,15 +54,12 @@ const ResultsPage = () => {
     }
   };
 
-  const handleClick = () => {
-    const confirmMessage =
-      "If you continue, you may lose unsaved data. Are you sure?";
-    if (window.confirm(confirmMessage)) {
-      // User clicked "OK," proceed with the action
-      setCurrentPage("");
-    } else {
-      // User clicked "Cancel," do nothing or handle it accordingly
-    }
+  const openPopup = () => {
+    setShowPopup(true);
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
   // console.log(data[0]);
@@ -76,7 +75,7 @@ const ResultsPage = () => {
             {/* Home Button */}
             <div className="top-0 left-0 flex items-center justify-center w-8 m-5 cursor-pointer align-items aspect-square back">
               {/* Return to home button */}
-              <button type="button" onClick={handleClick}>
+              <button type="button" onClick={openPopup}>
                 <img
                   src={home_icon}
                   className="items-center w-full h-full return-button style_home"
@@ -233,6 +232,19 @@ const ResultsPage = () => {
           </div>
         </div>
       </div>
+
+      {showPopup && (
+        <div className="popup_background">
+          <div className="popup_content">
+            <p>You are about to go back to the home page. All unsaved data will be lost. Do you wish to continue?</p>
+            <span className="popup_container">
+              <button className='go_back' onClick={closePopup}>Close</button>
+              <button className='continue' onClick={() => setCurrentPage("")}>Continue</button>
+            </span>
+          </div>
+        </div>
+      )}
+
     </main>
   );
 };
@@ -242,12 +254,12 @@ function DislplayInputImage({ image }) {
   return (
     <div
       id="input_img_container"
-      className="flex w-8/12 rounded-2xl aspect-square bg-slate-500"
+      className="flex w-8/12 rounded-2xl aspect-square bg-slate-500 flex flex-center overflow-hidden"
     >
       <img
         src={`data:image/jpeg;base64,${image.input_image}`}
         alt="input file"
-        className="object-cover rounded-2xl"
+        className="object-cover rounded-2xl input_img"
       />
     </div>
   );

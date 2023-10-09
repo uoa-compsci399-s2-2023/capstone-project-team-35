@@ -81,7 +81,7 @@ function SpeciesCardExpanded({
   handleCollapse,
 }) {
   const { rank_color, theme } = rankedClasses[rank];
-  const probPercentage = (Number(probability) * 100).toFixed(2);
+  const probPercentage = (Number(probability) * 100).toFixed(1);
   return (
     <>
       {/* Maximum Height of the parent panel for reference */}
@@ -187,7 +187,7 @@ function SpeciesCardCollapsed({
 }) {
   // Props come from the results passed onto the instances in the components in the results page
   const { marginTop, rank_color, theme } = rankedClasses[rank];
-  const probPercentage = (Number(probability) * 100).toFixed(2);
+  const probPercentage = (Number(probability) * 100).toFixed(1);
   return (
     // BG card container and height reference
     <div className={`w-full max-w-full ${marginTop} max_height`}>
