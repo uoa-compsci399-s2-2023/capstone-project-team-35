@@ -44,6 +44,7 @@ def save_predictions_as_csv(sorted_prediction_dict, image_file_index, repo: Abst
         prediction["rank"] = index
 
     repo.add_results_csv(predictions)
+    repo.create_multiple_result_csv(predictions)
 
 def store_user_uploaded_images(images: list[FileStorage], repo: AbstractRepository):
     repo.clear_directory(globals.USER_UPLOADED_IMAGES_DIRECTORY)
@@ -56,6 +57,7 @@ def get_base64_image(path: Path, repo: AbstractRepository) -> str:
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
     repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
+    repo.clear_directory(globals.SEVERAL_RESULTS_FILE_DIRECTORY)
     store_user_uploaded_images(images, repo)
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE

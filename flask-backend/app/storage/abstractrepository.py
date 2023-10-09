@@ -9,7 +9,10 @@ class RepositoryException(Exception):
         pass
 
 class AbstractRepository(abc.ABC):
-    
+    @abc.abstractmethod
+    def create_multiple_result_csv(self):
+         raise NotImplementedError
+
     @abc.abstractmethod
     def add_results_csv(self):
         raise NotImplementedError

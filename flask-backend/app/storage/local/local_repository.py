@@ -8,10 +8,25 @@ from pathlib import Path
 import base64
 
 USER_UPLOADED_IMAGES_DIRECTORY  = globals.USER_UPLOADED_IMAGES_DIRECTORY
-RESULTS_FILE_DIRECTORY          = globals.RESULTS_FILE_DIRECTORY                 
+RESULTS_FILE_DIRECTORY          = globals.RESULTS_FILE_DIRECTORY  
+SEVERAL_RESULTS_FILE_DIRECTORY  = globals.SEVERAL_RESULTS_FILE_DIRECTORY               
 
 class LocalRepository(AbstractRepository):
-    
+    def create_multiple_result_csv(self, complete_predictions_list):
+        # Assuming each prediction in the list has the 'image_name' key
+        image_name = complete_predictions_list[0]['image_name']
+        RESULTS_FILE_PATH = os.path.join(SEVERAL_RESULTS_FILE_DIRECTORY, f"{image_name}_predictions.csv")
+        field_names = [
+        'image_name', 'label', 'probability', 'rank', 'genus', 'species', 'country', 
+        'in_NZ', 'endemic', 'unwanted_pest', 'native', 'introduced_biocontrol', 'distribution_url'
+    ]
+        if not os.path.exists(SEVERAL_RESULTS_FILE_DIRECTORY):
+            os.makedirs(SEVERAL_RESULTS_FILE_DIRECTORY)
+        with open(RESULTS_FILE_PATH, 'w', newline='') as csvfile:
+            writer = csv.DictWriter(csvfile, fieldnames=field_names)
+            writer.writeheader()
+            writer.writerows(complete_predictions_list)
+
     def add_results_csv(self, complete_predictions_list):
         field_names = [
         'image_name', 'label', 'probability', 'rank', 'genus', 'species', 'country', 
