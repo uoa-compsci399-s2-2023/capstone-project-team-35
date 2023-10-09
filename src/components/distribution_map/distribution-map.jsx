@@ -68,8 +68,8 @@ const DistributionMap = ({ data }) => {
       ]}
       layout={{
         autosize: false,
-        width: 700,
-        height: 390,
+        width: 500,
+        height: 300,
         margin: {
           l: 50,
           r: 50,
