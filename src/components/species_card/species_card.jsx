@@ -34,20 +34,20 @@ const rankedClasses = [
     rank_color: "bg-status-orange",
     theme: "#FC7F40",
   },
-  { marginTop: "mt-12", rank_color: "bg-status-red", theme: "#FF5E49" },
+  { marginTop: "mt-14", rank_color: "bg-status-red", theme: "#FF5E49" },
 ];
 
 const getDistribution = async ({ taxon_key }) => {
   console.log(`ID: ${taxon_key}`);
-  try {
-    const map_data = await axios
-      .get(`/get_occurences_by_country/${taxon_key}`)
-      .then((resp) => {
-        console.log(resp.data);
-      });
-  } catch (error) {
-    console.error("Error getting distribution data:", error);
-  }
+  // try {
+  //   const map_data = await axios
+  //     .get(`/get_occurences_by_country/${taxon_key}`)
+  //     .then((resp) => {
+  //       console.log(resp.data);
+  //     });
+  // } catch (error) {
+  //   console.error("Error getting distribution data:", error);
+  // }
 };
 
 const SpeciesCard = (props) => {
@@ -160,7 +160,7 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Distribution panel body */}
-            <div className="flex flex-col items-center h-full pr-4 overflow-hidden distribution_map ">
+            <div className="flex flex-col items-center justify-start h-full pt-10 pr-4 overflow-hidden distribution_map ">
               {/* Distribution Map */}
               <DistributionMap />
 
