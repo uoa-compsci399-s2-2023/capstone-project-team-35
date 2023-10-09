@@ -68,8 +68,8 @@ const DistributionMap = ({ data }) => {
       ]}
       layout={{
         autosize: false,
-        width: 700,
-        height: 375,
+        width: 500,
+        height: 300,
         margin: {
           l: 50,
           r: 50,
@@ -116,7 +116,7 @@ const DistributionMap = ({ data }) => {
           framecolor: "#CCCCCC",
           framewidth: 2,
         },
-        paper_bgcolor: "#f5f5f5",
+        // paper_bgcolor: "#f5f5f5",
       }}
       config={{ responsive: true }}
     />
