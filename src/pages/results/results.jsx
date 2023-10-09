@@ -118,7 +118,7 @@ const ResultsPage = () => {
           </div>
 
           {/* Batch Download Button */}
-          <div className="flex items-center justify-center w-full h-20% absolute bottom-8">
+          <div className="flex items-center justify-center w-full h-20% absolute bottom-8"  z>
             <button
               className="flex items-center justify-center p-3 rounded-lg hover:shadow-lg"
               onClick={() => downloadFile()}
@@ -149,9 +149,9 @@ const ResultsPage = () => {
       </div>
 
       {/* ============== Results Section ================== */}
-      <div className="flex flex-col w-2/3 pb-8">
+      <div className="flex flex-col w-2/3 pb-8 top-10">
         {/* Species Card Section */}
-        <div className="relative flex pb-6 border-b-2 border-black border-opacity-10 h-3/5 gap-9">
+        <div className="relative flex pb-6 border-b-2 border-black border-opacity-10 h-3/5 gap-9 move">
           <SpeciesCardGroup image={currentSelectedImage} />
         </div>
 
@@ -162,13 +162,12 @@ const ResultsPage = () => {
             {/* HEADER */}
             <div className="flex items-center justify-center h-16 ">
               <span
-                className="font-sans md:text-xl lg:text-2xl text-foreground-dark"
+                className="font-sans md:text-xl lg:text-2xl text-foreground-dark input_image_header"
                 style={{
                   fontSize: "1.4vw",
                   fontFamily: "Mitr",
                   fontWeight: 300,
                   letterSpacing: 1,
-                  paddingTop: 20,
                 }}
               >
                 INPUT IMAGE
@@ -176,7 +175,7 @@ const ResultsPage = () => {
             </div>
 
             {/* IMAGE FILE */}
-            <div className="flex items-center justify-center h-full ">
+            <div className="input_image">
               <DislplayInputImage image={currentSelectedImage} />
             </div>
 
@@ -215,18 +214,20 @@ const ResultsPage = () => {
                 className="font-sans text-foreground-dark"
                 style={{
                   fontSize: "1.25vw",
+                  // fontFamily: "Mitr",
+                  fontSize: "1.4vw",
                   fontFamily: "Mitr",
-                  fontWeight: 400,
-                  letterSpacing: 0,
-                  paddingTop: 8,
-                  color: "#FF5E49",
+                  fontWeight: 300,
+                  margin: "auto",
+                  paddingRight: 6
+                  // color: "#FF5E49",
                 }}
               >
                 TOP 10 PREDICTIONS
               </span>
             </div>
             {/* TABLE */}
-            <div className="relative flex items-center justify-center p-6 overflow-auto">
+            <div className="relative flex items-center justify-center pl-6 overflow-auto">
               <ResultsTable image={currentSelectedImage} />
             </div>
           </div>

@@ -40,7 +40,7 @@ const SpeciesTag = ({ tag }) => {
     );
   } else {
     return (
-      <div className="flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-slate-500 border-opacity-20">
+      <div className="p-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-slate-500 border-opacity-20">
         <div className="h-2 rounded-full aspect-square bg-slate-500" />
         <div style={{ fontSize: "1vw" }}>{`${tag}`}</div>
       </div>

@@ -39,3 +39,19 @@
   position: relative;
   bottom: 10px;
 }
+
+.input_image {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  max-height: 10.5vw;
+}
+
+.input_image_header {
+  padding-top: 10px;
+}
+
+.zindex {
+  position: relative;
+  z-index: 100;
+}

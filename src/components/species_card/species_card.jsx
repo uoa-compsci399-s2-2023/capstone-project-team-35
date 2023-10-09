@@ -15,6 +15,7 @@
 //   "non-invasive": true,
 // };
 
+import "./species_card.css";
 import { useState, useEffect } from "react";
 import dist_ok_icon from "../../assets/ui-elements/dist-ok_icon.png";
 import dist_nan_icon from "../../assets/ui-elements/dist-nan_icon.png";
@@ -26,32 +27,32 @@ import SpeciesTag from "../tags/tags";
 import DistributionMap from "../distribution_map/distribution-map";
 
 const rankedClasses = [
-  { marginTop: "mt-4", rank_color: "bg-status-yellow", theme: "#FBC229" },
+  { marginTop: "mt-0", rank_color: "bg-status-yellow", theme: "#FBC229" },
   {
-    marginTop: "mt-12",
+    marginTop: "mt-8",
     rank_color: "bg-status-orange",
     theme: "#FC7F40",
   },
-  { marginTop: "mt-16", rank_color: "bg-status-red", theme: "#FF5E49" },
+  { marginTop: "mt-12", rank_color: "bg-status-red", theme: "#FF5E49" },
 ];
 
 const SpeciesCard = (props) => {
-  const { expanded } = props;
-  const [isExpanded, setIsExpanded] = useState(expanded);
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    setIsExpanded(false);
+    setExpanded(false);
   }, [props]);
 
   console.log(props);
 
-  return isExpanded ? (
+  return expanded ? (
     <SpeciesCardExpanded
       {...props}
-      handleCollapse={() => setIsExpanded(false)}
+      expanded={expanded}
+      handleCollapse={() => setExpanded(false)}
     />
   ) : (
-    <SpeciesCardCollapsed {...props} handleExpand={() => setIsExpanded(true)} />
+    <SpeciesCardCollapsed {...props} handleExpand={() => setExpanded(true)} />
   );
 };
 
@@ -62,6 +63,7 @@ function SpeciesCardExpanded({
   distribution_url,
   tags,
   rank,
+  expanded={expanded},
   handleCollapse,
 }) {
   const { rank_color, theme } = rankedClasses[rank];
@@ -72,14 +74,14 @@ function SpeciesCardExpanded({
       <div className="w-full"></div>
       {/* Main Expanded Container */}
       <div
-        className={`absolute overlay z-50 p-2 w-full h-[calc(100%-24px)] flex items-center justify-center ${rank_color} rounded-3xl`}
+        className={`${expanded ? 'animate-species-card' : ''} animate_class ${rank_color} `}
       >
         {/* Items Container */}
         <div className="relative flex flex-row w-full h-full bg-background-light rounded-2xl">
           {/* LEFT INFO-BOX */}
           <div className="flex flex-col items-center justify-center w-4/12 max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl">
             {/* Confidence Circle */}
-            <div className="flex items-center justify-center w-3/5 rounded-full aspect-square">
+            <div className="flex items-center justify-center w-3/5 rounded-full">
               <RadialGraph
                 className="flex"
                 progress={probPercentage}
@@ -128,10 +130,10 @@ function SpeciesCardExpanded({
           {/* RIGHT INFO-BOX */}
           <div className="flex flex-col w-8/12 h-full gap-1 rounded-2xl">
             {/* Collapse Button */}
-            <div className="flex h-20">
+            <div className="flex">
               <div
                 onClick={handleCollapse}
-                className="absolute w-8 m-4 bg-white rounded cursor-pointer aspect-square right-1 top-1"
+                className="absolute w-8 m-4 bg-white rounded cursor-pointer aspect-square right-1 top-1 indexZ"
               >
                 <img
                   src={shrink_icon}
@@ -142,7 +144,7 @@ function SpeciesCardExpanded({
             </div>
 
             {/* Distribution panel body */}
-            <div className="flex flex-col items-center h-full pr-4 overflow-auto">
+            <div className="flex flex-col items-center h-full pr-4 overflow-hidden distribution_map ">
               {/* Distribution Map */}
               <DistributionMap />
 
@@ -172,13 +174,14 @@ function SpeciesCardCollapsed({
   const probPercentage = (Number(probability) * 100).toFixed(2);
   return (
     // BG card container and height reference
-    <div className={`w-full max-w-full ${marginTop}`}>
+    <div className={`w-full max-w-full ${marginTop} max_height`}>
       {/* Card background */}
       <div className={`w-full h-full max-w-full rounded-3xl p-2 ${rank_color}`}>
         {/* Items container */}
-        <div className="flex flex-col items-center justify-center max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl">
+        {/* <div className="flex flex-col items-center justify-center max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl"> */}
+        <div className="species_card_inner_container">
           {/* Confidence Circle */}
-          <div className="flex items-center justify-center w-3/5 rounded-full aspect-square">
+          <div className="flex items-center justify-center w-2/5 pt-4">
             <RadialGraph
               className="flex"
               progress={probPercentage}
@@ -194,7 +197,7 @@ function SpeciesCardCollapsed({
 
           {/* Species Name */}
           <div
-            className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark"
+            className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark name_height"
             style={{
               fontSize: "1.4vw",
               fontFamily: "Geologica",
@@ -202,14 +205,14 @@ function SpeciesCardCollapsed({
               letterSpacing: 0,
             }}
           >
-            <p>{genus}</p>{" "}
-            <p className="italic" style={{ fontWeight: 300 }}>
+            <p className="name_height">{genus}</p>
+            <p className="italic" style={{ fontWeight: 200, paddingBottom: 10}}>
               {species}
             </p>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap items-center justify-center">
+          <div className="flex flex-wrap items-center justify-center p-2">
             {/* Object.keys returns an array of keys */}
             {/* Loop through array */}
             {Object.keys(tags || {}).map((tag) => {
@@ -223,7 +226,7 @@ function SpeciesCardCollapsed({
           <div className="w-full h-[2px] opacity-20 bg-foreground-light" />
 
           {/* Tap to view info */}
-          <div className="flex">
+          <div className="flex pb-4">
             <DisplayExpandButton
               link={distribution_url}
               handleExpand={handleExpand}
