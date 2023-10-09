@@ -1,53 +1,24 @@
 import React from "react";
 import Plot from "react-plotly.js";
 
-const sample_loc = [
-  "Philippines",
-  "India",
-  "Bangladesh",
-  "United States of America",
-  "Singapore",
-  "Thailand",
-  "Hong Kong",
-  "China",
-  "Cameroon",
-  "South Africa",
-  "Chinese Taipei",
-  "Papua New Guinea",
-  "R\u00e9union",
-  "Macao",
-  "Cambodia",
-  "Sri Lanka",
-  null,
-  "Burundi",
-  "Kenya",
-  "Malawi",
-  "Malaysia",
-  "Canada",
-  "Comoros",
-  "Australia",
-  "Indonesia",
-  "Tanzania, United Republic of",
-  "Sudan",
-  "C\u00f4te d\u2019Ivoire",
-  "Madagascar",
-  "Mayotte",
-];
-
-const sample_tally = [
-  52, 44, 597, 74, 4, 20, 8, 79, 72, 4, 19, 18, 30, 2, 2, 15, 13, 10, 17, 10,
-  10, 1, 45, 1, 9, 6, 2, 1, 15, 20,
-];
-
 const DistributionMap = ({ data }) => {
+  if (!data) return null;
+
+  if (data.locations.length === 0)
+    return (
+      <div className="flex items-center justify-center w-11/12 p-6 text-xl h-2/3 bg-slate-50">
+        <span>no occurrences recorded</span>
+      </div>
+    );
+  console.log("DistributionMapData", data);
   return (
     <Plot
       data={[
         {
           type: "choropleth",
           locationmode: "country names",
-          locations: sample_loc,
-          z: sample_tally,
+          locations: data.locations,
+          z: data.tally,
           text: [`United States`],
           colorscale: [
             [0, "#fff3d5"],

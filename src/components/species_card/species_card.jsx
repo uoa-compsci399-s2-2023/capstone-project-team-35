@@ -1,20 +1,3 @@
-/* eslint-disable react/prop-types */
-/*
-  confidence: number;
-  species_name: string;
-  tags: string[];
-  rank: 0 | 1 | 2;
-  expanded: boolean;
-*/
-
-// Tags is object of booleans
-// const tags = {
-//   endemic: true,
-//   invasive: true,
-//   "non-native": true,
-//   "non-invasive": true,
-// };
-
 import "./species_card.css";
 import { useState, useEffect } from "react";
 import dist_ok_icon from "../../assets/ui-elements/dist-ok_icon.png";
@@ -26,6 +9,7 @@ import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
 import DistributionMap from "../distribution_map/distribution-map";
 import axios from "axios";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const rankedClasses = [
   { marginTop: "mt-0", rank_color: "bg-status-yellow", theme: "#FBC229" },
@@ -37,14 +21,28 @@ const rankedClasses = [
   { marginTop: "mt-12", rank_color: "bg-status-red", theme: "#FF5E49" },
 ];
 
-const getDistribution = async ({ taxon_key }) => {
+const getDistribution = async ({
+  taxon_key,
+  setMapData,
+  setIsFetchingMapData,
+  localMapData,
+  setLocalMapData,
+}) => {
   console.log(`ID: ${taxon_key}`);
+  setIsFetchingMapData(true);
+
+  if (localMapData) {
+    setMapData(localMapData);
+    setIsFetchingMapData(false);
+    return;
+  }
+
   try {
-    const map_data = await axios
-      .get(`/get_occurences_by_country/${taxon_key}`)
-      .then((resp) => {
-        console.log(resp.data);
-      });
+    await axios.get(`/get_occurences_by_country/${taxon_key}`).then((resp) => {
+      setIsFetchingMapData(false);
+      setMapData(resp.data);
+      setLocalMapData(resp.data);
+    });
   } catch (error) {
     console.error("Error getting distribution data:", error);
   }
@@ -52,6 +50,12 @@ const getDistribution = async ({ taxon_key }) => {
 
 const SpeciesCard = (props) => {
   const [expanded, setExpanded] = useState(false);
+  const [mapData, setMapData] = useState();
+  const [isFetchingMapData, setIsFetchingMapData] = useState(false);
+  const taxon_key = props.distribution_url.split("/").pop();
+  const [localMapData, setLocalMapData] = useLocalStorage(taxon_key, null);
+
+  console.log(typeof localMapData, localMapData);
 
   useEffect(() => {
     setExpanded(false);
@@ -64,9 +68,18 @@ const SpeciesCard = (props) => {
       {...props}
       expanded={expanded}
       handleCollapse={() => setExpanded(false)}
+      mapData={mapData}
+      isFetchingMapData={isFetchingMapData}
     />
   ) : (
-    <SpeciesCardCollapsed {...props} handleExpand={() => setExpanded(true)} />
+    <SpeciesCardCollapsed
+      {...props}
+      setMapData={setMapData}
+      handleExpand={() => setExpanded(true)}
+      setIsFetchingMapData={setIsFetchingMapData}
+      localMapData={localMapData}
+      setLocalMapData={setLocalMapData}
+    />
   );
 };
 
@@ -77,11 +90,14 @@ function SpeciesCardExpanded({
   distribution_url,
   tags,
   rank,
-  expanded = { expanded },
+  expanded,
   handleCollapse,
+  mapData,
+  isFetchingMapData,
 }) {
   const { rank_color, theme } = rankedClasses[rank];
   const probPercentage = (Number(probability) * 100).toFixed(1);
+  // if (isFetchingMapData) return <>loading...</>;
   return (
     <>
       {/* Maximum Height of the parent panel for reference */}
@@ -162,7 +178,11 @@ function SpeciesCardExpanded({
             {/* Distribution panel body */}
             <div className="flex flex-col items-center h-full pr-4 overflow-hidden distribution_map ">
               {/* Distribution Map */}
-              <DistributionMap />
+              <DisplayDistributionMap
+                isFetchingMapData={isFetchingMapData}
+                mapData={mapData}
+              />
+              {/* <DistributionMap data={mapData} /> */}
 
               {/* GBIF Links */}
               <div className="flex flex-row items-start justify-center w-full gap-12 mb-6 h-1/12">
@@ -184,6 +204,10 @@ function SpeciesCardCollapsed({
   tags,
   rank,
   handleExpand,
+  setMapData,
+  setIsFetchingMapData,
+  localMapData,
+  setLocalMapData,
 }) {
   // Props come from the results passed onto the instances in the components in the results page
   const { marginTop, rank_color, theme } = rankedClasses[rank];
@@ -249,6 +273,10 @@ function SpeciesCardCollapsed({
             <DisplayExpandButton
               link={distribution_url}
               handleExpand={handleExpand}
+              setMapData={setMapData}
+              setIsFetchingMapData={setIsFetchingMapData}
+              localMapData={localMapData}
+              setLocalMapData={setLocalMapData}
             />
           </div>
         </div>
@@ -257,7 +285,14 @@ function SpeciesCardCollapsed({
   );
 }
 
-function DisplayExpandButton({ link, handleExpand }) {
+function DisplayExpandButton({
+  link,
+  handleExpand,
+  setMapData,
+  setIsFetchingMapData,
+  localMapData,
+  setLocalMapData,
+}) {
   if (!link)
     return (
       <div className="flex items-center gap-2">
@@ -288,7 +323,15 @@ function DisplayExpandButton({ link, handleExpand }) {
     <div
       className="flex items-center gap-2 cursor-pointer"
       onClick={handleExpand}
-      onClickCapture={() => getDistribution({ taxon_key })}
+      onClickCapture={() =>
+        getDistribution({
+          taxon_key,
+          setMapData,
+          setIsFetchingMapData,
+          localMapData,
+          setLocalMapData,
+        })
+      }
     >
       <div className="object-contain w-4 rounded aspect-square">
         <img
@@ -383,4 +426,14 @@ function DisplayExtLinks({ link }) {
   );
 }
 
+function DisplayDistributionMap({ isFetchingMapData, mapData }) {
+  if (isFetchingMapData)
+    return (
+      // TODO: Add spinner here
+      <div className="items-center justify-center w-full h-full text-2xl bg-slate-100">
+        <span>loading...</span>
+      </div>
+    );
+  return <DistributionMap data={mapData} />;
+}
 export default SpeciesCard;

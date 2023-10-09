@@ -117,7 +117,10 @@ const ResultsPage = () => {
           </div>
 
           {/* Batch Download Button */}
-          <div className="flex items-center justify-center w-full h-20% absolute bottom-8"  z>
+          <div
+            className="flex items-center justify-center w-full h-20% absolute bottom-8"
+            z
+          >
             <button
               className="flex items-center justify-center p-3 rounded-lg hover:shadow-lg"
               onClick={() => downloadFile()}
@@ -212,13 +215,12 @@ const ResultsPage = () => {
               <span
                 className="font-sans text-foreground-dark"
                 style={{
-                  fontSize: "1.25vw",
                   // fontFamily: "Mitr",
                   fontSize: "1.4vw",
                   fontFamily: "Mitr",
                   fontWeight: 300,
                   margin: "auto",
-                  paddingRight: 6
+                  paddingRight: 6,
                   // color: "#FF5E49",
                 }}
               >
