@@ -31,7 +31,8 @@ def save_predictions_as_csv(sorted_prediction_dict, image_file_index, repo: Abst
             "endemic": insect.tags["endemic"],
             "unwanted_pest": insect.tags["unwanted_pest"],
             "native": insect.tags["native"],
-            "introduced_biocontrol": insect.tags["introduced_biocontrol"]
+            "introduced_biocontrol": insect.tags["introduced_biocontrol"],
+            "distribution_url": insect.distribution_url
         }
         predictions.append(prediction)
 
