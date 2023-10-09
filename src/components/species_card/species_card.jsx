@@ -24,6 +24,7 @@ import gallery_icon from "../../assets/ui-elements/gallery_icon.png";
 import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
 import DistributionMap from "../distribution_map/distribution-map";
+import axios from "axios";
 
 const rankedClasses = [
   { marginTop: "mt-4", rank_color: "bg-status-yellow", theme: "#FBC229" },
@@ -34,6 +35,19 @@ const rankedClasses = [
   },
   { marginTop: "mt-16", rank_color: "bg-status-red", theme: "#FF5E49" },
 ];
+
+const getDistribution = async ({ taxon_key }) => {
+  console.log(`ID: ${taxon_key}`);
+  try {
+    const map_data = await axios
+      .get(`/get_occurences_by_country/${taxon_key}`)
+      .then((resp) => {
+        console.log(resp.data);
+      });
+  } catch (error) {
+    console.error("Error getting distribution data:", error);
+  }
+};
 
 const SpeciesCard = (props) => {
   const { expanded } = props;
@@ -51,7 +65,13 @@ const SpeciesCard = (props) => {
       handleCollapse={() => setIsExpanded(false)}
     />
   ) : (
-    <SpeciesCardCollapsed {...props} handleExpand={() => setIsExpanded(true)} />
+    <SpeciesCardCollapsed
+      {...props}
+      handleExpand={() => {
+        setIsExpanded(true);
+        // getDistribution(taxon_key);
+      }}
+    />
   );
 };
 
@@ -228,28 +248,6 @@ function SpeciesCardCollapsed({
               link={distribution_url}
               handleExpand={handleExpand}
             />
-            {/* <div
-              className="flex items-center gap-2 cursor-pointer"
-              onClick={handleExpand}
-            >
-              <div className="w-8 rounded aspect-square">
-                <img
-                  src={view_icon}
-                  alt="view icon"
-                  className="z-0 items-center w-full h-full scale-125"
-                ></img>
-              </div>
-              <span
-                className="text-lg"
-                style={{
-                  fontFamily: "Geologica",
-                  fontWeight: 200,
-                  letterSpacing: 0,
-                }}
-              >
-                view distribution
-              </span>
-            </div> */}
           </div>
         </div>
       </div>
@@ -282,10 +280,13 @@ function DisplayExpandButton({ link, handleExpand }) {
         </span>
       </div>
     );
+  const taxon_key = link.split("/").pop();
+  console.log(taxon_key);
   return (
     <div
       className="flex items-center gap-2 cursor-pointer"
       onClick={handleExpand}
+      onClickCapture={() => getDistribution({ taxon_key })}
     >
       <div className="object-contain w-4 rounded aspect-square">
         <img
@@ -321,6 +322,7 @@ function DisplayExtLinks({ link }) {
         no external links available
       </span>
     );
+
   const taxon_key = link.split("/").pop();
   return (
     <>
