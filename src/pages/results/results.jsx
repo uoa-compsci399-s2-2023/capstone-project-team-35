@@ -84,7 +84,6 @@ const ResultsPage = () => {
     }
   };
 
-
   const openPopup = () => {
     setShowPopup(true);
   };
@@ -200,7 +199,7 @@ const ResultsPage = () => {
                   fontSize: "1.4vw",
                   fontFamily: "Mitr",
                   fontWeight: 300,
-                  letterSpacing: 1
+                  letterSpacing: 1,
                 }}
               >
                 INPUT IMAGE
@@ -215,7 +214,10 @@ const ResultsPage = () => {
             {/* INDIVIDUAL DOWNLOAD */}
             <div className="h-1/12">
               <div className="flex items-center justify-center">
-                <button className="flex items-center w-8/12 gap-2 mt-2 cursor-pointer btn" onClick={() => downloadIndividualFile()}>
+                <button
+                  className="flex items-center w-8/12 gap-2 mt-2 cursor-pointer btn"
+                  onClick={() => downloadIndividualFile()}
+                >
                   <div className="w-5 rounded aspect-square">
                     <img
                       src={gray_download_icon}
@@ -308,46 +310,12 @@ function SpeciesCardGroup({ image }) {
   if (!image) return null;
 
   const { predictions } = image;
-  console.log("Predictions:");
-  console.log(predictions);
-  console.log()
 
   return (
     <>
       <SpeciesCard rank={1} {...predictions[1]} />
       <SpeciesCard rank={0} {...predictions[0]} />
       <SpeciesCard rank={2} {...predictions[2]} />
-      {/* {Object.entries(predictions).map(
-        ([rank, prediction]) =>
-          rank == 1 && (
-            <SpeciesCard
-              // key={rank}
-              rank={rank}
-              {...prediction}
-              // distribution_url="https://www.gbif.org/species/7930834"
-            />
-          )
-      )}
-      {Object.entries(predictions).map(
-        ([rank, prediction]) =>
-          rank == 0 && (
-            <SpeciesCard
-              // key={rank}
-              rank={rank}
-              {...prediction}
-              // distribution_url="https://www.gbif.org/species/7930834"
-            />
-          )
-      )}
-     {Object.entries(predictions).map(
-        ([rank, prediction]) =>
-          rank == 2 && (
-            <SpeciesCard
-              rank={rank}
-              {...prediction}
-            />
-          )
-      )} */}
     </>
   );
 }

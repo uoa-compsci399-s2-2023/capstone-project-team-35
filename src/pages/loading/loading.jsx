@@ -8,7 +8,6 @@ const LoadingPage = () => {
   const {
     selectedImages,
     setSelectedImages,
-    data,
     setData,
     setCurrentPage,
     selectedValue,
@@ -55,6 +54,7 @@ const LoadingPage = () => {
     };
 
     fetchData(); // Call the async function
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
