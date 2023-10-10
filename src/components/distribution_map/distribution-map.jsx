@@ -2,14 +2,23 @@ import React from "react";
 import Plot from "react-plotly.js";
 
 const DistributionMap = ({ data }) => {
+  if (!data) return null;
+
+  if (data.locations.length === 0)
+    return (
+      <div className="flex items-center justify-center w-11/12 p-6 text-xl h-2/3 bg-slate-50">
+        <span>no occurrences recorded</span>
+      </div>
+    );
+  console.log("DistributionMapData", data);
   return (
     <Plot
       data={[
         {
           type: "choropleth",
           locationmode: "country names",
-          locations: ["United States", "Canada", "Mexico"],
-          z: [1, 2, 3],
+          locations: data.locations,
+          z: data.tally,
           text: [`United States`],
           colorscale: [
             [0, "#fff3d5"],
@@ -22,16 +31,16 @@ const DistributionMap = ({ data }) => {
           autocolorscale: false,
           marker: {
             line: {
-              color: "rgb(180,180,180)",
-              width: 0.5,
+              color: "#707070",
+              width: 0.25,
             },
           },
         },
       ]}
       layout={{
         autosize: false,
-        width: 700,
-        height: 390,
+        width: 500,
+        height: 300,
         margin: {
           l: 50,
           r: 50,
@@ -48,12 +57,35 @@ const DistributionMap = ({ data }) => {
             color: "#909090",
           },
           yref: "paper",
-          y: 1.1,
+          y: 1.2,
+          xref: "paper",
+          x: 0.5,
         },
+        annotations: [
+          {
+            xref: "paper",
+            yref: "paper",
+            x: 0.5,
+            xanchor: "center",
+            y: 1,
+            yanchor: "bottom",
+            text: "Showing the first 3000 occurrences. More info at GBIF.org",
+            showarrow: false,
+            font: {
+              family: "Geologica",
+              size: 12,
+              color: "#909090",
+            },
+          },
+        ],
         geo: {
           projection: {
             type: "robinson",
           },
+          coastlinecolor: "#CCCCCC",
+          coastlinewidth: 1.5,
+          framecolor: "#CCCCCC",
+          framewidth: 2,
         },
         // paper_bgcolor: "#f5f5f5",
       }}
