@@ -1,13 +1,13 @@
 import React from "react";
 import "./title.css";
 // import logo from "./logo.png";
-import main_logo from "../../assets/branding/main_logo.svg";
+import main_logo_tag from "../../assets/branding/ocellai_logo-tag_lighter.png";
 
 const Title = () => {
   return (
     <div className="title">
-      <img src={main_logo} />
-      <h3>your biosecurity buddy</h3>
+      <img src={main_logo_tag} alt="ocell.ai log" />
+      <h3>version 1.0.0</h3>
     </div>
   );
 };
