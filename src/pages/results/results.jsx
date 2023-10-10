@@ -1,6 +1,6 @@
 import RootContext from "../../providers/root";
 import { SpeciesCard, FileButton, ResultsTable } from "../../components";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
 import orange_download_icon from "../../assets/ui-elements/orange_download-icon.svg";
@@ -22,8 +22,8 @@ const ResultsPage = () => {
     }
   }, [data]);
 
-  console.log("currentSelectedImage:");
-  console.log(currentSelectedImage);
+  // console.log("currentSelectedImage:");
+  // console.log(currentSelectedImage);
 
   const downloadFile = async () => {
     try {
@@ -58,7 +58,7 @@ const ResultsPage = () => {
   const downloadIndividualFile = async (filename) => {
     // if (!filename) return;
     const imagename = filename.replace(/\.[^/.]+$/, "");
-    console.log("downloading...", imagename);
+    // console.log("downloading...", imagename);
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
       const response = await axios.get(
@@ -318,15 +318,14 @@ function DislplayInputImage({ image }) {
 
 function SpeciesCardGroup({ image }) {
   if (!image) return null;
-
   const { predictions } = image;
 
   return (
-    <>
+    <React.Fragment>
       <SpeciesCard rank={1} {...predictions[1]} />
       <SpeciesCard rank={0} {...predictions[0]} />
       <SpeciesCard rank={2} {...predictions[2]} />
-    </>
+    </React.Fragment>
   );
 }
 

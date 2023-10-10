@@ -10,7 +10,7 @@ const DistributionMap = ({ data }) => {
         <span>no occurrences recorded</span>
       </div>
     );
-  console.log("DistributionMapData", data);
+  // console.log("DistributionMapData", data);
   return (
     <Plot
       data={[
@@ -19,7 +19,7 @@ const DistributionMap = ({ data }) => {
           locationmode: "country names",
           locations: data.locations,
           z: data.tally,
-          text: [`United States`],
+          text: "counts",
           colorscale: [
             [0, "#fff3d5"],
             [0.35, "#fddf90"],
