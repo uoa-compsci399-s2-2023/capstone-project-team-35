@@ -269,15 +269,21 @@ const ResultsPage = () => {
       {showPopup && (
         <div className="popup_background">
           <div className="popup_content">
-            <p>You are about to go back to the home page. All unsaved data will be lost. Do you wish to continue?</p>
+            <p>
+              You are about to go back to the home page. All unsaved data will
+              be lost. Do you wish to continue?
+            </p>
             <span className="popup_container">
-              <button className='go_back' onClick={closePopup}>Close</button>
-              <button className='continue' onClick={() => setCurrentPage("")}>Continue</button>
+              <button className="go_back" onClick={closePopup}>
+                Close
+              </button>
+              <button className="continue" onClick={() => setCurrentPage("")}>
+                Continue
+              </button>
             </span>
           </div>
         </div>
       )}
-
     </main>
   );
 };
@@ -287,7 +293,7 @@ function DislplayInputImage({ image }) {
   return (
     <div
       id="input_img_container"
-      className="flex w-8/12 rounded-2xl aspect-square bg-slate-500 flex flex-center overflow-hidden"
+      className="flex w-8/12 overflow-hidden rounded-2xl aspect-square bg-slate-500 flex-center"
     >
       <img
         src={`data:image/jpeg;base64,${image.input_image}`}
@@ -308,7 +314,10 @@ function SpeciesCardGroup({ image }) {
 
   return (
     <>
-      {Object.entries(predictions).map(
+      <SpeciesCard rank={1} {...predictions[1]} />
+      <SpeciesCard rank={0} {...predictions[0]} />
+      <SpeciesCard rank={2} {...predictions[2]} />
+      {/* {Object.entries(predictions).map(
         ([rank, prediction]) =>
           rank == 1 && (
             <SpeciesCard
@@ -334,13 +343,11 @@ function SpeciesCardGroup({ image }) {
         ([rank, prediction]) =>
           rank == 2 && (
             <SpeciesCard
-              // key={rank}
               rank={rank}
               {...prediction}
-              // distribution_url="https://www.gbif.org/species/7930834"
             />
           )
-      )}
+      )} */}
     </>
   );
 }
