@@ -19,7 +19,7 @@ const DistributionMap = ({ data }) => {
           locationmode: "country names",
           locations: data.locations,
           z: data.tally,
-          text: [`United States`],
+          text: "counts",
           colorscale: [
             [0, "#fff3d5"],
             [0.35, "#fddf90"],
