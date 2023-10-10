@@ -1,0 +1,129 @@
+.species_card_inner_container {
+    display: flex; 
+    
+    flex-direction: column; 
+    gap: 0.5vw; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 1rem; 
+    height: 100%;
+    background-color: white; 
+    animation-name: expanded_species_card;
+}
+
+.species_card_expanded {
+    height: inherit;
+}
+
+.species_card_expanded_outer {
+    height: 25vw;
+}
+
+.name_pad {
+    padding-bottom: 0.2vw;
+}
+
+.name_height {
+    min-height: 40px;
+}
+
+.distribution_map {
+    position: relative;
+    top: calc(6vw - 70px);
+    z-index: 0;
+    width: 40vw;
+    animation-name: distribution_map;
+    animation-duration: 1s;
+}
+
+  @keyframes distribution_map {
+    from {
+      width: 31%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  
+.indexZ {
+    z-index: 100;
+}
+
+.animate_class {
+    display: flex; 
+    position: absolute; 
+    z-index: 50; 
+    padding: 0.5rem; 
+    justify-content: center; 
+    align-items: center; 
+    border-radius: 1.5rem; 
+    width: 100%; 
+    height: calc(100% - 24px);
+}
+
+.animate-species-card {
+    animation-name: expanded_species_card;
+    animation-duration: 1s;
+    width: 100%;
+}
+
+@keyframes expanded_species_card {
+  from {
+    width: 31%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid gray;
+  border-color: gray transparent gray transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* .max_height {
+  animation: grow 1.5s;
+  animation-fill-mode: forwards;
+  z-index: 1;
+} */
+
+/* @keyframes grow {
+  0% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+} */
