@@ -1,8 +1,8 @@
 .title {
-  width: 100%;
-  height: 100vh;
-  position: relative;
-  float: left;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    float: left;
 }
 
 .title img {
@@ -10,44 +10,39 @@
   position: relative;
   top: 40%;
   -ms-transform: translateY(-50%);
-  transform: translateY(-40%);
+  transform: translateY(-50%);
   left: 15%;
 }
 
 .title h3 {
   position: absolute;
-  top: 90%;
+  top: 55%;
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
-  left: 40%;
+  left: 20%;
 
-  font-size: 1.2vw;
+  font-size: 2.5vw;
   word-spacing: 1vw;
   color: var(--font-color);
-  font-family: "Mitr", sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.4px;
-  word-spacing: 3px;
-}
+  font-family: var(--font_family);
+  }
 
 @media screen and (max-width: 990px) {
-  .title img {
-    position: relative;
-    margin: auto;
-    -ms-transform: translateY(20%);
-    transform: translateY(20%);
-    top: calc(10px - 1vw);
-    width: calc(300px + 18vw);
-    left: 0%;
-  }
+    .title img {
+      position: relative;
+      margin: auto;
+      -ms-transform: translateY(20%);
+      transform: translateY(20%);
+      top: calc(10px - 1vw);
+      width: calc(300px + 18vw);
+      left: 0%;
+    }
 
-  .title h3 {
-    opacity: 0;
-    
-    /* margin: 0;
-    position: absolute;
-    top: 27%;
-    left: 50%;
-    transform: translate(-50%, -50%); */
-  }
+    .title h3 {
+      margin: 0;
+      position: absolute;
+      top: 27%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
 }

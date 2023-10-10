@@ -1,7 +1,5 @@
-// This radial graph template was made by Richard Ekwonye:
-// https://stackblitz.com/edit/react-radial-chart?file=index.js
-
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import "./radial-css.css";
 
@@ -18,10 +16,11 @@ class RadialGraph extends Component {
 
   render() {
     const { setStrokeLength } = this.state;
-    const { radius, progress, strokeWidth, color } = this.props;
+    const { radius, progress, strokeWidth, dimension, color } = this.props;
     const circleRadius = Math.min(radius, 85);
     const circumference = 2 * 3.14 * circleRadius;
     const strokeLength = setStrokeLength ? (circumference / 100) * progress : 0;
+    // const { color } = rankedClasses[rank];
 
     return (
       <div
@@ -71,4 +70,16 @@ RadialGraph.defaultProps = {
   color: DEFAULT_COLOR,
 };
 
+RadialGraph.propTypes = {
+  className: PropTypes.string,
+  radius: PropTypes.number,
+  strokeWidth: PropTypes.number,
+  color: PropTypes.string,
+  progress: PropTypes.number,
+  // dimension: PropTypes.number,
+};
+
 export default RadialGraph;
+
+// This radial graph template was made by Richard Ekwonye:
+// https://stackblitz.com/edit/react-radial-chart?file=index.js

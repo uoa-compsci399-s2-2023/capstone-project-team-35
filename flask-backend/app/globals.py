@@ -9,4 +9,4 @@ SPECIES_ANNOTATIONS_DIRECTORY   = get_project_root() / "app" / "species_info" / 
 SPECIES_SAMPLE_IMAGES_DIRECTORY = get_project_root() / "app" / "species_info" / "Images"
 DEFAULT_MODEL_TYPE              = "InceptionV3"
 DEFAULT_INSECT_SUPERTYPE        = "fruitfly"
-TOP_PREDICTIONS_COUNT           = 10
+TOP_PREDICTIONS_COUNT           = 3

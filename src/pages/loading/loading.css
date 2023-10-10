@@ -1,99 +1,23 @@
 #loading-bar-spinner.spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 19;
-  animation: loading-bar-spinner 800ms linear infinite;
+    left: 50%;
+    margin-left: -20px;
+    top: 50%;
+    margin-top: -20px;
+    position: absolute;
+    z-index: 19 !important;
+    animation: loading-bar-spinner 800ms linear infinite;
 }
 
 #loading-bar-spinner.spinner .spinner-icon {
-  width: 16vw;
-  height: 16vw;
-  border: solid 1.2vw transparent;
-  border-top-color: rgba(253, 131, 62, 1) !important;
-  border-left-color: rgba(251, 194, 41, 1) !important;
-  border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    border:  solid 10px transparent;
+    border-top-color:  rgba(253,131,62,1) !important;
+    border-left-color: rgba(251,194,41,1) !important;
+    border-radius: 50%;
 }
 
 @keyframes loading-bar-spinner {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-
-.spinner_transition {
-  width: 0vw;
-  height: 0vw;
-
-  animation-name: spinner_transition;
-  animation-duration: 2s;
-}
-
-@keyframes spinner_transition {
-  from {
-    width: 16vw;
-    height: 16vw;
-  }
-  to {
-    width: 0vw;
-    height: 0vw;
-  }
-}
-
-.logo {
-  width: 8vw;
-  margin: auto;
-}
-
-.logo_transition {
-  width: 0vw;
-
-  animation-name: logo_transition;
-  animation-duration: 2s;
-}
-
-@keyframes logo_transition {
-  from {
-    width: 8vw;
-  }
-  to {
-    width: 0vw;
-  }
-}
-
-.loading_text {
-  position: absolute;
-  left: 0px;
-  color: #a8a8a8;
-  font-size: 1.8vw;
-  font-family: "Mitr", sans-serif;
-  font-weight: 300;
-  margin-top: 5vw;
-  left: 10%;
-}
-
-.loading_container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20%;
-  transform: translate(-50%, -50%);
-}
-
-.loading_container_transition {
-  opacity: 0;
-  animation-name: container_transition;
-  animation-duration: 2s;
-}
-
-@keyframes container_transition {
-  from {
-    opacity: 100%;
-  }
-  to {
-    opacity: 0%;
-  }
+  0%   { transform: rotate(0deg);   transform: rotate(0deg); }
+  100% { transform: rotate(360deg); transform: rotate(360deg); }
 }

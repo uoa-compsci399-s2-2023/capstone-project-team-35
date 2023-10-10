@@ -2,7 +2,6 @@ import app.globals as globals
 from utils import get_project_root
 from PIL import Image
 import os
-import csv
 
 TEST_IMAGES_DIRECTORY = get_project_root() / "tests" / "test_images" 
 
@@ -67,30 +66,3 @@ def test_get_insect_types(client):
     assert response.status_code == 200
     assert response.data.count(b'label') == num_types
     assert response.data.count(b'value') == num_types
-
-def test_download_results(client):
-
-    #Test downloaded file is the same as predictions
-    test_img_path = TEST_IMAGES_DIRECTORY
-    images = []
-    for image in os.listdir(test_img_path):
-        images.append((open(test_img_path / image, 'rb'), test_img_path / image))
-    data = {'image': images[0], 'image2': images[1], 'image3': images[2]}
-    client.post('/classify/trupanea', data=data)
-
-    response = client.get('/download')
-
-    with open(globals.RESULTS_FILE_DIRECTORY / 'predictions.csv') as predictions:
-        lines = csv.reader(predictions, delimiter='\n')
-        csv_data = [' '.join(map(str, line)) for line in lines]
-
-        decoded_response = response.data.decode().splitlines()
-
-        #Check everything in response is in the predictions.csv and vice versa
-        for i in range(len(decoded_response)):
-            assert decoded_response[i] == csv_data[i]
-        
-        for i in range(len(csv_data)):
-            assert csv_data[i] == decoded_response[i]
-
-        assert response.status_code == 200

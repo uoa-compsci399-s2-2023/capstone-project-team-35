@@ -1,19 +1,19 @@
 import RootContext from "../../providers/root";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import logo from "../../assets/ui-elements/logo.png";
 import "./loading.css";
 
 const LoadingPage = () => {
   const {
     selectedImages,
     setSelectedImages,
+    data,
     setData,
     setCurrentPage,
     selectedValue,
   } = useContext(RootContext);
   const [uploadStatus, setUploadStatus] = useState(""); // Displays the status of the image upload
-  const [transition, setTransition] = useState(false);
 
   useEffect(() => {
     const formData = new FormData();
@@ -40,12 +40,9 @@ const LoadingPage = () => {
         console.log(predictions);
         setData({ predictions });
 
-        setTransition(true);
-        setTimeout(() => {
-          setUploadStatus("Image uploaded successfully!"); // Set image upload status
-          setSelectedImages([]); // Clear the selected image after successful upload
-          setCurrentPage("results");
-        }, "2000");
+        setUploadStatus("Image uploaded successfully!"); // Set image upload status
+        setSelectedImages([]); // Clear the selected image after successful upload
+        setCurrentPage("results");
       } catch (error) {
         // Display errors/status if there is an error
         console.error("Error uploading image:", error);
@@ -54,29 +51,14 @@ const LoadingPage = () => {
     };
 
     fetchData(); // Call the async function
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
       {/* Status message if there is an error */}
       <p>{uploadStatus}</p>
-      <div
-        className={`loading_container  ${
-          transition ? "loading_container_transition" : ""
-        }`}
-      >
-        <img
-          className={`logo ${transition ? "logo_transition" : ""}`}
-          src={logo}
-          alt="insect logo"
-        ></img>
-        <div id="loading-bar-spinner" className="spinner">
-          <div
-            className={`spinner-icon ${transition ? "spinner_transition" : ""}`}
-          ></div>
-        </div>
-        <p className="loading_text">we're working on it!</p>
+      <div id="loading-bar-spinner" className="spinner">
+        <div className="spinner-icon"></div>
       </div>
     </div>
   );

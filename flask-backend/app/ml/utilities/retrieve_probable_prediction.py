@@ -15,7 +15,7 @@ def read_csv(filename, label_probability_dict):
         reader = csv.DictReader(label_csv)
         for row in reader:
             if row['label'] == most_probable:
-                insect = insect(row["label"], row["country"], row["genus"], row["species"], row["file"], row["distribution_url"])
-                insect.tags = {row["in_NZ"], row["endemic"], row["unwanted_pest"], row["native"], row["introduced_biocontrol"]}
+                insect = insect(row["label"], row["country"], row["genus"], row["species"], row["file"])
+                insect.tags = {row["in_NZ"], row["endemic"], row["unwanted_pest"], row["native"], row["introduced_biocotrol"]}
                 
                 return insect

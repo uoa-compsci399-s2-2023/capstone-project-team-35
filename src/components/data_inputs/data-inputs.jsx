@@ -178,7 +178,7 @@ const DataInputs = () => {
               >
                 {selectedImages.map((image, index) => (
                   <div className="image_section" key={index}>
-                    <p>{image.name}</p>{" "}
+                    {image.name}{" "}
                     <button
                       onClick={() => handleRemoveImage(index)}
                       type="button"
