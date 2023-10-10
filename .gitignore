@@ -27,4 +27,4 @@ __pycache__
 flask-backend/flask
 flask-backend/__pycache__
 flask-backend/app/ml/models/trupanea/inceptionv3/model.h5
-flask-backend/app/endpoints/download_predictions/tmp/results_file/predictions.csv
+flask-backend/app/endpoints/**/tmp
