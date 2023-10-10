@@ -188,7 +188,7 @@ const ResultsPage = () => {
         </div>
 
         {/* Auxiliary Info Section */}
-        <div className="flex h-2/5">
+        <div className="flex h-2/5 zindex bg-white">
           {/* Reference Image Section */}
           <div className="flex flex-col justify-center w-4/12 gap-3 border-r-2 border-black border-opacity-10">
             {/* HEADER */}

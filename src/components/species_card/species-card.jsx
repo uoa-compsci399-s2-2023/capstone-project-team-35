@@ -12,13 +12,13 @@ import axios from "axios";
 import useLocalStorage from "../../hooks/useLocalStorage";
 
 const rankedClasses = [
-  { marginTop: "mt-0", rank_color: "bg-status-red", theme: "#FF5E49" },
+  { marginTop: "mt-0", rank_color: "bg-status-yellow", theme: "#FBC229" },
   {
     marginTop: "mt-8",
     rank_color: "bg-status-orange",
     theme: "#FC7F40",
   },
-  { marginTop: "mt-12", rank_color: "bg-status-yellow", theme: "#FBC229" },
+  { marginTop: "mt-12", rank_color: "bg-status-red", theme: "#FF5E49" },
 ];
 
 const getDistribution = async ({
@@ -246,7 +246,7 @@ function SpeciesCardCollapsed({
             <p className="name_height">{genus}</p>
             <p
               className="italic"
-              style={{ fontWeight: 200, paddingBottom: 10 }}
+              style={{ fontWeight: 200, paddingBottom: 10, fontSize: "1vw", position: "relative", bottom: 15}}
             >
               {species}
             </p>
@@ -429,7 +429,7 @@ function DisplayDistributionMap({ isFetchingMapData, mapData }) {
     return (
       // TODO: Add spinner here
       <div className="items-center justify-center w-full h-full text-2xl bg-slate-100">
-        <span>loading...</span>
+        <div class="lds-dual-ring"></div>
       </div>
     );
   return <DistributionMap data={mapData} />;
