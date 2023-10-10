@@ -55,8 +55,8 @@ def get_base64_image(path: Path, repo: AbstractRepository) -> str:
     return image
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]:
-    repo.clear_directory(globals.BATCH_PREDICTION_RESULTS_FILE_DIRECTORY)
-    repo.clear_directory(globals.INDIV_PREDICTION_RESULTS_FILE_DIRECTORY)
+    repo.clear_directory(globals.BATCH_PREDICTION_RESULTS_DIRECTORY)
+    repo.clear_directory(globals.INDIV_PREDICTION_RESULTS_DIRECTORY)
     store_user_uploaded_images(images, repo)
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE

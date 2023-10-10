@@ -80,7 +80,7 @@ def test_download_results(client):
 
     response = client.get('/download')
 
-    with open(globals.BATCH_PREDICTION_RESULTS_FILE_DIRECTORY / 'predictions.csv') as predictions:
+    with open(globals.BATCH_PREDICTION_RESULTS_DIRECTORY / 'predictions.csv') as predictions:
         lines = csv.reader(predictions, delimiter='\n')
         csv_data = [' '.join(map(str, line)) for line in lines]
 

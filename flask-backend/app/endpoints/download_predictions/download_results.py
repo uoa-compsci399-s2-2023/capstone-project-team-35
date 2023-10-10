@@ -6,7 +6,7 @@ download_results_blueprint = Blueprint('download_results_bp', __name__)
 
 @download_results_blueprint.route('/download', methods=['GET'])
 def download_csv_results():
-    target = globals.BATCH_PREDICTION_RESULTS_FILE_DIRECTORY
+    target = globals.BATCH_PREDICTION_RESULTS_DIRECTORY
     prediction_file_path = os.path.join(target, 'predictions.csv')
     
     if os.path.exists(prediction_file_path):
