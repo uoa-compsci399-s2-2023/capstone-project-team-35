@@ -18,7 +18,7 @@ def save_predictions_as_csv(prediction, repo: AbstractRepository):
     image_name = os.path.basename(input_image_path)
     for label in label_probability_dict:
         insect = mop.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
-        prediction = {
+        result = {
             "image_name": image_name,
             "label": insect.label,
             "probability": str(round(label_probability_dict[label], 3)),
@@ -33,7 +33,7 @@ def save_predictions_as_csv(prediction, repo: AbstractRepository):
             "introduced_biocontrol": insect.tags["introduced_biocontrol"],
             "distribution_url": insect.distribution_url
         }
-        prediction_results.append(prediction)
+        prediction_results.append(result)
 
     # Sort predictions by probability in descending order
     prediction_results.sort(key=lambda x: float(x["probability"]), reverse=True)
@@ -54,7 +54,7 @@ def get_base64_image(path: Path, repo: AbstractRepository) -> str:
     image = repo.get_base64_image(path)
     return image
 
-def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
+def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]:
     repo.clear_directory(globals.BATCH_PREDICTION_RESULTS_FILE_DIRECTORY)
     repo.clear_directory(globals.INDIV_PREDICTION_RESULTS_FILE_DIRECTORY)
     store_user_uploaded_images(images, repo)
