@@ -28,6 +28,7 @@ const ResultsPage = () => {
   const downloadFile = async () => {
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
+      // Replace /download with the individual csv endpoint.
       const response = await axios.get(`/download`, {
         responseType: "blob",
       });
@@ -53,6 +54,36 @@ const ResultsPage = () => {
       console.error("Error downloading file:", error);
     }
   };
+
+  const downloadIndividualFile = async () => {
+    try {
+      // Send a POST request to the '/classify' endpoint in the backend to upload the image
+      const response = await axios.get(`/download`, {
+        responseType: "blob",
+      });
+
+      // Create a Blob object from the response data
+      const fileBlob = new Blob([response.data]);
+
+      // Create a URL for the Blob
+      const fileURL = window.URL.createObjectURL(fileBlob);
+
+      // Create a temporary download link from fileURL
+      const downloadLink = document.createElement("a");
+      downloadLink.href = fileURL;
+      downloadLink.download = "predictions.csv";
+
+      // Activate the link to download the file.
+      downloadLink.click();
+
+      // Return the URL to the previous link/page.
+      downloadLink.parentNode.removeChild(downloadLink);
+    } catch (error) {
+      // Display errors/status if there is an error
+      console.error("Error downloading file:", error);
+    }
+  };
+
 
   const openPopup = () => {
     setShowPopup(true);
@@ -122,7 +153,7 @@ const ResultsPage = () => {
             z
           >
             <button
-              className="flex items-center justify-center p-3 rounded-lg hover:shadow-lg"
+              className="flex items-center justify-center p-3 rounded-lg hover-btn"
               onClick={() => downloadFile()}
             >
               <div className="flex items-center gap-2 cursor-pointer">
@@ -134,7 +165,7 @@ const ResultsPage = () => {
                   ></img>
                 </div>
                 <span
-                  className="text-xl text-status-orange"
+                  className="text-xl text-status-orange hover-span"
                   style={{
                     fontSize: "1.2vw",
                     fontFamily: "Mitr",
@@ -169,7 +200,7 @@ const ResultsPage = () => {
                   fontSize: "1.4vw",
                   fontFamily: "Mitr",
                   fontWeight: 300,
-                  letterSpacing: 1,
+                  letterSpacing: 1
                 }}
               >
                 INPUT IMAGE
@@ -184,7 +215,7 @@ const ResultsPage = () => {
             {/* INDIVIDUAL DOWNLOAD */}
             <div className="h-1/12">
               <div className="flex items-center justify-center">
-                <button className="flex items-center w-8/12 gap-2 mt-2 cursor-pointer btn">
+                <button className="flex items-center w-8/12 gap-2 mt-2 cursor-pointer btn" onClick={() => downloadIndividualFile()}>
                   <div className="w-5 rounded aspect-square">
                     <img
                       src={gray_download_icon}
@@ -273,12 +304,35 @@ function SpeciesCardGroup({ image }) {
   const { predictions } = image;
   console.log("Predictions:");
   console.log(predictions);
+  console.log()
 
   return (
     <>
       {Object.entries(predictions).map(
         ([rank, prediction]) =>
-          rank <= 2 && (
+          rank == 1 && (
+            <SpeciesCard
+              // key={rank}
+              rank={rank}
+              {...prediction}
+              // distribution_url="https://www.gbif.org/species/7930834"
+            />
+          )
+      )}
+      {Object.entries(predictions).map(
+        ([rank, prediction]) =>
+          rank == 0 && (
+            <SpeciesCard
+              // key={rank}
+              rank={rank}
+              {...prediction}
+              // distribution_url="https://www.gbif.org/species/7930834"
+            />
+          )
+      )}
+     {Object.entries(predictions).map(
+        ([rank, prediction]) =>
+          rank == 2 && (
             <SpeciesCard
               // key={rank}
               rank={rank}

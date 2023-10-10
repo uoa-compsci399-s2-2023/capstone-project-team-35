@@ -15,7 +15,7 @@ const rankedClasses = [
   { marginTop: "mt-0", rank_color: "bg-status-yellow", theme: "#FBC229" },
   {
     marginTop: "mt-8",
-    rank_color: "bg-status-orange",
+    rank_color: "orange_color",
     theme: "#FC7F40",
   },
   { marginTop: "mt-12", rank_color: "bg-status-red", theme: "#FF5E49" },
@@ -248,7 +248,7 @@ function SpeciesCardCollapsed({
             <p className="name_height">{genus}</p>
             <p
               className="italic"
-              style={{ fontWeight: 200, paddingBottom: 10 }}
+              style={{ fontWeight: 200, paddingBottom: 10, fontSize: "1.1vw", position: "relative", bottom: "0.7vw"}}
             >
               {species}
             </p>

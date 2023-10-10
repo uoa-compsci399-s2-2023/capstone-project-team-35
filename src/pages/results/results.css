@@ -106,6 +106,11 @@
   border-radius: 2rem;
   font-size: 20px;
   margin-bottom: 40px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.popup_content button:hover {
+  box-shadow: none;
 }
 
 .popup_content p {
@@ -121,8 +126,12 @@
 
 .go_back {
   background-color: white;
-  color: #A8A8A8;;
-  border: 2px #A8A8A8 solid;
+  color: #A8A8A8;
+  /* border: 1px #A8A8A8 solid; */
+}
+
+.go_back:hover {
+  border: 1px #A8A8A8 solid;
 }
 
 .continue {
@@ -132,4 +141,33 @@
     rgba(251, 194, 41, 1) 50%, /* Start with the first color at 50% */
     rgba(253, 131, 62, 1) 100% /* End with the second color at 100% */
   );
+}
+
+.hover-btn:hover {
+  opacity: 0.5;
+  animation-name: hover_trans;
+  animation-duration: 0.4s;
+}
+
+.hover-btn {
+  animation-name: trans;
+  animation-duration: 0.4s;
+}
+
+@keyframes trans {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hover_trans {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.5;
+  }
 }
