@@ -25,7 +25,7 @@ def end_of_tests():
     
     uploaded_images = os.listdir(globals.USER_UPLOADED_IMAGES_DIRECTORY)
     standardized_images = os.listdir(globals.STANDARDIZED_IMAGES_DIRECTORY / "Images")
-    results = os.listdir(globals.RESULTS_FILE_DIRECTORY)
+    results = os.listdir(globals.BATCH_PREDICTION_RESULTS_FILE_DIRECTORY)
 
     
     if "sample_image.jpg" in uploaded_images:
@@ -43,4 +43,4 @@ def end_of_tests():
         os.remove(globals.STANDARDIZED_IMAGES_DIRECTORY / "Images" / "sample_image3.png")
 
     if "predictions.csv" in results:
-        os.remove(globals.RESULTS_FILE_DIRECTORY / "predictions.csv")
+        os.remove(globals.BATCH_PREDICTION_RESULTS_FILE_DIRECTORY / "predictions.csv")

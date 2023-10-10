@@ -10,11 +10,11 @@ class RepositoryException(Exception):
 
 class AbstractRepository(abc.ABC):
     @abc.abstractmethod
-    def create_multiple_result_csv(self):
+    def create_individual_prediction_results_csv(self, prediction_results: list):
          raise NotImplementedError
 
     @abc.abstractmethod
-    def add_results_csv(self):
+    def write_to_batch_prediction_results_csv(self, prediction_results: list):
         raise NotImplementedError
 
     @abc.abstractmethod

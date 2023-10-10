@@ -11,11 +11,10 @@ from pathlib import Path
 from pathlib import PurePath
 import os
 
-def save_predictions_as_csv(sorted_prediction_dict, image_file_index, repo: AbstractRepository):
-    result = Prediction(sorted_prediction_dict, image_file_index)
-    predictions = []
-    label_probability_dict = result.label_probability_dict
-    input_image_path = result.input_image_path
+def save_predictions_as_csv(prediction, repo: AbstractRepository):
+    prediction_results = []
+    label_probability_dict = prediction.label_probability_dict
+    input_image_path = prediction.input_image_path
     image_name = os.path.basename(input_image_path)
     for label in label_probability_dict:
         insect = mop.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
@@ -34,17 +33,17 @@ def save_predictions_as_csv(sorted_prediction_dict, image_file_index, repo: Abst
             "introduced_biocontrol": insect.tags["introduced_biocontrol"],
             "distribution_url": insect.distribution_url
         }
-        predictions.append(prediction)
+        prediction_results.append(prediction)
 
-     # Sort predictions by probability in descending order
-    predictions.sort(key=lambda x: float(x["probability"]), reverse=True)
+    # Sort predictions by probability in descending order
+    prediction_results.sort(key=lambda x: float(x["probability"]), reverse=True)
 
     # Assign rank to each prediction
-    for index, prediction in enumerate(predictions, start=1):
-        prediction["rank"] = index
+    for index, result in enumerate(prediction_results, start=1):
+        result["rank"] = index
 
-    repo.add_results_csv(predictions)
-    repo.create_multiple_result_csv(predictions)
+    repo.write_to_batch_prediction_results_csv(prediction_results)
+    repo.create_individual_prediction_results_csv(prediction_results)
 
 def store_user_uploaded_images(images: list[FileStorage], repo: AbstractRepository):
     repo.clear_directory(globals.USER_UPLOADED_IMAGES_DIRECTORY)
@@ -56,8 +55,8 @@ def get_base64_image(path: Path, repo: AbstractRepository) -> str:
     return image
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]: 
-    repo.clear_directory(globals.RESULTS_FILE_DIRECTORY)
-    repo.clear_directory(globals.SEVERAL_RESULTS_FILE_DIRECTORY)
+    repo.clear_directory(globals.BATCH_PREDICTION_RESULTS_FILE_DIRECTORY)
+    repo.clear_directory(globals.INDIV_PREDICTION_RESULTS_FILE_DIRECTORY)
     store_user_uploaded_images(images, repo)
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
@@ -80,7 +79,6 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
             uploaded_name, uploaded_extension = os.path.splitext(user_image_path)
             if uploaded_name == PurePath(name).name:
                 user_uploaded_image_files.append(user_image_path)
-
     
     results = []
 
@@ -92,11 +90,11 @@ def get_predictions(images: list[FileStorage], insect_type: str, model_type: str
         
         # Sort the dictionary items based on their values in descending order
         sorted_prediction_values = sorted(label_probability_dict.items(), key=lambda item: item[1], reverse=True)
-        save_predictions_as_csv(dict(sorted_prediction_values), image_files[index], repo)
         
         # Convert the sorted items back into a dictionary and extract top predictions
         top_predictions_dict = dict(sorted_prediction_values[:globals.TOP_PREDICTIONS_COUNT])
         new_prediction = Prediction(top_predictions_dict, str(globals.USER_UPLOADED_IMAGES_DIRECTORY / Path(user_uploaded_image_files[index])))
+        save_predictions_as_csv(new_prediction, repo)
         results.append(new_prediction)            
 
     return results

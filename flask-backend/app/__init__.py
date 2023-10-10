@@ -26,8 +26,8 @@ def create_app(test_config=None):
         
         app.register_blueprint(upload_and_get_predictions.upload_blueprint)
         app.register_blueprint(get_insect_types.upload_blueprint)
-        app.register_blueprint(download_results.download_blueprint)
-        app.register_blueprint(download_individual_result.download_blueprint)
+        app.register_blueprint(download_results.download_results_blueprint)
+        app.register_blueprint(download_individual_result.download_result_blueprint)
         app.register_blueprint(get_species_occurences_by_country.get_occurences_blueprint)
     
         if app.config['REPOSITORY'] == 'local':
