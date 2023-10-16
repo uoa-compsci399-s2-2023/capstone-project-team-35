@@ -1,6 +1,6 @@
 import RootContext from "../../providers/root";
 import { SpeciesCard, FileButton, ResultsTable } from "../../components";
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
 import orange_download_icon from "../../assets/ui-elements/orange_download-icon.svg";
@@ -22,8 +22,8 @@ const ResultsPage = () => {
     }
   }, [data]);
 
-  console.log("currentSelectedImage:");
-  console.log(currentSelectedImage);
+  // console.log("currentSelectedImage:");
+  // console.log(currentSelectedImage);
 
   const downloadFile = async () => {
     try {
@@ -48,19 +48,25 @@ const ResultsPage = () => {
       downloadLink.click();
 
       // Return the URL to the previous link/page.
-      downloadLink.parentNode.removeChild(downloadLink);
+      // downloadLink.parentNode.removeChild(downloadLink);
     } catch (error) {
       // Display errors/status if there is an error
       console.error("Error downloading file:", error);
     }
   };
 
-  const downloadIndividualFile = async () => {
+  const downloadIndividualFile = async (filename) => {
+    // if (!filename) return;
+    const imagename = filename.replace(/\.[^/.]+$/, "");
+    // console.log("downloading...", imagename);
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
-      const response = await axios.get(`/download`, {
-        responseType: "blob",
-      });
+      const response = await axios.get(
+        `/download_individual_result/${filename}`,
+        {
+          responseType: "blob",
+        }
+      );
 
       // Create a Blob object from the response data
       const fileBlob = new Blob([response.data]);
@@ -71,13 +77,13 @@ const ResultsPage = () => {
       // Create a temporary download link from fileURL
       const downloadLink = document.createElement("a");
       downloadLink.href = fileURL;
-      downloadLink.download = "predictions.csv";
+      downloadLink.download = `${imagename}_predictions.csv`;
 
       // Activate the link to download the file.
       downloadLink.click();
 
       // Return the URL to the previous link/page.
-      downloadLink.parentNode.removeChild(downloadLink);
+      // downloadLink.parentNode.removeChild(downloadLink);
     } catch (error) {
       // Display errors/status if there is an error
       console.error("Error downloading file:", error);
@@ -188,7 +194,7 @@ const ResultsPage = () => {
         </div>
 
         {/* Auxiliary Info Section */}
-        <div className="flex h-2/5 zindex bg-white">
+        <div className="flex bg-white h-2/5 zindex">
           {/* Reference Image Section */}
           <div className="flex flex-col justify-center w-4/12 gap-3 border-r-2 border-black border-opacity-10">
             {/* HEADER */}
@@ -216,7 +222,11 @@ const ResultsPage = () => {
               <div className="flex items-center justify-center">
                 <button
                   className="flex items-center w-8/12 gap-2 mt-2 cursor-pointer btn"
-                  onClick={() => downloadIndividualFile()}
+                  onClick={() =>
+                    downloadIndividualFile(
+                      currentSelectedImage.input_image_filename
+                    )
+                  }
                 >
                   <div className="w-5 rounded aspect-square">
                     <img
@@ -308,15 +318,14 @@ function DislplayInputImage({ image }) {
 
 function SpeciesCardGroup({ image }) {
   if (!image) return null;
-
   const { predictions } = image;
 
   return (
-    <>
+    <React.Fragment>
       <SpeciesCard rank={1} {...predictions[1]} />
       <SpeciesCard rank={0} {...predictions[0]} />
       <SpeciesCard rank={2} {...predictions[2]} />
-    </>
+    </React.Fragment>
   );
 }
 

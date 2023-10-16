@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 
 export default function useLocalStorage(key, initialValue) {
   // The useState hook allows us to retrieve and set the values of each taxonKey in our local storage
+
+  console.log("key in getSavedValue: ", key);
+
   const [value, setValue] = useState(() => {
     const jsonValue = localStorage.getItem(key);
 

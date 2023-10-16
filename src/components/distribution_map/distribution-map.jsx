@@ -10,7 +10,7 @@ const DistributionMap = ({ data }) => {
         <span>no occurrences recorded</span>
       </div>
     );
-  console.log("DistributionMapData", data);
+  // console.log("DistributionMapData", data);
   return (
     <Plot
       data={[

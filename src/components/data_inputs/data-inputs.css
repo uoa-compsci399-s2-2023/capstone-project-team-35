@@ -275,16 +275,16 @@ div.hasImage {
 }
 
 .image_section {
-  margin-bottom: 3px;
-  background-color: #F8F8F8;
-  color: gray;
-  border-radius: 25px;
-  padding-left: 10px;
-  font-size: min(max(0.8vw, 9px), 15px);
-  overflow: hidden;
-
-  animation-name: image_section;
-  animation-duration: 0.5s;
+    margin-bottom: 3px;
+    background-color: #F8F8F8;
+    border-radius: 25px;
+    padding: 2px;
+    padding-left: 10px;
+    font-size: min(max(0.8vw, 9px), 15px);
+    overflow: hidden;
+    
+    animation-name: image_section;
+    animation-duration: 0.5s
 }
 
 @keyframes image_section {

@@ -1,15 +1,14 @@
-import "./species-card.css";
-import { useState, useEffect } from "react";
-import dist_ok_icon from "../../assets/ui-elements/dist-ok_icon.png";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import dist_nan_icon from "../../assets/ui-elements/dist-nan_icon.png";
-import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
-import info_icon from "../../assets/ui-elements/info_icon.svg";
+import dist_ok_icon from "../../assets/ui-elements/dist-ok_icon.png";
 import gallery_icon from "../../assets/ui-elements/gallery_icon.png";
+import info_icon from "../../assets/ui-elements/info_icon.svg";
+import shrink_icon from "../../assets/ui-elements/shrink_icon.svg";
+import DistributionMap from "../distribution_map/distribution-map";
 import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
-import DistributionMap from "../distribution_map/distribution-map";
-import axios from "axios";
-import useLocalStorage from "../../hooks/useLocalStorage";
+import "./species-card.css";
 
 const rankedClasses = [
   { marginTop: "mt-0", rank_color: "bg-status-yellow", theme: "#FBC229" },
@@ -25,23 +24,25 @@ const getDistribution = async ({
   taxon_key,
   setMapData,
   setIsFetchingMapData,
-  localMapData,
-  setLocalMapData,
 }) => {
-  console.log(`ID: ${taxon_key}`);
+  // console.log(`ID in getDist: ${taxon_key}`);
   setIsFetchingMapData(true);
 
-  if (localMapData) {
-    setMapData(localMapData);
+  const localStorageItem = JSON.parse(localStorage.getItem(taxon_key));
+
+  if (localStorageItem != null) {
     setIsFetchingMapData(false);
+    // console.log("found:", localStorageItem);
+    setMapData(localStorageItem);
     return;
   }
 
   try {
+    // console.log("fetching...");
     await axios.get(`/get_occurences_by_country/${taxon_key}`).then((resp) => {
       setIsFetchingMapData(false);
+      localStorage.setItem(taxon_key, JSON.stringify(resp.data));
       setMapData(resp.data);
-      setLocalMapData(resp.data);
     });
   } catch (error) {
     console.error("Error getting distribution data:", error);
@@ -52,14 +53,13 @@ const SpeciesCard = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [mapData, setMapData] = useState();
   const [isFetchingMapData, setIsFetchingMapData] = useState(false);
-  const taxon_key = props.distribution_url.split("/").pop();
-  const [localMapData, setLocalMapData] = useLocalStorage(taxon_key, null);
+  // const taxon_key = props.distribution_url.split("/").pop();
 
   useEffect(() => {
     setExpanded(false);
   }, [props]);
 
-  console.log(props);
+  // console.log(props);
 
   return expanded ? (
     <SpeciesCardExpanded
@@ -75,8 +75,6 @@ const SpeciesCard = (props) => {
       setMapData={setMapData}
       handleExpand={() => setExpanded(true)}
       setIsFetchingMapData={setIsFetchingMapData}
-      localMapData={localMapData}
-      setLocalMapData={setLocalMapData}
     />
   );
 };
@@ -204,8 +202,6 @@ function SpeciesCardCollapsed({
   handleExpand,
   setMapData,
   setIsFetchingMapData,
-  localMapData,
-  setLocalMapData,
 }) {
   // Props come from the results passed onto the instances in the components in the results page
   const { marginTop, rank_color, theme } = rankedClasses[rank];
@@ -246,7 +242,13 @@ function SpeciesCardCollapsed({
             <p className="name_height">{genus}</p>
             <p
               className="italic"
-              style={{ fontWeight: 200, paddingBottom: 10, fontSize: "1vw", position: "relative", bottom: 15}}
+              style={{
+                fontWeight: 200,
+                paddingBottom: 10,
+                fontSize: "1vw",
+                position: "relative",
+                bottom: 15,
+              }}
             >
               {species}
             </p>
@@ -273,8 +275,6 @@ function SpeciesCardCollapsed({
               handleExpand={handleExpand}
               setMapData={setMapData}
               setIsFetchingMapData={setIsFetchingMapData}
-              localMapData={localMapData}
-              setLocalMapData={setLocalMapData}
             />
           </div>
         </div>
@@ -288,8 +288,6 @@ function DisplayExpandButton({
   handleExpand,
   setMapData,
   setIsFetchingMapData,
-  localMapData,
-  setLocalMapData,
 }) {
   if (!link)
     return (
@@ -316,7 +314,6 @@ function DisplayExpandButton({
       </div>
     );
   const taxon_key = link.split("/").pop();
-  console.log(taxon_key);
   return (
     <div
       className="flex items-center gap-2 cursor-pointer"
@@ -326,8 +323,6 @@ function DisplayExpandButton({
           taxon_key,
           setMapData,
           setIsFetchingMapData,
-          localMapData,
-          setLocalMapData,
         })
       }
     >

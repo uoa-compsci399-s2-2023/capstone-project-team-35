@@ -3,9 +3,6 @@ import React from "react";
 const ResultsTable = (props) => {
   const { image } = props;
 
-  console.log("ResultsTable image:");
-  console.log(image);
-
   if (!image) return null;
   const { predictions } = image;
 
