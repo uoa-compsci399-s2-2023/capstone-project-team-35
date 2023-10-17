@@ -374,7 +374,8 @@ div.hasImage {
 }
 
 @media only screen and (max-width: 990px) {
-  .image_section {
+
+  .image_section p {
     font-size: max(0.9vw, 8px);
   }
 
@@ -388,5 +389,14 @@ div.hasImage {
 
   .button {
     min-width: max(30vw, 180px);
+    font-size: max(2vw, 15px);
+  }
+
+  .upload {
+    font-size: max(2vw, 15px);
+  }
+
+  .error_btn {
+    min-width: 5px;
   }
 }

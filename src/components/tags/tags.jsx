@@ -1,3 +1,5 @@
+import "./tags.css";
+
 const TagThemes = {
   in_NZ: {
     text: "in NZ",
@@ -35,7 +37,7 @@ const SpeciesTag = ({ tag }) => {
         className={`flex flex-row items-center justify-center gap-1 px-2 py-1 m-1 text-xs font-semibold border-4 rounded-md border-opacity-20 ${border_color}`}
       >
         <div className={`h-2 rounded-full aspect-square ${bg_color}`} />
-        <span style={{ fontSize: "0.7vw" }}>{text}</span>
+        <span className="tag_font">{text}</span>
       </div>
     );
   } else {

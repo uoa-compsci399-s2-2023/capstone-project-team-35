@@ -17,9 +17,8 @@
 .title h3 {
   position: absolute;
   top: 90%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  left: 40%;
+  left: 50%;
+  transform: translateX(-50%);
 
   font-size: 1.2vw;
   word-spacing: 1vw;
@@ -28,6 +27,7 @@
   font-weight: 300;
   letter-spacing: 0.4px;
   word-spacing: 3px;
+  z-index: 1;
 }
 
 @media screen and (max-width: 990px) {
@@ -42,8 +42,12 @@
   }
 
   .title h3 {
-    opacity: 0;
-    
+    left: 50%;
+    transform: translateX(-50%);
+
+    top: 30%;
+    font-size: 18px;
+    padding-top: 10px;
     /* margin: 0;
     position: absolute;
     top: 27%;

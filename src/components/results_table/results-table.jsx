@@ -1,4 +1,5 @@
 import React from "react";
+import "./results-table.css";
 
 const ResultsTable = (props) => {
   const { image } = props;
@@ -10,11 +11,10 @@ const ResultsTable = (props) => {
     <div className="flex w-full h-full max-h-full overflow-auto">
       <table className="table">
         {/* head */}
-        <thead className="text-xl">
+        <thead className="">
           <tr
-            className="sticky top-0 bg-white border-b-2 border-gray-200"
+            className="sticky top-0 bg-white border-b-2 border-gray-200 pred_header"
             style={{
-              fontSize: "1.1vw",
               fontFamily: "Geologica",
               color: "#707070",
             }}
@@ -26,7 +26,7 @@ const ResultsTable = (props) => {
         </thead>
         <tbody>
           {Object.entries(predictions).map(([rank, prediction]) => (
-            <tr style={{ fontSize: "0.9vw" }} className="text-lg hover">
+            <tr className="hover pred_font">
               <th>{`${Number(rank) + 1}`}</th>
               <td>
                 {prediction.genus} {prediction.species}

@@ -11,13 +11,11 @@ import SpeciesTag from "../tags/tags";
 import "./species-card.css";
 
 const rankedClasses = [
-  { marginTop: "mt-0", rank_color: "bg-status-yellow", theme: "#FBC229" },
+  { marginTop: "mt-0", rank_color: "card_green", theme: "#C6E268" },
   {
-    marginTop: "mt-8",
-    rank_color: "bg-status-orange",
-    theme: "#FC7F40",
+    marginTop: "mt-8", rank_color: "card_yellow", theme: "#FBC229",
   },
-  { marginTop: "mt-12", rank_color: "bg-status-red", theme: "#FF5E49" },
+  { marginTop: "mt-12", rank_color: "card_red", theme: "#FC7F40" },
 ];
 
 const getDistribution = async ({
@@ -215,15 +213,14 @@ function SpeciesCardCollapsed({
         {/* <div className="flex flex-col items-center justify-center max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl"> */}
         <div className="species_card_inner_container">
           {/* Confidence Circle */}
-          <div className="flex items-center justify-center w-2/5 pt-4">
+          <div className="flex items-center justify-center pt-4 radial_width">
             <RadialGraph
               className="flex"
               progress={probPercentage}
               color={theme}
             />
             <span
-              style={{ fontSize: "1.3vw" }}
-              className="absolute z-10 flex text-2xl font-semibold text-foreground-dark"
+              className="absolute z-10 flex font-semibold text-foreground-dark radial_font"
             >
               {`${probPercentage}%`}
             </span>
@@ -233,19 +230,17 @@ function SpeciesCardCollapsed({
           <div
             className="flex flex-col w-full max-w-xl text-center truncate md:text-xl lg:text-2xl text-ellipsis text-foreground-dark name_height"
             style={{
-              fontSize: "1.4vw",
               fontFamily: "Geologica",
               fontWeight: 400,
               letterSpacing: 0,
             }}
           >
-            <p className="name_height">{genus}</p>
+            <p className="name_height genus_font">{genus}</p>
             <p
-              className="italic"
+              className="italic species_font"
               style={{
                 fontWeight: 200,
                 paddingBottom: 10,
-                fontSize: "1vw",
                 position: "relative",
                 bottom: 15,
               }}
@@ -300,9 +295,8 @@ function DisplayExpandButton({
           ></img>
         </div>
         <span
-          className="text-lg"
+          className="distribution_font"
           style={{
-            fontSize: "1vw",
             fontFamily: "Geologica",
             fontWeight: 200,
             letterSpacing: 0,
@@ -334,9 +328,8 @@ function DisplayExpandButton({
         ></img>
       </div>
       <span
-        className="text-lg"
+        className="distribution_font"
         style={{
-          fontSize: "1vw",
           fontFamily: "Geologica",
           fontWeight: 200,
           letterSpacing: 0,
@@ -352,10 +345,10 @@ function DisplayExtLinks({ link }) {
   if (!link)
     return (
       <span
+        className="italic text-gray-500"
         style={{
           fontSize: "1vw",
         }}
-        className="italic text-gray-500"
       >
         no external links available
       </span>

@@ -8,6 +8,7 @@
   border-top-left-radius: 10%;
   border-top-right-radius: 10%;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .frame.scrollable  {
@@ -34,7 +35,6 @@
     width: 100%;
     position: relative;
     left: 0%;
-    bottom: 0%;
     border-top-left-radius: 0%;
     border-top-right-radius: 0%;
   }
@@ -46,10 +46,14 @@
     position: relative;
     top: 5%;
     font-size: calc(15px + 2vw);
-    width: 100%;
+    width: 50%;
     padding-left: 0px;
-    text-align: center;
+    text-align: left;
     margin-bottom: 50px;
+
+    left: 60%;
+    transform: translateX(-60%);
+    padding-bottom: 15px;
   }
 
   .data_inputs {
