@@ -12,8 +12,12 @@ def create_app(test_config=None):
     # Create the Flask app object.
     app = Flask(__name__)
     # Load default configuration
-    app.config.from_object("config.Config")
-
+    # app.config.from_object("config.Config")
+    
+    app.config["FLASK_APP"] = "ocellai.py"
+    app.config["FLASK_ENV"] = "development"
+    app.config["TESTING"] = "True"
+    app.config["REPOSITORY"] = "local"
          
     # Build the application - these steps require an application context
     with app.app_context():
