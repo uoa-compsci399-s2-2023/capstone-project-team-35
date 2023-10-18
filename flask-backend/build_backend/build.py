@@ -3,7 +3,7 @@ import os
 import shutil
 
 # Define the entry point Python script (ocellai.py) and the output directory
-app_entry_file = "ocellai.py"
+app_entry_file = "ocellai_backend.py"
 app_entry_point_path = os.path.join("..", app_entry_file)
 all_data_directory = os.path.join("..", "app", "data")
 output_directory_name = "packaged_backend"  # This is where the output build executable will be placed
