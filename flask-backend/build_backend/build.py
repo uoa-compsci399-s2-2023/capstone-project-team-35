@@ -3,7 +3,8 @@ import os
 import shutil
 
 # Define the entry point Python script (ocellai.py) and the output directory
-app_entry_point = os.path.join("..", "ocellai.py")
+app_entry_file = "ocellai.py"
+app_entry_point_path = os.path.join("..", app_entry_file)
 all_data_directory = os.path.join("..", "app", "data")
 output_directory_name = "packaged_backend"  # This is where the output build executable will be placed
 
@@ -15,7 +16,7 @@ command = [
     all_data_directory + "/:" + os.path.join("app", "data"),
     "--distpath",
     output_directory_name,
-    app_entry_point,
+    app_entry_point_path,
 ]
 
 try:
@@ -24,15 +25,15 @@ try:
     
     # Remove the 'build' directory and 'wsgi.spec' file
     build_dir = os.path.join(os.getcwd(), 'build')
-    spec_file = "ocellai.spec"
+    spec_file = f"{app_entry_file}.spec"
     
     if os.path.exists(build_dir):
         shutil.rmtree(build_dir)  # Remove the 'build' directory and its contents
     
     if os.path.exists(spec_file):
-        os.remove(spec_file)  # Remove the 'wsgi.spec' file
+        os.remove(spec_file)  # Remove the '.spec' file
         
 except subprocess.CalledProcessError:
     print("PyInstaller encountered an error.")
 
-print("Finished building your Python application.")
+print("Finished building the backend application!")
