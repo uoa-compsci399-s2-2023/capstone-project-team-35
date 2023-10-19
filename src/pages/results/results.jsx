@@ -2,6 +2,7 @@ import RootContext from "../../providers/root";
 import { SpeciesCard, FileButton, ResultsTable } from "../../components";
 import React, { useContext, useEffect, useState } from "react";
 import main_logo from "../../assets/branding/main_logo.svg";
+import insect_logo from "../../assets/branding/insect_logo.svg";
 import home_icon from "../../assets/ui-elements/orange_home.svg";
 import orange_download_icon from "../../assets/ui-elements/orange_download-icon.svg";
 import gray_download_icon from "../../assets/ui-elements/gray_download-icon.svg";
@@ -103,13 +104,22 @@ const ResultsPage = () => {
     // Main Parent
     <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden transition max-w-screen gap-11">
       {/* File Navigation Section */}
-      <div className="flex flex-col w-1/3 shadow-3xl rounded-t-3xl max-h-fit panel">
+      <div className="flex flex-col responsive-width-sidebar shadow-3xl rounded-t-3xl max-h-fit panel">
         {/* Navigation Header */}
         <div className="relative flex flex-col h-1/6">
           {/* row for the home button so that it doesn't overlap with the logo */}
           <div className="flex w-full h-16">
+            {/* Logo which appears when browser size decreases */}
+            <div className="responsive-visible responsive-logo">
+              <img
+                src={insect_logo}
+                className="company_logo"
+                alt="Ocell.ai Logo"
+              ></img>
+            </div>
+
             {/* Home Button */}
-            <div className="top-0 left-0 flex items-center justify-center w-8 m-5 cursor-pointer align-items aspect-square back">
+            <div className="w-8 m-5 cursor-pointer responsive_home_icon">
               {/* Return to home button */}
               <button type="button" onClick={openPopup}>
                 <img
@@ -124,7 +134,7 @@ const ResultsPage = () => {
           {/* row for the logo */}
           <div className="flex items-center justify-center w-full h-2/3">
             {/* Ocell.ai Logo */}
-            <div className="flex w-1/2 mt-6 mb-6 h-2/3">
+            <div className="flex w-1/2 mt-6 mb-6 h-2/3 responsive-hide">
               <img
                 src={main_logo}
                 className="company_logo"
@@ -137,7 +147,7 @@ const ResultsPage = () => {
         {/* Navigation Body */}
         <div className="relative flex flex-col items-start gap-4 pt-4 pb-2 h-5/6 max-h-fit overflow-clip">
           <div className="items-start w-full p-8 overflow-y-auto h-[calc(100%-80px)]">
-            <div className="flex flex-col w-full h-full gap-4">
+            <div className="flex flex-col w-full h-full gap-4 responsive-hide">
               {data.predictions.map((image) => (
                 <FileButton
                   image={image}
@@ -170,7 +180,7 @@ const ResultsPage = () => {
                   ></img>
                 </div>
                 <span
-                  className="text-xl text-status-orange hover-span"
+                  className="text-xl text-status-orange hover-span responsive-hide"
                   style={{
                     fontSize: "1.2vw",
                     fontFamily: "Mitr",
@@ -187,9 +197,20 @@ const ResultsPage = () => {
       </div>
 
       {/* ============== Results Section ================== */}
-      <div className="flex flex-col w-2/3 pb-8 top-10">
+      <div className="flex flex-col responsive-width pb-8 top-10">
+        {/* Image selection when the browser gets too small */}   
+        <div>
+          <select className="responsive-visible image_select_dropdown" value={currentSelectedImage?.input_image_filename} onChange={(e) => setCurrentSelectedImage(data.predictions.find(image => image.input_image_filename === e.target.value))}>
+            {data.predictions.map((image) => (
+              <option value={image.input_image_filename} key={image.input_image_filename}>
+                {image.input_image_filename}
+              </option>
+            ))}
+          </select>
+        </div>
+
         {/* Species Card Section */}
-        <div className="relative flex pb-6 border-b-2 border-black border-opacity-10 h-3/5 gap-9 move">
+        <div className="relative flex pb-6 border-b-2 border-black border-opacity-10 responsive-card-height move">
           <SpeciesCardGroup image={currentSelectedImage} />
         </div>
 
@@ -200,9 +221,8 @@ const ResultsPage = () => {
             {/* HEADER */}
             <div className="flex items-center justify-center h-16 ">
               <span
-                className="font-sans md:text-xl lg:text-2xl text-foreground-dark input_image_header"
+                className="font-sans text-foreground-dark input_image_header"
                 style={{
-                  fontSize: "1.4vw",
                   fontFamily: "Mitr",
                   fontWeight: 300,
                   letterSpacing: 1,
@@ -213,7 +233,7 @@ const ResultsPage = () => {
             </div>
 
             {/* IMAGE FILE */}
-            <div className="input_image">
+            <div>
               <DislplayInputImage image={currentSelectedImage} />
             </div>
 
@@ -236,6 +256,7 @@ const ResultsPage = () => {
                     ></img>
                   </div>
                   <span
+                  className="responsive-hide"
                     style={{
                       fontSize: "0.8vw",
                       fontFamily: "Geologica",
@@ -256,10 +277,9 @@ const ResultsPage = () => {
             {/* HEADER */}
             <div className="relative flex items-center h-16 ml-10 justify-left">
               <span
-                className="font-sans text-foreground-dark"
+                className="font-sans text-foreground-dark predictions_font"
                 style={{
                   // fontFamily: "Mitr",
-                  fontSize: "1.4vw",
                   fontFamily: "Mitr",
                   fontWeight: 300,
                   margin: "auto",
@@ -304,8 +324,7 @@ function DislplayInputImage({ image }) {
   if (!image) return null;
   return (
     <div
-      id="input_img_container"
-      className="flex w-8/12 overflow-hidden rounded-2xl aspect-square bg-slate-500 flex-center"
+      className="flex overflow-hidden rounded-2xl aspect-square bg-slate-500 flex-center input_img_container"
     >
       <img
         src={`data:image/jpeg;base64,${image.input_image}`}

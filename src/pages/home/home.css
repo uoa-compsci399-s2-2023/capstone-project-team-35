@@ -28,4 +28,8 @@
     .control_frame_container {
         grid-area: 2 / 1 / 3 / 2;
     }   
+    
+    .title_container {
+        padding-bottom: 300px;
+    }
 }

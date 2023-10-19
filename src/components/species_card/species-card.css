@@ -127,3 +127,42 @@
     opacity: 1;
   }
 } */
+
+.card_green {
+  background-color: #C6E268;
+}
+
+.card_yellow {
+  background-color: #FBC229;
+}
+
+.card_red {
+  background-color: #FC7F40;
+}
+
+.radial_width {
+  width: 40%;
+  min-width: 60px;
+}
+
+.radial_font {
+  font-size: max(1.3vw, 14px);
+}
+
+.genus_font {
+  font-size: max(1.4vw, 10px);
+}
+
+.species_font {
+  font-size: max(1vw, 10px);
+}
+
+.distribution_font {
+  font-size: max(1vw, 8px)
+}
+
+@media screen and (max-width: 900px) {
+  .name_height {
+    min-height: 30px;
+  }
+}

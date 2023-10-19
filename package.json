@@ -1,7 +1,8 @@
 {
   "name": "capstone-project-team-35",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "main": "electron-main.js",
   "proxy": "http://127.0.0.1:5000",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
@@ -12,7 +13,9 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "cors": "^2.8.5",
     "d3": "^7.8.5",
+    "express": "^4.18.2",
     "flask": "^0.2.10",
     "framer-motion": "^10.16.4",
     "plotly.js": "^2.26.1",
@@ -33,7 +36,8 @@
     "start-backend": "cd flask-backend && flask run",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron": "concurrently \"npm start\" \"electron .\""
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +59,7 @@
   },
   "devDependencies": {
     "daisyui": "^3.7.3",
+    "electron": "^27.0.0",
     "tailwindcss": "^3.3.3"
   }
 }

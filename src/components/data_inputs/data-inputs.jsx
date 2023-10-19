@@ -184,7 +184,7 @@ const DataInputs = () => {
                       type="button"
                       className="p-1"
                     >
-                      <img src={x_icon} alt="small x" />
+                      <img src={x_icon} alt="small x" className="error_btn" />
                     </button>
                   </div>
                 ))}

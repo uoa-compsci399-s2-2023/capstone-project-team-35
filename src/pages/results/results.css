@@ -41,20 +41,34 @@
 }
 
 .input_image {
-  display: flex;
-  justify-content: center;
   height: auto;
   max-height: 10.5vw;
+  min-height: 140px;
+  width: 12vw;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  left: 2vw;
+  min-width: 100px;
+}
+
+.input_img_container {
+  height: max(9vw, 100px);
+  margin: auto;
 }
 
 .input_image_header {
   padding-top: 10px;
+  font-size: max(1.4vw, 14px);
+}
+
+.predictions_font {
+  font-size: max(1.4vw, 14px);
 }
 
 .input_img {
   flex-shrink: 0;
-  min-width: 100%;
-  min-height: 100%
+  height: max(9vw, 100px);
 }
 
 .zindex {
@@ -93,7 +107,6 @@
   text-align: center;
   display: flex;
   flex-direction: column; 
-  justify-content: space-between;
   
 }
 
@@ -171,3 +184,95 @@
     opacity: 0.5;
   }
 }
+
+.responsive-width {
+  width: 67%;
+}
+
+.responsive-width-sidebar {
+  width: 33%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.responsive-visible {
+  display: none;
+}
+
+.responsive_home_icon {
+  margin: 1.25rem; 
+  text-align: center;
+}
+
+.image_select_dropdown {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: max(1.8vw, 12px);
+}
+
+.responsive-card-height {
+  height: 60%;
+  gap: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+  .responsive-hide {
+    display: none;
+  }
+
+  .responsive-card-height {
+    height: 50%;
+    gap: 0.75rem;
+  }
+
+  .responsive-visible {
+    display: block;
+  }
+
+  .responsive-logo {
+    position: absolute;
+    top: 10%;
+    padding: 7px;
+    margin: auto;
+  }
+
+  .responsive-width {
+    width: 100%;
+  }
+
+  .responsive-width-sidebar {
+    width: 10%;
+  }
+
+  .responsive_home_icon {
+    position: relative;
+    top: 7vw;
+    width: 40%;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .responsive_position {
+    position: relative;
+    bottom: 200px;
+  }
+
+  .popup_content p {
+    font-size: max(2vw, 13px);
+    padding-bottom: 0px;
+
+  }
+
+  .popup_content button {
+    font-size: max(2vw, 13px);
+    margin-bottom: 2vw;
+    height: max(5vw, 30px);
+
+  }
+}
+
