@@ -26,5 +26,5 @@ __pycache__
 # Flask
 flask-backend/flask
 flask-backend/__pycache__
-flask-backend/app/ml/models/trupanea/inceptionv3/model.h5
+*model.h5
 flask-backend/app/endpoints/**/tmp

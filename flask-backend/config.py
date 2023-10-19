@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 # Load environment variables from file .env, stored in this directory. 
 load_dotenv()
 
-class Config:
+class AppConfig:
     """Set Flask configuration from .env file"""
     
     # Flask configuration
