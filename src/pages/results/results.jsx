@@ -30,7 +30,7 @@ const ResultsPage = () => {
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
       // Replace /download with the individual csv endpoint.
-      const response = await axios.get(`/download`, {
+      const response = await axios.get(`http://localhost:5000/download`, {
         responseType: "blob",
       });
 
@@ -63,7 +63,7 @@ const ResultsPage = () => {
     try {
       // Send a POST request to the '/classify' endpoint in the backend to upload the image
       const response = await axios.get(
-        `/download_individual_result/${filename}`,
+        `http://localhost:5000/download_individual_result/${filename}`,
         {
           responseType: "blob",
         }

@@ -61,7 +61,7 @@ const DataInputs = () => {
     const fetchInsectTypes = async () => {
       try {
         // Stores the returned array of insect types
-        const response = await axios.get("/get_insect_types");
+        const response = await axios.get("http://localhost:5000/get_insect_types");
         setOptions(response.data);
       } catch (error) {
         console.error("Error fetching insect types:", error);

@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "./static/css/main.d9ac1875.css",
+    "main.js": "./static/js/main.0249f2bf.js",
+    "static/media/ocellai_logo-tag_lighter.png": "./static/media/ocellai_logo-tag_lighter.85ffd43d460153a4581d.png",
+    "static/media/main_logo.svg": "./static/media/main_logo.dfede18f798822efedc04f1def59f782.svg",
+    "static/media/dist-nan_icon.png": "./static/media/dist-nan_icon.5aba0e7e56d1f54bf42f.png",
+    "static/media/insect_logo.svg": "./static/media/insect_logo.786d55b2bd6a0c867df46303ed8a16e1.svg",
+    "static/media/dist-ok_icon.png": "./static/media/dist-ok_icon.4bafbbd23d4f6a7d9b8a.png",
+    "static/media/file_upload.svg": "./static/media/file_upload.186cb008320591070b0cbb924e0d4199.svg",
+    "static/media/gray_download-icon.svg": "./static/media/gray_download-icon.c3e92ac9504f9a2024e8407604ac1629.svg",
+    "static/media/orange_download-icon.svg": "./static/media/orange_download-icon.8052a4c9aa4f7e64fed65d819a28bdc7.svg",
+    "static/media/info_icon.svg": "./static/media/info_icon.9f73ae18002d4accb821b6613579f82e.svg",
+    "static/media/input_backdrop.png": "./static/media/input_backdrop.702f9a8f3796fc23b187.png",
+    "static/media/gallery_icon.png": "./static/media/gallery_icon.2518241c5e00bf0e9fbd.png",
+    "static/media/logo.png": "./static/media/logo.f9f45a048760e9f378a8.png",
+    "static/media/orange_home.svg": "./static/media/orange_home.0c9944ff0a8a05bea34de89cac2cf49f.svg",
+    "static/media/shrink_icon.svg": "./static/media/shrink_icon.9e3ac30ede8ec8a7364b23a785971e19.svg",
+    "static/media/edit_icon.svg": "./static/media/edit_icon.75e0ed8d96dbd9cf87f4adb031104041.svg",
+    "index.html": "./index.html",
+    "main.d9ac1875.css.map": "./static/css/main.d9ac1875.css.map",
+    "main.0249f2bf.js.map": "./static/js/main.0249f2bf.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9ac1875.css",
+    "static/js/main.0249f2bf.js"
+  ]
+}

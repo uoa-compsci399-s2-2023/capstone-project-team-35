@@ -37,7 +37,7 @@ const getDistribution = async ({
 
   try {
     // console.log("fetching...");
-    await axios.get(`/get_occurences_by_country/${taxon_key}`).then((resp) => {
+    await axios.get(`http://localhost:5000/get_occurences_by_country/${taxon_key}`).then((resp) => {
       setIsFetchingMapData(false);
       localStorage.setItem(taxon_key, JSON.stringify(resp.data));
       setMapData(resp.data);

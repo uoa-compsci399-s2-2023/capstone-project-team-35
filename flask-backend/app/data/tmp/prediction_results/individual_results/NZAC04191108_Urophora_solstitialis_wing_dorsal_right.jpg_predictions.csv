@@ -1,0 +1,11 @@
+image_name,label,probability,rank,genus,species,country,in_NZ,endemic,unwanted_pest,native,introduced_biocontrol,distribution_url
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,urophora,1.0,1,Urophora,,Overseas,TRUE,FALSE,FALSE,FALSE,TRUE,https://www.gbif.org/species/5088031
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,austrotephritis,0.0,2,Austrotephritis,,New Zealand,TRUE,FALSE,FALSE,TRUE,FALSE,
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,bactrocera,0.0,3,Bactrocera,,Overseas,FALSE,FALSE,TRUE,FALSE,FALSE,https://www.gbif.org/species/5886573
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,ceratitis,0.0,4,Ceratitis,,Overseas,FALSE,FALSE,TRUE,FALSE,FALSE,https://www.gbif.org/species/1626096
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,procecidochares,0.0,5,Procecidochares,,New Zealand,TRUE,FALSE,FALSE,FALSE,TRUE,https://www.gbif.org/species/1623661
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,sphenella,0.0,6,Sphenella,,New Zealand,TRUE,TRUE,FALSE,FALSE,FALSE,
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,trupanea_centralis,0.0,7,Trupanea,entralis,New Zealand,TRUE,TRUE,FALSE,FALSE,FALSE,https://www.gbif.org/species/5087786
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,trupanea_completa,0.0,8,Trupanea,completa,New Zealand,TRUE,TRUE,FALSE,FALSE,FALSE,https://www.gbif.org/species/5087891
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,trupanea_extensa,0.0,9,Trupanea,extensa,New Zealand,TRUE,TRUE,FALSE,FALSE,FALSE,https://www.gbif.org/species/5087861
+NZAC04191108_Urophora_solstitialis_wing_dorsal_right.jpg,trupanea_fenwicki,0.0,10,Trupanea,fenwicki,New Zealand,TRUE,TRUE,FALSE,FALSE,FALSE,https://www.gbif.org/species/5087819

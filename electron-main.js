@@ -1,64 +1,91 @@
 const { app, BrowserWindow } = require('electron');
+const express = require('express');
+const { spawn } = require('child_process');
 const path = require('path');
-const child_process = require('child_process');
-
+const http = require('http');
 
 let mainWindow;
 let backendProcess;
+const scriptPath = path.join(__dirname, 'flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe'); 
 
 const createWindow = () => {
+  // Upload index.html file to localhost:3000 server
+  const expressApp = express();
+  const buildPath = path.join(__dirname, 'build');
+  const nodePath = path.join(__dirname, 'node_modules/d3/dist');
+  expressApp.use(express.static(buildPath)); 
+  expressApp.use(express.static(nodePath)); 
+  
+  server = http.createServer(expressApp);
+  server.listen(3000, 'localhost', () => {
+    console.log('Express server is running at http://localhost:3000');
+  });
+
   // Create the Electron window for your React frontend
   mainWindow = new BrowserWindow({
     width: 1300,
     height: 800,
     webPreferences: {
-        webSecurity: false, // Disable web security (use with caution)
+      webSecurity: false
     },
-});
+  });
 
   mainWindow.loadURL('http://localhost:3000');
   
   // Handle window close event
   mainWindow.on('closed', () => {
     mainWindow = null;
-    // Terminate the backend process when the main window is closed
+
     if (backendProcess) {
-      backendProcess.kill('SIGINT');
+      backendProcess.kill();
     }
   });
 };
 
-// Start the Flask backend before creating the Electron window
+// Start the Flask backend only if it hasn't been started already
 const startBackend = () => {
-  // Replace 'path/to/your/flask/executable' with the path to your Flask executable
-  backendProcess = child_process.spawn('flask-backend/dist/wsgi.exe', [], { shell: true });
+  console.log("BACKEND");
+  backendProcess = spawn(scriptPath, [], { cwd: path.dirname(scriptPath) });
+
   backendProcess.stdout.on('data', (data) => {
-    console.log(`Flask: ${data}`);
+    console.log(`Python stdout: ${data}`);
   });
+
   backendProcess.stderr.on('data', (data) => {
-    console.error(`Flask Error: ${data}`);
+    console.error(`Python stderr: ${data}`);
   });
+
   backendProcess.on('close', (code) => {
-    console.log(`Flask process exited with code ${code}`);
+    console.log(`Python process exited with code ${code}`);
   });
+
+  backendProcess.on('error', (err) => {
+    console.error(`Python process error: ${err.message}`);
+  });
+  
 };
 
 app.whenReady().then(() => {
   startBackend(); // Start the Flask backend
 
   setTimeout(() => {
-    createWindow(); // Create the Electron window after a delay or as needed
-  }, 3000);
-
-  app.on('activate', () => {
-    if (mainWindow === null) {
-      createWindow();
-    }
-  });
+    createWindow(); 
+  }, 7500);
 });
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    app.quit();
+app.on('activate', () => {
+  if (mainWindow === null) {
+    createWindow();
+  }
+});
+
+app.on('window-all-closed', app.quit);
+
+app.on('before-quit', () => {
+  mainWindow.removeAllListeners('close');
+  mainWindow.close();
+
+  if (backendProcess) {
+    backendProcess.kill();
   }
 });

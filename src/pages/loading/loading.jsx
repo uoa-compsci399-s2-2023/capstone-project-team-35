@@ -26,7 +26,7 @@ const LoadingPage = () => {
       try {
         // Send a POST request to the '/classify' endpoint in the backend to upload the image
         const response = await axios.post(
-          `/classify/${selectedValue}`,
+          `http://localhost:5000/classify/${selectedValue}`,
           formData,
           {
             headers: {
