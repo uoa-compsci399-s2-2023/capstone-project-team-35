@@ -6,20 +6,24 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ### Front-end
 
-- **Framework** : React (Version)
+- **Framework** : React (18.2.0)
 - **Libraries**
-  - tailwindcss (Version)
-  - daisyUI (Version)
-  - plotly (Version)
-  - axios (Version)
+  - tailwindcss (3.3.3)
+  - daisyUI (3.7.3)
+  - plotly (2.26.1)
+  - axios (1.4.0)
+  - electron (27.0.0)
+  - express (4.18.2)
 
 ### Backend
 
 - **Framework** : flask (Version)
 - **Libraries** :
-  - tensorflow (Version)
+  - tensorflow 
 
 ## Installation and Setup
+
+Here are a complete list of commands used within the application:
 
 ### 1. Flask Backend
 
@@ -33,6 +37,10 @@ You will have to refresh the connection in order to see changes.
 
 This activates a virtual flask enviorment
 
+#### `npm run build-exe`
+
+This will run the build.py python file and create a python executable that will be used by the application to run the backend.
+
 ### 2. React Front-end
 
 #### `npm start`
@@ -42,10 +50,6 @@ It should open a tab in your browser at [http://localhost:3000](http://localhost
 
 #### `npm run electron`
 
-This starts up the react app as an electron application and runs the backend executable as a local server. It also executes the `npm start` simultaneously. 
-
-#### `npm run electron-only`
-
 This starts up the react app as an electron application and runs the backend executable as a local server.
 
 #### `npm run build`
@@ -53,11 +57,15 @@ This starts up the react app as an electron application and runs the backend exe
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-
 #### `npm run package`
 
-Packages the app into the dist folder as an executable that when executed installs and launches the electron application.
+Packages the app into the dist/ directory as an installer which allows the user to install the application onto their device.
+
+### Usage
+
+In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.\
+Next you will need to run `npm run build` which will compile the react front end code into a smaller, and easier to run version within the build/ directory.\
+Finally if you run `npm run electron` the electron application will launch along with the python executable and you should be able to use Ocellai and all of its features. (Assuming all of the dependencies have been installed)
 
 ##### Dependencies:
 
