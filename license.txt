@@ -1,1 +1,33 @@
-random license lol
+Creative Commons Attribution-ShareAlike 4.0 International License
+
+CREATIVE COMMONS CORPORATION IS NOT A LAW FIRM AND DOES NOT PROVIDE LEGAL SERVICES. DISTRIBUTION OF THIS LICENSE DOES NOT CREATE AN ATTORNEY-CLIENT RELATIONSHIP. CREATIVE COMMONS PROVIDES THIS INFORMATION ON AN "AS-IS" BASIS. CREATIVE COMMONS MAKES NO WARRANTIES REGARDING THE INFORMATION PROVIDED, AND DISCLAIMS LIABILITY FOR DAMAGES RESULTING FROM ITS USE.
+
+License
+
+The desktop application Ocell.ai, hereinafter referred to as "the Work," is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
+
+You are free to:
+
+    Share — copy and redistribute the Work in any medium or format.
+    Adapt — remix, transform, and build upon the Work for any purpose, even commercially.
+
+Under the following terms:
+
+    Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+    Share Alike — If you remix, transform, or build upon the Work, you must distribute your contributions under the same license as the original.
+
+No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+
+Notices:
+
+You do not have to comply with the license for elements of the Work in the public domain or where your use is permitted by an applicable exception or limitation.
+
+No warranties are given. The license may not give you all of the permissions necessary for your intended use. For example, other rights such as publicity, privacy, or moral rights may limit how you use the material.
+
+For full license terms and conditions, please visit the Creative Commons website:
+https://creativecommons.org/licenses/by-sa/4.0/
+
+Creative Commons is not a law firm and does not provide legal services. Distributing this license does not create an attorney-client relationship. Creative Commons makes no warranties regarding the license, and disclaims liability for damages resulting from its use.
+
+This is a human-readable summary of (and not a substitute for) the license. See the full Creative Commons Attribution-ShareAlike 4.0 International License for more details.
+
