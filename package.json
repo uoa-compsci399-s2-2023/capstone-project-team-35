@@ -55,6 +55,7 @@
       "electron-main.js",
       "license.txt",
       "README.md",
+      "README_assets/",
       "flask-backend/build_script/packaged_backend/ocellai_backend/",
       "flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe",
       "flask-backend/"

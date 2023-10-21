@@ -169,7 +169,6 @@ function SpeciesCardExpanded({
                 isFetchingMapData={isFetchingMapData}
                 mapData={mapData}
               />
-              {/* <DistributionMap data={mapData} /> */}
 
               {/* GBIF Links */}
               <div className="flex flex-row items-start justify-center w-full gap-12 mb-6 h-1/12">
