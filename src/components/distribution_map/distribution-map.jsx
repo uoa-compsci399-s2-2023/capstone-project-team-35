@@ -10,7 +10,7 @@ const DistributionMap = ({ data }) => {
         <span>no occurrences recorded</span>
       </div>
     );
-  // console.log("DistributionMapData", data);
+  
   return (
     <Plot
       data={[
@@ -87,7 +87,6 @@ const DistributionMap = ({ data }) => {
           framecolor: "#CCCCCC",
           framewidth: 2,
         },
-        // paper_bgcolor: "#f5f5f5",
       }}
       config={{ responsive: true }}
     />

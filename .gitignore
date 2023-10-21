@@ -9,9 +9,6 @@
 # testing
 /coverage
 
-# production
-
-
 # misc
 .DS_Store
 .env.local
@@ -30,3 +27,4 @@ flask-backend/__pycache__
 *model.h5
 flask-backend/app/endpoints/**/tmp
 flask-backend/build_script/packaged_backend
+ocellai_backend.spec

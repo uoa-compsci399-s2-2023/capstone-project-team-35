@@ -1,4 +1,4 @@
-<img src="ocellai_banner.png">
+<img src="README_assets/ocellai_banner.png">
 
 Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tools and insights of AI crafted by multidisciplinary expert entomologists. It is designed to enhance workflow efficiency through its straightforward interface combined with relevant biosecurity information that promote the formation of actionable insights.
 
@@ -69,7 +69,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Future Plans
 
-<img src="team35_logo.png" width=250>
+<img src="README_assets/team35_logo.png" width=250>
 
 ### Project Management Tool
 

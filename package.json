@@ -42,7 +42,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron": "electron .",
-    "package": "electron-builder build"
+    "package": "electron-builder build",
+    "build-exe": "cd flask-backend/build_script && python build.py"
   },
   "build": {
     "appId": "com.SoftwareAlchemists.Ocellai",
@@ -53,6 +54,9 @@
       "package.json",
       "electron-main.js",
       "license.txt",
+      "README.md",
+      "flask-backend/build_script/packaged_backend/ocellai_backend/",
+      "flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe",
       "flask-backend/"
     ],
     "directories": {

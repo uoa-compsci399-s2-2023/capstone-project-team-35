@@ -1,6 +1,5 @@
 import React from "react";
 import "./title.css";
-// import logo from "./logo.png";
 import main_logo_tag from "../../assets/branding/ocellai_logo-tag_lighter.png";
 
 const Title = () => {
