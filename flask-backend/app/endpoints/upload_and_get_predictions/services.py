@@ -18,6 +18,8 @@ def save_predictions_as_csv(prediction, repo: AbstractRepository):
     image_name = os.path.basename(input_image_path)
     for label in label_probability_dict:
         insect = mop.get_insect_by_label(globals.DEFAULT_INSECT_SUPERTYPE, label)
+
+        # Makes a new dictonary based on the resulting prediction the model creates
         result = {
             "image_name": image_name,
             "label": insect.label,
@@ -42,6 +44,7 @@ def save_predictions_as_csv(prediction, repo: AbstractRepository):
     for index, result in enumerate(prediction_results, start=1):
         result["rank"] = index
 
+    # Supplies the helper functions within the repo the prediction so it can get sorted for the csv results
     repo.write_to_batch_prediction_results_csv(prediction_results)
     repo.create_individual_prediction_results_csv(prediction_results)
 
@@ -55,23 +58,29 @@ def get_base64_image(path: Path, repo: AbstractRepository) -> str:
     return image
 
 def get_predictions(images: list[FileStorage], insect_type: str, model_type: str, repo: AbstractRepository) -> Dict[str, float]:
+    # Initialises the directory by clearing it of the previous results
     repo.clear_directory(globals.BATCH_PREDICTION_RESULTS_DIRECTORY)
     repo.clear_directory(globals.INDIV_PREDICTION_RESULTS_DIRECTORY)
     store_user_uploaded_images(images, repo)
+
+    # Checks that a model has been selected, if no model has been selected, use the default
     if model_type is None:
         model_type = globals.DEFAULT_MODEL_TYPE
 
+    # Sets up the paths for the directories used
     model_path = globals.ML_MODELS_DIRECTORY / insect_type / model_type.lower() / "model.h5"
     labels_path = globals.ML_MODELS_DIRECTORY / insect_type / "labels" / "labels.csv"
     uploaded_images_directory_path = globals.USER_UPLOADED_IMAGES_DIRECTORY
     standardized_images_directory_path = globals.STANDARDIZED_IMAGES_DIRECTORY
-    
+
+    # Clears the images directory after getting the path so old images are used
     repo.clear_directory(standardized_images_directory_path / "Images")
     si.standardise_images(uploaded_images_directory_path, standardized_images_directory_path / "Images")
     model = Classifier(model_path, model_type, labels_path)
 
     labels, predictions, image_files, model = model.predict(standardized_images_directory_path)
 
+    # Declares the paths for each that had been uploaded on the front end
     user_uploaded_image_files = []
     for image_path in image_files:
         name, extension =  os.path.splitext(image_path)
