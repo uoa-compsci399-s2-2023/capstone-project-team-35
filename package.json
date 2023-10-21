@@ -60,6 +60,10 @@
       "flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe",
       "flask-backend/"
     ],
+    "extraResources": [
+      "flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe",
+      "flask-backend/build_script/packaged_backend/ocellai_backend/_internal"
+    ],
     "directories": {
       "output": "dist"
     },
