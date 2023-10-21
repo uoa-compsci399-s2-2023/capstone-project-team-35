@@ -4,9 +4,6 @@ import RootContext from "./providers/root";
 import { ResultsPage, LoadingPage, HomePage } from "./pages";
 import "./App.css";
 
-// Previous Routing Import
-// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-
 export const PageName = "results" | "loading";
 
 const App = () => {
@@ -15,6 +12,7 @@ const App = () => {
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedImages, setSelectedImages] = useState([]);
 
+  // Root page navigation setup.
   const renderPage = () => {
     switch (currentPage) {
       case "results":
@@ -26,13 +24,8 @@ const App = () => {
     }
   };
   return (
+    // List of global variables used through the project.
     <div>
-      {/* Previous Routing System */}
-      {/* <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/loading" exact element={<Loading />} />
-      </Routes> */}
-
       <RootContext.Provider
         value={{
           data,

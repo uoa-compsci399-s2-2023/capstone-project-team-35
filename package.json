@@ -1,6 +1,10 @@
 {
   "name": "capstone-project-team-35",
+  "productName": "Ocellai",
+  "author": "Software Alchemists",
+  "description": "This is an insect identificaton app.",
   "version": "1.0.0",
+  "homepage": ".",
   "private": true,
   "main": "electron-main.js",
   "proxy": "http://127.0.0.1:5000",
@@ -37,7 +41,41 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron": "concurrently \"npm start\" \"electron .\""
+    "electron": "electron .",
+    "package": "electron-builder build",
+    "build-exe": "cd flask-backend/build_script && python build.py"
+  },
+  "build": {
+    "appId": "com.SoftwareAlchemists.Ocellai",
+    "extends": null,
+    "productName": "Ocellai",
+    "files": [
+      "build/",
+      "package.json",
+      "electron-main.js",
+      "license.txt",
+      "README.md",
+      "README_assets/",
+      "flask-backend/build_script/packaged_backend/ocellai_backend/",
+      "flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe",
+      "flask-backend/"
+    ],
+    "extraResources": [
+      "flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe",
+      "flask-backend/build_script/packaged_backend/ocellai_backend/_internal"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "uninstallDisplayName": "Ocellai",
+      "license": "license.txt",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +98,7 @@
   "devDependencies": {
     "daisyui": "^3.7.3",
     "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
     "tailwindcss": "^3.3.3"
   }
 }

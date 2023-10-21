@@ -1,6 +1,5 @@
 import "./data-inputs.css";
 import React, { useState, useEffect, useRef } from "react";
-// import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 import upload_icon from "../../assets/ui-elements/file_upload.svg";
 import edit_icon from "../../assets/ui-elements/edit_icon.svg";
@@ -8,6 +7,7 @@ import x_icon from "../../assets/ui-elements/cross-small.png";
 import RootContext from "../../providers/root";
 import { useContext } from "react";
 
+// Get global variables declared in App.jsx.
 const DataInputs = () => {
   const {
     selectedImages,
@@ -16,52 +16,55 @@ const DataInputs = () => {
     setCurrentPage,
   } = useContext(RootContext);
 
-  // Declare variables to manage the POST and GET request between the front-end and back-end
-  // const [selectedImages, setSelectedImages] = useState([]);
-  const input_form = useRef(); // References the React form where the images will be uploaded from
-  const [isImageSelected, setIsImageSelected] = useState(false); // Boolean which determines if the input contains images
+  // Declare variables to manage the POST and GET request between the front-end and back-end.
+  const input_form = useRef(); // References the React form where the images will be uploaded from.
+  const [isImageSelected, setIsImageSelected] = useState(false); // Boolean which determines if the input contains images.
 
-  // Handles file being dragged into input
+  // Handles file being dragged into input.
   const [isImageDragging, setIsImageDragging] = useState(false);
 
-  // Set classes for certain components
+  // Set classes for certain components.
   const [selectedCircleClass, setSelectedCircleClass] = useState("");
   const [selectedCircleText, setSelectedCircTextleText] = useState("1");
   const [selectedUploadClass, setSelectedUploadClass] = useState("off");
 
-  // A list of all the different insect types
+  // A list of all the different insect types.
   const [getOptions, setOptions] = useState([]);
 
-  // Function to handle image selection
+  // Function to handle image selection.
   const handleImageChange = (event) => {
     const savedImages = Array.from(event.target.files);
 
+    // When the user adds another image, it checks if there are any images still in the array. If there is, add the new iamge to the array otherwise add it to an empty array.
     if (selectedImages.length > 0) {
       if (selectedImages.includes(savedImages)) {
         console.log("Yes");
       }
 
+      // Adds new image to array of existing images.
       const updatedImages = selectedImages.concat(savedImages);
       setSelectedImages(updatedImages);
     } else {
+      // Adds new image to a new array.
       setSelectedImages(savedImages);
     }
-
     setIsImageSelected(true);
   };
 
-  // Function to handle form submission
+  // Function to handle form submission.
   const handleFormSubmit = async (event) => {
     setCurrentPage("loading");
   };
 
   // Run the 'fetchInsectTypes' function after the component is initially rendered.
   useEffect(() => {
-    // This function accesses the /get_insect_types endpoint
+    // This function accesses the /get_insect_types endpoint which is on the backend server hosted on http://localhost:5000.
     const fetchInsectTypes = async () => {
       try {
-        // Stores the returned array of insect types
-        const response = await axios.get("/get_insect_types");
+        // Retrieves an array of the total list of insect types.
+        const response = await axios.get("http://localhost:5000/get_insect_types");
+
+        // Stores the returned array of insect types in a global variable.
         setOptions(response.data);
       } catch (error) {
         console.error("Error fetching insect types:", error);
@@ -71,7 +74,7 @@ const DataInputs = () => {
     fetchInsectTypes();
   }, []);
 
-  // Dropdown onChange handler
+  // Dropdown onChange handler.
   const handleSelectChange = (e) => {
     setSelectedValue(e.target.value);
     setSelectedCircleClass("selected");
@@ -79,19 +82,20 @@ const DataInputs = () => {
     setSelectedCircTextleText(<img src={edit_icon} alt="edit icon"></img>);
   };
 
-  // Dragging image into file input handler
+  // Dragging image into file input handler.
   const handleDragEnter = (e) => {
     e.preventDefault();
     setIsImageDragging(true);
     setIsImageSelected(true);
   };
 
-  // Dragging image out of file input handler
+  // Dragging image out of file input handler.
   const handleDragLeave = () => {
     setIsImageDragging(false);
     setIsImageSelected(false);
   };
 
+  // Handles removing an image from the list of seleced images.
   const handleRemoveImage = (index) => {
     const updatedSelectedImages = [...selectedImages];
     updatedSelectedImages.splice(index, 1);
@@ -113,9 +117,9 @@ const DataInputs = () => {
       <div className={`Inputs ${selectedCircleClass}`}>
         {/* Square 1 */}
         <div className="grid_circle_1">
+          {/* Orange number 1 circle */}
           <div className={`circlier_number circle ${selectedCircleClass}`}>
             {" "}
-            {/* Orange number circle */}
             <p className={selectedCircleClass}>{selectedCircleText}</p>
           </div>
         </div>
@@ -130,6 +134,8 @@ const DataInputs = () => {
             <option selected disabled className="off">
               Select Insect <i className="arrow"></i>
             </option>
+
+            {/* Adds all the insect types from the global array of insect types as <option> tags in this dropdown. */}
             {getOptions.map((option) => (
               <option value={option.value}>{option.label}</option>
             ))}
@@ -144,10 +150,10 @@ const DataInputs = () => {
 
         {/* Square 4 */}
         <div className="grid_circle_2">
+          {/* Orange number 2 circle */}
           <div className="circlier_number">
             <p>2</p>
           </div>{" "}
-          {/* Orange number circle */}
         </div>
 
         {/* Square 5 */}
@@ -176,6 +182,7 @@ const DataInputs = () => {
                   isImageSelected ? "enabled" : "off"
                 }`}
               >
+                {/* Displays all of the selected images */}
                 {selectedImages.map((image, index) => (
                   <div className="image_section" key={index}>
                     <p>{image.name}</p>{" "}
@@ -184,6 +191,7 @@ const DataInputs = () => {
                       type="button"
                       className="p-1"
                     >
+                      {/* Delete button for each selected image in case the user wants to remove an image. */}
                       <img src={x_icon} alt="small x" className="error_btn" />
                     </button>
                   </div>
@@ -213,6 +221,7 @@ const DataInputs = () => {
                 Identify
               </button>
 
+              {/* Add images button, in case the user wants to add more images. */}
               <span className={isImageSelected ? "enabled" : "off"}>
                 <input
                   type="file"

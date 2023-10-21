@@ -23,21 +23,18 @@ const getDistribution = async ({
   setMapData,
   setIsFetchingMapData,
 }) => {
-  // console.log(`ID in getDist: ${taxon_key}`);
   setIsFetchingMapData(true);
 
   const localStorageItem = JSON.parse(localStorage.getItem(taxon_key));
 
   if (localStorageItem != null) {
     setIsFetchingMapData(false);
-    // console.log("found:", localStorageItem);
     setMapData(localStorageItem);
     return;
   }
 
   try {
-    // console.log("fetching...");
-    await axios.get(`/get_occurences_by_country/${taxon_key}`).then((resp) => {
+    await axios.get(`http://localhost:5000/get_occurences_by_country/${taxon_key}`).then((resp) => {
       setIsFetchingMapData(false);
       localStorage.setItem(taxon_key, JSON.stringify(resp.data));
       setMapData(resp.data);
@@ -51,13 +48,10 @@ const SpeciesCard = (props) => {
   const [expanded, setExpanded] = useState(false);
   const [mapData, setMapData] = useState();
   const [isFetchingMapData, setIsFetchingMapData] = useState(false);
-  // const taxon_key = props.distribution_url.split("/").pop();
 
   useEffect(() => {
     setExpanded(false);
   }, [props]);
-
-  // console.log(props);
 
   return expanded ? (
     <SpeciesCardExpanded
@@ -91,7 +85,6 @@ function SpeciesCardExpanded({
 }) {
   const { rank_color, theme } = rankedClasses[rank];
   const probPercentage = (Number(probability) * 100).toFixed(1);
-  // if (isFetchingMapData) return <>loading...</>;
   return (
     <>
       {/* Maximum Height of the parent panel for reference */}
@@ -176,7 +169,6 @@ function SpeciesCardExpanded({
                 isFetchingMapData={isFetchingMapData}
                 mapData={mapData}
               />
-              {/* <DistributionMap data={mapData} /> */}
 
               {/* GBIF Links */}
               <div className="flex flex-row items-start justify-center w-full gap-12 mb-6 h-1/12">

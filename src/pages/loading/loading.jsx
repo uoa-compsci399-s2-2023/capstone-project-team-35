@@ -5,6 +5,7 @@ import logo from "../../assets/ui-elements/logo.png";
 import "./loading.css";
 
 const LoadingPage = () => {
+  // List of retrieved global variables from App.jsx.
   const {
     selectedImages,
     setSelectedImages,
@@ -15,6 +16,7 @@ const LoadingPage = () => {
   const [uploadStatus, setUploadStatus] = useState(""); // Displays the status of the image upload
   const [transition, setTransition] = useState(false);
 
+  // Is triggered as soon as the page loads.
   useEffect(() => {
     const formData = new FormData();
     selectedImages.forEach((image, index) => {
@@ -22,11 +24,10 @@ const LoadingPage = () => {
     });
 
     const fetchData = async () => {
-      // Declare an async function
       try {
-        // Send a POST request to the '/classify' endpoint in the backend to upload the image
+        // Send a POST request to the '/classify' endpoint in the backend to upload the image. This is on the backend server hosted at 'http://localhost:5000'
         const response = await axios.post(
-          `/classify/${selectedValue}`,
+          `http://localhost:5000/classify/${selectedValue}`,
           formData,
           {
             headers: {
@@ -40,7 +41,10 @@ const LoadingPage = () => {
         console.log(predictions);
         setData({ predictions });
 
+        // Enables the transition into the results page to start.
         setTransition(true);
+
+        // Waits for 2 seconds (waiting for the previous transition to finish) before navigating to the results page.
         setTimeout(() => {
           setUploadStatus("Image uploaded successfully!"); // Set image upload status
           setSelectedImages([]); // Clear the selected image after successful upload
@@ -54,28 +58,31 @@ const LoadingPage = () => {
     };
 
     fetchData(); // Call the async function
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div>
       {/* Status message if there is an error */}
       <p>{uploadStatus}</p>
-      <div
-        className={`loading_container  ${
-          transition ? "loading_container_transition" : ""
-        }`}
-      >
+
+      {/* Div containing the laoding spinner, image and message. */}
+      <div className={`loading_container  ${transition ? "loading_container_transition" : ""}`}>
+
+        {/* Insect logo image */}
         <img
           className={`logo ${transition ? "logo_transition" : ""}`}
           src={logo}
           alt="insect logo"
         ></img>
+
+        {/* The loading spinner */}
         <div id="loading-bar-spinner" className="spinner">
           <div
             className={`spinner-icon ${transition ? "spinner_transition" : ""}`}
           ></div>
         </div>
+
+        {/* The loading text */}
         <p className="loading_text">we're working on it!</p>
       </div>
     </div>

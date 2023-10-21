@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 
 const DistributionMap = ({ data }) => {
+  const parentRef = useRef(null);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  // Is meant to allow the DistributionMap to inhert the width/height of the surrounded div but its not yet working.
+  useEffect(() => {
+    const handleResize = () => {
+      if (parentRef.current) {
+        setDimensions({
+          width: parentRef.current.offsetWidth,
+          height: parentRef.current.offsetHeight,
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [parentRef]);
+  
   if (!data) return null;
 
   if (data.locations.length === 0)
@@ -10,7 +31,7 @@ const DistributionMap = ({ data }) => {
         <span>no occurrences recorded</span>
       </div>
     );
-  // console.log("DistributionMapData", data);
+  
   return (
     <Plot
       data={[
@@ -87,7 +108,6 @@ const DistributionMap = ({ data }) => {
           framecolor: "#CCCCCC",
           framewidth: 2,
         },
-        // paper_bgcolor: "#f5f5f5",
       }}
       config={{ responsive: true }}
     />

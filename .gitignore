@@ -4,12 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+/dist
 
 # testing
 /coverage
-
-# production
-/build
 
 # misc
 .DS_Store
@@ -28,3 +26,5 @@ flask-backend/flask
 flask-backend/__pycache__
 *model.h5
 flask-backend/app/endpoints/**/tmp
+flask-backend/build_script/packaged_backend
+ocellai_backend.spec

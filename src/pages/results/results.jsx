@@ -23,14 +23,10 @@ const ResultsPage = () => {
     }
   }, [data]);
 
-  // console.log("currentSelectedImage:");
-  // console.log(currentSelectedImage);
-
   const downloadFile = async () => {
     try {
-      // Send a POST request to the '/classify' endpoint in the backend to upload the image
-      // Replace /download with the individual csv endpoint.
-      const response = await axios.get(`/download`, {
+      // Send a GET request to the '/download' endpoint on the flask backend server hosted on 'http://localhost:5000' retrieve the batched csv fle.
+      const response = await axios.get(`http://localhost:5000/download`, {
         responseType: "blob",
       });
 
@@ -47,9 +43,6 @@ const ResultsPage = () => {
 
       // Activate the link to download the file.
       downloadLink.click();
-
-      // Return the URL to the previous link/page.
-      // downloadLink.parentNode.removeChild(downloadLink);
     } catch (error) {
       // Display errors/status if there is an error
       console.error("Error downloading file:", error);
@@ -57,13 +50,14 @@ const ResultsPage = () => {
   };
 
   const downloadIndividualFile = async (filename) => {
-    // if (!filename) return;
+
+    // Get the filename of the selected image.
     const imagename = filename.replace(/\.[^/.]+$/, "");
-    // console.log("downloading...", imagename);
+
     try {
-      // Send a POST request to the '/classify' endpoint in the backend to upload the image
+      // Send a GET request to the '/download_individual_result' endpoint on the flask backend server hosted on 'http://localhost:5000' retrieve the individual csv fle.
       const response = await axios.get(
-        `/download_individual_result/${filename}`,
+        `http://localhost:5000/download_individual_result/${filename}`,
         {
           responseType: "blob",
         }
@@ -82,24 +76,22 @@ const ResultsPage = () => {
 
       // Activate the link to download the file.
       downloadLink.click();
-
-      // Return the URL to the previous link/page.
-      // downloadLink.parentNode.removeChild(downloadLink);
     } catch (error) {
       // Display errors/status if there is an error
       console.error("Error downloading file:", error);
     }
   };
 
+  // Handler for opening the 'return to home page' popup.
   const openPopup = () => {
     setShowPopup(true);
   };
 
+  // Handler for closing the 'return to home page' popup.
   const closePopup = () => {
     setShowPopup(false);
   };
 
-  // console.log(data[0]);
   return (
     // Main Parent
     <main className="flex max-h-screen min-h-screen px-8 pt-8 overflow-hidden transition max-w-screen gap-11">
@@ -147,6 +139,7 @@ const ResultsPage = () => {
         {/* Navigation Body */}
         <div className="relative flex flex-col items-start gap-4 pt-4 pb-2 h-5/6 max-h-fit overflow-clip">
           <div className="items-start w-full p-8 overflow-y-auto h-[calc(100%-80px)]">
+            {/* Contains a list of all the images pushed into the model. Allows the user to click on one to the see the predicitons for that specific image. */}
             <div className="flex flex-col w-full h-full gap-4 responsive-hide">
               {data.predictions.map((image) => (
                 <FileButton
@@ -198,7 +191,7 @@ const ResultsPage = () => {
 
       {/* ============== Results Section ================== */}
       <div className="flex flex-col responsive-width pb-8 top-10">
-        {/* Image selection when the browser gets too small */}   
+        {/* Image selection dropwdown for when the browser gets too small */}   
         <div>
           <select className="responsive-visible image_select_dropdown" value={currentSelectedImage?.input_image_filename} onChange={(e) => setCurrentSelectedImage(data.predictions.find(image => image.input_image_filename === e.target.value))}>
             {data.predictions.map((image) => (
@@ -298,13 +291,16 @@ const ResultsPage = () => {
         </div>
       </div>
 
+      {/* The 'return to home page' popup which asks the user if they want to exit the home page. */}
       {showPopup && (
         <div className="popup_background">
           <div className="popup_content">
+            {/* Popup text. */}
             <p>
               You are about to go back to the home page. All unsaved data will
               be lost. Do you wish to continue?
             </p>
+            {/* Popup buttons. */}
             <span className="popup_container">
               <button className="go_back" onClick={closePopup}>
                 Close
@@ -320,6 +316,7 @@ const ResultsPage = () => {
   );
 };
 
+// Function which displays the input image for the user.
 function DislplayInputImage({ image }) {
   if (!image) return null;
   return (
@@ -335,6 +332,7 @@ function DislplayInputImage({ image }) {
   );
 }
 
+// Function which displays the species card (each individual podium column.) for each of the top 3 predicted species.
 function SpeciesCardGroup({ image }) {
   if (!image) return null;
   const { predictions } = image;
