@@ -2,8 +2,8 @@ import subprocess
 import os
 import shutil
 
-app_entry_file = "ocellai_backend.py"
-app_entry_point_path = os.path.join("..", app_entry_file)
+app_entry_file_name = "ocellai_backend"
+app_entry_point_path = os.path.join("..", app_entry_file_name + ".py")
 all_data_directory = os.path.join("..", "app", "data")
 output_directory_name = "packaged_backend"  # This is where the output build executable will be placed
 
@@ -24,7 +24,7 @@ try:
     
     # Remove the 'build' directory and 'wsgi.spec' file
     build_dir = os.path.join(os.getcwd(), 'build')
-    spec_file = f"{app_entry_file}.spec"
+    spec_file = f"{app_entry_file_name}.spec"
     
     if os.path.exists(build_dir):
         shutil.rmtree(build_dir)  # Remove the 'build' directory and its contents
