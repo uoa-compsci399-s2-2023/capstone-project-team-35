@@ -5,7 +5,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 ## Downloads
 
 - Windows: *insert download link*
-- Max: *insert download link*
+- Mac: *insert download link*
 
 ## Tech Stack
 
