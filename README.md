@@ -22,7 +22,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ### Backend
 
-- **Framework** : flask (Version)
+- **Framework** : flask (0.2.10)
 - **Libraries** :
   - tensorflow 
 
