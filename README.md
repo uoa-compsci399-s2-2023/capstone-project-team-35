@@ -4,7 +4,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Downloads
 
-- Windows: *insert download link*
+- Windows: [https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4](https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4)
 - Mac: *insert download link*
 
 ## Tech Stack
@@ -22,7 +22,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ### Backend
 
-- **Framework** : flask (Version)
+- **Framework** : flask (0.2.10)
 - **Libraries** :
   - tensorflow 
 
@@ -137,10 +137,17 @@ Once you are content with your results you can click the home button and navigat
 <img src="README_assets/Usage_steps/step13.PNG" width=600>
 
 ## Future Plans
+To update this program in the future, the current way of doing it is you have to modify the repository (be it either upload new files/modify lines of code) and then reinstall the application following the steps above. In the future however it is possible to only modify the repository and have each pre-existing installation automatically update, this would both save time and be more efficient then manually needing to update x amount of devices everytime some code is changed.
+
+Something to note however with updating this program, github has a limit to how much data can be stored in a single repository, because of how big Machine learning models are (as seen with the basic one we've been given) those might have to be stored locally instead.
+Mention -> ML model not being ours
+For it to do it, it has to have permission from the owner of the repo (Legally we were unsure if we could do this because we're working for other people)
+Github also has file limitations due to size.
 
 ## Project Management Tool
 
 ## Acknowledgements
+Machine Learning Model - Trupanea: Darren (Client)
 
 <img src="README_assets/team35_logo.png" width=250>
 

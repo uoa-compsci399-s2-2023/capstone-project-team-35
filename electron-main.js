@@ -5,10 +5,7 @@ const path = require('path');
 const http = require('http');
 
 let mainWindow;
-let backendProcess;
-
-// Finding the complete path for the python backend executable.
-const scriptPath = path.join(__dirname, 'flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe'); 
+let backendProcess; 
 
 const createWindow = () => {
   // Defining an express server.
@@ -16,6 +13,7 @@ const createWindow = () => {
 
   // Finding the complete paths for the static build folder and the directory containing the d3.js file.
   const buildPath = path.join(__dirname, 'build');
+  const startupPath = path.join(__dirname, 'build/startup.html');
   const nodePath = path.join(__dirname, 'node_modules/d3/dist');
 
   // Labelling these directories as locations for static files so that the express folder will run them as the correct content-type rather than the default text/html.
@@ -34,13 +32,18 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: 1300,
     height: 800,
+    minWidth: 550,
+    minHeight: 700,
     webPreferences: {
       webSecurity: false
     },
   });
 
   // Loading the contents of 'localhost:3000' onto the electron window. This should be the react front end as the reacts built index.html file is being hosted on 'localhost:3000'. 
-  mainWindow.loadURL('http://localhost:3000');
+  mainWindow.loadFile(startupPath);
+  setTimeout(() => {
+    mainWindow.loadURL('http://localhost:3000');
+  }, 7500);
   
   // Handle window close event
   mainWindow.on('closed', () => {
@@ -50,6 +53,10 @@ const createWindow = () => {
 
 // Method which starts up the backend server by launching the given python executable.
 const startBackend = () => {
+
+  // Finding the complete path for the python backend executable.
+  const scriptPath = path.join(__dirname, 'flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe');
+
   // Displaying the path of the given python executable.
   console.log(`Executing Flask backend at path: ${scriptPath}`);
 
@@ -77,9 +84,7 @@ app.whenReady().then(() => {
   startBackend();
 
   // Waits 7.5 seconds before launching the application window. This is allow the backend to fully start up before the user can interact with the application.
-  setTimeout(() => {
-    createWindow(); 
-  }, 7500);
+  createWindow(); 
 });
 
 // Handles application activation event.

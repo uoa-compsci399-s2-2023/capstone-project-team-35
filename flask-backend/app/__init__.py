@@ -2,6 +2,8 @@
 
 from flask import Flask
 from config import AppConfig
+from flask_cors import CORS
+
 
 import app.storage.abstractrepository as repo
 from app.storage.local import local_repository
@@ -11,6 +13,7 @@ def create_app(test_config=None):
     
     # Create the Flask app object.
     app = Flask(__name__)
+    CORS(app)
     app.config.from_object(AppConfig)
          
     # Build the application - these steps require an application context
