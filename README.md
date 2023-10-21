@@ -2,6 +2,11 @@
 
 Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tools and insights of AI crafted by multidisciplinary expert entomologists. It is designed to enhance workflow efficiency through its straightforward interface combined with relevant biosecurity information that promote the formation of actionable insights.
 
+## Downloads
+
+- Windows: *insert download link*
+- Max: *insert download link*
+
 ## Tech Stack
 
 ### Front-end
