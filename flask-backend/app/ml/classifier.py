@@ -4,7 +4,7 @@ from werkzeug.datastructures import FileStorage
 from pathlib import Path
 import os
 """ 
-Creates an model to access the abstract layer between the provided code from the clients and our code.
+Creates a model to access the abstract layer between the provided code from the clients and our code.
 This allows the code that calls upon the model to be called anywhere in our code while still referencing the same data.
 
 """
