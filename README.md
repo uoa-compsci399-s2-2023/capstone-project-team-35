@@ -69,7 +69,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Firstly you need to install the application through the installer you downloaded.
 
-<img src="README_assets/Usage_steps/step1.PNG" width=600>
+<img src="README_assets/Usage_steps/Step1.PNG" width=600>
 
 You will be asked to pick a directory to intall the application into.
 
@@ -109,7 +109,7 @@ If you click the 'view distribution' button under each of the top 3 insects for 
 
 You also have the ability to download a csv file of all the predictions for each of the selected images.
 
-<img src="README_assets/Usage_steps/step11PNG" width=600>
+<img src="README_assets/Usage_steps/step11.PNG" width=600>
 
 As well as the option the download a csv file with all the predications for a specific image.
 
