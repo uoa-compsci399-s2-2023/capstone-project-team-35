@@ -4,7 +4,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Downloads
 
-- Windows: *insert download link*
+- Windows: [https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4](https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4)
 - Mac: *insert download link*
 
 ## Tech Stack
@@ -22,7 +22,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ### Backend
 
-- **Framework** : flask (Version)
+- **Framework** : flask (0.2.10)
 - **Libraries** :
   - tensorflow 
 
