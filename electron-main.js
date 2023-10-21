@@ -5,10 +5,7 @@ const path = require('path');
 const http = require('http');
 
 let mainWindow;
-let backendProcess;
-
-// Finding the complete path for the python backend executable.
-const scriptPath = path.join(__dirname, 'flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe'); 
+let backendProcess; 
 
 const createWindow = () => {
   // Defining an express server.
@@ -50,6 +47,10 @@ const createWindow = () => {
 
 // Method which starts up the backend server by launching the given python executable.
 const startBackend = () => {
+
+  // Finding the complete path for the python backend executable.
+  const scriptPath = path.join(__dirname, 'flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe');
+
   // Displaying the path of the given python executable.
   console.log(`Executing Flask backend at path: ${scriptPath}`);
 
