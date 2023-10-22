@@ -4,7 +4,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Downloads
 
-- Windows: [https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4](https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4)
+- Windows: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
 - Mac: *insert download link*
 
 ## Tech Stack
