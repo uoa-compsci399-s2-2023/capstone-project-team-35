@@ -7,6 +7,11 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 - Windows Application: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
 - Mac Application: _insert download link_
 
+## Documentation
+
+You can view and edit the ocellai documentation from     
+[https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4](https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4)
+
 ## Tech Stack
 
 ### Front-end
@@ -32,7 +37,8 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ### Preliminary Steps
 
-In order to run this application you will need to install Node.js. You can download the installer from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+In order to run this application you will need to install Node.js. You can download the installer from
+[https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
 Select version 18.17.1 LTS (Recommended For Most Users) and follow the installation instructions.
 
