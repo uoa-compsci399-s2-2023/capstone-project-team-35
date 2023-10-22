@@ -10,14 +10,20 @@ import RadialGraph from "../radial_graph/radial-graph";
 import SpeciesTag from "../tags/tags";
 import "./species-card.css";
 
+// color references for species card rankings
 const rankedClasses = [
   { marginTop: "mt-0", rank_color: "card_green", theme: "#C6E268" },
   {
-    marginTop: "mt-8", rank_color: "card_yellow", theme: "#FBC229",
+    marginTop: "mt-8",
+    rank_color: "card_yellow",
+    theme: "#FBC229",
   },
   { marginTop: "mt-12", rank_color: "card_red", theme: "#FC7F40" },
 ];
 
+// function that fetches the distribution data by calling the
+// endpoint which communicates with the GBIF API if the data is not yet present in the local storage
+// else it retrieves the data from the local storage using the taxon_key as the key
 const getDistribution = async ({
   taxon_key,
   setMapData,
@@ -27,18 +33,22 @@ const getDistribution = async ({
 
   const localStorageItem = JSON.parse(localStorage.getItem(taxon_key));
 
+  // return data from local storage if it exists
   if (localStorageItem != null) {
     setIsFetchingMapData(false);
     setMapData(localStorageItem);
     return;
   }
 
+  // fetch data thru the endpoint and store it if the data is not yet present in the local storage
   try {
-    await axios.get(`http://localhost:5000/get_occurences_by_country/${taxon_key}`).then((resp) => {
-      setIsFetchingMapData(false);
-      localStorage.setItem(taxon_key, JSON.stringify(resp.data));
-      setMapData(resp.data);
-    });
+    await axios
+      .get(`http://localhost:5000/get_occurences_by_country/${taxon_key}`)
+      .then((resp) => {
+        setIsFetchingMapData(false);
+        localStorage.setItem(taxon_key, JSON.stringify(resp.data));
+        setMapData(resp.data);
+      });
   } catch (error) {
     console.error("Error getting distribution data:", error);
   }
@@ -49,10 +59,12 @@ const SpeciesCard = (props) => {
   const [mapData, setMapData] = useState();
   const [isFetchingMapData, setIsFetchingMapData] = useState(false);
 
+  // make species card collapse when new props are passed
   useEffect(() => {
     setExpanded(false);
   }, [props]);
 
+  // sets the state of the species card to expanded or collapsed
   return expanded ? (
     <SpeciesCardExpanded
       {...props}
@@ -71,6 +83,7 @@ const SpeciesCard = (props) => {
   );
 };
 
+// defines the layout of the species card when expanded
 function SpeciesCardExpanded({
   genus,
   probability,
@@ -182,6 +195,7 @@ function SpeciesCardExpanded({
   );
 }
 
+// defines the layout of the species card when collapsed
 function SpeciesCardCollapsed({
   genus,
   probability,
@@ -202,7 +216,6 @@ function SpeciesCardCollapsed({
       {/* Card background */}
       <div className={`w-full h-full max-w-full rounded-3xl p-2 ${rank_color}`}>
         {/* Items container */}
-        {/* <div className="flex flex-col items-center justify-center max-h-full gap-4 px-10 py-4 bg-white overflow-clip rounded-2xl"> */}
         <div className="species_card_inner_container">
           {/* Confidence Circle */}
           <div className="flex items-center justify-center pt-4 radial_width">
@@ -211,9 +224,7 @@ function SpeciesCardCollapsed({
               progress={probPercentage}
               color={theme}
             />
-            <span
-              className="absolute z-10 flex font-semibold text-foreground-dark radial_font"
-            >
+            <span className="absolute z-10 flex font-semibold text-foreground-dark radial_font">
               {`${probPercentage}%`}
             </span>
           </div>
@@ -270,6 +281,7 @@ function SpeciesCardCollapsed({
   );
 }
 
+// This function allows the user to expand the card when there's a distribution link available
 function DisplayExpandButton({
   link,
   handleExpand,
@@ -333,6 +345,7 @@ function DisplayExpandButton({
   );
 }
 
+// This function allows the user to view the external links when there's a distribution link available
 function DisplayExtLinks({ link }) {
   if (!link)
     return (
@@ -404,10 +417,10 @@ function DisplayExtLinks({ link }) {
   );
 }
 
+// This function displays the distribution map in the expanded state of the species card
 function DisplayDistributionMap({ isFetchingMapData, mapData }) {
   if (isFetchingMapData)
     return (
-      // TODO: Add spinner here
       <div className="items-center justify-center w-full h-full text-2xl bg-slate-100">
         <div class="lds-dual-ring"></div>
       </div>
