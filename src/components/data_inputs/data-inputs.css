@@ -1,3 +1,5 @@
+/* Red circles css */
+
 .circlier_number {
   background-color: #fc7f40;
   height: 70px;
@@ -24,6 +26,8 @@
   width: 100%;
   height: 100%;
 }
+
+/* Inputs grid classes*/
 
 .Inputs {
   display: grid;
@@ -82,8 +86,6 @@
 }
 
 .button {
-  /* appearance: none;
-    -webkit-appearance: none; */
   background-color: white;
   border: none;
   font-size: 20px;
@@ -120,6 +122,8 @@
   -webkit-transform: rotate(45deg);
 }
 
+/* Image upload classes */
+
 .off {
   display: none;
 }
@@ -139,14 +143,12 @@
   width: 50px;
   font-size: 15px;
   position: relative;
-  /* left: 9px;
-    top: 10px; */
 
-  animation-name: example;
+  animation-name: insect_type_select_transition;
   animation-duration: 1s;
 }
 
-@keyframes example {
+@keyframes insect_type_select_transition {
   from {
     width: 70px;
     height: 70px;
@@ -159,11 +161,6 @@
 
 p.selected {
   bottom: 7px;
-}
-
-select.selected {
-  /* position: relative;
-    top: 10px; */
 }
 
 .Inputs.selected {
@@ -270,7 +267,7 @@ div.hasImage {
   overflow-y: auto;
 }
 
-.hasImage input.hello {
+.hasImage input.clear {
   display: none;
 }
 
@@ -305,9 +302,6 @@ div.hasImage {
   background-color: #ff5757;
   color: white;
   border-radius: 50%;
-
-  /* animation-name: section_btn;
-    animation-duration: 1s */
 }
 
 @keyframes section_btn {
@@ -372,6 +366,8 @@ div.hasImage {
   top: 4px;
   width: 15%;
 }
+
+/* Code which triggers if the browser screen gets too small */
 
 @media only screen and (max-width: 990px) {
 

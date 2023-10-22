@@ -5,7 +5,7 @@ const DistributionMap = ({ data }) => {
   const parentRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  // Is meant to allow the DistributionMap to inhert the width/height of the surrounded div but its not yet working.
+  // Is meant to allow the DistributionMap to inhert the width/height of the surrounded div but its not yet working (Future issue).
   useEffect(() => {
     const handleResize = () => {
       if (parentRef.current) {

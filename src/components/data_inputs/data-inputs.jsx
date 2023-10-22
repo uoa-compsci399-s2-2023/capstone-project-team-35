@@ -37,9 +37,6 @@ const DataInputs = () => {
 
     // When the user adds another image, it checks if there are any images still in the array. If there is, add the new iamge to the array otherwise add it to an empty array.
     if (selectedImages.length > 0) {
-      if (selectedImages.includes(savedImages)) {
-        console.log("Yes");
-      }
 
       // Adds new image to array of existing images.
       const updatedImages = selectedImages.concat(savedImages);
@@ -85,14 +82,16 @@ const DataInputs = () => {
   // Dragging image into file input handler.
   const handleDragEnter = (e) => {
     e.preventDefault();
-    setIsImageDragging(true);
-    setIsImageSelected(true);
+    if (!isImageSelected) {
+      setIsImageDragging(true);
+    }
   };
 
   // Dragging image out of file input handler.
   const handleDragLeave = () => {
-    setIsImageDragging(false);
-    setIsImageSelected(false);
+    if (!isImageSelected) {
+      setIsImageDragging(false);
+    }
   };
 
   // Handles removing an image from the list of seleced images.
@@ -201,10 +200,11 @@ const DataInputs = () => {
               {/* The actual file input */}
               <input
                 type="file"
-                className={`${selectedUploadClass} hello`}
+                className={`${selectedUploadClass} clear`}
                 onChange={handleImageChange}
                 multiple
                 name="image_input"
+                accept="image/*"
               />
             </div>
 
@@ -230,6 +230,7 @@ const DataInputs = () => {
                   name="image_input"
                   id="file-input"
                   className="off"
+                  accept="image/*"
                 />
                 <label for="file-input">
                   <img src={upload_icon} alt="upload icon"></img>
