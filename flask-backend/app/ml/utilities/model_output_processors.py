@@ -2,7 +2,7 @@ import csv
 from app.domainmodel.insect import Insect
 import app.globals as globals
 
-def get_most_probable_prediction(label_probability_dict): #TODO: needed?
+def get_most_probable_prediction(label_probability_dict):
     temp_list = []
     for key in label_probability_dict.keys():
         temp_list.append((key, float(label_probability_dict[key])))
