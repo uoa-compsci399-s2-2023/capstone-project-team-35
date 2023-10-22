@@ -2,6 +2,12 @@ from werkzeug.datastructures import FileStorage
 from pathlib import Path
 from typing import Dict
 
+"""
+Below is a model that allows us keep all of the prediction information in once location.
+This allows different files in the program to make calls using the same prediction.
+
+"""
+
 class Prediction:
     def __init__(self, label_probability_dict: Dict[str, float], input_image_path: str):
         self.__label_probability_dict = None

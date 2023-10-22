@@ -4,7 +4,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Downloads
 
-- Windows: [https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4](https://drive.google.com/uc?export=download&id=1PPSKheDn6sd9jl5cbRUBFRgVHp4FK5v4)
+- Windows: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
 - Mac: *insert download link*
 
 ## Tech Stack
@@ -72,10 +72,20 @@ In order to run this application in a development setting you first need to run 
 Next you will need to run `npm run build` which will compile the react front end code into a smaller, and easier to run version within the build/ directory.\
 Finally if you run `npm run electron` the electron application will launch along with the python executable and you should be able to use Ocellai and all of its features. (Assuming all of the dependencies have been installed)
 
+### In case of error
+
+If there is an error when identifying images through this application, try this list of things before contacting the developers.
+
+1. Refresh the app using `ctrl R`
+2. Close the application window and reopen it.
+3. Check what image type you are uploading. You might be uploading a corrupt/invalid image.
+
 ##### Dependencies:
 
 ```
 npm install react react-dom
+npm install electron-builder --save-dev
+npm install express --save
 npm install -D tailwindcss
 npm i -D daisyui@latest
 npm i --save plotly.js-dist-min

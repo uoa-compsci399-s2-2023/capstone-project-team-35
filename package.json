@@ -57,11 +57,6 @@
       "license.txt",
       "README.md",
       "README_assets/",
-      "flask-backend/build_script/packaged_backend/ocellai_backend/",
-      "flask-backend/build_script/packaged_backend/ocellai_backend/ocellai_backend.exe",
-      "flask-backend/"
-    ],
-    "extraResources": [
       "flask-backend/build_script/packaged_backend/ocellai_backend/"
     ],
     "directories": {
@@ -69,6 +64,9 @@
     },
     "win": {
       "target": "nsis"
+    },
+    "mac": {
+      "target": "dmg"
     },
     "nsis": {
       "uninstallDisplayName": "Ocellai",

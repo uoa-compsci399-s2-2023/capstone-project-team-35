@@ -1,9 +1,7 @@
 <style>
-.lds-ring {
-  display: inline-block;
-  position: relative;
-  width: 160px;
-  height: 160px;
+#startup-bar-spinner.spinner {
+  z-index: 19;
+  animation: loading-bar-spinner 800ms linear infinite;
 
   margin: 0;
   position: absolute;
@@ -12,35 +10,71 @@
   transform: translate(-50%, -50%);
 }
 
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 128px;
-  height: 128px;
-  margin: 8px;
-  border: 12px solid #FC9A36;
+#startup-bar-spinner.spinner .spinner-icon {
+  width: 16vw;
+  height: 16vw;
+  border: solid 1.2vw transparent;
+  border-top-color: rgba(253, 131, 62, 1) !important;
+  border-left-color: rgba(251, 194, 41, 1) !important;
   border-radius: 50%;
-  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #FC9A36 transparent transparent transparent;
 }
-.lds-ring div:nth-child(1) {
-  animation-delay: -0.45s;
-}
-.lds-ring div:nth-child(2) {
-  animation-delay: -0.3s;
-}
-.lds-ring div:nth-child(3) {
-  animation-delay: -0.15s;
-}
-@keyframes lds-ring {
+
+@keyframes loading-bar-spinner {
   0% {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
+.startup_logo {
+  width: 8vw;
+}
+
+.startup_container {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.startup_transition {
+  animation-name: startup_transition;
+  animation-duration: 0.5s;
+}
+
+@keyframes startup_transition {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 </style>
 
-<div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+<div>
+  <div class="startup_container">
+    <img
+      class="startup_logo"
+      src="static/media/logo.f9f45a048760e9f378a8.png"
+      alt="The Ocellai logo which is an orange insect."
+    ></img>
+
+    <div id="startup-bar-spinner" class="spinner">
+      <div
+        class="spinner-icon"
+      ></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  setTimeout(function() {
+    var spinner = document.querySelector('.startup_container');
+    spinner.classList.add('startup_transition');
+  }, 7000); 
+</script>

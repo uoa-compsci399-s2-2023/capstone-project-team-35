@@ -33,9 +33,10 @@ const createWindow = () => {
     width: 1300,
     height: 800,
     minWidth: 550,
-    minHeight: 700,
+    minHeight: 800,
     webPreferences: {
-      webSecurity: false
+      contextIsolation: true,
+      nodeIntegration: false,
     },
   });
 
