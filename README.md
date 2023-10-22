@@ -50,10 +50,6 @@ v18.17.1
 9.6.7
 ```
 
----
-
-### Commands Reference List
-
 ### Flask Backend Commands
 
 Below commands should be executed from the project root directory.
@@ -94,8 +90,6 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 Packages the app and puts it into the `/dist` directory as an executable installer which allows the user to install the application onto their device. Please note that the final installer will be specific to operating system (e.g., Windows, MacOS) on which it was generated.
 
-## Setup and Installation
-
 ### Setup
 
 In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.
@@ -104,7 +98,7 @@ Next you will need to run `npm run build` which will compile the react front end
 
 Finally if you run `npm run electron` the electron application will launch along with the python executable and you should be able to use Ocellai and all of its features. (Assuming all of the dependencies have been installed)
 
-### In case of an error
+#### In case of an error
 
 If there is an error when identifying images through this application, try this list of things before contacting the developers.
 
