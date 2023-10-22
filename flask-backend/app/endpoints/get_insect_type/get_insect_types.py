@@ -22,8 +22,6 @@ def get_insect_types():
                 "label": target_insect_type,
                 "value": model_directory
                 }
-        
-
             # adds the label dictonary into a list so it's in a format for the front end to use
             dictonary_list.append(label_dictionary)
         # returns the string list and an OK request code

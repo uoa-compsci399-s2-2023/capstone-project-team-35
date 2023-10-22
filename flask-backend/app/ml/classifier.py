@@ -3,6 +3,12 @@ import app.ml.utilities.train_test_functions as ft
 from werkzeug.datastructures import FileStorage
 from pathlib import Path
 import os
+""" 
+Creates a model to access the abstract layer between the provided code from the clients and our code.
+This allows the code that calls upon the model to be called anywhere in our code while still referencing the same data.
+
+"""
+
 
 class Classifier(AbstractModel):
     def __init__(self, classifier_path: Path, classifier_name: str, labels_path: Path):
