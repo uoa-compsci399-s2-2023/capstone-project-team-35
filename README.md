@@ -30,7 +30,8 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Installation and Setup
 
-### Preliminary Steps
+### Development Environment Setup
+#### Frontend Setup 
 
 In order to run this application you will need to install Node.js. You can download the installer from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
 
@@ -49,6 +50,55 @@ It should return the following versions:
 v18.17.1
 9.6.7
 ```
+
+Next, execute the following to install additional dependencies:
+```
+npm install react react-dom
+npm install electron-builder --save-dev
+npm install express --save
+npm install -D tailwindcss
+npm i -D daisyui@latest
+npm i --save plotly.js-dist-min
+npm install axios
+```
+
+#### Backend Setup
+<u>Prerequisites</u> 
+- `Python 3.9` or above
+- `pip` package manager
+
+##### For Windows
+1. From your teminal, navigate to `/flask-backend`
+2. Execute the following commands:
+```
+py -m pip install --user virtualenv
+
+py -m venv env
+
+env\Scripts\activate
+
+py -m pip install -r windows_requirements.txt
+```
+3. To start the standalone backend server, execute `flask run`. Please make sure that no other applications / processes are using port `5000`. 
+
+4. To deactivate the virtual environment, run `deactivate`
+
+
+##### For Mac
+1. From your teminal, navigate to `/flask-backend`
+2. Execute the following commands:
+```
+python3 -m pip install --user virtualenv
+
+python3 -m venv env
+
+source env/bin/activate
+
+python3 -m pip install -r mac_requirements.txt
+```
+3. To start the standalone backend server, execute `flask run`. Please make sure that no other applications / processes are using port `5000`. 
+
+4. To deactivate the virtual environment, run `deactivate`
 
 ### Flask Backend Commands
 
@@ -90,47 +140,17 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 Packages the app and puts it into the `/dist` directory as an executable installer which allows the user to install the application onto their device. Please note that the final installer will be specific to operating system (e.g., Windows, MacOS) on which it was generated.
 
-### Development Environment Setup
-<u>Prerequisites</u>
-- `Python 3.9` or above
-- `pip` package manager
 
-#### Backend - Windows
-1. From your teminal, navigate to `/flask-backend`
-2. Execute the following commands:
-```
-py -m pip install --user virtualenv
+### Running the application in a development setting
 
-py -m venv env
+#### Option 1 - manually
+Open two terminal windows. In the first terminal window, navigate to the project root directory and run `npm start`. A new browser tab with the application interface will open.
+In the second terminal window, navigate to `/flask-backend` and run `flask run`. 
 
-env\Scripts\activate
-
-py -m pip install -r windows_requirements.txt
-```
-3. To start the standalone backend server, execute `flask run`. Please make sure that no other applications / processes are using port `5000`. 
-
-4. To deactivate the virtual environment, run `deactivate`
+Once both the frontend and backend servers are running, refresh the browser page before usage. 
 
 
-#### Backend - Mac
-1. From your teminal, navigate to `/flask-backend`
-2. Execute the following commands:
-```
-python3 -m pip install --user virtualenv
-
-python3 -m venv env
-
-source env/bin/activate
-
-python3 -m pip install -r mac_requirements.txt
-```
-3. To start the standalone backend server, execute `flask run`. Please make sure that no other applications / processes are using port `5000`. 
-
-4. To deactivate the virtual environment, run `deactivate`
-
-
-
-#### Frontend
+#### Option 2 - using Electron
 
 In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.
 
@@ -146,17 +166,6 @@ If there is an error when identifying images through this application, try this 
 2. Close the application window and reopen it.
 3. Check what image type you are uploading. You might be uploading a corrupt/invalid image.
 
-##### Front-end Dependencies for Development Mode
-
-```
-npm install react react-dom
-npm install electron-builder --save-dev
-npm install express --save
-npm install -D tailwindcss
-npm i -D daisyui@latest
-npm i --save plotly.js-dist-min
-npm install axios
-```
 
 ## Executable Package Installation
 
