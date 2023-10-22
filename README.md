@@ -241,7 +241,7 @@ Once you have analysed the prediction results, you can click the home button and
 
 ## Adding New Image Recognition Models
 
-Currently, this process requires changes to codebase's directory structure. However, this can be incorporated into the user interface in future development iterations. 
+Currently, this process requires an addition of several new directories within the codebase. However, this can be incorporated into the user interface in future development iterations. 
 
 To add a new model, plese follow these instructions:
 
