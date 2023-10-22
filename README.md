@@ -297,7 +297,7 @@ Brought to you by Team 35
 
 <img src="README_assets/team35_logo.png" width=250>
 
-- Dan Khomenko - Team Leader/Backend Developer
+- Danila Khomenko - Team Leader/Backend Developer
 - Fiona Bautista - Frontend Developer/ UI/UX Designer
 - Tom Clunie - Backend Developer/Unit Testing
 - Aaron Heald - Backend Developer
