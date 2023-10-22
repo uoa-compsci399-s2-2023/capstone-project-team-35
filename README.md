@@ -98,7 +98,7 @@ Firstly you need to install the application through the installer you downloaded
 
 <img src="README_assets/Usage_steps/Step1.PNG" width=600>
 
-You will be asked to pick a directory to intall the application into.
+You will be asked to pick a directory to intall the application into. Please select a path that's not within a OneDrive directory.
 
 <img src="README_assets/Usage_steps/step2.PNG" width=600>
 
