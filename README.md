@@ -299,7 +299,7 @@ Brought to you by Team 35
 
 - Danila Khomenko - Team Leader/Backend Developer
 - Fiona Bautista - Frontend Developer/ UI/UX Designer
-- Tom Clunie - Backend Developer/Unit Testing
+- Thomas Clunie - Backend Developer/Unit Testing
 - Aaron Heald - Backend Developer
 - Finn Massey - Lead Frontend Developer
 - Alex Wardega - Backend Developer
