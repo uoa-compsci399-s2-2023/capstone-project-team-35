@@ -4,14 +4,15 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Downloads
 
-- Windows: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
-- Mac: *insert download link*
+- Windows Application: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
+- Mac Application: *insert download link*
 
 ## Tech Stack
 
 ### Front-end
 
 - **Framework** : React (18.2.0)
+- **Languages** : JavaScript, HTML, CSS
 - **Libraries**
   - tailwindcss (3.3.3)
   - daisyUI (3.7.3)
@@ -22,36 +23,34 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ### Backend
 
-- **Framework** : flask (0.2.10)
+- **Framework** : Flask (3.0.0)
+- **Languages** : Python
 - **Libraries** :
-  - tensorflow 
+  - Please see `mac_requirements.txt` and `windows_requirements.txt` in `/flask-backend`
 
-## Installation and Setup
+## Development Environment Commands
+Below is a complete list of commands available within the application:
 
-Here are a complete list of commands used within the application:
+### Flask Backend Commands
 
-### 1. Flask Backend
+Below commands should be executed from the project root directory. 
 
 #### `npm run start-backend`
 
-This starts the backend server of the app
-Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
-You will have to refresh the connection in order to see changes.
-
-#### `./flask-backend/flask/Scripts/activate`
-
-This activates a virtual flask enviorment
+This starts the backend server which runs in the background on [http://localhost:5000](http://localhost:5000) and handles incoming HTTP requests from the frontend layer (hosted at a different endpoint).
 
 #### `npm run build-exe`
 
-This will run the build.py python file and create a python executable that will be used by the application to run the backend.
+This will run the `build.py` python file located at `/flask-backend/build_script` which creates an executable file under `/flask-backend/build_script/packaged_backend/ocellai_backend` which starts the backend server when executed. 
 
-### 2. React Front-end
+### React Frontend Commands
+
+Below commands should be executed from the project root directory. 
 
 #### `npm start`
 
 This starts up the react front end server of the app.
-It should open a tab in your browser at [http://localhost:3000](http://localhost:3000)
+It should open the application's web interface tab in your browser at [http://localhost:3000](http://localhost:3000).
 
 #### `npm run electron`
 
@@ -64,15 +63,19 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 #### `npm run package`
 
-Packages the app into the dist/ directory as an installer which allows the user to install the application onto their device.
+Packages the app and puts it into the `/dist` directory as an executable installer which allows the user to install the application onto their device. Please note that the final installer will be specific to operating system (e.g., Windows, MacOS) on which it was generated. 
 
-### Usage
+## Setup and Installation
 
-In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.\
-Next you will need to run `npm run build` which will compile the react front end code into a smaller, and easier to run version within the build/ directory.\
+### Setup
+
+In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.
+
+Next you will need to run `npm run build` which will compile the react front end code into a smaller, and easier to run version within the build/ directory.
+
 Finally if you run `npm run electron` the electron application will launch along with the python executable and you should be able to use Ocellai and all of its features. (Assuming all of the dependencies have been installed)
 
-### In case of error
+#### In case of error
 
 If there is an error when identifying images through this application, try this list of things before contacting the developers.
 
@@ -92,9 +95,10 @@ npm i --save plotly.js-dist-min
 npm install axios
 ```
 
-## Usage Examples
 
-Firstly you need to install the application through the installer you downloaded.
+## Executable Package Installation
+
+After you have generated the executable package, you will need to install the application locally through the installer you downloaded from the `/dist` folder.
 
 <img src="README_assets/Usage_steps/Step1.PNG" width=600>
 
