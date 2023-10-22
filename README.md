@@ -4,14 +4,15 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Downloads
 
-- Windows: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
-- Mac: _insert download link_
+- Windows Application: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
+- Mac Application: _insert download link_
 
 ## Tech Stack
 
 ### Front-end
 
 - **Framework** : React (18.2.0)
+- **Languages** : JavaScript, HTML, CSS
 - **Libraries**
   - tailwindcss (3.3.3)
   - daisyUI (3.7.3)
@@ -22,9 +23,10 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ### Backend
 
-- **Framework** : flask (0.2.10)
+- **Framework** : Flask (3.0.0)
+- **Languages** : Python
 - **Libraries** :
-  - tensorflow
+  - Please see `mac_requirements.txt` and `windows_requirements.txt` in `/flask-backend`
 
 ## Installation and Setup
 
@@ -52,9 +54,9 @@ v18.17.1
 
 ### Commands Reference List
 
-Here are a complete list of commands used within the application:
+### Flask Backend Commands
 
-### 1. Flask Backend
+Below commands should be executed from the project root directory.
 
 ##### `npm run start-backend`
 
@@ -68,14 +70,16 @@ This activates a virtual flask enviorment
 
 ##### `npm run build-exe`
 
-This will run the build.py python file and create a python executable that will be used by the application to run the backend.
+This will run the `build.py` python file located at `/flask-backend/build_script` which creates an executable file under `/flask-backend/build_script/packaged_backend/ocellai_backend` which starts the backend server when executed.
 
-### 2. React Front-end
+### React Frontend Commands
+
+Below commands should be executed from the project root directory.
 
 ##### `npm start`
 
 This starts up the react front end server of the app.
-It should open a tab in your browser at [http://localhost:3000](http://localhost:3000)
+It should open the application's web interface tab in your browser at [http://localhost:3000](http://localhost:3000).
 
 ##### `npm run electron`
 
@@ -88,12 +92,16 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ##### `npm run package`
 
-Packages the app into the dist/ directory as an installer which allows the user to install the application onto their device.
+Packages the app and puts it into the `/dist` directory as an executable installer which allows the user to install the application onto their device. Please note that the final installer will be specific to operating system (e.g., Windows, MacOS) on which it was generated.
 
-### Usage
+## Setup and Installation
 
-In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.\
-Next you will need to run `npm run build` which will compile the react front end code into a smaller, and easier to run version within the build/ directory.\
+### Setup
+
+In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.
+
+Next you will need to run `npm run build` which will compile the react front end code into a smaller, and easier to run version within the build/ directory.
+
 Finally if you run `npm run electron` the electron application will launch along with the python executable and you should be able to use Ocellai and all of its features. (Assuming all of the dependencies have been installed)
 
 ### In case of an error
@@ -116,9 +124,9 @@ npm i --save plotly.js-dist-min
 npm install axios
 ```
 
-## Usage Examples
+## Executable Package Installation
 
-Firstly you need to install the application through the installer you downloaded.
+After you have generated the executable package, you will need to install the application locally through the installer you downloaded from the `/dist` folder.
 
 <img src="README_assets/Usage_steps/Step1.PNG" width=600>
 
@@ -172,6 +180,19 @@ As well as the option the download a csv file with all the predications for a sp
 Once you are content with your results you can click the home button and navigate to the home page once again to upload more images if you desire.
 
 <img src="README_assets/Usage_steps/step13.PNG" width=600>
+
+## Adding New Models
+
+Currently, this has to be done manually through creating new directories in the repository, in the future it would be possible to create a way to do it automatically but as specified by the clients it wasn't something they wanted in the UI.
+
+To add a new model, follow along with the following instructions:
+
+1. First off you'll need to make a new folder within the following directory /flask-backend/app/data/ml/models/. this folder should be named something in relation to the model, for example, Trupanea's model directory is the following: /flask-backend/app/data/ml/models/trupanea/
+2. After making the new folder, you need to create 2 more folders in the new directory, one needs to be named **labels**, and the other needs to be named the **model version (such as "inceptionv3" for Trupanea**.
+3. With those 2 new folders, in **/flask-backend/app/data/ml/models/<model_name>/labels** add the labels.csv, if you need to see what it looks like, take a look at /flask-backend/app/data/ml/models/trupanea/labels/labels.csv.
+4. In **/flask-backend/app/data/ml/models/<model_name>/<model_version>** add the .h5 Machine Learning model file, which needs to be called model.h5.
+
+After following those steps above, the program should automatically recognise the new model file, allowing you to select the model on the home page of the application.
 
 ## Future Plans
 
