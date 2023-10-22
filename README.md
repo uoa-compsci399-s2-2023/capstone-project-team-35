@@ -267,11 +267,6 @@ However, Electron allows for the deployed application to be connected to a GitHu
 
 If resources permit, this project could be easily deployed as a Web Application accessible to a wide range of users over the Internet from a browser. This would make maintanence much more efficient as the end-users would not need to download and install a new application executable after each update. This would also allow for the application to be used on mobile devices, which would be highly beneficial for this field work.
 
-## Additional Documentation on Notion
-
-You can view and edit the detailed ocellai codebase documentation in     
-[https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4](https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4)
-
 ### User Experience
 
 Geared towards aiding biosecurity personnel, we believe the following additional features could be implemented to enhance user experience and promote the reliability of the application:
@@ -286,6 +281,11 @@ Geared towards aiding biosecurity personnel, we believe the following additional
 Below is a screenshot of Team 35's Gantt Chart for this project.
 
 <img src="README_assets/ocellai_gantt-chart.png" width=600>
+
+## Additional Documentation on Notion
+
+You can view and edit the detailed ocellai codebase documentation in     
+[https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4](https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4)
 
 ## Acknowledgements
 
