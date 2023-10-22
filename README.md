@@ -6,11 +6,6 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 - Windows Application: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
 
-## Additional Documentation on Notion
-
-You can view and edit the detailed ocellai codebase documentation in     
-[https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4](https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4)
-
 ## Tech Stack
 
 ### Front-end
@@ -271,6 +266,11 @@ However, Electron allows for the deployed application to be connected to a GitHu
 ### Packaging and Distribution
 
 If resources permit, this project could be easily deployed as a Web Application accessible to a wide range of users over the Internet from a browser. This would make maintanence much more efficient as the end-users would not need to download and install a new application executable after each update. This would also allow for the application to be used on mobile devices, which would be highly beneficial for this field work.
+
+## Additional Documentation on Notion
+
+You can view and edit the detailed ocellai codebase documentation in     
+[https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4](https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4)
 
 ### User Experience
 
