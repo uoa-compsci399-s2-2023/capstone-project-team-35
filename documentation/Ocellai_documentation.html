@@ -1,0 +1,694 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Ocell.ai Documentation</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="930eb1cf-9de9-4f2e-a7a1-9e4af8b2b85b" class="page sans"><header><h1 class="page-title">Ocell.ai Documentation</h1><p class="page-description"></p></header><div class="page-body"><figure id="ffe2a73f-3b4f-452c-b0ac-e980931da58f" class="image"><a href="docu_images/ocellai_banner.png"><img style="width:576px" src="docu_images/ocellai_banner.png"/></a></figure><h2 id="1ff9a81f-fbb7-4606-a9a1-4e67a89acf62" class="">Back End</h2><h3 id="850be874-7beb-4ee3-86b8-303a97cf85cc" class=""><strong>flask-backend/app</strong></h3><ul id="9a6a522a-df01-4598-81ac-326f24ee2c47" class="bulleted-list"><li style="list-style-type:disc"><strong>__init__.py</strong></li></ul><p id="42f3990e-7e82-4519-a0ca-53fcf5cb677f" class="">Initialization of the Flask application, here we import the abstract repository and local repository that will app will use and set the configuration to use it. Endpoint blueprints are also registered here.</p><ul id="25727ffb-c7f0-45fc-98d8-5697539fee6c" class="bulleted-list"><li style="list-style-type:disc"><strong>globals.py</strong></li></ul><p id="2f836691-b8b0-4333-bc13-ca1e2a5a48d1" class="">Useful global variables we might use throughout the backend, several directories are defined here as well as the default model type and insect supertype. The number of top predictions can also be modified here.</p><p id="516ce5e3-9aed-417b-8e5a-48d2e4c05d85" class="">
+</p><h3 id="6335fb22-5a50-4ecc-8446-80494ed8f23a" class="">/storage</h3><ul id="60d1b629-47bf-40ab-acfb-b5787c9bf391" class="bulleted-list"><li style="list-style-type:disc"><strong>abstractrepository.py</strong></li></ul><p id="e722d96d-a8a2-40b4-931e-82d39459cbfd" class="">An abstract class that defines the methods for the application&#x27;s local repository.</p><ul id="6882e85c-abfa-4d4f-a133-4a66496c388f" class="bulleted-list"><li style="list-style-type:disc"><strong>/local/local_repository.py</strong></li></ul><p id="37be16b8-dcb2-44cb-9330-af7178e7d66c" class="">The local repository used by the application, and the methods inherited from the abstract one.</p><p id="4d747821-310f-4435-ba71-2a7fbbe54d73" class=""><strong><code>create_individual_prediction_results_csv(self, complete_predictions_list)</code></strong><div class="indented"><p id="d4ae66a3-b3b1-4044-b8a7-27af17c8056b" class="">Takes a list of dictionary results <code>complete_predictions_list</code>, for which each dictionary contains complete information about the prediction on an image. It then saves this list to a unique CSV file <code>{image_name}_predictions.csv</code> in the <code>globals.INDIV_PREDICTION_RESULTS_DIRECTORY</code> where it can later be downloaded.</p></div></p><p id="a781a5ad-9373-452c-aee1-932b4210f36a" class=""><code><strong>write_to_batch_prediction_results_csv(self, complete_predictions_list)</strong></code><div class="indented"><p id="dc6248d5-bdab-4d87-ab3e-965e1cdcffbb" class="">Takes a list of dictionary results <code>complete_predictions_list</code>, for which each dictionary contains complete information about the prediction on an image. It then appends this list to a CSV file <code>predictions.csv</code> in the <code>globals.BATCH_PREDICTION_RESULTS_DIRECTORY</code> where it can later be downloaded.</p></div></p><p id="e7b99813-a7ff-4740-b62a-ca1d259006c7" class=""><code><strong>add_image(self, image: Image)</strong></code><div class="indented"><p id="d07f1a03-fee0-4e6f-b441-0176600a07a7" class="">Takes image of type Image from the PIL import and adds it to the existing or created <code>globals.USER_UPLOADED_IMAGES_DIRECTORY</code> directory.</p></div></p><p id="0174750d-2efe-4785-a56c-f9c5eb293d47" class=""><strong><code>get_base64_image(self, img_path: Path)</code></strong><div class="indented"><p id="33c7e1c1-2fff-4540-aa34-64c77149e116" class="">Takes an img_path of type Path from import pathlib and returns a base64 encoded version of the image.</p></div></p><p id="bfa4c565-dffe-49f5-801a-606fae546e9f" class=""><code><strong>get_all_images(self)</strong></code><div class="indented"><p id="254395d8-c680-49fc-9c0b-f0934772a704" class="">Returns a list of all the images in the <code>globals.USER_UPLOADED_IMAGES_DIRECTORY</code> directory. </p></div></p><p id="4056de76-f54d-4847-9c2c-bfa34015785d" class=""><code><strong>get_image_by_name(self, path: str)</strong></code><div class="indented"><p id="de39ad46-d119-4695-bc69-604989dd1551" class="">Returns an Image given an image name as a string.</p></div></p><p id="d5b34290-9531-4521-9606-0655c5246649" class=""><code><strong>clear_directory(self, dir_path)</strong></code><div class="indented"><p id="272c44d1-977f-4bec-abd0-4a28f5ff8c64" class="">Takes a directory path and clears any existing contents.</p></div></p><p id="5590e377-241d-40c8-9fb7-5c0fafc04f25" class="">
+</p><h3 id="9b1982d9-785b-42c6-a3df-aff3e35e2d53" class="">/species_info</h3><ul id="a2b265d3-ca77-4817-9c4c-09f13872badc" class="bulleted-list"><li style="list-style-type:disc"><strong>/Annotations</strong></li></ul><p id="1e805231-272a-402e-9e8b-d64ead87cfd5" class="">CSV files that contain the information for an insect supertype including the label, country ect. </p><ul id="275c6938-56d7-4315-9ff4-5552a572d3f4" class="bulleted-list"><li style="list-style-type:disc"><strong>/Images</strong></li></ul><p id="0bf445bc-9083-4ab6-ac54-20e099c87725" class="">Reference images for an insect supertype.</p><p id="3382da50-be82-4a80-9c89-7489cc2e624e" class="">
+</p><h3 id="d0ff93ee-8f6e-46fe-965a-2157dcb1e004" class="">/ml</h3><ul id="281f73d2-56b3-4a34-8981-5435d8926f71" class="bulleted-list"><li style="list-style-type:disc"><strong>prediction.py</strong></li></ul><p id="53167c91-beb4-4a33-9d07-ad9aa12554d8" class="">Contains <code>class Prediction</code> definition and helper functions.</p><p id="3303e97f-07cc-4599-8da1-26494ec9dce0" class=""><code><strong>init(self, label_probability_dict: Dict[str, float], input_image_path: str)</strong></code><div class="indented"><p id="29617acd-57b8-433b-9281-74fcd7b78f18" class="">Constructor, a string float label_probability dictionary, and the image path of the predicted image as a string.</p></div></p><p id="143c0052-7a9c-4df6-bd45-1afc970f49fe" class=""><code><strong>label_probability_dict(self)</strong></code><div class="indented"><p id="e37f34e3-24ef-45a8-89e0-4b619e534f19" class="">Returns the<code><strong> </strong></code><code>label_probability_dict</code> of the prediction.</p></div></p><p id="86478dad-bb07-4422-a992-71c184163845" class=""><code><strong>label_probability_dict(self, new_label_probability_dict: Dict[str, float])</strong></code><div class="indented"><p id="22cbabdb-630e-42cb-88e2-d6ccbb502b39" class="">Sets the <code>label_probability_dict</code> of the prediction.</p></div></p><p id="41fa07d2-754c-4c4f-b4ca-56b8583e7bb5" class=""><code><strong>input_image_path(self)</strong></code><div class="indented"><p id="55ea92e5-3a54-41ea-86f9-0951e0662dcd" class="">Returns the <code>input_image_path</code> of the prediction.</p></div></p><p id="3ff62de7-d0c9-4133-b8a4-56e0cba7783a" class=""><code><strong>input_image_path(self, new_input_image_path: str)</strong></code><div class="indented"><p id="91420ece-a3b4-4490-8a64-6431c0fed88d" class="">Sets the <code>input_image_path</code> of the prediction.</p></div></p><p id="7992bfdf-2263-41ee-b4e5-1513897e8444" class=""><code><strong>repr(self)</strong></code><div class="indented"><p id="c58ef798-6a11-4aba-98ad-998d00e0b161" class="">Returns a full-string representation of the prediction.</p></div></p><ul id="df8086e0-9c93-4722-a42f-684e783a112d" class="bulleted-list"><li style="list-style-type:disc"><strong>classifier.py</strong></li></ul><p id="d18f7402-a8f9-4dad-8699-cfd10d6657e3" class="">Contains <code>class Classifier</code> definition and helper functions.</p><p id="38f920c0-e9ed-4dfa-aae9-3228b8525e64" class=""><code><strong>init(self, classifier_path: Path, classifier_name: str, labels_path: Path)</strong></code><div class="indented"><p id="205b7178-df57-44d5-ae19-efa00048f380" class="">Constructor, takes the classifier path as Path, name as string and path to labels as Path.</p></div></p><p id="acfb0f22-c8e5-4a1c-bdb5-8e989c898eff" class=""><code><strong>predict(self, standardized_images_path)</strong></code><div class="indented"><p id="7354d0d0-ea6c-4019-8ea8-4a05ec212753" class="">Takes a path to the standardized images and returns a list containing the labels, predictions, image_files and model after running the ml model.</p></div></p><p id="36193de6-b86b-412d-8ded-107f16b09b30" class=""><code><strong>classifier_path(self)</strong></code><div class="indented"><p id="31c01d4d-b864-482d-b0bb-9ba89a4b51da" class="">Returns the <code>classifier_path</code> of the classifier.</p></div></p><p id="a3cf3e81-4dc0-4cd7-8e92-84b36f9d7230" class=""><code><strong>classifier_path(self, new_classifier_path: Path)</strong></code><div class="indented"><p id="10be03d4-8d2a-4dfc-9831-876cb3368240" class="">Sets the <code>classifier_path</code> of the classifier.</p></div></p><p id="25d04d51-de50-4328-9564-5e52c231f765" class=""><code><strong>classifier_name(self)</strong></code><div class="indented"><p id="e45c700e-ddf4-4a4b-8007-fe4cb53f354d" class="">Returns the <code>classifier_name</code> of the classifier.</p></div></p><p id="fdea56c1-be37-47ae-b941-6d4fea49683e" class=""><code><strong>labels_path(self)</strong></code><div class="indented"><p id="d302f0b1-b2c4-4605-9c9a-7637c8b5cc89" class="">Returns the <code>labels_path</code> of the classifier.</p></div></p><p id="b08eb957-36a7-4bb1-9b39-b4fef2e215db" class=""><code><strong>labels_path(self, new_labels_path: Path)</strong></code><div class="indented"><p id="c7d8da6e-e615-4c3b-8c93-f96768fbd54b" class="">Sets the <code>labels_path</code> of the classifier.</p></div></p><p id="a0ba39eb-fa6e-4c7e-85df-50024c5ff6a1" class=""><code><strong>eq(self, other)</strong></code><div class="indented"><p id="60e80eb0-ed4d-442f-a06a-ce1d1574838d" class="">== operator on two classifier objects will check if they share the same classifier name.</p></div></p><p id="ad41496e-68fd-4eaf-a384-633e0ce534e6" class=""><code><strong>lt(self, other)</strong></code><div class="indented"><p id="335053c5-7c36-446c-b529-12c7c44b3df9" class="">&lt; operator on two classifier objects will check if the classifier name is less than the other.</p></div></p><p id="f48ef19b-57a6-4607-8fce-cecc1f3db129" class=""><code><strong>hash(self)</strong></code><div class="indented"><p id="fe816eb9-d2a8-4cee-a39a-7913917a35ed" class="">default python-generated function to return an integer value of the hash.</p></div></p><p id="d0e8c7d5-8ed1-400b-9a31-0da4433fb507" class=""><code><strong>repr(self)</strong></code><div class="indented"><p id="d00cbb34-257c-454e-8303-c98b5acdd230" class="">Returns a full-string representation of the classifier.</p></div></p><ul id="46f57d18-1353-4a5a-b496-144985588c36" class="bulleted-list"><li style="list-style-type:disc"><strong>abstractmodel.py</strong></li></ul><p id="cd0019ea-a510-4080-a427-e5f401cca09f" class="">An abstract class that defines a single method <code>predict</code>.</p><ul id="51342f70-b8df-4434-acc2-c7a66da66674" class="toggle"><li><details open=""><summary><strong>/utilities/model_output_processors.py</strong></summary><p id="99ce5267-6938-484a-9dc0-f8b0c8d44808" class=""><code><strong>get_most_probable_prediction(label_probability_dict):</strong></code></p><ul id="8fe0698f-2fa6-436b-a277-7c6cf6767a7f" class="bulleted-list"><li style="list-style-type:disc">Takes a dictionary of labels with their predicted probability and orders them in such a way that the most probable prediction is the first item in the list with it’s label so we can just return the label for CSV formatting.</li></ul><p id="2c288516-d04d-459f-bc34-d24cc95e91d3" class=""><code><strong>get_insect_by_label(global_species, label) -&gt; Insect:</strong></code><strong> </strong></p><ul id="90589b3e-573b-4c31-8df1-fa15b891687f" class="bulleted-list"><li style="list-style-type:disc">Returns an insect model (created using the Insect DomainModel as defined below) with the gotten labels and species information using the label passed into the function.</li></ul></details></li></ul><ul id="ae1c2e75-00a2-47cf-9198-d80fd7985e70" class="toggle"><li><details open=""><summary><strong>/utilities/retrieve_probable_prediction.py</strong></summary><p id="f8dcf0d2-5486-448a-a0c2-1f33d9f3b7bc" class=""><code><strong>get_most_probable_prediction(label_probability_dict):</strong></code></p><ul id="c46d65d0-2de4-4aa6-ace5-bd14808fa1e5" class="bulleted-list"><li style="list-style-type:disc">Takes a dictionary of labels with their predicted probability and orders them in such a way that the most probable prediction is the first item in the list with it’s label so we can just return the label for CSV formatting.</li></ul><p id="2afc9d5b-b30d-4ff1-8520-ce381b2c4fce" class=""><code><strong>get_insect_by_label(global_species, label) -&gt; Insect:</strong></code><strong> </strong></p><ul id="f8b948ba-9f99-4864-8302-a680668a7679" class="bulleted-list"><li style="list-style-type:disc">Returns an insect model (created using the Insect DomainModel as defined below) with the gotten labels and species information using the label passed into the function.</li></ul></details></li></ul><ul id="25cb6e53-0f9f-4510-a61a-b6d19a1dbff8" class="toggle"><li><details open=""><summary><strong>/utilities/run_tf2.py</strong></summary><p id="310bcdd5-1116-483a-a6c2-a6067d49e12d" class="">This utility while in the repository was not used by us, it was used by the clients to run their model and to ensure that it ran as expected.</p></details></li></ul><ul id="3631ada5-9e3a-499d-b56d-ef9bd9c79a1d" class="toggle"><li><details open=""><summary><strong>/utilities/standardise_images.py</strong></summary><p id="11455f1f-95c5-45b7-872b-74b94dbd245c" class="">While provided by the clients, we use this utility to standardise the images that we upload to the application, the models that are used only takes images that are 299x299 pixels and are black and white, that means that we have to resize the images and greyscale them in order for a prediction to be made. this function does that for us with it’s functions.</p></details></li></ul><ul id="332d9906-94e6-4a11-8bcd-ff215c29a46c" class="toggle"><li><details open=""><summary><strong>/utilities/train_test_functions.py</strong></summary><p id="8f5bb4b1-ab8e-4487-a3af-1a1c62c07ac3" class="">This utility contains multiple functions, the main ones being run_model(…): which we use in our program to make predictions by creating an abstract service layer that calls upon those functions with our own directories.</p><p id="148858ca-7eca-4a17-9188-807b6ac2ba09" class="">Inside this utility are other functions that were provided by the clients such as training and testing a model as mentioned below.</p><p id="fc5f18d7-68da-4fec-b14a-307a23f52e2d" class="">The train function takes x amount of images from a path, and basically trains a model based off of those images (like normal Machine Learning) and then you can test that model using confusion testing.</p></details></li></ul><ul id="49ca5c53-7d6c-43cc-afac-22dc26bc38f5" class="toggle"><li><details open=""><summary><strong>/models</strong></summary><ul id="39ebc4b0-e37e-4d13-9f25-ff7587306bb5" class="toggle"><li><details open=""><summary>Adding new models:</summary><p id="f83bea35-2ff2-43f6-8e2e-1315b4a97704" class="">Currently, this has to be done manually through creating 
+new directories in the repository, in the future it would be possible to
+ create a way to do it automatically but as specified by the clients it 
+wasn&#x27;t something they wanted in the UI.</p><p id="1211e675-e94b-48bd-b91d-d9a1792ef4f5" class="">To add a new model, follow along with the following instructions:</p><ol type="1" id="09d16581-31ab-484f-aa56-ec1dfe242ef6" class="numbered-list" start="1"><li>First off you&#x27;ll need to make a new folder within the following
+directory /flask-backend/app/data/ml/models/. this folder should be
+named something in relation to the model, for example, Trupanea&#x27;s model
+directory is the following: /flask-backend/app/data/ml/models/trupanea/</li></ol><ol type="1" id="2aef6701-dc2b-4498-934f-a8dc62626601" class="numbered-list" start="2"><li>After making the new folder, you need to create 2 more folders in the new directory, one needs to be named <strong>labels</strong>, and the other needs to be named the <strong>model version (such as &quot;inceptionv3&quot; for Trupanea</strong>.</li></ol><ol type="1" id="ae8154c6-81f2-4634-93b8-56451f5e760d" class="numbered-list" start="3"><li>With those 2 new folders, in <strong>/flask-backend/app/data/ml/models/&lt;model_name&gt;/labels</strong> add the labels.csv, if you need to see what it looks like, take a look
+at /flask-backend/app/data/ml/models/trupanea/labels/labels.csv.</li></ol><ol type="1" id="3502daf7-9712-45b2-869c-18e7237bba8d" class="numbered-list" start="4"><li>In <strong>/flask-backend/app/data/ml/models/&lt;model_name&gt;/&lt;model_version&gt;</strong> add the .h5 Machine Learning model file, which needs to be called model.h5.</li></ol><p id="be66b161-6d5f-40af-a0dc-84a6cad94085" class="">After following those steps above, the program should 
+automatically recognise the new model file, allowing you to select the 
+model on the home page of the application.</p></details></li></ul><ul id="f6e2c411-11fb-40a3-aa59-f8df5b17da51" class="bulleted-list"><li style="list-style-type:disc">Contains a directory for an insect supertype which contains a directory labels for the labels and a directory for the model.</li></ul></details></li></ul><p id="82af0ff5-92cb-4b3d-bdc5-a30621462108" class="">
+</p><h3 id="9dce5221-b2fb-43e2-934b-e71316648806" class="">/domainmodel</h3><ul id="6e8dd516-992d-43ff-ad54-0edfbf781b78" class="bulleted-list"><li style="list-style-type:disc"><strong>insect.py</strong></li></ul><p id="f87aae5e-2493-4e6a-ba11-3590ef30acc3" class="">Contains <code>class Insect</code> definition and helper functions.</p><p id="1106fd94-9d44-4712-a67e-d9cb01657884" class=""><strong><code>init(self, label, country, genus, species, image_file_path, distribution_url, tags)</code></strong><div class="indented"><p id="98639cf6-ef03-43db-9fb7-d9c13842112b" class="">Constructor, takes a label, country, genus, species, image_file_path, distribution_url and tags.</p></div></p><p id="379e3e81-21e9-43b6-aa13-393edfbb0bd3" class=""><code><strong>label(self)</strong></code><div class="indented"><p id="7b42f9a2-e513-4882-8c33-9c5096494886" class="">Returns the <code>label</code>of the the insect.</p></div></p><p id="1b3850c7-d86b-46e3-b2e4-e61c95d15334" class=""><code><strong>country(self)</strong></code><div class="indented"><p id="45a1fc92-1020-4a2d-9900-865c2cf28a88" class="">Returns the <code>country</code> of the insect.</p></div></p><p id="126ff287-f295-4031-acfb-4c9bedaf2908" class=""><code><strong>genus(self)</strong></code><div class="indented"><p id="0b749f87-b02c-47b2-95d9-ca88695a1886" class="">Returns the <code>genus</code> of the insect.</p></div></p><p id="fe0affa6-0689-47da-bea7-f98c973b037b" class=""><code><strong>species(self)</strong></code><div class="indented"><p id="9a1d3f2f-202a-442d-94e5-b033f2167e51" class="">Returns the <code>species</code> of the insect.</p></div></p><p id="68a61204-6bbd-467c-a860-574e6ec3016a" class=""><code><strong>image_file_path(self)</strong></code><div class="indented"><p id="4a22e210-9412-47f0-84e7-2fb28910fe47" class="">Returns the <code>image_file_path</code> of the insect.</p></div></p><p id="ab7f2c00-7899-448e-8bde-4de3f780d6a8" class=""><code><strong>distribution_url(self)</strong></code><div class="indented"><p id="41188ed9-041f-4106-9c90-4e87fe26f651" class="">Returns the <code>distribution_url</code> of the insect.</p></div></p><p id="069738cc-d7c4-4a86-bdce-88635709903b" class=""><code><strong>tags(self)</strong></code><div class="indented"><p id="67901e1c-707e-4468-b5d9-3c5e93a6e4d4" class="">Returns the <code>tags</code> of the insect.</p></div></p><p id="210b204c-8304-42d4-b01c-18f3a22dfc9f" class=""><strong><code>tags(self, tags)</code></strong><div class="indented"><p id="e1b4d13d-0671-43a7-bd10-53472e0743da" class="">Sets the <code>tags</code>of the insect.</p></div></p><p id="2f2b7e60-631f-4c44-8c69-1c66b67336ae" class=""><code><strong>repr(self)</strong></code><div class="indented"><p id="89ef53dc-5ad9-4bc1-a6c8-d8058aa7c0c9" class="">Returns a full-string representation of the insect.</p></div></p><p id="43d9482b-0d9e-434b-8989-76d00e4ace86" class=""><code><strong>eq(self, other)</strong></code><div class="indented"><p id="a8fccb30-5a11-4b0e-9509-78c5caffd149" class="">== operator on two insect objects will check if they share the same <code>label</code>.</p><p id="6875440a-d4eb-4c56-bc1e-ed4f7b1e80b4" class="">
+</p></div></p><h3 id="e30d6f09-76ca-4c0b-b54a-9fcd040eba4d" class="">/endpoints</h3><ul id="b8b46684-843b-40de-8c7d-c1cc03cdc502" class="toggle"><li><details open=""><summary><strong>/download_individual_result/&lt;string:imagename&gt;</strong></summary><ul id="b8a5034a-8087-491d-82fc-df27a83d6eda" class="bulleted-list"><li style="list-style-type:disc">download_individual_result.py</li></ul><p id="52725e3b-21bb-49c0-ab13-27c3939fdb75" class="">Contains a single method called download_csv_result(imagename):</p><p id="8cc1ed66-7470-4b4c-9439-0ce84cb4e375" class="">It takes a single parameter which is a string called imagename (this is given to the function automatically) </p><p id="049c7e0e-cd85-4172-a123-ef438ebd3f43" class="">Using this imagename (the name of the image passed through the prediction function) a single csv can be returned for just the results of the selected image.</p></details></li></ul><ul id="eac40ffb-d5c3-4f68-bdc4-0dff29e5f614" class="toggle"><li><details open=""><summary><strong>/download</strong></summary><ul id="821fbb74-116f-4e57-9a16-be611d24a831" class="bulleted-list"><li style="list-style-type:disc">download_results.py</li></ul><p id="db38f906-701e-48af-b542-12ba571ed9c8" class="">Contains a single method called download_csv_results():</p><p id="70758a9d-6997-486e-be34-bf4c5ef0bb7b" class="">It take no parameters but instead calls directly upon the models directory to get a list of all of the labels that the model contains.</p><ul id="c05b2e96-9fec-464a-87f4-0681709e9364" class="bulleted-list"><li style="list-style-type:disc">Accesses the BATCH_PREDICTION_RESULTS_DIRECTORY variable stored in /flask-backend/app/globals.py<ul id="ff942f39-be28-4d88-bb24-bf6cdbb9292b" class="bulleted-list"><li style="list-style-type:circle">returns the download for the predictions.csv file to allow the user to download the predictions.</li></ul></li></ul></details></li></ul><ul id="4c20dfff-c33b-479e-a8c8-75416b5d4ac1" class="toggle"><li><details open=""><summary><strong>/get_insect_types</strong></summary><ul id="fd300b1f-01aa-4034-9695-2519c99607eb" class="bulleted-list"><li style="list-style-type:disc">get_insect_types.py</li></ul><p id="01ced368-7f9d-4550-be40-155ff25ddb23" class="">Contains single method called get_insect_types():</p><p id="c8bf6807-46dd-47c1-b7b0-fb86b96fd2af" class="">It take no parameters but instead calls directly upon the models directory to get a list of all of the labels that the model contains.</p><ul id="c8b816a2-7e8c-4134-bdc5-20ab86e10c6b" class="bulleted-list"><li style="list-style-type:disc">This is solely dependent on the labels.csv file existing in the corresponding directory for the selected model<ul id="cff50fb9-2812-4d95-8e92-c545c81125d9" class="bulleted-list"><li style="list-style-type:circle">For example: trupanea has it’s labels.csv stored in /flask-backend/app/data/ml/models/trupanea/labels/labels.csv</li></ul><ul id="fa0115af-4a1c-43d1-8868-a7d2672ee9ea" class="bulleted-list"><li style="list-style-type:circle">To see how to add a new labels.csv alongside it’s model look at &lt;insert link to header here&gt;.</li></ul></li></ul></details></li></ul><ul id="77d5f965-23b0-4e53-8382-fa581ba019c2" class="toggle"><li><details open=""><summary><strong>get_species_occurences_by_country</strong></summary><ul id="2ca975f8-5845-489d-820f-2de300953d6e" class="toggle"><li><details open=""><summary><strong>/get_occurences_by_country/&lt;taxonId&gt;</strong></summary><ul id="4f32323e-2e0d-454a-990c-fb0ff43a7178" class="bulleted-list"><li style="list-style-type:disc">get_species_occurences_by_country.py</li></ul><p id="b0ed2f9c-f720-466f-b0e1-efe88f127613" class="">Contains a single method called get_occurences_by_country(taxonId: int): which takes the taxonId (which is an integer) as a parameter. </p><ul id="d7b8b0f2-9d93-45fc-a6fb-2eef6578f291" class="bulleted-list"><li style="list-style-type:disc">This Id is automatically given to the prediction, allowing the gbif (the distribution map) to be gotten in order to display the distribution of the predicted type if the information is available.</li></ul></details></li></ul><ul id="d8f2da26-3752-40df-8e6b-e1e6a7aa3639" class="toggle"><li><details open=""><summary>services.py</summary><p id="f0c8f879-6436-4992-9e69-5ab95236e732" class="">This service file is run to return the GBIF map of distribution for the above endpoint. This includes limiting the spread of the distribution to 3000 different entries in order to not cause this endpoint to run forever. </p></details></li></ul></details></li></ul><ul id="e736cc49-dfcb-4178-a7cd-db05c0ac99cd" class="toggle"><li><details open=""><summary><strong>upload_and_get_predictions</strong></summary><ul id="ddaee3d5-115c-47a6-b76f-63818e3e61c1" class="toggle"><li><details open=""><summary><strong>/classify/&lt;insect_type&gt;</strong></summary><ul id="22498b9d-650e-45a6-9d1c-1d36879df023" class="bulleted-list"><li style="list-style-type:disc">upload_and_get_predictions.py</li></ul><p id="0e53e553-c764-44f3-8d37-943d7f129800" class="">Contains a single method called upload_and_get_classification(insect_type=None).</p><p id="d8265867-c009-42bf-85f4-db96b5f37495" class="">This method takes an insect_type (as passed in the url header) and using that takes a model from the data/ml/models/&lt;insect_type&gt; directory and runs the predict method from upload_and_get_predictions/<a href="http://services.py">services.py</a> in order to return to the front end the resulting predictions for the images inputted into the model.</p></details></li></ul><ul id="ce9042e2-b970-44be-b655-2f087c3b083b" class="toggle"><li><details open=""><summary>services.py</summary><p id="1ecaf18a-0e2c-41a1-a33c-d4d049ea6b83" class="">Runs all of the back-end service details, such as making a prediction, returning a result dictionary (JSON - this includes all of the labels such as genus, species, country ect), and storing the user uploaded images into the directory that the rest of the program calls from.</p></details></li></ul></details></li></ul><p id="9e7e93a5-1eb5-458a-9452-7e84f2bb3cb2" class="">
+</p><hr id="3f11619f-5173-4c51-bfee-52ccd127f7d5"/><h2 id="4667458f-19c2-420b-97d7-3adf61c16d4b" class="">Front End (/src)</h2><h3 id="10a97e43-224a-4af1-a722-80a7458c63b2" class="">/assets</h3><p id="8f45caf4-0fff-4434-9bef-85a4af4b0d38" class="">The assets folder contains all the graphical elements used within the application. This is subdivided into two categories:</p><ul id="7b13d5f2-1063-4451-b693-9b0fa2e39a4b" class="toggle"><li><details open=""><summary><strong>branding </strong>: graphics involving the application’s logo; contains the ff files:</summary><ul id="7c060cd3-b425-428e-adc2-8ccc7d2c4581" class="bulleted-list"><li style="list-style-type:disc">insect_logo.svg</li></ul><ul id="9b1a687a-2c83-46d2-8404-97d08a19bd97" class="bulleted-list"><li style="list-style-type:disc">main_logo.svg</li></ul><ul id="1e4af066-53ab-4a53-adc7-34325191f5b8" class="bulleted-list"><li style="list-style-type:disc">ocellai_logo-tag_lighter.png</li></ul></details></li></ul><ul id="519f9bbd-6b45-419d-ab8c-dd687f9fff57" class="toggle"><li><details open=""><summary><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>ui-elements:  </strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>graphics seen within the functional components of the application often symbolizing a certain action; contains the ff files:</summary><ul id="a4836c74-4f42-4c5c-9ddd-2b71ea0755bf" class="bulleted-list"><li style="list-style-type:disc">cross-small.png</li></ul><ul id="af378fa6-974c-4361-a20a-fb72b799fec6" class="bulleted-list"><li style="list-style-type:disc">dist-nan_icon.png</li></ul><ul id="cde9a98d-8ec4-4b5c-958f-fb2889728262" class="bulleted-list"><li style="list-style-type:disc">dist-ok_icon.png</li></ul><ul id="66162bd1-b0fb-4cf1-bfe5-0f3f02b15b55" class="bulleted-list"><li style="list-style-type:disc">edit_icon.svg</li></ul><ul id="b67a9b45-6c8d-4255-8a80-71e79172f775" class="bulleted-list"><li style="list-style-type:disc">file_upload.svg</li></ul><ul id="9a2fef68-3fba-4e52-831d-66c78646f464" class="bulleted-list"><li style="list-style-type:disc">gallery_icon.svg</li></ul><ul id="92fda39d-26e2-4da0-97ac-3f58cd4ff89f" class="bulleted-list"><li style="list-style-type:disc">gray_download-icon.svg</li></ul><ul id="223cdd47-1cf7-41ed-b3a7-bb80faabfda9" class="bulleted-list"><li style="list-style-type:disc">image_icon.svg</li></ul><ul id="46acbe1a-9ccd-4e2e-bfbc-f279e39e7db7" class="bulleted-list"><li style="list-style-type:disc">info_icon.svg</li></ul><ul id="e5dc377c-a9ac-45ed-b184-91d04da840e2" class="bulleted-list"><li style="list-style-type:disc">logo.png</li></ul><ul id="c0ac08ee-46b9-49a7-b0c8-62dc8869e5ca" class="bulleted-list"><li style="list-style-type:disc">orange_checkmark.svg</li></ul><ul id="753989bd-34a3-49c3-8111-dde2208c3405" class="bulleted-list"><li style="list-style-type:disc">orange_download-icon.svg</li></ul><ul id="a7cc2aa0-3f86-4e20-8169-30595c8ba8b3" class="bulleted-list"><li style="list-style-type:disc">shrink_icon.svg</li></ul><ul id="657303e4-4116-402b-991d-a2e7da299f89" class="bulleted-list"><li style="list-style-type:disc">tick_icon.png</li></ul></details></li></ul><h3 id="d2761211-e1ad-4477-9e3e-7a1e9725db46" class="">/components</h3><p id="a180ae12-6e44-4c87-a61d-a93f0977f597" class="">This folder houses the modular components of the application. Each of these components have their own folder that contains its javascript file and possibly an associated CSS file of the same name.</p><ul id="68af138e-8690-4c0a-8323-cc72cd967849" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong>data_inputs: </strong></strong></strong></strong></strong></strong>the component handling the user’s choice of ML Model and the uploading of images</li></ul><ul id="cf6b1ef3-a6aa-4083-85fd-e175ed61c62f" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong>distribution_map: </strong></strong></strong></strong></strong></strong>this component displays an interactive map of a species’ occurrence data that comes from the GBIF API</li></ul><ul id="0c73a222-8572-4a4b-a60e-5e2038506b79" class="bulleted-list"><li style="list-style-type:disc"><strong>file_button: </strong>the component that denotes each of the processed uploaded images as buttons that allows the user to navigate across results.</li></ul><ul id="0f445067-4fb9-4ced-b667-9026273ea49a" class="bulleted-list"><li style="list-style-type:disc"><strong>radial_graph: </strong>radial graph component that displays the probability percentage</li></ul><ul id="5d898f3c-2aeb-4cae-90f8-9b0d25133750" class="bulleted-list"><li style="list-style-type:disc"><strong>results_table: </strong>the table component that displays the top 10 predictions per input image</li></ul><ul id="42cb2863-0388-4de7-a714-c1201084539d" class="bulleted-list"><li style="list-style-type:disc"><strong>species_card: </strong>the container used for the top 3 prediction results. This has two states:<ul id="abddef7b-a4a5-4761-a8a8-35fe8466ff8b" class="bulleted-list"><li style="list-style-type:circle"><em>collapsed: </em>is the default display on the results page. It contains the radial graph, the predicted genus and species, the tags for the resulting species, and the link to the distribution information if available</li></ul><ul id="e5aa34b0-b054-4a94-839b-706d77e829e4" class="bulleted-list"><li style="list-style-type:circle"><em><em><em>expanded: </em></em></em>the expanded species card is only shown when a link to the GBIF database is available for the resulting species. It inherits the components of the collapsed state, and extends on the resulting species’ distribution information by displaying the distribution map, and the external links to the GBIF database.</li></ul><p id="47174f3d-7319-45aa-a508-47e30f1a462b" class="">The species card also has the following functions:</p><ul id="4910c770-3495-455c-ba60-6a178d5fe103" class="bulleted-list"><li style="list-style-type:circle"><strong><code>getDistribution</code></strong><strong> </strong><ul id="781cdcc9-0b5e-4b1e-b273-e7ec773be02a" class="bulleted-list"><li style="list-style-type:square">the function that calls the endpoint <code>get_occurences_by_country</code> which interacts with the GBIF API and returns the tally of the first 3000 occurrences of the species. Once the data is fetched, it is stored into the application’s local storage. This allows the data to be utilized by similar results without having to post another request to the GBIF API. </li></ul></li></ul><ul id="06fcd16d-1df8-4f5d-8568-37626abb180a" class="bulleted-list"><li style="list-style-type:circle"><strong><code>SpeciesCardExpanded</code></strong><strong> </strong><ul id="1482849f-9778-4eae-a501-1dfcbbf513e9" class="bulleted-list"><li style="list-style-type:square">Returns the format for the expanded state of the card.</li></ul></li></ul><ul id="87403b57-1437-40a5-8288-52c3f17ec934" class="bulleted-list"><li style="list-style-type:circle"><code><strong>SpeciesCardCollapsed</strong></code><ul id="4e2ba53b-d945-4451-8cc2-638ece528085" class="bulleted-list"><li style="list-style-type:square">Returns the format for the collapsed state of the card.</li></ul></li></ul><ul id="cc0f91b0-0115-43b3-b27c-74d9578b37d9" class="bulleted-list"><li style="list-style-type:circle"><code><strong>DisplayExpandButton</strong></code><strong> </strong><ul id="1113d667-3b0a-4b9a-9b8a-0e08cf678909" class="bulleted-list"><li style="list-style-type:square">This function shows the user the availability of distribution links for a particular species. If available, this prompts a call to <code>getDistribution</code>.</li></ul></li></ul><ul id="c6292185-ac9d-48d2-a851-db3ed913b3f0" class="bulleted-list"><li style="list-style-type:circle"><code><strong>DisplayExtLinks</strong></code><strong> </strong><ul id="72b42fb0-6407-4a6b-b3b2-e794b76445f5" class="bulleted-list"><li style="list-style-type:square">This function displays the external GBIF links when available.</li></ul></li></ul><ul id="03786594-e96c-42a7-b291-0d20039041e3" class="bulleted-list"><li style="list-style-type:circle"><code><strong><strong><strong><strong><strong><strong><strong><strong><strong>DisplayDistributionMap</strong></strong></strong></strong></strong></strong></strong></strong></strong></code><ul id="8d2b1b4e-f551-40a3-93be-fa7c60c3af4d" class="bulleted-list"><li style="list-style-type:square">This function renders the distribution map if occurrences were found. It also displays a loading state as a cue to the user while the data is being fetched.</li></ul></li></ul></li></ul><ul id="961c8f65-84ce-4039-846c-c33b1ed0673a" class="bulleted-list"><li style="list-style-type:disc"><strong>tags: </strong>the tags component denote easily digestible categorical information about the resulting species. It’s current possible values are:<ul id="8c957667-fb79-4c25-966b-e7e52c1dd885" class="bulleted-list"><li style="list-style-type:circle">in NZ</li></ul><ul id="019d6cfe-1975-4bb4-b55a-e1ba341deef4" class="bulleted-list"><li style="list-style-type:circle">Endemic</li></ul><ul id="e8c7724a-08e4-46b6-9e98-1944ac03d1bb" class="bulleted-list"><li style="list-style-type:circle">Unwanted pest</li></ul><ul id="2788f37e-090a-4041-8481-46049f76dfe2" class="bulleted-list"><li style="list-style-type:circle">Native</li></ul><ul id="6d28fc91-88f3-4375-93d6-ab0f715308d4" class="bulleted-list"><li style="list-style-type:circle">Introduced Biocontrol</li></ul><ul id="72d315a1-a539-4cb8-b9b7-5f0ac392d2c8" class="bulleted-list"><li style="list-style-type:circle">&lt;<em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em><em>custom&gt;: for additional categories defined by the client through the backend; displays in gray. </em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></em></li></ul></li></ul><ul id="f2d7c821-9cae-4afd-98cb-2f14f3878232" class="bulleted-list"><li style="list-style-type:disc"><em><em><em><em><em>index - a directory-like file used for referencing the files within the components folder</em></em></em></em></em></li></ul><h3 id="629dae44-ea23-4e69-9495-e0081b833d61" class="">/containers</h3><p id="957f34eb-7834-4bd1-8d3c-820675cd6f5f" class="">The folder houses the main containers used in the home page:</p><ul id="feaa7eb3-22f6-4604-99bc-04997111a2dc" class="bulleted-list"><li style="list-style-type:disc"><strong>control_frame:</strong> the container for <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>data_inputs</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> component</li></ul><ul id="dad8bd0c-4048-4ea1-bdd0-2f5558cdd0ec" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong>title</strong></strong></strong></strong></strong>: houses the logo on the left-half of the home page</li></ul><h3 id="8f2a3c41-d919-4237-a6f0-0fb7a5304b96" class="">/pages</h3><ul id="bd541f79-2971-414b-b436-4350dbdf1749" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong>home: </strong></strong></strong></strong>the home page renders the components housed in the <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>control_frame</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> and <strong><strong><strong><strong><strong>title.</strong></strong></strong></strong></strong></li></ul><ul id="b60809f6-6d2e-4f13-a75e-d79a28b71f57" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong>loading: </strong></strong></strong></strong></strong></strong></strong></strong></strong>the loading page handles uploading the images to the <code>/classify</code> endpoint of the backend and fetches the resulting response which gets stored in the RootContextProvider</li></ul><ul id="b95d0388-6b30-4fdf-bc9e-a4efbd693d6e" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>results: </strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong>the results page contains the bulk of the application use which houses three main sections, namely<ul id="4df9b59f-ec27-4f42-b9ad-4fcf5c9b54d2" class="bulleted-list"><li style="list-style-type:circle"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>File Navigation Section</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><ul id="31dbe1d4-4ba7-4f95-9932-e94bfd95285c" class="bulleted-list"><li style="list-style-type:square">The file navigation section allows the user to navigate amongst the results for each of their input images. On its footer is the batch download button which will allow the user to save a .csv file of all the results in their session.</li></ul></li></ul><ul id="604ea13a-aa3c-401a-aa4e-3e40521617f1" class="bulleted-list"><li style="list-style-type:circle"><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>Species Card Section</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong><ul id="5bf8ee0a-2980-4e06-bba4-96591e8e9559" class="bulleted-list"><li style="list-style-type:square">The species card section displays a <strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong>SpeciesCard</strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong> component for each of the top 3 predictions.</li></ul></li></ul><ul id="78cb7d5e-49a6-4d26-80ec-77706b9e469c" class="bulleted-list"><li style="list-style-type:circle"><strong><strong><strong><strong><strong><strong><strong><strong><strong>Auxiliary Info Section</strong></strong></strong></strong></strong></strong></strong></strong></strong><ul id="fafc88d3-936a-4c16-806b-63e1bd8952d9" class="bulleted-list"><li style="list-style-type:square">This is below the species card section and displays the image that was processed for the set of results, with an accompanying individual download button. It also displays the table of top 10 predictions for each input image.</li></ul></li></ul></li></ul><h3 id="3c099722-f078-4510-8b79-14c46acfd5ea" class="">/providers</h3><ul id="5eb7c7be-f10a-4da6-a295-965c2fa60260" class="bulleted-list"><li style="list-style-type:disc"><strong><strong><strong><strong><strong>root</strong></strong></strong></strong></strong>: the root provider is the main context provider in use from which all three pages refer to for the data or states of each page.</li></ul><h3 id="76738fa2-7eb5-4496-916e-cc57fb3e41af" class="">/App.jsx</h3><p id="c825c58b-a62f-4711-a28a-5a6ec163104b" class="">Is the root react component which houses and renders the appropriate application page. It also allows for these pages to use the <code>RootContext</code> so that data can be passed from one page to another.</p><h3 id="8f1ef763-d052-4a39-a812-1cfc32eeaa55" class="">/App.css</h3><p id="eb0db825-d89c-4f3f-9b1e-d6191376b792" class="">contains the styling for App.jsx</p><h3 id="4cabc6d8-4666-4150-b059-c65113c4132e" class="">/index.css</h3><p id="ec92d35d-b4c0-459f-8eeb-b41ef9216506" class="">defines the default styles used by the application</p><h3 id="3375562e-2d39-49c5-ac0b-ee2b11117fb0" class="">/index.js</h3><p id="8eb49ac2-d481-489a-a2b3-4c02b849ecf6" class="">Renders the React application while handling client-side routing.</p><h3 id="46cfe7ce-316e-4532-867f-7dcd04bf74a9" class="">/input.css</h3><p id="7384f79e-eecc-4aea-93fd-e52e2908a2d7" class="">This includes the base style from the Tailwind Library</p><h3 id="56df7377-02a3-447f-87d1-5b434ae4762a" class="">/main.jsx</h3><p id="6d5f8b05-6815-499b-9d66-2e3756175b1d" class="">Renders the React application to the DOM using <code>React.StrictMode</code> </p><p id="cb3acb05-0dd0-4cc7-b4cd-44c05ef9f20c" class="">
+</p><hr id="25c18c98-e4d1-458d-bfc9-51a6cb7a7edc"/><p id="5a3d15d4-f306-45f6-9575-d1821e9c573c" class="">
+</p><figure id="c0a4e487-d156-4598-a6ef-978b8981e81f" class="image"><a href="docu_images/Asset_22x.png"><img style="width:336px" src="docu_images/Asset_22x.png"/></a></figure><p id="cda52a75-d51d-4fa7-9403-e7f0c5fe40da" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

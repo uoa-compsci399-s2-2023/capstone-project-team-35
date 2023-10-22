@@ -5,7 +5,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 ## Downloads
 
 - Windows: [https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk](https://drive.google.com/uc?export=download&id=1OcUPP_2evQRGtfKl3fLw3xJAsxfj_kFk)
-- Mac: *insert download link*
+- Mac: _insert download link_
 
 ## Tech Stack
 
@@ -24,45 +24,69 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 - **Framework** : flask (0.2.10)
 - **Libraries** :
-  - tensorflow 
+  - tensorflow
 
 ## Installation and Setup
+
+### Preliminary Steps
+
+In order to run this application you will need to install Node.js. You can download the installer from [https://nodejs.org/en/download/](https://nodejs.org/en/download/).
+
+Select version 18.17.1 LTS (Recommended For Most Users) and follow the installation instructions.
+
+Once done, check the versions of your node and npm by running the following commands in your terminal:
+
+```
+node -v
+npm -v
+```
+
+It should return the following versions:
+
+```
+v18.17.1
+9.6.7
+```
+
+---
+
+### Commands Reference List
 
 Here are a complete list of commands used within the application:
 
 ### 1. Flask Backend
 
-#### `npm run start-backend`
+##### `npm run start-backend`
 
 This starts the backend server of the app
 Open [http://localhost:5000](http://localhost:5000) to view it in your browser.
 You will have to refresh the connection in order to see changes.
 
-#### `./flask-backend/flask/Scripts/activate`
+##### `./flask-backend/flask/Scripts/activate`
 
 This activates a virtual flask enviorment
 
-#### `npm run build-exe`
+##### `npm run build-exe`
 
 This will run the build.py python file and create a python executable that will be used by the application to run the backend.
 
 ### 2. React Front-end
 
-#### `npm start`
+##### `npm start`
 
 This starts up the react front end server of the app.
 It should open a tab in your browser at [http://localhost:3000](http://localhost:3000)
 
-#### `npm run electron`
+##### `npm run electron`
 
 This starts up the react app as an electron application and runs the backend executable as a local server.
 
-#### `npm run build`
+##### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-#### `npm run package`
+##### `npm run package`
 
 Packages the app into the dist/ directory as an installer which allows the user to install the application onto their device.
 
@@ -72,15 +96,15 @@ In order to run this application in a development setting you first need to run 
 Next you will need to run `npm run build` which will compile the react front end code into a smaller, and easier to run version within the build/ directory.\
 Finally if you run `npm run electron` the electron application will launch along with the python executable and you should be able to use Ocellai and all of its features. (Assuming all of the dependencies have been installed)
 
-### In case of error
+### In case of an error
 
 If there is an error when identifying images through this application, try this list of things before contacting the developers.
 
-1. Refresh the app using `ctrl R`
+1. Refresh the app using `ctrl+R`
 2. Close the application window and reopen it.
 3. Check what image type you are uploading. You might be uploading a corrupt/invalid image.
 
-##### Dependencies:
+##### Front-end Dependencies for Development Mode
 
 ```
 npm install react react-dom
@@ -125,12 +149,15 @@ Once you have selected your images you are ready to click 'identify' and see you
 The machine learning model of your choice is now processing your images.
 
 <img src="README_assets/Usage_steps/step8.PNG" width=600>
+Once finished, you will automatically be directed to the results page. And on the left hand side of the screen we can see a list of all the uploaded images which gives you the option to select each image and see the individual prediction scores for each.
 
-Here are the resulting predications for you selected images. As you can see, the podium show shows the top 3 most likly insects (with the highest probability) with the green column being the highest, the yellow column being the second highest and the red column being the third highest. Below that we can see the full list of the top 10 insects with the highest predictions as well as the selected image. On the left hand side of the screen we can see a list of all the uploaded images which gives you the option to select each image and see the individual prediction scores for each.
+As seen in the image below, the top 3 insects with the highest prediction scores are displayed in cards following a podium-like arrangement.
+
+Below that we can see the full list of the top 10 insects with the highest predictions as well the image that was analysed for you reference and verification.
 
 <img src="README_assets/Usage_steps/step9.PNG" width=600>
 
-If you click the 'view distribution' button under each of the top 3 insects for each image, you can see where abouts in the world this insect mostly lives, as well as links to various pictures of the insects and more information.
+For some cards, a 'view distribution' button with a blue icon will be available at the footer. You can use this to view where in the world the species has been present. Below this map, there are external links to the gbif.org database for reference images of the species and its other taxonomical information.
 
 <img src="README_assets/Usage_steps/step10.PNG" width=600>
 
@@ -147,18 +174,43 @@ Once you are content with your results you can click the home button and navigat
 <img src="README_assets/Usage_steps/step13.PNG" width=600>
 
 ## Future Plans
-To update this program in the future, the current way of doing it is you have to modify the repository (be it either upload new files/modify lines of code) and then reinstall the application following the steps above. In the future however it is possible to only modify the repository and have each pre-existing installation automatically update, this would both save time and be more efficient then manually needing to update x amount of devices everytime some code is changed.
 
-Something to note however with updating this program, github has a limit to how much data can be stored in a single repository, because of how big Machine learning models are (as seen with the basic one we've been given) those might have to be stored locally instead.
-Mention -> ML model not being ours
-For it to do it, it has to have permission from the owner of the repo (Legally we were unsure if we could do this because we're working for other people)
-Github also has file limitations due to size.
+### Maintenance
+
+Currently, updating the application proves to be tedious as it requires the user to uninstall the application and reinstall it with the updated version. This is due to the file size limit imposed by GitHub, which leads to the machine learning models being stored locally. One option to circumvent this issue is to use the Git Large File Storage Extension as a way of accommodating the machine learning models in the repository. Since electron allows for the deployed application to be connected to a GitHub repository, any changes made in the repository itself should automatically be reflected in the application without needing to reinstall it.
+
+### Packaging and Distribuition
+
+If resources permit, this project could easily be repackaged and deployed as a Web Application in order to make maintenance more convenient, and to allow for the application to be used on a wider range of devices. This would also allow for the application to be used on mobile devices, which would be beneficial for field work.
+
+### User Experience
+
+Geared towards aiding biosecurity personnel, we believe the following features could enhance user experience and promote the reliability of the application:
+
+- **Image Cropping** - The ability to crop images to focus on the insect of interest.
+- **Image Rotation** - The ability to rotate images to the correct orientation.
+- **Extended Species Information** - The addition of extensive yet necessary details about the morphological features of the insect of interest throughout the stages of its lifecycle. This would allow the user to make more informed decisions, as it would acquaint them with pest insects whose adult appearance are not as distinct as others.
+- **Addition of Crucial Biosecurity Information** - Information such as the host of the pest insect along with its natural enemies would present a more holistic approach to pest management.
 
 ## Project Management Tool
 
+Below is a screenshot of Team 35's Gantt Chart for this project.
+
+<img src="README_assets/ocellai_gantt-chart.png" width=600>
+
 ## Acknowledgements
-Machine Learning Model - Trupanea: Darren (Client)
+
+Darren Ward and Aaron Harmer, for providing the machine learning model and pest insect data used in this project.
+
+---
+
+Brought to you by Team 35
 
 <img src="README_assets/team35_logo.png" width=250>
 
-
+- Dan Khomenko - Team Leader/Backend Developer
+- Fiona Bautista - Frontend Developer/ UI/UX Designer
+- Tom Clunie - Backend Developer/Unit Testing
+- Aaron Heald - Backend Developer
+- Finn Massey - Lead Frontend Developer
+- Alex Wardega - Backend Developer
