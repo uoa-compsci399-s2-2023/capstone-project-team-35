@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.86474fca.css",
-    "main.js": "./static/js/main.65349443.js",
+    "main.css": "./static/css/main.981b33ca.css",
+    "main.js": "./static/js/main.1e347d62.js",
     "static/media/ocellai_logo-tag_lighter.png": "./static/media/ocellai_logo-tag_lighter.85ffd43d460153a4581d.png",
     "static/media/main_logo.svg": "./static/media/main_logo.dfede18f798822efedc04f1def59f782.svg",
     "static/media/dist-nan_icon.png": "./static/media/dist-nan_icon.5aba0e7e56d1f54bf42f.png",
@@ -18,11 +18,11 @@
     "static/media/shrink_icon.svg": "./static/media/shrink_icon.9e3ac30ede8ec8a7364b23a785971e19.svg",
     "static/media/edit_icon.svg": "./static/media/edit_icon.75e0ed8d96dbd9cf87f4adb031104041.svg",
     "index.html": "./index.html",
-    "main.86474fca.css.map": "./static/css/main.86474fca.css.map",
-    "main.65349443.js.map": "./static/js/main.65349443.js.map"
+    "main.981b33ca.css.map": "./static/css/main.981b33ca.css.map",
+    "main.1e347d62.js.map": "./static/js/main.1e347d62.js.map"
   },
   "entrypoints": [
-    "static/css/main.86474fca.css",
-    "static/js/main.65349443.js"
+    "static/css/main.981b33ca.css",
+    "static/js/main.1e347d62.js"
   ]
 }
