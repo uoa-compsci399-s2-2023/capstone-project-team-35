@@ -8,7 +8,7 @@ Ocell.ai empowers pest biosecurity personnel by bridging them to the modern tool
 
 ## Additional Documentation on Notion
 
-You can view and edit the detailed ocellai codebase documentation from     
+You can view and edit the detailed ocellai codebase documentation in     
 [https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4](https://glory-height-7f6.notion.site/Ocell-ai-Documentation-930eb1cf9de94f2ea7a19e4af8b2b85b?pvs=4)
 
 ## Tech Stack
