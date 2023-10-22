@@ -262,7 +262,7 @@ Currently, updating the application proves to be tedious as it requires the end-
 
 However, Electron allows for the deployed application to be connected to a GitHub repository such any changes made in the repository itself should automatically be reflected in the application without needing to reinstall it. This could be another feature to implement in the future.
 
-### Packaging and Distribuition
+### Packaging and Distribution
 
 If resources permit, this project could be easily deployed as a Web Application accessible to a wide range of users over the Internet from a browser. This would make maintanence much more efficient as the end-users would not need to download and install a new application executable after each update. This would also allow for the application to be used on mobile devices, which would be highly beneficial for this field work.
 
