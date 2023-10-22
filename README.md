@@ -90,7 +90,47 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 Packages the app and puts it into the `/dist` directory as an executable installer which allows the user to install the application onto their device. Please note that the final installer will be specific to operating system (e.g., Windows, MacOS) on which it was generated.
 
-### Setup
+### Development Environment Setup
+<u>Prerequisites</u>
+- `Python 3.9` or above
+- `pip` package manager
+
+#### Backend - Windows
+1. From your teminal, navigate to `/flask-backend`
+2. Execute the following commands:
+```
+py -m pip install --user virtualenv
+
+py -m venv env
+
+env\Scripts\activate
+
+py -m pip install -r windows_requirements.txt
+```
+3. To start the standalone backend server, execute `flask run`. Please make sure that no other applications / processes are using port `5000`. 
+
+4. To deactivate the virtual environment, run `deactivate`
+
+
+#### Backend - Mac
+1. From your teminal, navigate to `/flask-backend`
+2. Execute the following commands:
+```
+python3 -m pip install --user virtualenv
+
+python3 -m venv env
+
+source env/bin/activate
+
+python3 -m pip install -r mac_requirements.txt
+```
+3. To start the standalone backend server, execute `flask run`. Please make sure that no other applications / processes are using port `5000`. 
+
+4. To deactivate the virtual environment, run `deactivate`
+
+
+
+#### Frontend
 
 In order to run this application in a development setting you first need to run `npm run build-exe` which will build the python executable and will act has the local server for the flask backend.
 
