@@ -136,6 +136,18 @@ Once you are content with your results you can click the home button and navigat
 
 <img src="README_assets/Usage_steps/step13.PNG" width=600>
 
+## Adding New Models
+Currently, this has to be done manually through creating new directories in the repository, in the future it would be possible to create a way to do it automatically but as specified by the clients it wasn't something they wanted in the UI.
+
+To add a new model, follow along with the following instructions:
+1. First off you'll need to make a new folder within the following directory /flask-backend/app/data/ml/models/. this folder should be named something in relation to the model, for example, Trupanea's model directory is the following: /flask-backend/app/data/ml/models/trupanea/
+2. After making the new folder, you need to create 2 more folders in the new directory, one needs to be named **labels**, and the other needs to be named the **model version (such as "inceptionv3" for Trupanea**.
+3. With those 2 new folders, in **/flask-backend/app/data/ml/models/<model_name>/labels** add the labels.csv, if you need to see what it looks like, take a look at /flask-backend/app/data/ml/models/trupanea/labels/labels.csv.
+4. In **/flask-backend/app/data/ml/models/<model_name>/<model_version>** add the .h5 Machine Learning model file, which needs to be called model.h5.
+
+After following those steps above, the program should automatically recognise the new model file, allowing you to select the model on the home page of the application.
+
+
 ## Future Plans
 To update this program in the future, the current way of doing it is you have to modify the repository (be it either upload new files/modify lines of code) and then reinstall the application following the steps above. In the future however it is possible to only modify the repository and have each pre-existing installation automatically update, this would both save time and be more efficient then manually needing to update x amount of devices everytime some code is changed.
 
